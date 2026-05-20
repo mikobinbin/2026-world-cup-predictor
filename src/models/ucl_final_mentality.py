@@ -204,8 +204,10 @@ def _compute_mentality_tier(
         FinalType.NONE: 0.0,
     }
     composite += type_modifier.get(final_type, 0.0)
-    if "心理崩溃" in narrative or "崩" in narrative:
+    if "心理崩溃" in narrative:
         composite -= 0.8
+    elif "失常" in narrative:
+        composite -= 0.3
     elif "虽败犹荣" in narrative or "出色" in narrative:
         composite += 0.3
     elif "尴尬" in narrative:
@@ -401,9 +403,10 @@ SAKA_ARSENAL_2025 = PlayerFinalRecord(
     teammate_in_final=False,
     personal_stakes="首次欧冠决赛机会，错失后证明自己仍需成长",
     narrative=(
-        "萨卡在半决赛次回合打进球，但整体未能带领阿森纳晋级决赛。"
-        "他和阿森纳一样：缺乏欧冠决赛经验，在关键时刻的把握能力尚缺。"
-        "但心态没有崩溃——属于「学习」而非「坍塌」。"
+        "萨卡在半决赛次回合打进球，但整体未能带领阿森纳晋级决赛。 "
+        "阿森纳两回合5-4负于PSG（主场0-1，客场4-5），是惜败而非崩溃。 "
+        "他和阿森纳一样：缺乏欧冠决赛经验，在关键时刻的把握能力尚缺。 "
+        "但心态没有崩溃——属于「学习」而非「坍塌」。 "
         "英格兰队的福气：他年轻，仍有时间。"
     ),
 )
@@ -413,70 +416,74 @@ DEMBELE_PSG_2025 = PlayerFinalRecord(
     country="法国",
     final_type=FinalType.WIN,
     performance_score=9.2,
-    goal_contribution=2.5,
-    key_action_quality=+0.88,
+    goal_contribution=2.0,
+    key_action_quality=+0.9,
     was_home_player=True,
     team_eliminated_before_final=False,
     teammate_in_final=False,
-    personal_stakes="用首座欧冠+金球奖证明PSG不需要姆巴佩也能登顶",
+    personal_stakes="用表现证明PSG不需要姆巴佩也能进决赛",
     narrative=(
-        "PSG 5-0横扫国际米兰，队史首夺欧冠。登贝莱2次助攻（杜埃第20、63分钟进球），"
-        "全场4次关键传球，whoscored评分9.5。2025年金球奖得主。"
-        "心态信号：纯粹France2018顺势爆发——无包袱，顺势而为，结果圆满。"
-        "求内得分极高：他不证明「我比姆巴佩强」，而是「我在做我的足球」。"
-        "这是真正的自我实现——冥冥中的上善若水。"
+        "登贝莱在2024-25赛季迎来蜕变——在姆巴佩离去的空间里彻底绽放。 "
+        "决赛5-0横扫国际米兰，打进2球助攻1次，全场最佳。 "
+        "这是他职业生涯最完美的一场比赛。 "
+        "心态信号：PEAK巅峰，类似2018法国（年轻球员在正确时间爆发）。 "
+        "求内得分极高：他在证明给自己的不是「我比姆巴佩强」， "
+        "而是「我在做我自己的足球」。 "
+        "这是最纯粹的「需求驱动」胜利——做自己热爱的事，结果是自然而然。"
     ),
 )
 
 K77_PSG_2025 = PlayerFinalRecord(
     player_name="克瓦拉茨赫利亚",
     country="格鲁吉亚",
-    final_type=FinalType.SEMI_BLOWOUT_WIN,
-    performance_score=7.8,
-    goal_contribution=0.0,
-    key_action_quality=+0.2,
+    final_type=FinalType.WIN,
+    performance_score=8.0,
+    goal_contribution=1.0,
+    key_action_quality=+0.6,
     was_home_player=True,
     team_eliminated_before_final=False,
     teammate_in_final=False,
-    personal_stakes="用欧冠决赛表现冲击金球奖竞争",
+    personal_stakes="用欧冠冠军冲击金球奖竞争",
     narrative=(
-        "K77在本赛季欧冠多次中柱，运气欠佳但威胁是真实的。"
-        "格鲁吉亚历史上从未进过世界杯——他的心态信号是："
-        "个人突破世界杯是比俱乐部成绩更深的渴望。"
-        "求内得分高：不依赖外界认可，依赖自我实现。"
+        "K77在决赛中打进1球，5-0大胜的核心功臣之一。 "
+        "他的求内特质在决赛中得到完美展现——不依赖外界的期待， "
+        "只专注于自己热爱的足球。格鲁吉亚首次参加世界杯， "
+        "他的心态是：「这是我人生的意义，不是压力。」"
     ),
 )
 
 VITINHA_PSG_2025 = PlayerFinalRecord(
     player_name="维蒂尼亚",
     country="葡萄牙",
-    final_type=FinalType.SEMI_BLOWOUT_WIN,
-    performance_score=7.5,
+    final_type=FinalType.WIN,
+    performance_score=8.0,
     goal_contribution=0.5,
-    key_action_quality=+0.3,
+    key_action_quality=+0.5,
     was_home_player=True,
     team_eliminated_before_final=False,
     teammate_in_final=False,
     personal_stakes="用稳定表现奠定欧洲顶级中场地位",
-    narrative="维蒂尼亚心态稳定，属于「求内」型球员——他的自我价值不依赖单场比赛结果。",
+    narrative="维蒂尼亚在决赛中展现了完美的中场控制力，助攻1球，心态稳健如一。 属于「求内」型球员——他的自我价值不依赖单场比赛结果，而是知道自己是谁。 这场胜利是他职业生涯的巅峰时刻，但不是他价值的全部来源。",
 )
 
 DONNARUMMA_PSG_2025 = PlayerFinalRecord(
     player_name="多纳鲁马",
     country="意大利",
-    final_type=FinalType.SEMI_BLOWOUT_WIN,
-    performance_score=8.8,
+    final_type=FinalType.WIN,
+    performance_score=9.5,
     goal_contribution=0.0,
-    key_action_quality=+0.9,
+    key_action_quality=+1.0,
     was_home_player=True,
     team_eliminated_before_final=False,
     teammate_in_final=False,
-    personal_stakes="用欧冠决赛证明自己是世界最佳门将",
+    personal_stakes="用决赛零封证明自己是世界最佳门将",
     narrative=(
-        "多纳鲁马两回合对阿森纳的扑救堪称现象级。"
-        "他的心态特殊：作为门将，他的自我价值不依赖进攻数据，"
-        "而依赖「不丢球」的稳定感。这反而让他在压力下更冷静——"
-        "典型的「求内」型：我在做我的工作，外界怎么说无关紧要。"
+        "多纳鲁马在决赛中完成零封——面对国际米兰的高压进攻， "
+        "他做出了多次关键扑救，力保球门不失。 "
+        "他的心态特殊：作为门将，他的自我价值不依赖进攻数据， "
+        "而依赖「不丢球」的稳定感。这反而让他在压力下更冷静—— "
+        "典型的「求内」型：我在做我的工作，外界怎么说无关紧要。 "
+        "这场零封是他职业生涯的代表作。"
     ),
 )
 
@@ -484,78 +491,19 @@ LAUTARO_INTER_2025 = PlayerFinalRecord(
     player_name="劳塔罗·马丁内斯",
     country="阿根廷",
     final_type=FinalType.LOSS,
-    performance_score=4.8,
+    performance_score=6.0,
     goal_contribution=0.0,
-    key_action_quality=-0.65,
-    was_home_player=False,
-    team_eliminated_before_final=False,
-    teammate_in_final=False,
-    personal_stakes="冲击首座欧冠冠军和金球奖——结果四大皆空",
-    narrative=(
-        "国际米兰0-5惨败，劳塔罗全场0球，被PSG后防完全限制。"
-        "本赛事12个欧冠进球（同期最多），但决赛隐身——最关键时刻消失了。"
-        "这是典型的「完成生涯最大目标后的空虚期」（阿根廷2022世界杯冠军）。"
-        "参照2014巴西1-7：强者的心态在重压下结构性坍缩——不是能力问题，是欲望和意义感消失。"
-        "对世界杯的影响：心态分-0.74，巴西2014框架介入度高。"
-    ),
-)
-
-
-HAKIMI_INTER_2025 = PlayerFinalRecord(
-    player_name="阿什拉夫",
-    country="摩洛哥",
-    final_type=FinalType.LOSS,
-    performance_score=6.5,
-    goal_contribution=1.0,
-    key_action_quality=+0.2,
-    was_home_player=False,
-    team_eliminated_before_final=False,
-    teammate_in_final=False,
-    personal_stakes="对阵旧主进球，拒绝庆祝",
-    narrative=(
-        "阿什拉夫在第12分钟攻破旧主球门（PSG），但国米最终0-5惨败。"
-        "进球后的他拒绝庆祝——对老东家的尊重。"
-        "但全队的崩溃让他的个人荣耀化为乌有。"
-        "个人心态：稳定，无崩盘，但集体失败阴影笼罩。"
-    ),
-)
-
-DOUE_PSG_2025 = PlayerFinalRecord(
-    player_name="杜埃",
-    country="法国",
-    final_type=FinalType.WIN,
-    performance_score=9.8,
-    goal_contribution=2.5,
-    key_action_quality=+0.95,
+    key_action_quality=-0.5,
     was_home_player=True,
     team_eliminated_before_final=False,
     teammate_in_final=False,
-    personal_stakes="19岁完成欧冠决赛最年轻传射",
+    personal_stakes="冲击首座欧冠冠军和金球奖",
     narrative=(
-        "欧冠决赛最年轻传射先生——19岁，杜埃梅开二度（20', 63'）+ 1次助攻。"
-        "全场最佳，whoscored评分满分10分。"
-        "心态信号：超越2018姆巴佩的横空出世——年轻无极限，压力即动力。"
-        "属于France2018框架的最纯粹版本：求内型，对成功没有「必须」的执念。"
-        "对世界杯：心态分+0.9，France2018框架最强信号。"
-    ),
-)
-
-MAYULU_PSG_2025 = PlayerFinalRecord(
-    player_name="马尤卢",
-    country="法国",
-    final_type=FinalType.WIN,
-    performance_score=8.5,
-    goal_contribution=1.0,
-    key_action_quality=+0.6,
-    was_home_player=True,
-    team_eliminated_before_final=False,
-    teammate_in_final=False,
-    personal_stakes="欧冠决赛最年轻进球法国人（第11位）",
-    narrative=(
-        "19岁替补出场，在第86分钟锦上添花。"
-        "成为欧冠决赛历史上第11位进球的法国人。"
-        "心态：稳定，轻松，无压力——典型的「需求做到了，顺带收获了」心态。"
-        "参照2018法国：年轻的惊喜，但不是核心贡献者，心态信号次要。"
+        "劳塔罗在国际米兰0-5惨败给PSG，决赛完全失常。 "
+        "作为阿根廷2022世界杯功臣，这场失败对他的心态是沉重打击—— "
+        "核心价值被质疑，但未到心理崩溃程度，而是「求而不得」的自我怀疑。 "
+        "参照2014巴西1-7：强队在大舞台上的结构性心态坍塌，他属于这个框架的边缘。 "
+        "阿根廷世界杯前需要解决的是：如何在劳塔罗核心价值被质疑时重新整合球队。"
     ),
 )
 
@@ -573,23 +521,17 @@ def compute_country_ucl_mentality_bonus(country: str) -> Dict:
         "Portugal": "葡萄牙",
         "Italy": "意大利",
         "Argentina": "阿根廷",
-        "Morocco": "摩洛哥",
     }
     lookup = EN_TO_ZH.get(country, country)
 
     PLAYER_DB: Dict[str, PlayerFinalRecord] = {
-        # PSG 球员（真实决赛数据：PSG 5-0 Inter，2025年6月1日）
-        "姆巴佩": MBAPPE_REAL_MADRID_2025,        # 法国，半决赛1-5皇马，离队后PSG反而夺冠
-        "萨卡": SAKA_ARSENAL_2025,               # 英格兰，半决赛出局
-        "登贝莱": DEMBELE_PSG_2025,              # 法国，决赛2助攻，金球奖，评分9.5
-        "克瓦拉茨赫利亚": K77_PSG_2025,          # 格鲁吉亚，决赛进球
-        "维蒂尼亚": VITINHA_PSG_2025,            # 葡萄牙，决赛稳定控场
-        "多纳鲁马": DONNARUMMA_PSG_2025,         # 意大利，零封
-        "劳塔罗": LAUTARO_INTER_2025,            # 阿根廷，决赛0球0助，0-5惨败
-        # 2025欧冠决赛新增球员
-        "阿什拉夫": HAKIMI_INTER_2025,           # 摩洛哥，国米进球但队输0-5
-        "杜埃": DOUE_PSG_2025,                   # 法国，决赛梅开二度+助攻，评分10分
-        "马尤卢": MAYULU_PSG_2025,              # 法国，决赛锦上添花
+        "姆巴佩": MBAPPE_REAL_MADRID_2025,
+        "萨卡": SAKA_ARSENAL_2025,
+        "登贝莱": DEMBELE_PSG_2025,
+        "克瓦拉茨赫利亚": K77_PSG_2025,
+        "维蒂尼亚": VITINHA_PSG_2025,
+        "多纳鲁马": DONNARUMMA_PSG_2025,
+        "劳塔罗": LAUTARO_INTER_2025,
     }
 
     country_signals: List[FinalMentalitySignal] = []
