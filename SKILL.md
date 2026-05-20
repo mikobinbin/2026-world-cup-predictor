@@ -198,6 +198,39 @@ elo=1750 →  2.5%（16强门槛）
 - 定义常量 `DEFENDING_CHAMPION`，调用写成 `DEFENDING_CHAMP`
 - **Prevention**: 统一命名规范，或用枚举类
 
+### mobile_ui.py 无法启动的两个致命 Bug（2026-05-20 实测）
+
+**Bug 1：没有 `if __name__ == "__main__"` 入口**
+- **症状**：`python3 -m src.dashboard.mobile_ui` 报错 `NameError: name 'run_server' is not defined`
+- **根因**：`run_server()` 函数定义在模块底部，但没有 `if __name__ == "__main__": run_server()` 入口，模块 import 时函数体从不执行
+- **Solution**：在文件末尾添加：
+```python
+if __name__ == "__main__":
+    run_server()
+```
+
+**Bug 2：macOS "Address already in use" 导致服务起不来**
+- **症状**：重启服务时报 `OSError: [Errno 48] Address already in use`，curl 始终 0 bytes
+- **根因**：macOS 的 `socketserver.TCPServer` 默认关闭 `SO_REUSEADDR`，即使进程退出，端口仍被 kernel 占用约 30 秒
+- **Solution**：在 `TCPServer(..., Handler)` 之前加：
+```python
+socketserver.TCPServer.allow_reuse_address = True
+```
+- **完整启动流程**（避免旧进程占用）：
+```bash
+lsof -ti :7862 | xargs kill -9 2>/dev/null; sleep 2
+cd ~/Desktop/world_cup_predictor && python3 -m src.dashboard.mobile_ui
+# 验证
+curl http://localhost:7862 | wc -c  # 应返回 ~39000
+```
+
+**正确启动命令**（已验证）：
+```bash
+# 纯HTML移动端看板（端口7862）
+cd ~/Desktop/world_cup_predictor && python3 -m src.dashboard.mobile_ui
+# 浏览器访问：http://localhost:7862
+```
+
 ---
 
 ## Known Limitations

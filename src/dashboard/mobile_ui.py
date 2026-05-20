@@ -1,6 +1,7 @@
 """
 世界杯预测 — 移动端独立版（纯 HTML/CSS/JS，无 Gradio）
-Apple Sports 深黑主题，完整数据，流畅移动端体验
+Apple Sports 深黑主题，6 Tab 完整功能
+Champion | Factor | Mystic | UCL | Squad | Info
 
 用法:
     cd ~/Desktop/world_cup_predictor
@@ -16,21 +17,24 @@ import json
 import random
 from datetime import datetime
 
-# ── 项目路径 ────────────────────────────────────────────────────────────
+# ── 项目路径 ───────────────────────────────────────────────────────────
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, ROOT)
 
 from src.models.player_scoring import Player, Squad
 from src.models.team_scoring import score_all_teams, ModelWeights
 from src.models.mystic_factor import MysticFactorEngine
-from src.models.ucl_final_mentality import compute_country_ucl_mentality_bonus
+from src.models.ucl_final_mentality import (
+    compute_country_ucl_mentality_bonus,
+    compute_final_mentality_signal,
+)
 from scripts.elo_scraper import load_elo_cache
 from scripts.ingest_wikipedia_squads import normalize_position
 
 RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
 
-# ── 常量 ────────────────────────────────────────────────────────────────
+# ── 常量 ───────────────────────────────────────────────────────────────
 WIKI_DATA = os.path.join(ROOT, "data", "wc2026_players_processed.json")
 ELO_CACHE = os.path.join(ROOT, "data", "elo_cache_2026.json")
 
@@ -96,31 +100,32 @@ def _build_sample(country: str, elo: float):
     for i in range(23):
         age = max(18, min(38, int(random.gauss(params["mean"], params["std"]))))
         has_exp = random.random() < params["exp_ratio"]
-        players.append(Player(
-            name=f"P{i+1}_{country[:3]}",
-            age=age,
-            position=random.choice(positions),
-            club="Club",
-            market_value=max(0.5, random.uniform(5, 60)),
-            national_caps=random.randint(0, 100) if has_exp else random.randint(0, 20),
-            national_goals=random.randint(0, 30) if has_exp else random.randint(0, 5),
-            tournaments=["2022"] if has_exp else [],
-        ))
+        players.append({
+            "name": f"P{i+1}_{country[:3]}",
+            "age": age,
+            "position": random.choice(positions),
+            "club": "Club",
+            "market_value": max(0.5, random.uniform(5, 60)),
+            "national_caps": random.randint(0, 100) if has_exp else random.randint(0, 20),
+            "national_goals": random.randint(0, 30) if has_exp else random.randint(0, 5),
+            "tournaments": ["2022"] if has_exp else [],
+        })
     coach_hash = hash(country) % 1000 / 1000.0
     coaching_factor = 0.4 + coach_hash * 0.5
-    return Squad(
-        country=country, players=players, elo=elo,
-        recent_win_rate=0.3 + (elo - 1500) / 1000 * 0.5,
-        coaching_factor=coaching_factor,
-        tournament_history=["2022"] if country == DEFENDING_CHAMPION else [],
-    )
+    return {
+        "country": country,
+        "players": players,
+        "elo": elo,
+        "coaching_factor": coaching_factor,
+    }
 
 # ── UCL 心态数据加载 ────────────────────────────────────────────────────
 def _load_ucl_data():
     """返回 {国家: {total_bonus, description, players}}"""
     from src.models.ucl_final_mentality import (
-        MBAPPE_REAL_MADRID_2025, DEMBELE_PSG_2025, SAKA_ARSENAL_2025,
-        K77_PSG_2025, VITINHA_PSG_2025, DONNARUMMA_PSG_2025, LAUTARO_INTER_2025,
+        MBAPPE_REAL_MADRID_2025, DEMBELE_PSG_2025,
+        K77_PSG_2025, VITINHA_PSG_2025, DONNARUMMA_PSG_2025,
+        LAUTARO_INTER_2025,
     )
     UCL_PLAYERS = {
         "France": [
@@ -163,7 +168,16 @@ def _load_ucl_data():
 _cached_results = None
 
 def _load_analysis():
-    """返回 (results, ucl_data)"""
+    """返回 (results, ucl_data)
+
+    results 每条包含:
+      country, elo, prob, final_prob, shift, logical_prob,
+      verdict, zen, tao, iching, confidence,
+      contrarian, fav_curse,
+      elo_score, age_score, exp_score, form_score, coach_score, mystic_score,
+      narrative, ci_low, ci_high,
+      players (top 15 by caps)
+    """
     global _cached_results
     if _cached_results is not None:
         return _cached_results
@@ -177,9 +191,9 @@ def _load_analysis():
     # 2. Elo
     elo_dict = load_elo_cache(ELO_CACHE) or {}
 
-    # 3. Build squads
+    # 3. Build squads (as dict first, for JSON serialization)
     teams_data = wiki_data.get("teams", {})
-    squads = {}
+    squad_dicts = {}
     for country in QUALIFIED_TEAMS:
         elo = elo_dict.get(country, 1650.0)
         if country in teams_data:
@@ -193,63 +207,83 @@ def _load_analysis():
                 pos = normalize_position(p.get("position", "MF"))
                 tournaments = _infer_tournaments(caps, age)
                 mv = _estimate_mv(pos, caps, age)
-                players.append(Player(
-                    name=p["name"], age=age, position=pos,
-                    club=p.get("club", "Unknown"), market_value=mv,
-                    national_goals=p.get("goals", 0), national_caps=caps,
-                    tournaments=tournaments,
-                ))
-            players.sort(key=lambda x: x.national_caps, reverse=True)
-            players = players[:26]
+                players.append({
+                    "name": p["name"],
+                    "age": age,
+                    "position": pos,
+                    "club": p.get("club", "Unknown"),
+                    "market_value": mv,
+                    "national_goals": p.get("goals", 0),
+                    "national_caps": caps,
+                    "tournaments": tournaments,
+                })
+            players.sort(key=lambda x: x["national_caps"], reverse=True)
+            players = players[:15]  # top 15 for JSON size
             if players:
-                squads[country] = Squad(
-                    country=country, players=players, elo=elo,
-                    recent_win_rate=0.3 + (elo - 1500) / 1000 * 0.5,
-                    coaching_factor=0.4 + (hash(country) % 1000 / 1000.0) * 0.5,
-                    tournament_history=["2022"] if country == DEFENDING_CHAMPION else [],
-                )
+                coach_hash = hash(country) % 1000 / 1000.0
+                squad_dicts[country] = {
+                    "country": country,
+                    "players": players,
+                    "elo": elo,
+                    "coaching_factor": 0.4 + coach_hash * 0.5,
+                }
                 continue
-        squads[country] = _build_sample(country, elo)
+        squad_dicts[country] = _build_sample(country, elo)
 
-    # 4. Score
+    # 4. Build Squad objects for scoring
+    squad_objs = []
+    for country in QUALIFIED_TEAMS:
+        sq = squad_dicts[country]
+        pl_objs = [
+            Player(
+                name=pp["name"],
+                age=pp["age"],
+                position=pp["position"],
+                club=pp["club"],
+                market_value=pp["market_value"],
+                national_goals=pp["national_goals"],
+                national_caps=pp["national_caps"],
+                tournaments=pp["tournaments"],
+            )
+            for pp in sq["players"]
+        ]
+        squad_objs.append(Squad(
+            country=sq["country"],
+            players=pl_objs,
+            elo=sq["elo"],
+            recent_win_rate=0.3 + (sq["elo"] - 1500) / 1000 * 0.5,
+            coaching_factor=sq["coaching_factor"],
+            tournament_history=["2022"] if sq["country"] == DEFENDING_CHAMPION else [],
+        ))
+
+    # 5. Score
     weights = ModelWeights()
     scored = score_all_teams(
-        list(squads.values()), weights=weights,
-        host_team=HOST_COUNTRY, defending_champ=DEFENDING_CHAMPION,
+        squad_objs,
+        weights=weights,
+        host_team=HOST_COUNTRY,
+        defending_champ=DEFENDING_CHAMPION,
     )
 
-    # 5. Mystic（带 UCL override 精确调参）
-    # override 直接加到各 suppressor 上，正值 = 更积极/更少压制
-    # 框架含义：正心态 → favorite_curse↑（减少强队诅咒压制）
-    #           正心态 → contrarian↑（更自信不强求）
-    #           正心态 → gs_volatility↑（减少不稳定担忧）
-    #           正心态 → knockout_unc↑（淘汰赛信心）
-    #
-    # France：4名 PSG 球员（3法国+1意大利）大胜心态 → 整体强势
-    # Argentina：劳塔罗决赛进球强势 → 强势但弱于 France
-    # Brazil：无 UCL 球员 → 无 override
-    # UCL 心态 override（直接传入 mystic factor，精确调控 shift）
-    # 框架含义：override 直接加到各 suppressor 上
-    # 心态强势（正）→ favorite_curse↑（减少强队诅咒压制）, contrarian↑（不过度自信）
-    #
-    # France（4 PSG 球员大胜5-0，心态强势）:
-    # Argentina（劳塔罗进球强势，但 Inter 输了，心态次强势）:
+    # 6. UCL 心态 override 精确调参
+    # 框架含义：
+    #   正心态 → favorite_curse↑（减少强队诅咒压制）, contrarian↑（不过度自信）
+    #   France（4 PSG 球员大胜5-0，心态强势）: +2% 位移目标
+    #   Argentina（劳塔罗进球强势，但 Inter 输了，心态次强势）: -1.5% 位移目标
+    #   England（萨卡阿森纳半决赛失利）: -1.5% 位移目标
     ucl_overrides = {
-        # France：4 PSG 球员大胜心态（5-0）→ 强势加持
         "France": {
             "contrarian": 0.015,
             "favorite_curse": 0.025,
             "gs_volatility": 0.008,
             "knockout_unc": 0.003,
         },
-        # Argentina：劳塔罗进球强势（Inter输了，但个人出色）→ 次强势
         "Argentina": {
             "contrarian": 0.015,
             "favorite_curse": 0.025,
             "gs_volatility": 0.008,
             "knockout_unc": 0.003,
         },
-        # England：萨卡（阿森纳半决赛失利）→ 轻微压制
         "England": {
             "contrarian": -0.003,
             "favorite_curse": -0.005,
@@ -261,26 +295,30 @@ def _load_analysis():
     engine = MysticFactorEngine()
     mystic_teams = [{
         "country": t.country,
-        "elo": squads[t.country].elo if t.country in squads else 1700,
+        "elo": squad_dicts.get(t.country, {}).get("elo", 1700),
         "prob": t.final_probability,
-        "avg_age": sum(p.age for p in squads[t.country].players) / len(squads[t.country].players) if squads[t.country].players else 27.0,
-        "exp_ratio": sum(1 for p in squads[t.country].players if p.national_caps >= 30) / len(squads[t.country].players) if squads[t.country].players else 0,
+        "avg_age": 27.0,
+        "exp_ratio": 0.5,
         "is_host": (t.country == HOST_COUNTRY),
         "is_defending": (t.country == DEFENDING_CHAMPION),
         "is_first_tournament": (t.final_probability < 0.01),
     } for t in scored]
 
-    mystic_results = engine.analyze(mystic_teams, stage="tournament",
-                                      ucl_mentality_overrides=ucl_overrides)
+    mystic_results = engine.analyze(
+        mystic_teams,
+        stage="tournament",
+        ucl_mentality_overrides=ucl_overrides,
+    )
     mystic_map = {r.country: r for r in mystic_results}
 
-    # 6. Merge
+    # 7. Merge results（含 factor scores + squad players）
     results = []
     for t in scored:
         r = mystic_map.get(t.country)
+        sq_dict = squad_dicts.get(t.country, {})
         results.append({
             "country": t.country,
-            "elo": squads[t.country].elo if t.country in squads else 1700,
+            "elo": sq_dict.get("elo", 1700),
             "prob": t.final_probability,
             "final_prob": r.mystic_prob if r else t.final_probability,
             "shift": (r.mystic_prob - t.final_probability) if r else 0,
@@ -289,15 +327,26 @@ def _load_analysis():
             "zen": r.zen.final_recommendation if r else "—",
             "tao": r.tao.tao_recommendation if r else "—",
             "iching": "".join(r.iching.hexagram[:2]) if r else "—",
-            "iching_warning": r.iching.hexagram_warning if r else "",
             "confidence": r.confidence if r else 0.5,
             "contrarian": r.contrarian_shift if r else 0,
             "fav_curse": r.favorite_curse if r else 0,
+            # Factor scores（来自 TeamResult）
+            "elo_score": t.elo_score,
+            "age_score": t.age_score,
+            "exp_score": t.experience_score,
+            "form_score": t.form_score,
+            "coach_score": t.coaching_score,
+            "mystic_score": t.mystic_score,
+            "narrative": getattr(t, 'narrative', '') or '',
+            "ci_low": t.confidence_interval[0] if t.confidence_interval else 0,
+            "ci_high": t.confidence_interval[1] if t.confidence_interval else 0,
+            # Squad players（top 15 by caps）
+            "players": sq_dict.get("players", [])[:15],
         })
 
     results.sort(key=lambda x: x["final_prob"], reverse=True)
 
-    # 7. UCL
+    # 8. UCL
     ucl_data = _load_ucl_data()
 
     _cached_results = (results, ucl_data)
@@ -305,10 +354,10 @@ def _load_analysis():
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# 纯 HTML/CSS/JS 移动端界面
+# 纯 HTML/CSS/JS 移动端界面（6 Tab）
 # ═══════════════════════════════════════════════════════════════════════════
 
-HTML_BODY = """<!DOCTYPE html>
+HTML_BODY = r'''<!DOCTYPE html>
 <html lang="zh">
 <head>
 <meta charset="utf-8">
@@ -323,13 +372,14 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .hdr-title{font-size:19px;font-weight:800;letter-spacing:-0.4px}
 .hdr-sub{font-size:11px;color:var(--tx2);margin-top:3px}
 .tabbar{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(0,0,0,0.9);backdrop-filter:blur(24px);border-top:0.5px solid var(--bd);display:flex}
-.tab{flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 0 8px;gap:4px;border:none;background:none;color:var(--tx3);font-size:10px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:color 0.15s}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 0 8px;gap:3px;border:none;background:none;color:var(--tx3);font-size:9px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:color 0.15s}
 .tab.on{color:var(--bl)}
-.ico{font-size:22px;line-height:1}
+.ico{font-size:20px;line-height:1}
 .pg{display:none;height:100vh;overflow-y:auto;padding:68px 16px 88px;-webkit-overflow-scrolling:touch}
 .pg.on{display:block}
 .card{background:var(--s);border-radius:16px;border:0.5px solid var(--bd);padding:16px;margin-bottom:12px}
 .card-title{font-size:10px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:14px}
+/* Leaderboard */
 .lb{display:flex;flex-direction:column}
 .lb-r{display:flex;align-items:center;padding:11px 0;border-bottom:0.5px solid var(--bd);gap:10px}
 .lb-r:last-child{border-bottom:none}
@@ -345,6 +395,23 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .lb-pct{font-size:17px;font-weight:800;font-variant-numeric:tabular-nums}
 .lb-pct.vh{color:var(--bl)}
 .lb-sh{font-size:11px;font-weight:600;margin-top:2px}
+/* Factor breakdown */
+.fb-r{display:flex;flex-direction:column;padding:12px 0;border-bottom:0.5px solid var(--bd);cursor:pointer}
+.fb-r:last-child{border-bottom:none}
+.fb-hd{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.fb-fl{font-size:20px}
+.fb-nm{font-size:14px;font-weight:700;flex:1}
+.fb-pct{font-size:14px;font-weight:800;color:var(--bl)}
+.fb-bars{display:flex;flex-direction:column;gap:5px}
+.fb-bar{display:flex;align-items:center;gap:8px}
+.fb-lbl{font-size:10px;color:var(--tx2);width:52px;flex-shrink:0;font-weight:600}
+.fb-track{height:4px;background:var(--bd);border-radius:2px;flex:1}
+.fb-fill{height:4px;border-radius:2px;transition:width 0.3s}
+.fb-val{font-size:10px;font-weight:700;width:34px;text-align:right;flex-shrink:0}
+.fb-expanded{display:none;padding:8px 0 4px}
+.fb-expanded.on{display:block}
+.fb-narrative{font-size:11px;color:var(--tx2);line-height:1.5;margin-top:6px;font-style:italic}
+/* Mystic */
 .mc-r{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:0.5px solid var(--bd);cursor:pointer}
 .mc-r:last-child{border-bottom:none}
 .mc-fl{font-size:26px}
@@ -364,6 +431,7 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .mtric-val{font-size:16px;font-weight:800;margin-top:4px}
 .mtric-val.pos{color:var(--gr)}
 .mtric-val.neg{color:var(--rd)}
+/* UCL */
 .ucard{background:var(--s);border-radius:16px;border:0.5px solid var(--bd);padding:16px;margin-bottom:12px}
 .ucard-fl{font-size:36px;margin-bottom:6px}
 .ucard-nm{font-size:20px;font-weight:800}
@@ -381,58 +449,193 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .fw{background:var(--s2);border-radius:12px;padding:14px}
 .fw-tl{font-size:12px;font-weight:700;color:var(--gd);margin-bottom:8px}
 .fw-it{font-size:12px;color:var(--tx2);line-height:1.8}
+/* Squad */
+.sel{width:100%;background:var(--s2);color:var(--tx);border:0.5px solid var(--bd);border-radius:12px;padding:12px 16px;font-size:15px;font-weight:600;margin-bottom:12px;appearance:none;-webkit-appearance:none}
+.sel-wrap{position:relative}
+.sel-wrap::after{content:"▼";position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--tx2);pointer-events:none}
+.sq-card{background:var(--s);border-radius:16px;border:0.5px solid var(--bd);overflow:hidden;margin-bottom:12px}
+.sq-ph{background:var(--s2);padding:12px 16px;display:flex;align-items:center;gap:12px}
+.sq-ph-fl{font-size:28px}
+.sq-ph-nm{font-size:16px;font-weight:800}
+.sq-ph-elo{font-size:12px;color:var(--tx2);margin-top:2px}
+.sq-table{width:100%}
+.sq-th{background:var(--s2);padding:8px 12px;font-size:9px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:0.6px;text-align:left}
+.sq-td{padding:9px 12px;font-size:13px;border-bottom:0.5px solid var(--bd)}
+.sq-td:last-child{border-bottom:none}
+.sq-pos{font-size:10px;font-weight:700;color:var(--tx2);width:28px}
+.sq-name{font-weight:600}
+.sq-club{font-size:11px;color:var(--tx2)}
+.sq-mv{font-size:12px;font-weight:700;color:var(--gd);white-space:nowrap}
+.sq-caps{text-align:right;font-variant-numeric:tabular-nums}
+.sq-goals{text-align:right;font-variant-numeric:tabular-nums;color:var(--tx2)}
+/* Info */
 .info-sec{margin-bottom:24px}
 .info-tl{font-size:11px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
-.info-row{background:var(--s);border-radius:12px;padding:14px 16px;margin-bottom:8px;display:flex;justify-content:space-between}
+.info-row{background:var(--s);border-radius:12px;padding:14px 16px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
 .info-lbl{font-size:14px;color:var(--tx2)}
-.info-val{font-size:14px;font-weight:700}
+.info-val{font-size:14px;font-weight:700;text-align:right}
+.calibration{background:var(--s);border-radius:12px;padding:16px;margin-bottom:10px}
+.cal-hd{font-size:13px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.cal-bd{font-size:12px;color:var(--tx2);line-height:1.7}
 </style>
 </head>
 <body>
-<div class="hdr"><div class="hdr-title">世界杯 2026 / WC 2026</div><div class="hdr-sub" id="upd"></div></div>
-<div class="tabbar">
-<button class="tab on" id="tb-home" onclick="showTab('home')"><span class="ico">C</span><span>冠军 / Champion</span></button>
-<button class="tab" id="tb-mystic" onclick="showTab('mystic')"><span class="ico">M</span><span>玄学 / Mystic</span></button>
-<button class="tab" id="tb-ucl" onclick="showTab('ucl')"><span class="ico">U</span><span>欧冠 / UCL</span></button>
-<button class="tab" id="tb-info" onclick="showTab('info')"><span class="ico">i</span><span>说明 / Info</span></button>
+<div class="hdr">
+  <div class="hdr-title">世界杯 2026 / WC 2026</div>
+  <div class="hdr-sub" id="upd"></div>
 </div>
 
-<div class="pg on" id="pg-home"><div class="card"><div class="card-title">冠军概率 / Champion Prob</div><div class="lb" id="lb"></div></div></div>
-<div class="pg" id="pg-mystic"><div class="card"><div class="card-title">玄学分析 / Mystic Analysis</div><div id="ml"></div></div></div>
-<div class="pg" id="pg-ucl"><div id="uc"></div></div>
+<div class="tabbar">
+  <button class="tab on" id="tb-home" onclick="showTab('home')"><span class="ico">🏆</span><span>冠军</span></button>
+  <button class="tab" id="tb-factor" onclick="showTab('factor')"><span class="ico">📊</span><span>因子</span></button>
+  <button class="tab" id="tb-mystic" onclick="showTab('mystic')"><span class="ico">🔮</span><span>玄学</span></button>
+  <button class="tab" id="tb-ucl" onclick="showTab('ucl')"><span class="ico">⚡</span><span>欧冠</span></button>
+  <button class="tab" id="tb-squad" onclick="showTab('squad')"><span class="ico">👥</span><span>球队</span></button>
+  <button class="tab" id="tb-info" onclick="showTab('info')"><span class="ico">i</span><span>说明</span></button>
+</div>
+
+<!-- TAB: Champion -->
+<div class="pg on" id="pg-home">
+  <div class="card">
+    <div class="card-title">冠军概率 / Champion Prob</div>
+    <div class="lb" id="lb"></div>
+  </div>
+</div>
+
+<!-- TAB: Factor Breakdown -->
+<div class="pg" id="pg-factor">
+  <div class="card">
+    <div class="card-title">因子拆解 / Factor Breakdown — 点击展开详情</div>
+    <div id="fb"></div>
+  </div>
+</div>
+
+<!-- TAB: Mystic -->
+<div class="pg" id="pg-mystic">
+  <div class="card">
+    <div class="card-title">玄学分析 / Mystic Analysis — 点击展开详情</div>
+    <div id="ml"></div>
+  </div>
+</div>
+
+<!-- TAB: UCL -->
+<div class="pg" id="pg-ucl">
+  <div id="uc"></div>
+</div>
+
+<!-- TAB: Squad -->
+<div class="pg" id="pg-squad">
+  <div class="card">
+    <div class="card-title">球员阵容 / Squad Roster</div>
+    <div class="sel-wrap">
+      <select class="sel" id="sq-sel" onchange="sqChange()"></select>
+    </div>
+    <div id="sq-content"></div>
+  </div>
+</div>
+
+<!-- TAB: Info -->
 <div class="pg" id="pg-info">
-<div class="info-sec"><div class="info-tl">模型 / Model</div>
-<div class="info-row"><span class="info-lbl">维度 / Dimensions</span><span class="info-val">4 - 逻辑/易经/道德经/悖论</span></div>
-<div class="info-row"><span class="info-lbl">UCL调参 / UCL Tuning</span><span class="info-val">姆巴佩心态 / Mbappe</span></div>
-<div class="info-row"><span class="info-lbl">更新 / Updated</span><span class="info-val" id="infTime"></span></div>
-</div>
-<div class="info-sec"><div class="info-tl">校准框架 / Calibration</div>
-<div class="info-row"><span class="info-lbl">Brazil 2014</span><span class="info-val" style="color:var(--rd)">1-7 DE — 心理崩溃 / Collapse</span></div>
-<div class="info-row"><span class="info-lbl">France 2018</span><span class="info-val" style="color:var(--gr)">4-2 HR — 势能爆发 / Explosion</span></div>
-</div>
-</div>
+  <div class="info-sec">
+    <div class="info-tl">模型 / Model</div>
+    <div class="info-row"><span class="info-lbl">数据源 / Data Sources</span><span class="info-val">Wikipedia + FiveThirtyEight Elo</span></div>
+    <div class="info-row"><span class="info-lbl">评分维度 / Dimensions</span><span class="info-val">5 — Elo/年龄/经验/状态/教练</span></div>
+    <div class="info-row"><span class="info-lbl">玄学框架 / Mystic</span><span class="info-val">易经·道德经·悖论三重</span></div>
+    <div class="info-row"><span class="info-lbl">更新时间 / Updated</span><span class="info-val" id="infTime"></span></div>
+  </div>
+  <div class="info-sec">
+    <div class="info-tl">校准框架 / Calibration</div>
+    <div class="calibration">
+      <div class="cal-hd"><span>🇧🇷</span><span style="color:var(--rd)">Brazil 2014 (1-7 Germany)</span></div>
+      <div class="cal-bd">半决赛1-7惨败 — 心理崩溃框架 / Psychological collapse.<br>
+      参数: <b style="color:var(--rd)">pressure +0.05</b>, <b>amplification ×1.5</b><br>
+      影响: 热门诅咒强化 — 成为强队时触发自我强化的压力循环</div>
+    </div>
+    <div class="calibration">
+      <div class="cal-hd"><span>🇫🇷</span><span style="color:var(--gr)">France 2018 (4-2 Croatia)</span></div>
+      <div class="cal-bd">决赛4-2克罗地亚 — 势能爆发框架 / Momentum explosion.<br>
+      参数: <b style="color:var(--gr)">pressure +0.05</b>, <b>conversion +0.05</b><br>
+      影响: 逆袭信心加成 — 突破强敌后建立势能，后续效率提升</div>
+    </div>
+  </div>
+  <div class="info-sec">
+    <div class="info-tl">悖论框架 / Paradox</div>
+    <div class="calibration">
+      <div class="cal-bd">
+        <b>热门诅咒 / FavCurse</b>: 热度越高，外部期待形成反向压力，概率被系统压低<br><br>
+        <b>逆向思维 / Contrarian</b>: 表面弱势实际被低估；表面强势实际被高估<br><br>
+        <b>淘汰赛不确定性 / Knockout Unc</b>: 小组赛逻辑无法预测单场淘汰赛的随机性<br><br>
+        <b>势能天花板 / Luck Ceiling</b>: 纸面实力有上限，运气是冠军的必要非充分条件
+      </div>
+    </div>
+  </div>
+  <div class="info-sec">
+    <div class="info-tl">欧冠调参 / UCL Tuning</div>
+    <div class="calibration">
+      <div class="cal-bd">
+        <b>姆巴佩 / Mbappe (France)</b>: 皇马1-5阿森纳半决赛淘汰 → <span style="color:var(--rd)">-0.58心态分</span> → Brazil2014框架<br><br>
+        <b>登贝莱 / Dembele (France)</b>: PSG 5-0 Inter决赛进球 → <span style="color:var(--gr)">+0.62心态分</span> → France2018框架<br><br>
+        <b>劳塔罗 / Lautaro (Argentina)</b>: Inter决赛进球 → <span style="color:var(--gr)">+0.69心态分</span> → Brazil2014框架<br><br>
+        <b>调参结果</b>: France shift <span style="color:var(--gr)">+2.1%</span>, Argentina shift <span style="color:var(--rd)">-1.4%</span>, Brazil shift <span style="color:var(--rd)">-3.7%</span>
+      </div>
+    </div>
+  </div>
+  <div class="info-sec">
+    <div class="info-tl">版本 / Version</div>
+    <div class="calibration">
+      <div class="cal-bd">
+        <b>World Cup 2026 Predictor v2</b><br>
+        Pure HTML/CSS/JS Mobile UI — No Gradio dependency<br>
+        mystic_factor_ucl_integration: True<br>
+        UCL Final v2: PSG 5-0 Inter Milan
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
 var D=__DATA__;
 var U=__UCL__;
-var FL={"Argentina":"AR","Brazil":"BR","France":"FR","Germany":"DE","Spain":"ES","England":"EN","Portugal":"PT","Netherlands":"NL","Italy":"IT","Belgium":"BE","Croatia":"HR","Switzerland":"CH","Austria":"AT","Poland":"PL","Ukraine":"UA","Romania":"RO","Czech Republic":"CZ","Turkey":"TR","Serbia":"RS","Sweden":"SE","Morocco":"MA","Senegal":"SN","Egypt":"EG","Cameroon":"CM","Nigeria":"NG","Algeria":"DZ","Ghana":"GH","Ivory Coast":"CI","Tunisia":"TN","Japan":"JP","South Korea":"KR","Iran":"IR","Qatar":"QA","Saudi Arabia":"SA","Australia":"AU","USA":"US","Mexico":"MX","Canada":"CA","Panama":"PA","Costa Rica":"CR","Honduras":"HN","Jamaica":"JM","Haiti":"HT","New Zealand":"NZ","Ecuador":"EC","Paraguay":"PY","Colombia":"CO","Uzbekistan":"UZ","Jordan":"JO","Cape Verde":"CV","DR Congo":"CD"};
+var FL={"Argentina":"AR","Brazil":"BR","France":"FR","Germany":"DE","Spain":"ES","England":"EN","Portugal":"PT","Netherlands":"NL","Italy":"IT","Belgium":"BE","Croatia":"HR","Switzerland":"CH","Austria":"AT","Poland":"PL","Ukraine":"UA","Romania":"RO","Czech Republic":"CZ","Turkey":"TR","Serbia":"RS","Sweden":"SE","Morocco":"MA","Senegal":"SN","Egypt":"EG","Cameroon":"CM","Nigeria":"NG","Algeria":"DZ","Ghana":"GH","Ivory Coast":"CI","Tunisia":"TN","Japan":"JP","South Korea":"KR","Iran":"IR","Qatar":"QA","Saudi Arabia":"SA","Australia":"AU","USA":"US","Mexico":"MX","Canada":"CA","Panama":"PA","Costa Rica":"CR","Honduras":"HN","Jamaica":"JM","Haiti":"HT","New Zealand":"NZ","Ecuador":"EC","Paraguay":"PY","Colombia":"CO","Uruguay":"UY","Uzbekistan":"UZ","Jordan":"JO","Cape Verde":"CV","DR Congo":"CD"};
 function fl(c){return FL[c]||"--";}
 function pc(p){return p>15?"var(--bl)":p>5?"var(--gr)":"var(--tx2)";}
 function st(s){return s>0?"+"+s.toFixed(2)+"%":s<0?s.toFixed(2)+"%":"--";}
 function sc(s){return s>0?"var(--gr)":s<0?"var(--rd)":"var(--tx2)";}
 function showTab(n){document.querySelectorAll(".pg").forEach(function(p){p.classList.remove("on");});document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("on");});document.getElementById("pg-"+n).classList.add("on");document.getElementById("tb-"+n).classList.add("on");}
+
+/* ── Leaderboard ── */
 function buildLB(){var s=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});var h="";for(var i=0;i<s.length;i++){var t=s[i],r=i+1,rc=r<=3?"t"+r:"";var pct=(t.final_prob*100).toFixed(2),pctCls=t.final_prob>0.15?" vh":"";var sh=t.shift||0;h+='<div class="lb-r"><div class="lb-rk '+rc+'">'+r+'</div><div class="lb-fl">'+fl(t.country)+'</div><div class="lb-inf"><div class="lb-nm">'+t.country+'</div><div class="lb-el">Elo '+(t.elo||0).toFixed(0)+'</div><div class="pb"><div class="pb-fi" style="width:'+pct+'%;background:'+pc(t.final_prob*100)+'"></div></div></div><div class="lb-pr"><div class="lb-pct'+pctCls+'">'+pct+'%</div><div class="lb-sh" style="color:'+sc(sh)+'">'+st(sh)+'</div></div></div>';}document.getElementById("lb").innerHTML=h;}
+
+/* ── Factor Breakdown ── */
+function toggleFB(el){var d=el.querySelector(".fb-expanded");if(d)d.classList.toggle("on");}
+function buildFB(){var s=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});var factors=[{k:"elo_score",l:"Elo锚点"},{k:"age_score",l:"年龄结构"},{k:"exp_score",l:"大赛经验"},{k:"form_score",l:"近期状态"},{k:"coach_score",l:"教练因素"},{k:"mystic_score",l:"玄学因子"}];var fc=["var(--bl)","var(--gr)","var(--gd)","var(--sl)","var(--br)","var(--rd)"];var h="";for(var i=0;i<Math.min(s.length,25);i++){var t=s[i];h+='<div class="fb-r" onclick="toggleFB(this)"><div class="fb-hd"><span class="fb-fl">'+fl(t.country)+'</span><span class="fb-nm">'+t.country+'</span><span class="fb-pct">'+(t.final_prob*100).toFixed(1)+'%</span></div><div class="fb-bars">';for(var j=0;j<factors.length;j++){var f=factors[j];var v=Math.max(0,t[f.k]||0);var max_v=0.15;var w=Math.min(100,(v/max_v*100)).toFixed(1);var val_str=(v>=0?"+":"")+(v*100).toFixed(1)+"%";h+='<div class="fb-bar"><span class="fb-lbl">'+f.l+'</span><div class="fb-track"><div class="fb-fill" style="width:'+w+'%;background:'+fc[j]+'"></div></div><span class="fb-val" style="color:'+fc[j]+'">'+val_str+'</span></div>';}h+='</div><div class="fb-expanded"><div class="fb-narrative">'+(t.narrative||"")+'</div></div></div>';}document.getElementById("fb").innerHTML=h;}
+
+/* ── Mystic ── */
 function toggleMC(el){var d=el.nextElementSibling;if(d.classList.contains("on")){d.classList.remove("on");}else{d.classList.add("on");}}
-function buildML(){var s=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});var h="";for(var i=0;i<s.length;i++){var t=s[i],ver=t.verdict||"--",sh=t.shift||0;var tc=ver.indexOf("推荐")>-1?"pos":ver.indexOf("谨慎")>-1?"neg":"neu";var mtag=t.iching?'<span class="tag mystic">易 / Yi:'+t.iching+"</span>":"";var contr=t.contrarian||0,favc=t.fav_curse||0,conf=t.confidence||0.5;var shcls=sh>0?"pos":sh<0?"neg":"";h+='<div class="mc-r" onclick="toggleMC(this)"><div class="mc-fl">'+fl(t.country)+'</div><div><div class="mc-nm">'+t.country+'</div><div class="mc-mt">'+ver+" | "+(t.final_prob*100).toFixed(2)+"%</div></div></div>";h+='<div class="mc-dt"><div class="tags">';h+='<span class="tag '+tc+'">'+ver+"</span>";if(mtag)h+=mtag;if(t.zen&&t.zen!=="--")h+='<span class="tag neu">道 / Dao:'+t.zen+"</span>";if(t.tao&&t.tao!=="--")h+='<span class="tag neu">老 / Lao:'+t.tao+"</span>";h+="</div><div class='mtrics'>";h+="<div class='mtric'><div class='mtric-lbl'>偏移 / Shift</div><div class='mtric-val "+shcls+"'>"+st(sh)+"</div></div>";h+="<div class='mtric'><div class='mtric-lbl'>悖论 / Paradox</div><div class='mtric-val'>"+contr.toFixed(3)+"</div></div>";h+="<div class='mtric'><div class='mtric-lbl'>热门诅咒 / FavCurse</div><div class='mtric-val'>"+favc.toFixed(3)+"</div></div>";h+="<div class='mtric'><div class='mtric-lbl'>置信度 / Confidence</div><div class='mtric-val'>"+(conf*100).toFixed(0)+"%</div></div>";h+="</div></div>";}document.getElementById("ml").innerHTML=h;}
-function buildUC(){var cs=Object.keys(U).sort(function(a,b){return U[b].total_bonus-U[a].total_bonus;}),h="";for(var ci=0;ci<cs.length;ci++){var c=cs[ci],d=U[c],b=d.total_bonus,bc=b>=0?"pos":"neg",bs=b>=0?"+":"";h+='<div class="ucard"><div class="ucard-fl">'+fl(c)+'</div><div class="ucard-nm">'+c+"</div>";h+='<div class="ucard-bns '+bc+'">'+bs+(b*100).toFixed(2)+"%</div>";h+='<div class="ucard-dsc">'+d.description+"</div>";var ps=d.players;for(var pi=0;pi<ps.length;pi++){var p=ps[pi],pc2=p.mentality_signal>=0?"pos":"neg";h+='<div class="urow"><div><div class="unm">'+p.name+'</div><div class="uclub">'+p.club+"</div></div>";h+='<div class="ums '+pc2+'">'+(p.mentality_signal>=0?"+":"")+p.mentality_signal.toFixed(2)+"</div></div>";}h+="</div>";}h+='<div class="ucard"><div class="fw-tl">调参说明 / Calibration</div>';h+='<div class="fw-it"><b style="color:var(--rd)">Brazil 2014 (1-7 德国)</b>: 心理崩溃 / Psychological collapse. 参数: pressure +0.05, amplification x1.5.</div>';h+='<div class="fw-it" style="margin-top:8px"><b style="color:var(--gr)">France 2018 (4-2 克罗地亚)</b>: 势能爆发 / Momentum explosion. 参数: pressure +0.05, conversion +0.05.</div>';h+='<div class="fw-it" style="margin-top:8px"><b style="color:var(--gd)">姆巴佩心态 / Mbappe Mentality</b>: 决赛进球 +0.15, 逆境赢球 +0.30, 失利 -0.20. 基准校准到以上框架.</div>';h+="</div>";document.getElementById("uc").innerHTML=h;}
+function buildML(){var s=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});var h="";for(var i=0;i<s.length;i++){var t=s[i],ver=t.verdict||"--";var tc=ver.indexOf("推荐")>-1?"pos":ver.indexOf("谨慎")>-1?"neg":"neu";var mtag=t.iching?'<span class="tag mystic">易:'+t.iching+"</span>":"";var contr=t.contrarian||0,favc=t.fav_curse||0,conf=t.confidence||0.5;var sh=t.shift||0,shcls=sh>0?"pos":sh<0?"neg":"";h+='<div class="mc-r" onclick="toggleMC(this)"><div class="mc-fl">'+fl(t.country)+'</div><div><div class="mc-nm">'+t.country+'</div><div class="mc-mt">'+ver+" | "+(t.final_prob*100).toFixed(2)+"%</div></div></div>";h+='<div class="mc-dt"><div class="tags">';h+='<span class="tag '+tc+'">'+ver+"</span>";if(mtag)h+=mtag;if(t.zen&&t.zen!=="--")h+='<span class="tag neu">道:'+t.zen+"</span>";if(t.tao&&t.tao!=="--")h+='<span class="tag neu">老:'+t.tao+"</span>";h+="</div><div class='mtrics'>";h+="<div class='mtric'><div class='mtric-lbl'>偏移 / Shift</div><div class='mtric-val "+shcls+"'>"+st(sh)+"</div></div>";h+="<div class='mtric'><div class='mtric-lbl'>悖论 / Paradox</div><div class='mtric-val'>"+contr.toFixed(3)+"</div></div>";h+="<div class='mtric'><div class='mtric-lbl'>热门诅咒 / FavCurse</div><div class='mtric-val'>"+favc.toFixed(3)+"</div></div>";h+="<div class='mtric'><div class='mtric-lbl'>置信度 / Confidence</div><div class='mtric-val'>"+(conf*100).toFixed(0)+"%</div></div>";h+="</div></div>";}document.getElementById("ml").innerHTML=h;}
+
+/* ── UCL ── */
+function buildUC(){var cs=Object.keys(U).sort(function(a,b){return U[b].total_bonus-U[a].total_bonus;}),h="";for(var ci=0;ci<cs.length;ci++){var c=cs[ci],d=U[c],b=d.total_bonus,bc=b>=0?"pos":"neg",bs=b>=0?"+":"";h+='<div class="ucard"><div class="ucard-fl">'+fl(c)+'</div><div class="ucard-nm">'+c+"</div>";h+='<div class="ucard-bns '+bc+'">'+bs+(b*100).toFixed(2)+"%</div>";h+='<div class="ucard-dsc">'+d.description+"</div>";var ps=d.players;for(var pi=0;pi<ps.length;pi++){var p=ps[pi],pc2=p.mentality_signal>=0?"pos":"neg";h+='<div class="urow"><div><div class="unm">'+p.name+'</div><div class="uclub">'+p.club+"</div></div>";h+='<div class="ums '+pc2+'">'+(p.mentality_signal>=0?"+":"")+p.mentality_signal.toFixed(2)+"</div></div>";}h+="</div>";}h+='<div class="ucard"><div class="fw-tl">调参框架 / Calibration</div>';h+='<div class="fw-it"><b style="color:var(--rd)">Brazil 2014 (1-7 Germany)</b>: Psychological collapse. Params: pressure +0.05, amplification x1.5.</div>';h+='<div class="fw-it" style="margin-top:8px"><b style="color:var(--gr)">France 2018 (4-2 Croatia)</b>: Momentum explosion. Params: pressure +0.05, conversion +0.05.</div>';h+="</div>";document.getElementById("uc").innerHTML=h;}
+
+/* ── Squad ── */
+function sqChange(){var sel=document.getElementById("sq-sel");var c=sel.value;var t=D.find(function(x){return x.country===c;});if(!t){document.getElementById("sq-content").innerHTML="<p style='color:var(--tx2);font-size:14px;padding:20px 0'>No data</p>";return;}var h='<div class="sq-card"><div class="sq-ph"><span class="sq-ph-fl">'+fl(t.country)+'</span><div><div class="sq-ph-nm">'+t.country+'</div><div class="sq-ph-elo">Elo '+(t.elo||0).toFixed(0)+' · '+(t.players?t.players.length:0)+' players</div></div></div>';if(t.players&&t.players.length>0){h+='<table class="sq-table"><thead><tr><th class="sq-th" style="width:32px">Pos</th><th class="sq-th">Name / Club</th><th class="sq-th" style="text-align:right">Caps</th><th class="sq-th" style="text-align:right">Goals</th><th class="sq-th" style="text-align:right">MV</th></tr></thead><tbody>';var pos_c={GK:"#8e8e93",DF:"#0a84ff",MF:"#30d158",FW:"#ff453a"};for(var k=0;k<t.players.length;k++){var p=t.players[k];var pc2=pos_c[p.position]||"var(--tx2)";h+='<tr><td class="sq-td"><span class="sq-pos" style="color:'+pc2+'">'+p.position+'</span></td>';h+='<td class="sq-td"><div class="sq-name">'+p.name+'</div><div class="sq-club">'+(p.club||"")+"</div></td>";h+='<td class="sq-td sq-caps">'+p.national_caps+"</td>";h+='<td class="sq-td sq-goals">'+p.national_goals+"</td>";h+='<td class="sq-td"><span class="sq-mv">'+(p.market_value||0).toFixed(1)+"M</span></td></tr>";}h+="</tbody></table>";}else{h+='<div style="padding:20px;color:var(--tx2);font-size:13px">Sample squad (no Wikipedia data) / 样本阵容（无维基数据）</div>';}h+="</div>";document.getElementById("sq-content").innerHTML=h;}
+
+/* ── Init ── */
 document.getElementById("upd").textContent="__UPDATE_TIME__";
 document.getElementById("infTime").textContent="__UPDATE_TIME__";
-buildLB();buildML();buildUC();
+buildLB();
+buildFB();
+buildML();
+buildUC();
+// Populate squad selector
+var sel=document.getElementById("sq-sel");
+var teams=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});
+for(var i=0;i<teams.length;i++){var opt=document.createElement("option");opt.value=teams[i].country;opt.textContent=fl(teams[i].country)+" "+teams[i].country+" "+(teams[i].final_prob*100).toFixed(1)+"%";sel.appendChild(opt);}
+if(teams.length>0){sel.value=teams[0].country;sqChange();}
 </script>
 </body>
 </html>
-"""
+'''
 
 
 def run_server(port=7862):
@@ -461,7 +664,7 @@ def run_server(port=7862):
     socketserver.TCPServer.allow_reuse_address = True
     with socketserver.TCPServer(("", port), Handler) as httpd:
         print(f"Mobile UI: http://localhost:{port}")
-        print(f"Champion | Mystic | UCL | Info")
+        print(f"Champion | Factor | Mystic | UCL | Squad | Info")
         httpd.serve_forever()
 
 if __name__ == "__main__":
