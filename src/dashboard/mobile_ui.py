@@ -893,10 +893,18 @@ function getPlayerMatchups(ta,tb){
 function buildScorePred(ta, tb, r) {
     var eloA = ta.elo || 1700;
     var eloB = tb.elo || 1700;
+    // Base lambda from Elo
     var lambdaA = 1.3 + (eloA - 1700) / 500 * 1.0;
     var lambdaB = 1.3 + (eloB - 1700) / 500 * 1.0;
-    lambdaA = Math.max(0.4, Math.min(3.5, lambdaA));
-    lambdaB = Math.max(0.4, Math.min(3.5, lambdaB));
+    // Mystic shift: shift = mystical probability adjustment (mystic engine + UCL mental data)
+    // Applied as proportional lambda modifier -- positive shift means higher expected goals
+    var shiftA = ta.shift || 0;
+    var shiftB = tb.shift || 0;
+    // Scale: +1% shift (0.01) boosts lambda by 3%, amplifying prob signal into goals domain
+    lambdaA = lambdaA * (1 + shiftA * 3.0);
+    lambdaB = lambdaB * (1 + shiftB * 3.0);
+    lambdaA = Math.max(0.3, Math.min(4.0, lambdaA));
+    lambdaB = Math.max(0.3, Math.min(4.0, lambdaB));
     function pois(k, lam) {
         if (lam <= 0) return k === 0 ? 1 : 0;
         var p = Math.exp(-lam);
