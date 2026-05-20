@@ -298,9 +298,7 @@ def build_ui():
 
     with gr.Blocks(
         title="🏆 世界杯预测",
-        theme=gr.themes.Default(
-            primary_hue=260,  # indigo-violet
-        ).set(
+        theme=gr.themes.Default().set(
             # Core surfaces
             body_background_fill="#08090a",
             body_text_color="#f7f8f8",
