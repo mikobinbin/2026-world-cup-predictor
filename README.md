@@ -31,7 +31,7 @@
 
 ## 📱 在线体验
 
-**移动端优先**：https://worldcup.imiaozhan.com/mobile
+**移动端优先**：https://worldcup.imiaozhan.com
 
 支持任意两队 H2H 对战预测，实时显示胜平负概率 + 比分分布
 
