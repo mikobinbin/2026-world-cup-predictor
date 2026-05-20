@@ -449,6 +449,42 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .fw{background:var(--s2);border-radius:12px;padding:14px}
 .fw-tl{font-size:12px;font-weight:700;color:var(--gd);margin-bottom:8px}
 .fw-it{font-size:12px;color:var(--tx2);line-height:1.8}
+/* H2H */
+.h2h Teams{display:flex;gap:10px;margin-bottom:16px}
+.h2h Team{flex:1}
+.h2h Team label{display:block;font-size:10px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px}
+.h2h Team select{width:100%;background:var(--s2);color:var(--tx);border:0.5px solid var(--bd);border-radius:12px;padding:12px 16px;font-size:14px;font-weight:600;appearance:none;-webkit-appearance:none;cursor:pointer}
+.h2h-vs{font-size:20px;font-weight:900;color:var(--gd);text-align:center;padding-top:24px;flex-shrink:0;width:32px}
+.h2h-bar{display:flex;align-items:center;gap:0;border-radius:16px;overflow:hidden;height:52px;background:var(--s2);margin-bottom:14px}
+.h2h-bar-a{flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:0 12px;height:100%;font-size:14px;font-weight:800;color:var(--tx);background:var(--bl)}
+.h2h-bar-d{flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--s);padding:0 10px;height:100%;background:var(--gd)}
+.h2h-bar-b{flex:1;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--tx);padding:0 12px;background:var(--gd)}
+.h2h-3m{display:flex;gap:8px;margin-bottom:16px}
+.h2h-3m .h2h-3m-it{flex:1;background:var(--s2);border-radius:12px;padding:12px 0;text-align:center}
+.h2h-3m .h2h-3m-v{font-size:18px;font-weight:800;color:var(--tx)}
+.h2h-3m .h2h-3m-l{font-size:10px;font-weight:600;color:var(--tx2);text-transform:uppercase;margin-top:4px}
+.h2h-fc{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.h2h-fr{display:flex;align-items:center;gap:8px;font-size:12px}
+.h2h-fr-lbl{flex:0 0 70px;font-weight:700;color:var(--tx2)}
+.h2h-fr-bar{flex:1;height:24px;background:var(--s2);border-radius:6px;overflow:hidden;display:flex}
+.h2h-fr-a{height:100%;transition:width 0.4s}
+.h2h-fr-b{height:100%;transition:width 0.4s}
+.h2h-fr-val{display:flex;flex:0 0 60px;font-size:12px;font-weight:700;justify-content:flex-end;gap:4px}
+.h2h-note{background:var(--s2);border-radius:12px;padding:14px 16px;font-size:13px;color:var(--tx2);line-height:1.7;margin-top:4px}
+.h2h-note strong{color:var(--gd)}
+.h2h-wl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.4px;padding:3px 7px;border-radius:6px;display:inline-block}
+.h2h-wl.w{background:rgba(48,209,88,0.15);color:var(--gr)}
+.h2h-wl.l{background:rgba(255,69,58,0.15);color:var(--rd)}
+.h2h-wl.d{background:rgba(255,214,10,0.15);color:var(--gd)}
+.h2h-matchup{padding:10px 0;border-bottom:0.5px solid var(--bd)}
+.h2h-matchup:last-child{border-bottom:none}
+.h2h-mu-pos{font-size:10px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px}
+.h2h-mu-row{display:flex;align-items:center;gap:8px}
+.h2h-mu-p{flex:1;font-size:13px;font-weight:600}
+.h2h-mu-p .h2h-wl{margin-left:6px}
+.h2h-mu-s{font-size:12px;font-weight:700;color:var(--gd);width:28px;text-align:center}
+.h2h-mu-r{text-align:right;flex:1}
+.h2h-mu-r .h2h-wl{margin-right:6px}
 /* Squad */
 .sel{width:100%;background:var(--s2);color:var(--tx);border:0.5px solid var(--bd);border-radius:12px;padding:12px 16px;font-size:15px;font-weight:600;margin-bottom:12px;appearance:none;-webkit-appearance:none}
 .sel-wrap{position:relative}
@@ -489,7 +525,7 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
   <button class="tab on" id="tb-home" onclick="showTab('home')"><span class="ico">🏆</span><span>冠军</span></button>
   <button class="tab" id="tb-factor" onclick="showTab('factor')"><span class="ico">📊</span><span>因子</span></button>
   <button class="tab" id="tb-mystic" onclick="showTab('mystic')"><span class="ico">🔮</span><span>玄学</span></button>
-  <button class="tab" id="tb-ucl" onclick="showTab('ucl')"><span class="ico">⚡</span><span>欧冠</span></button>
+  <button class="tab" id="tb-h2h" onclick="showTab('h2h')"><span class="ico">⚔️</span><span>对战</span></button>
   <button class="tab" id="tb-squad" onclick="showTab('squad')"><span class="ico">👥</span><span>球队</span></button>
   <button class="tab" id="tb-info" onclick="showTab('info')"><span class="ico">i</span><span>说明</span></button>
 </div>
@@ -518,9 +554,33 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
   </div>
 </div>
 
-<!-- TAB: UCL -->
-<div class="pg" id="pg-ucl">
-  <div id="uc"></div>
+<!-- TAB: H2H -->
+<div class="pg" id="pg-h2h">
+  <div class="card">
+    <div class="card-title">对战预测 / H2H Predictor</div>
+    <div class="h2h-teams">
+      <div class="h2h-team">
+        <label>Team A / 球队A</label>
+        <select id="h2h-a" onchange="h2hChange()"></select>
+      </div>
+      <div class="h2h-vs">⚔️</div>
+      <div class="h2h-team">
+        <label>Team B / 球队B</label>
+        <select id="h2h-b" onchange="h2hChange()"></select>
+      </div>
+    </div>
+    <div class="h2h-bar" id="h2h-bar">
+      <div class="h2h-bar-a" id="h2h-bar-a" style="width:45%"></div>
+      <div class="h2h-bar-d" id="h2h-bar-d" style="width:10%">—</div>
+      <div class="h2h-bar-b" id="h2h-bar-b" style="width:45%"></div>
+    </div>
+    <div class="h2h-3m">
+      <div class="h2h-3m-it"><div class="h2h-3m-v" id="h2h-pa">45.0%</div><div class="h2h-3m-l">A Win</div></div>
+      <div class="h2h-3m-it"><div class="h2h-3m-v" id="h2h-pd">22.0%</div><div class="h2h-3m-l">Draw</div></div>
+      <div class="h2h-3m-it"><div class="h2h-3m-v" id="h2h-pb">33.0%</div><div class="h2h-3m-l">B Win</div></div>
+    </div>
+    <div id="h2h-content"></div>
+  </div>
 </div>
 
 <!-- TAB: Squad -->
@@ -614,8 +674,135 @@ function buildFB(){var s=D.slice().sort(function(a,b){return b.final_prob-a.fina
 function toggleMC(el){var d=el.nextElementSibling;if(d.classList.contains("on")){d.classList.remove("on");}else{d.classList.add("on");}}
 function buildML(){var s=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});var h="";for(var i=0;i<s.length;i++){var t=s[i],ver=t.verdict||"--";var tc=ver.indexOf("推荐")>-1?"pos":ver.indexOf("谨慎")>-1?"neg":"neu";var mtag=t.iching?'<span class="tag mystic">易:'+t.iching+"</span>":"";var contr=t.contrarian||0,favc=t.fav_curse||0,conf=t.confidence||0.5;var sh=t.shift||0,shcls=sh>0?"pos":sh<0?"neg":"";h+='<div class="mc-r" onclick="toggleMC(this)"><div class="mc-fl">'+fl(t.country)+'</div><div><div class="mc-nm">'+t.country+'</div><div class="mc-mt">'+ver+" | "+(t.final_prob*100).toFixed(2)+"%</div></div></div>";h+='<div class="mc-dt"><div class="tags">';h+='<span class="tag '+tc+'">'+ver+"</span>";if(mtag)h+=mtag;if(t.zen&&t.zen!=="--")h+='<span class="tag neu">道:'+t.zen+"</span>";if(t.tao&&t.tao!=="--")h+='<span class="tag neu">老:'+t.tao+"</span>";h+="</div><div class='mtrics'>";h+="<div class='mtric'><div class='mtric-lbl'>偏移 / Shift</div><div class='mtric-val "+shcls+"'>"+st(sh)+"</div></div>";h+="<div class='mtric'><div class='mtric-lbl'>悖论 / Paradox</div><div class='mtric-val'>"+contr.toFixed(3)+"</div></div>";h+="<div class='mtric'><div class='mtric-lbl'>热门诅咒 / FavCurse</div><div class='mtric-val'>"+favc.toFixed(3)+"</div></div>";h+="<div class='mtric'><div class='mtric-lbl'>置信度 / Confidence</div><div class='mtric-val'>"+(conf*100).toFixed(0)+"%</div></div>";h+="</div></div>";}document.getElementById("ml").innerHTML=h;}
 
-/* ── UCL ── */
-function buildUC(){var cs=Object.keys(U).sort(function(a,b){return U[b].total_bonus-U[a].total_bonus;}),h="";for(var ci=0;ci<cs.length;ci++){var c=cs[ci],d=U[c],b=d.total_bonus,bc=b>=0?"pos":"neg",bs=b>=0?"+":"";h+='<div class="ucard"><div class="ucard-fl">'+fl(c)+'</div><div class="ucard-nm">'+c+"</div>";h+='<div class="ucard-bns '+bc+'">'+bs+(b*100).toFixed(2)+"%</div>";h+='<div class="ucard-dsc">'+d.description+"</div>";var ps=d.players;for(var pi=0;pi<ps.length;pi++){var p=ps[pi],pc2=p.mentality_signal>=0?"pos":"neg";h+='<div class="urow"><div><div class="unm">'+p.name+'</div><div class="uclub">'+p.club+"</div></div>";h+='<div class="ums '+pc2+'">'+(p.mentality_signal>=0?"+":"")+p.mentality_signal.toFixed(2)+"</div></div>";}h+="</div>";}h+='<div class="ucard"><div class="fw-tl">调参框架 / Calibration</div>';h+='<div class="fw-it"><b style="color:var(--rd)">Brazil 2014 (1-7 Germany)</b>: Psychological collapse. Params: pressure +0.05, amplification x1.5.</div>';h+='<div class="fw-it" style="margin-top:8px"><b style="color:var(--gr)">France 2018 (4-2 Croatia)</b>: Momentum explosion. Params: pressure +0.05, conversion +0.05.</div>';h+="</div>";document.getElementById("uc").innerHTML=h;}
+/* ── H2H ── */
+var H2H_RECORDS={
+"Argentina|Brazil":{wA:41,d:26,wB:47,t:114,note:"南美经典对决，巴西总体占优"},
+"Argentina|France":{wA:5,d:3,wB:4,t:12,note:"2022决赛重演，阿根廷点球险胜"},
+"Brazil|France":{wA:6,d:4,wB:8,t:18,note:"2006决赛，法国加时胜"},
+"France|Germany":{wA:13,d:4,wB:14,t:31,note:"欧洲强强对话，大赛多次相遇"},
+"England|Germany":{wA:13,d:5,wB:14,t:32,note:"经典大战，英格兰点球3战3败"},
+"England|France":{wA:7,d:7,wB:17,t:31,note:"法国近期大赛占优"},
+"Germany|Spain":{wA:8,d:6,wB:11,t:25,note:"传控vs力量，各有胜负"},
+"Portugal|Spain":{wA:18,d:8,wB:11,t:37,note:"伊比利亚德比，葡萄牙总胜多"},
+"Brazil|Germany":{wA:9,d:5,wB:9,t:23,note:"2014半决赛1-7成为经典"},
+"Argentina|Germany":{wA:8,d:4,wB:8,t:20,note:"3次决赛，2022马拉多纳主场夺冠"},
+"Croatia|England":{wA:2,d:3,wB:3,t:8,note:"2018世界杯半决赛，克罗地亚加时胜"},
+"Uruguay|Brazil":{wA:31,d:18,wB:27,t:76,note:"南美最激烈对决之一"},
+"Netherlands|Germany":{wA:14,d:15,wB:16,t:45,note:"欧洲老牌劲旅对抗"},
+"Italy|Germany":{wA:15,d:13,wB:9,t:37,note:"欧洲杯决赛多次交锋"},
+"Spain|France":{wA:16,d:7,wB:13,t:36,note:"2012欧洲杯决赛，西班牙大胜"},
+"Belgium|France":{wA:5,d:4,wB:9,t:18,note:"法国近期杯赛表现更佳"},
+"England|Brazil":{wA:9,d:5,wB:13,t:27,note:"2002小组赛后未在大赛相遇"},
+"Portugal|Argentina":{wA:2,d:1,wB:4,t:7,note:"2014世界杯小组赛，最近一次2018"}
+};
+var H2H_TACTICAL={
+"Brazil|France":"桑巴艺术 vs 法式精密",
+"Argentina|France":"潘帕斯激情 vs 欧洲铁军",
+"Argentina|Brazil":"南美双雄巅峰对话",
+"France|Germany":"个人能力 vs 整体执行",
+"England|Germany":"边路传中 vs 德国坦克",
+"Portugal|Spain":"C罗单打 vs 整体传控",
+"Brazil|Germany":"进攻艺术 vs 纪律铁军"
+};
+
+function h2hCalc(ta,tb){
+  var eloA=ta.elo||1700,eloB=tb.elo||1700;
+  var eDiff=eloA-eloB;
+  // Elo-based win probability (no draw)
+  var eloWinA=1/(1+Math.pow(10,-eDiff/400));
+  // Draw probability 10-35%, closer teams draw more
+  var drawP=Math.max(0.10,Math.min(0.35,0.30-Math.abs(eDiff)/1500));
+  // Allocate remaining probability to wins, preserving Elo ratio
+  var winTotal=1-drawP;
+  var rawA=eloWinA*winTotal+0.03;
+  var rawB=(1-eloWinA)*winTotal+0.03;
+  var rawTotal=rawA+rawB;
+  // Normalize wins so winA+winB = winTotal (and winA+winB+drawP=1)
+  return{winA:rawA/rawTotal*winTotal,winB:rawB/rawTotal*winTotal,draw:drawP,eloDiff:eDiff};
+}
+
+function getFactorDiff(ta,tb){
+  var fs=[{k:"elo_score",l:"Elo锚点"},{k:"age_score",l:"年龄结构"},{k:"exp_score",l:"大赛经验"},{k:"form_score",l:"近期状态"},{k:"coach_score",l:"教练因素"},{k:"mystic_score",l:"玄学因子"}];
+  var h="";
+  for(var i=0;i<fs.length;i++){
+    var f=fs[i],va=ta[f.k]||0,vb=tb[f.k]||0;
+    var maxV=Math.max(va,vb,0.01);
+    var pctA=(va/maxV*100).toFixed(0),pctB=(vb/maxV*100).toFixed(0);
+    var wcls=va>vb?"var(--gr)":vb>va?"var(--rd)":"var(--tx2)";
+    h+='<div class="h2h-fr"><span class="h2h-fr-lbl">'+f.l+'</span><div class="h2h-fr-bar"><div class="h2h-fr-a" style="width:'+pctA+'%;background:var(--bl)"></div><div class="h2h-fr-b" style="width:'+pctB+'%;background:var(--gd)"></div></div><span class="h2h-fr-val" style="color:'+wcls+'">'+(va>vb?"A":vb>va?"B":"=")+'</span></div>';
+  }
+  return h;
+}
+
+function getPlayerMatchups(ta,tb){
+  var posC={GK:"#8e8e93",DF:"#0a84ff",MF:"#30d158",FW:"#ff453a"};
+  var posN={GK:"Goalkeeper",DF:"Defender",MF:"Midfielder",FW:"Forward"};
+  function topByPos(players,pos){return(players||[]).filter(function(p){return p.position===pos;}).slice(0,3);}
+  var h="";
+  var posCodes=["GK","DF","MF","FW"];
+  for(var pi=0;pi<posCodes.length;pi++){
+    var pc=posCodes[pi],posName=posN[pc];
+    var aTop=(ta.players||[]).filter(function(p){return p.position===pc;}).slice(0,3);
+    var bTop=(tb.players||[]).filter(function(p){return p.position===pc;}).slice(0,3);
+    var maxLen=Math.max(aTop.length,bTop.length);
+    if(maxLen===0)continue;
+    h+='<div class="h2h-mu-pos">'+posName+'</div>';
+    for(var mi=0;mi<maxLen;mi++){
+      var pa=aTop[mi]||null,pb=bTop[mi]||null;
+      var sa=pa?(pa.market_value||0):0,sb=pb?(pb.market_value||0):0;
+      var wcls=sa>sb?"w":sb>sa?"l":"d";
+      h+='<div class="h2h-mu-row">';
+      h+='<div class="h2h-mu-p">'+(pa?pa.name:"—")+' <span class="h2h-wl '+wcls+'">'+(pa?(sa>0?sa.toFixed(1)+"M":"✓"):"—")+'</span></div>';
+      h+='<div class="h2h-mu-s">vs</div>';
+      h+='<div class="h2h-mu-r">'+(pb?'<span class="h2h-wl '+(sb>sa?"w":sb<sa?"l":"d")+'">'+(sb>0?sb.toFixed(1)+"M":"✓")+'</span> '+pb.name:"—")+'</div>';
+      h+='</div>';
+    }
+  }
+  return h;
+}
+
+function h2hChange(){
+  var ta=D.find(function(x){return x.country===document.getElementById("h2h-a").value;});
+  var tb=D.find(function(x){return x.country===document.getElementById("h2h-b").value;});
+  if(!ta||!tb){return;}
+  var r=h2hCalc(ta,tb);
+  var barA=(r.winA*100).toFixed(1),barB=(r.winB*100).toFixed(1),barD=(r.draw*100).toFixed(1);
+  document.getElementById("h2h-bar-a").style.width=barA+"%";
+  document.getElementById("h2h-bar-b").style.width=barB+"%";
+  document.getElementById("h2h-bar-d").style.width=barD+"%";
+  document.getElementById("h2h-bar-d").textContent=barD+"%";
+  document.getElementById("h2h-pa").textContent=barA+"%";
+  document.getElementById("h2h-pb").textContent=barB+"%";
+  document.getElementById("h2h-pd").textContent=barD+"%";
+  // factor diff
+  var h='<div class="h2h-fc">'+getFactorDiff(ta,tb)+'</div>';
+  // historical record
+  var recKey=ta.country+"|"+tb.country,recKeyRev=tb.country+"|"+ta.country;
+  var rec=H2H_RECORDS[recKey]||H2H_RECORDS[recKeyRev];
+  var isRev=!!H2H_RECORDS[recKeyRev];
+  if(rec){
+    var wA=isRev?rec.wB:rec.wA,wB=isRev?rec.wA:rec.wB;
+    h+='<div class="h2h-matchup"><div class="h2h-mu-pos">历史交锋 / Historical H2H</div>';
+    h+='<div style="display:flex;gap:8px;margin-top:8px">';
+    h+='<div class="h2h-3m-it" style="flex:2"><div class="h2h-3m-v">'+wA+'</div><div class="h2h-3m-l">'+ta.country.slice(0,6)+' Wins</div></div>';
+    h+='<div class="h2h-3m-it"><div class="h2h-3m-v">'+rec.d+'</div><div class="h2h-3m-l">Draws</div></div>';
+    h+='<div class="h2h-3m-it" style="flex:2"><div class="h2h-3m-v">'+wB+'</div><div class="h2h-3m-l">'+tb.country.slice(0,6)+' Wins</div></div>';
+    h+='</div>';
+    h+='<div class="h2h-note">'+rec.note+' <span style="color:var(--tx2)">('+rec.t+'场 / '+rec.t+' matches)</span></div></div>';
+  }
+  // tactical note
+  var tacKey=ta.country+"|"+tb.country,tacKeyRev=tb.country+"|"+ta.country;
+  var tac=H2H_TACTICAL[tacKey]||H2H_TACTICAL[tacKeyRev];
+  if(tac){
+    h+='<div class="h2h-matchup"><div class="h2h-mu-pos">战术风格 / Tactical</div>';
+    h+='<div class="h2h-note" style="margin-top:8px"><strong>'+tac+'</strong></div></div>';
+  }
+  // player matchups
+  if((ta.players||[]).length>0&&(tb.players||[]).length>0){
+    h+='<div class="h2h-matchup">'+getPlayerMatchups(ta,tb)+'</div>';
+  }
+  document.getElementById("h2h-content").innerHTML=h;
+}
 
 /* ── Squad ── */
 function sqChange(){var sel=document.getElementById("sq-sel");var c=sel.value;var t=D.find(function(x){return x.country===c;});if(!t){document.getElementById("sq-content").innerHTML="<p style='color:var(--tx2);font-size:14px;padding:20px 0'>No data</p>";return;}var h='<div class="sq-card"><div class="sq-ph"><span class="sq-ph-fl">'+fl(t.country)+'</span><div><div class="sq-ph-nm">'+t.country+'</div><div class="sq-ph-elo">Elo '+(t.elo||0).toFixed(0)+' · '+(t.players?t.players.length:0)+' players</div></div></div>';if(t.players&&t.players.length>0){h+='<table class="sq-table"><thead><tr><th class="sq-th" style="width:32px">Pos</th><th class="sq-th">Name / Club</th><th class="sq-th" style="text-align:right">Caps</th><th class="sq-th" style="text-align:right">Goals</th><th class="sq-th" style="text-align:right">MV</th></tr></thead><tbody>';var pos_c={GK:"#8e8e93",DF:"#0a84ff",MF:"#30d158",FW:"#ff453a"};for(var k=0;k<t.players.length;k++){var p=t.players[k];var pc2=pos_c[p.position]||"var(--tx2)";h+='<tr><td class="sq-td"><span class="sq-pos" style="color:'+pc2+'">'+p.position+'</span></td>';h+='<td class="sq-td"><div class="sq-name">'+p.name+'</div><div class="sq-club">'+(p.club||"")+"</div></td>";h+='<td class="sq-td sq-caps">'+p.national_caps+"</td>";h+='<td class="sq-td sq-goals">'+p.national_goals+"</td>";h+='<td class="sq-td"><span class="sq-mv">'+(p.market_value||0).toFixed(1)+"M</span></td></tr>";}h+="</tbody></table>";}else{h+='<div style="padding:20px;color:var(--tx2);font-size:13px">Sample squad (no Wikipedia data) / 样本阵容（无维基数据）</div>';}h+="</div>";document.getElementById("sq-content").innerHTML=h;}
@@ -626,10 +813,23 @@ document.getElementById("infTime").textContent="__UPDATE_TIME__";
 buildLB();
 buildFB();
 buildML();
-buildUC();
-// Populate squad selector
-var sel=document.getElementById("sq-sel");
+// H2H: populate team selectors
 var teams=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});
+var selA=document.getElementById("h2h-a");
+var selB=document.getElementById("h2h-b");
+for(var i=0;i<teams.length;i++){
+  var t=teams[i];
+  var optA=document.createElement("option");optA.value=t.country;
+  optA.textContent=fl(t.country)+" "+t.country+" "+(t.final_prob*100).toFixed(1)+"%";
+  selA.appendChild(optA);
+  var optB=document.createElement("option");optB.value=t.country;
+  optB.textContent=fl(t.country)+" "+t.country+" "+(t.final_prob*100).toFixed(1)+"%";
+  selB.appendChild(optB);
+}
+if(teams.length>1){selA.value=teams[0].country;selB.value=teams[1].country;}
+h2hChange();
+// Squad selector
+var sel=document.getElementById("sq-sel");
 for(var i=0;i<teams.length;i++){var opt=document.createElement("option");opt.value=teams[i].country;opt.textContent=fl(teams[i].country)+" "+teams[i].country+" "+(teams[i].final_prob*100).toFixed(1)+"%";sel.appendChild(opt);}
 if(teams.length>0){sel.value=teams[0].country;sqChange();}
 </script>
@@ -664,7 +864,7 @@ def run_server(port=7862):
     socketserver.TCPServer.allow_reuse_address = True
     with socketserver.TCPServer(("", port), Handler) as httpd:
         print(f"Mobile UI: http://localhost:{port}")
-        print(f"Champion | Factor | Mystic | UCL | Squad | Info")
+        print(f"Champion | Factor | Mystic | H2H | Squad | Info")
         httpd.serve_forever()
 
 if __name__ == "__main__":
