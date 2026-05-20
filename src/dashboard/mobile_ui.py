@@ -313,7 +313,7 @@ HTML_BODY = """<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>WC 2026</title>
+<title>世界杯 2026 / WC 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -389,26 +389,26 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 </style>
 </head>
 <body>
-<div class="hdr"><div class="hdr-title">WC 2026</div><div class="hdr-sub" id="upd"></div></div>
+<div class="hdr"><div class="hdr-title">世界杯 2026 / WC 2026</div><div class="hdr-sub" id="upd"></div></div>
 <div class="tabbar">
-<button class="tab on" id="tb-home" onclick="showTab('home')"><span class="ico">C</span><span>Champion</span></button>
-<button class="tab" id="tb-mystic" onclick="showTab('mystic')"><span class="ico">M</span><span>Mystic</span></button>
-<button class="tab" id="tb-ucl" onclick="showTab('ucl')"><span class="ico">U</span><span>UCL</span></button>
-<button class="tab" id="tb-info" onclick="showTab('info')"><span class="ico">i</span><span>Info</span></button>
+<button class="tab on" id="tb-home" onclick="showTab('home')"><span class="ico">C</span><span>冠军 / Champion</span></button>
+<button class="tab" id="tb-mystic" onclick="showTab('mystic')"><span class="ico">M</span><span>玄学 / Mystic</span></button>
+<button class="tab" id="tb-ucl" onclick="showTab('ucl')"><span class="ico">U</span><span>欧冠 / UCL</span></button>
+<button class="tab" id="tb-info" onclick="showTab('info')"><span class="ico">i</span><span>说明 / Info</span></button>
 </div>
 
-<div class="pg on" id="pg-home"><div class="card"><div class="card-title">Champion Probability</div><div class="lb" id="lb"></div></div></div>
-<div class="pg" id="pg-mystic"><div class="card"><div class="card-title">Mystic Analysis</div><div id="ml"></div></div></div>
+<div class="pg on" id="pg-home"><div class="card"><div class="card-title">冠军概率 / Champion Prob</div><div class="lb" id="lb"></div></div></div>
+<div class="pg" id="pg-mystic"><div class="card"><div class="card-title">玄学分析 / Mystic Analysis</div><div id="ml"></div></div></div>
 <div class="pg" id="pg-ucl"><div id="uc"></div></div>
 <div class="pg" id="pg-info">
-<div class="info-sec"><div class="info-tl">Model</div>
-<div class="info-row"><span class="info-lbl">Dimensions</span><span class="info-val">4 - Logic/I Ching/Dao/Paradox</span></div>
-<div class="info-row"><span class="info-lbl">UCL Tuning</span><span class="info-val">Mbappe Mentality</span></div>
-<div class="info-row"><span class="info-lbl">Updated</span><span class="info-val" id="infTime"></span></div>
+<div class="info-sec"><div class="info-tl">模型 / Model</div>
+<div class="info-row"><span class="info-lbl">维度 / Dimensions</span><span class="info-val">4 - 逻辑/易经/道德经/悖论</span></div>
+<div class="info-row"><span class="info-lbl">UCL调参 / UCL Tuning</span><span class="info-val">姆巴佩心态 / Mbappe</span></div>
+<div class="info-row"><span class="info-lbl">更新 / Updated</span><span class="info-val" id="infTime"></span></div>
 </div>
-<div class="info-sec"><div class="info-tl">Calibration Framework</div>
-<div class="info-row"><span class="info-lbl">Brazil 2014</span><span class="info-val" style="color:var(--rd)">1-7 DE - Collapse</span></div>
-<div class="info-row"><span class="info-lbl">France 2018</span><span class="info-val" style="color:var(--gr)">4-2 HR - Explosion</span></div>
+<div class="info-sec"><div class="info-tl">校准框架 / Calibration</div>
+<div class="info-row"><span class="info-lbl">Brazil 2014</span><span class="info-val" style="color:var(--rd)">1-7 DE — 心理崩溃 / Collapse</span></div>
+<div class="info-row"><span class="info-lbl">France 2018</span><span class="info-val" style="color:var(--gr)">4-2 HR — 势能爆发 / Explosion</span></div>
 </div>
 </div>
 </div>
@@ -424,8 +424,8 @@ function sc(s){return s>0?"var(--gr)":s<0?"var(--rd)":"var(--tx2)";}
 function showTab(n){document.querySelectorAll(".pg").forEach(function(p){p.classList.remove("on");});document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("on");});document.getElementById("pg-"+n).classList.add("on");document.getElementById("tb-"+n).classList.add("on");}
 function buildLB(){var s=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});var h="";for(var i=0;i<s.length;i++){var t=s[i],r=i+1,rc=r<=3?"t"+r:"";var pct=(t.final_prob*100).toFixed(2),pctCls=t.final_prob>0.15?" vh":"";var sh=t.shift||0;h+='<div class="lb-r"><div class="lb-rk '+rc+'">'+r+'</div><div class="lb-fl">'+fl(t.country)+'</div><div class="lb-inf"><div class="lb-nm">'+t.country+'</div><div class="lb-el">Elo '+(t.elo||0).toFixed(0)+'</div><div class="pb"><div class="pb-fi" style="width:'+pct+'%;background:'+pc(t.final_prob*100)+'"></div></div></div><div class="lb-pr"><div class="lb-pct'+pctCls+'">'+pct+'%</div><div class="lb-sh" style="color:'+sc(sh)+'">'+st(sh)+'</div></div></div>';}document.getElementById("lb").innerHTML=h;}
 function toggleMC(el){var d=el.nextElementSibling;if(d.classList.contains("on")){d.classList.remove("on");}else{d.classList.add("on");}}
-function buildML(){var s=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});var h="";for(var i=0;i<s.length;i++){var t=s[i],ver=t.verdict||"--",sh=t.shift||0;var tc=ver.indexOf("推荐")>-1?"pos":ver.indexOf("谨慎")>-1?"neg":"neu";var mtag=t.iching?'<span class="tag mystic">Yi:'+t.iching+"</span>":"";var contr=t.contrarian||0,favc=t.fav_curse||0,conf=t.confidence||0.5;var shcls=sh>0?"pos":sh<0?"neg":"";h+='<div class="mc-r" onclick="toggleMC(this)"><div class="mc-fl">'+fl(t.country)+'</div><div><div class="mc-nm">'+t.country+'</div><div class="mc-mt">'+ver+" | "+(t.final_prob*100).toFixed(2)+"%</div></div></div>";h+='<div class="mc-dt"><div class="tags">';h+='<span class="tag '+tc+'">'+ver+"</span>";if(mtag)h+=mtag;if(t.zen&&t.zen!=="--")h+='<span class="tag neu">Dao:'+t.zen+"</span>";if(t.tao&&t.tao!=="--")h+='<span class="tag neu">Lao:'+t.tao+"</span>";h+="</div><div class='mtrics'>";h+="<div class='mtric'><div class='mtric-lbl'>Shift</div><div class='mtric-val "+shcls+"'>"+st(sh)+"</div></div>";h+="<div class='mtric'><div class='mtric-lbl'>Paradox</div><div class='mtric-val'>"+contr.toFixed(3)+"</div></div>";h+="<div class='mtric'><div class='mtric-lbl'>FavCurse</div><div class='mtric-val'>"+favc.toFixed(3)+"</div></div>";h+="<div class='mtric'><div class='mtric-lbl'>Confidence</div><div class='mtric-val'>"+(conf*100).toFixed(0)+"%</div></div>";h+="</div></div>";}document.getElementById("ml").innerHTML=h;}
-function buildUC(){var cs=Object.keys(U).sort(function(a,b){return U[b].total_bonus-U[a].total_bonus;}),h="";for(var ci=0;ci<cs.length;ci++){var c=cs[ci],d=U[c],b=d.total_bonus,bc=b>=0?"pos":"neg",bs=b>=0?"+":"";h+='<div class="ucard"><div class="ucard-fl">'+fl(c)+'</div><div class="ucard-nm">'+c+"</div>";h+='<div class="ucard-bns '+bc+'">'+bs+(b*100).toFixed(2)+"%</div>";h+='<div class="ucard-dsc">'+d.description+"</div>";var ps=d.players;for(var pi=0;pi<ps.length;pi++){var p=ps[pi],pc2=p.mentality_signal>=0?"pos":"neg";h+='<div class="urow"><div><div class="unm">'+p.name+'</div><div class="uclub">'+p.club+"</div></div>";h+='<div class="ums '+pc2+'">'+(p.mentality_signal>=0?"+":"")+p.mentality_signal.toFixed(2)+"</div></div>";}h+="</div>";}h+='<div class="ucard"><div class="fw-tl">Calibration</div>';h+='<div class="fw-it"><b style="color:var(--rd)">Brazil 2014 (1-7 Germany)</b>: Psychological collapse. Params: pressure +0.05, amplification x1.5.</div>';h+='<div class="fw-it" style="margin-top:8px"><b style="color:var(--gr)">France 2018 (4-2 Croatia)</b>: Momentum explosion. Params: pressure +0.05, conversion +0.05.</div>';h+='<div class="fw-it" style="margin-top:8px"><b style="color:var(--gd)">Mbappe Mentality</b>: Final goal +0.15, adversity win +0.30, loss -0.20. Baseline calibrated to above.</div>';h+="</div>";document.getElementById("uc").innerHTML=h;}
+function buildML(){var s=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});var h="";for(var i=0;i<s.length;i++){var t=s[i],ver=t.verdict||"--",sh=t.shift||0;var tc=ver.indexOf("推荐")>-1?"pos":ver.indexOf("谨慎")>-1?"neg":"neu";var mtag=t.iching?'<span class="tag mystic">易 / Yi:'+t.iching+"</span>":"";var contr=t.contrarian||0,favc=t.fav_curse||0,conf=t.confidence||0.5;var shcls=sh>0?"pos":sh<0?"neg":"";h+='<div class="mc-r" onclick="toggleMC(this)"><div class="mc-fl">'+fl(t.country)+'</div><div><div class="mc-nm">'+t.country+'</div><div class="mc-mt">'+ver+" | "+(t.final_prob*100).toFixed(2)+"%</div></div></div>";h+='<div class="mc-dt"><div class="tags">';h+='<span class="tag '+tc+'">'+ver+"</span>";if(mtag)h+=mtag;if(t.zen&&t.zen!=="--")h+='<span class="tag neu">道 / Dao:'+t.zen+"</span>";if(t.tao&&t.tao!=="--")h+='<span class="tag neu">老 / Lao:'+t.tao+"</span>";h+="</div><div class='mtrics'>";h+="<div class='mtric'><div class='mtric-lbl'>偏移 / Shift</div><div class='mtric-val "+shcls+"'>"+st(sh)+"</div></div>";h+="<div class='mtric'><div class='mtric-lbl'>悖论 / Paradox</div><div class='mtric-val'>"+contr.toFixed(3)+"</div></div>";h+="<div class='mtric'><div class='mtric-lbl'>热门诅咒 / FavCurse</div><div class='mtric-val'>"+favc.toFixed(3)+"</div></div>";h+="<div class='mtric'><div class='mtric-lbl'>置信度 / Confidence</div><div class='mtric-val'>"+(conf*100).toFixed(0)+"%</div></div>";h+="</div></div>";}document.getElementById("ml").innerHTML=h;}
+function buildUC(){var cs=Object.keys(U).sort(function(a,b){return U[b].total_bonus-U[a].total_bonus;}),h="";for(var ci=0;ci<cs.length;ci++){var c=cs[ci],d=U[c],b=d.total_bonus,bc=b>=0?"pos":"neg",bs=b>=0?"+":"";h+='<div class="ucard"><div class="ucard-fl">'+fl(c)+'</div><div class="ucard-nm">'+c+"</div>";h+='<div class="ucard-bns '+bc+'">'+bs+(b*100).toFixed(2)+"%</div>";h+='<div class="ucard-dsc">'+d.description+"</div>";var ps=d.players;for(var pi=0;pi<ps.length;pi++){var p=ps[pi],pc2=p.mentality_signal>=0?"pos":"neg";h+='<div class="urow"><div><div class="unm">'+p.name+'</div><div class="uclub">'+p.club+"</div></div>";h+='<div class="ums '+pc2+'">'+(p.mentality_signal>=0?"+":"")+p.mentality_signal.toFixed(2)+"</div></div>";}h+="</div>";}h+='<div class="ucard"><div class="fw-tl">调参说明 / Calibration</div>';h+='<div class="fw-it"><b style="color:var(--rd)">Brazil 2014 (1-7 德国)</b>: 心理崩溃 / Psychological collapse. 参数: pressure +0.05, amplification x1.5.</div>';h+='<div class="fw-it" style="margin-top:8px"><b style="color:var(--gr)">France 2018 (4-2 克罗地亚)</b>: 势能爆发 / Momentum explosion. 参数: pressure +0.05, conversion +0.05.</div>';h+='<div class="fw-it" style="margin-top:8px"><b style="color:var(--gd)">姆巴佩心态 / Mbappe Mentality</b>: 决赛进球 +0.15, 逆境赢球 +0.30, 失利 -0.20. 基准校准到以上框架.</div>';h+="</div>";document.getElementById("uc").innerHTML=h;}
 document.getElementById("upd").textContent="__UPDATE_TIME__";
 document.getElementById("infTime").textContent="__UPDATE_TIME__";
 buildLB();buildML();buildUC();
@@ -458,7 +458,11 @@ def run_server(port=7862):
         def log_message(self, fmt, *args):
             pass
 
+    socketserver.TCPServer.allow_reuse_address = True
     with socketserver.TCPServer(("", port), Handler) as httpd:
         print(f"Mobile UI: http://localhost:{port}")
         print(f"Champion | Mystic | UCL | Info")
         httpd.serve_forever()
+
+if __name__ == "__main__":
+    run_server()
