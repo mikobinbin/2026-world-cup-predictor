@@ -547,6 +547,69 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .pick-item-pr{font-size:12px;color:var(--tx2);margin-top:2px}
 .pick-item-chk{font-size:16px;color:var(--bl);flex-shrink:0;display:none}
 .pick-item.sel .pick-item-chk{display:block}
+/* Score Prediction */
+.sc-pred{margin-bottom:16px}
+.sc-pred-r{display:flex;align-items:center;gap:0;border-radius:12px;overflow:hidden;height:56px;background:var(--s2);margin-bottom:16px;padding:0 4px}
+.sc-team{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 8px}
+.sc-team-nm{font-size:11px;font-weight:700;margin-bottom:4px;max-width:80px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sc-goals{display:flex;align-items:center;gap:4px;flex-shrink:0}
+.sc-gl{font-size:28px;font-weight:800;line-height:1;color:var(--tx);min-width:28px;text-align:center}
+.sc-sep{font-size:22px;font-weight:800;color:var(--tx3);flex-shrink:0}
+.sc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:16px}
+.sc-cell{background:var(--s2);border-radius:10px;padding:8px 6px;text-align:center}
+.sc-cell.top{background:rgba(10,132,255,.15);border:1px solid rgba(10,132,255,.3)}
+.sc-s{font-size:17px;font-weight:800;color:var(--tx)}
+.sc-p{font-size:10px;color:var(--tx2);margin-top:3px;font-weight:600}
+.sc-most-likely{background:var(--s);border-radius:12px;padding:14px 16px;margin-bottom:16px}
+.sc-ml-hd{font-size:10px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
+.sc-ml-row{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:.5px solid var(--bd)}
+.sc-ml-row:last-child{border-bottom:none}
+.sc-ml-sc{font-size:15px;font-weight:800}
+.sc-ml-od{font-size:11px;font-weight:600;color:var(--tx2)}
+.sc-ml-d{font-size:11px;font-weight:700;color:var(--gd);min-width:40px;text-align:right}
+.sc-hd{display:flex;align-items:center;justify-content:space-between;padding:8px 0 6px;font-size:11px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.5px}
+.sc-hd-hi{color:var(--yl)}
+.sc-hd-sub{font-size:10px;font-weight:800;color:var(--gr)}
+.sc-grid-hi .sc-cell-hi{background:rgba(255,204,0,.08);border:1px solid rgba(255,204,0,.2)}
+.sc-note{font-size:11px;color:var(--tx2);line-height:1.6;margin-top:8px;font-style:italic}
+.h2h-matchup{padding:10px 0;border-bottom:0.5px solid var(--bd)}
+.h2h-matchup:last-child{border-bottom:none}
+.h2h-mu-pos{font-size:10px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px}
+.h2h-mu-row{display:flex;align-items:center;gap:8px}
+.h2h-mu-p{flex:1;font-size:13px;font-weight:600}
+.h2h-mu-p .h2h-wl{margin-left:6px}
+.h2h-mu-s{font-size:12px;font-weight:700;color:var(--gd);width:28px;text-align:center}
+.h2h-mu-r{text-align:right;flex:1}
+.h2h-mu-r .h2h-wl{margin-right:6px}
+/* Squad */
+.sel{width:100%;background:var(--s2);color:var(--tx);border:0.5px solid var(--bd);border-radius:12px;padding:12px 16px;font-size:15px;font-weight:600;margin-bottom:12px;appearance:none;-webkit-appearance:none}
+.sel-wrap{position:relative}
+.sel-wrap::after{content:"▼";position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--tx2);pointer-events:none}
+.sq-card{background:var(--s);border-radius:16px;border:0.5px solid var(--bd);overflow:hidden;margin-bottom:12px}
+.sq-ph{background:var(--s2);padding:12px 16px;display:flex;align-items:center;gap:12px}
+.sq-ph-fl{font-size:28px}
+.sq-ph-nm{font-size:16px;font-weight:800}
+.sq-ph-elo{font-size:12px;color:var(--tx2);margin-top:2px}
+.sq-table{width:100%}
+.sq-th{background:var(--s2);padding:8px 12px;font-size:9px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:0.6px;text-align:left}
+.sq-td{padding:9px 12px;font-size:13px;border-bottom:0.5px solid var(--bd)}
+.sq-td:last-child{border-bottom:none}
+.sq-pos{font-size:10px;font-weight:700;color:var(--tx2);width:28px}
+.sq-name{font-weight:600}
+.sq-club{font-size:11px;color:var(--tx2)}
+.sq-mv{font-size:12px;font-weight:700;color:var(--gd);white-space:nowrap}
+.sq-caps{text-align:right;font-variant-numeric:tabular-nums}
+.sq-goals{text-align:right;font-variant-numeric:tabular-nums;color:var(--tx2)}
+/* Info */
+.info-sec{margin-bottom:24px}
+.info-tl{font-size:11px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.info-row{background:var(--s);border-radius:12px;padding:14px 16px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.info-lbl{font-size:14px;color:var(--tx2)}
+.info-val{font-size:14px;font-weight:700;text-align:right}
+.calibration{background:var(--s);border-radius:12px;padding:16px;margin-bottom:10px}
+.cal-hd{font-size:13px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.cal-bd{font-size:12px;color:var(--tx2);line-height:1.7}
+
 </style>
 </head>
 <body>
@@ -825,6 +888,91 @@ function getPlayerMatchups(ta,tb){
   return h;
 }
 
+
+
+function buildScorePred(ta, tb, r) {
+    var eloA = ta.elo || 1700;
+    var eloB = tb.elo || 1700;
+    var lambdaA = 1.3 + (eloA - 1700) / 500 * 1.0;
+    var lambdaB = 1.3 + (eloB - 1700) / 500 * 1.0;
+    lambdaA = Math.max(0.4, Math.min(3.5, lambdaA));
+    lambdaB = Math.max(0.4, Math.min(3.5, lambdaB));
+    function pois(k, lam) {
+        if (lam <= 0) return k === 0 ? 1 : 0;
+        var p = Math.exp(-lam);
+        for (var i = 1; i <= k; i++) p *= lam / i;
+        return p;
+    }
+    var results = [];
+    for (var ga = 0; ga <= 5; ga++) {
+        for (var gb = 0; gb <= 5; gb++) {
+            results.push({ga: ga, gb: gb, prob: pois(ga, lambdaA) * pois(gb, lambdaB), total: ga + gb});
+        }
+    }
+    results.sort(function(a, b){ return b.prob - a.prob; });
+    var top6 = results.slice(0, 6);
+    var totalShown = top6.reduce(function(s, x){ return s + x.prob; }, 0);
+
+    // High-scoring section: total goals >= 3, sorted by probability
+    var hiResults = results.filter(function(x){ return x.total >= 3; });
+    hiResults.sort(function(a, b){ return b.prob - a.prob; });
+    var topHi = hiResults.slice(0, 8);
+
+    var h = '<div class="sc-pred">';
+
+    // Expected goals header
+    h += '<div class="sc-pred-r">';
+    h += '<div class="sc-team"><div class="sc-team-nm">' + ta.country + '</div><div class="sc-goals"><span class="sc-gl">' + lambdaA.toFixed(1) + '</span></div></div>';
+    h += '<div class="sc-sep">:</div>';
+    h += '<div class="sc-team"><div class="sc-team-nm">' + tb.country + '</div><div class="sc-goals"><span class="sc-gl">' + lambdaB.toFixed(1) + '</span></div></div>';
+    h += '</div>';
+
+    // Top 6 grid
+    h += '<div class="sc-hd"><span>最可能 / Most Likely</span><span class="sc-hd-sub">+' + (totalShown * 100).toFixed(0) + '%</span></div>';
+    h += '<div class="sc-grid">';
+    for (var i = 0; i < top6.length; i++) {
+        var s2 = top6[i];
+        var isTop = i === 0;
+        var pct = (s2.prob * 100).toFixed(1);
+        h += '<div class="sc-cell' + (isTop ? ' top' : '') + '">';
+        h += '<div class="sc-s">' + s2.ga + ' - ' + s2.gb + '</div>';
+        h += '<div class="sc-p">' + pct + '%</div></div>';
+    }
+    h += '</div>';
+
+    // High-scoring section
+    if (topHi.length > 0) {
+        var hiTotal = topHi.reduce(function(s, x){ return s + x.prob; }, 0);
+        h += '<div class="sc-hd sc-hd-hi"><span>&#9888;&#65039; 大比分博弈 / High-Score Upside</span><span class="sc-hd-sub">' + (hiTotal * 100).toFixed(0) + '%</span></div>';
+        h += '<div class="sc-grid sc-grid-hi">';
+        for (var j = 0; j < topHi.length; j++) {
+            var s3 = topHi[j];
+            var pct2 = (s3.prob * 100).toFixed(1);
+            h += '<div class="sc-cell sc-cell-hi">';
+            h += '<div class="sc-s">' + s3.ga + ' - ' + s3.gb + '</div>';
+            h += '<div class="sc-p">' + pct2 + '%</div></div>';
+        }
+        h += '</div>';
+        h += '<div class="sc-note">&#128293; 高于 ' + lambdaA.toFixed(1) + '-' + lambdaB.toFixed(1) + ' 期望的大比分选项，适合搏冷 / Long-shot scorelines above expected goals</div>';
+    }
+
+    // Most likely scoreline list
+    h += '<div class="sc-most-likely">';
+    h += '<div class="sc-ml-hd">Scoreline Probability / 比分预测</div>';
+    for (var k = 0; k < top6.length; k++) {
+        var row = top6[k];
+        var outcome = row.ga > row.gb ? 'A' : (row.ga < row.gb ? 'B' : 'D');
+        var outcomeColor = outcome === 'A' ? 'var(--bl)' : 'var(--gd)';
+        var pct3 = (row.prob * 100).toFixed(1);
+        h += '<div class="sc-ml-row">';
+        h += '<span class="sc-ml-sc">' + fl(ta.country) + ' ' + row.ga + ' : ' + row.gb + ' ' + fl(tb.country) + '</span>';
+        h += '<span class="sc-ml-od">' + outcome + '</span>';
+        h += '<span class="sc-ml-d" style="color:' + outcomeColor + '">' + pct3 + '%</span></div>';
+    }
+    h += '</div>';
+    h += '<div class="sc-note">Poisson xG model based on Elo differential | Elo λ: ' + lambdaA.toFixed(2) + ' vs ' + lambdaB.toFixed(2) + '</div></div>';
+    return h;
+}
 function h2hChange(){
   var ta=D.find(function(x){return x.country===document.getElementById("h2h-a").value;});
   var tb=D.find(function(x){return x.country===document.getElementById("h2h-b").value;});
@@ -840,6 +988,8 @@ function h2hChange(){
   document.getElementById("h2h-pd").textContent=barD+"%";
   // factor diff
   var h='<div class="h2h-fc">'+getFactorDiff(ta,tb)+'</div>';
+  
+  h += buildScorePred(ta, tb, r);
   // historical record
   var recKey=ta.country+"|"+tb.country,recKeyRev=tb.country+"|"+ta.country;
   var rec=H2H_RECORDS[recKey]||H2H_RECORDS[recKeyRev];
