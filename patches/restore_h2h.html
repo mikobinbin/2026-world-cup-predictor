@@ -1,0 +1,58 @@
+<!-- TAB: H2H -->
+<div class="pg" id="pg-h2h">
+  <div class="card">
+    <div class="card-title">对战预测 / H2H Predictor</div>
+    <div class="h2h-teams">
+      <div class="h2h-team">
+        <label>Team A / 球队A</label>
+        <div class="h2h-pick" id="h2h-pick-a" onclick="openPicker('a')">
+          <span class="h2h-pick-fl" id="h2h-pick-fl-a"></span>
+          <span class="h2h-pick-info">
+            <span class="h2h-pick-nm" id="h2h-pick-nm-a"></span>
+            <span class="h2h-pick-pr" id="h2h-pick-pr-a"></span>
+          </span>
+          <span class="h2h-pick-chevron">›</span>
+        </div>
+      </div>
+      <div class="h2h-vs">⚔️</div>
+      <div class="h2h-team">
+        <label>Team B / 球队B</label>
+        <div class="h2h-pick" id="h2h-pick-b" onclick="openPicker('b')">
+          <span class="h2h-pick-fl" id="h2h-pick-fl-b"></span>
+          <span class="h2h-pick-info">
+            <span class="h2h-pick-nm" id="h2h-pick-nm-b"></span>
+            <span class="h2h-pick-pr" id="h2h-pick-pr-b"></span>
+          </span>
+          <span class="h2h-pick-chevron">›</span>
+        </div>
+      </div>
+    </div>
+    <select id="h2h-a" onchange="h2hChange()" style="display:none"></select>
+    <select id="h2h-b" onchange="h2hChange()" style="display:none"></select>
+    <div class="h2h-bar" id="h2h-bar">
+      <div class="h2h-bar-a" id="h2h-bar-a" style="width:45%"></div>
+      <div class="h2h-bar-d" id="h2h-bar-d" style="width:10%">—</div>
+      <div class="h2h-bar-b" id="h2h-bar-b" style="width:45%"></div>
+    </div>
+    <div class="h2h-3m">
+      <div class="h2h-3m-it"><div class="h2h-3m-v" id="h2h-pa">45.0%</div><div class="h2h-3m-l">A Win</div></div>
+      <div class="h2h-3m-it"><div class="h2h-3m-v" id="h2h-pd">22.0%</div><div class="h2h-3m-l">Draw</div></div>
+      <div class="h2h-3m-it"><div class="h2h-3m-v" id="h2h-pb">33.0%</div><div class="h2h-3m-l">B Win</div></div>
+    </div>
+    <div id="h2h-content"></div>
+  </div>
+</div>
+
+<!-- Picker Overlay -->
+<div class="pick-overlay" id="pick-overlay" onclick="closePicker(event)">
+  <div class="pick-sheet" onclick="event.stopPropagation()">
+    <div class="pick-sheet-hd">
+      <span class="pick-sheet-tl" id="pick-title">Select Team</span>
+      <button class="pick-sheet-close" onclick="closePicker()">Done</button>
+    </div>
+    <div class="pick-search-wrap">
+      <input class="pick-search" id="pick-search" placeholder="Search team..." oninput="filterPickList()">
+    </div>
+    <div class="pick-list" id="pick-list"></div>
+  </div>
+</div>
