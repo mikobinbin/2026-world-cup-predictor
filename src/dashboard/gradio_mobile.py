@@ -289,140 +289,185 @@ def get_ucl_card(country: str) -> str:
     return "\n".join(lines)
 
 
-# ── UI 构建 ──────────────────────────────────────────────
+    # ── UI 构建 ──────────────────────────────────────────────
 def build_ui():
-    # Linear Design System — Hermes Agent Implementation
-    # Primary: Inter | Mono: JetBrains Mono
-    # Background: #08090a | Surfaces: #0f1011 / #191a1b / #28282c
-    # Accent: #7170ff (violet) | Success: #10b981 | Text: #f7f8f8 / #d0d6e0 / #8a8f98
+    # Mobile-first sports media design — Apple Sports / The Athletic 参考
+    # 核心原则：白底、黑字、蓝accent、海军蓝标题栏
+    # 字体：Inter（系统字体栈）
+    # 移动端优先：单栏布局、大触摸区域、高对比度
 
     with gr.Blocks(
         title="🏆 世界杯预测",
         theme=None,  # CSS-only: avoids Gradio version compat issues
         css="""
-        /* ── Linear Design System ── */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;510;590;600&display=swap');
+        /* ── Mobile-First Sports Media Design ── */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;510;590;600;700&display=swap');
 
         :root {
-            --bg-base: #08090a;
-            --bg-panel: #0f1011;
-            --bg-surface: #191a1b;
-            --bg-elevated: #28282c;
-            --text-primary: #f7f8f8;
-            --text-secondary: #d0d6e0;
-            --text-muted: #8a8f98;
-            --text-dim: #62666d;
-            --accent: #7170ff;
-            --accent-hover: #828fff;
-            --accent-glow: rgba(113,112,255,0.15);
-            --green: #10b981;
-            --green-dim: rgba(16,185,129,0.12);
-            --red: #f85149;
-            --red-dim: rgba(248,81,73,0.12);
-            --border: rgba(255,255,255,0.08);
-            --border-subtle: rgba(255,255,255,0.05);
+            /* ── Surfaces ── */
+            --bg-base: #ffffff;
+            --bg-page: #f8f9fa;
+            --bg-card: #ffffff;
+            --bg-surface: #f0f1f3;
+            --bg-header: #0d1b2a;      /* 海军蓝 — 运动感 */
+            --bg-tab: #e8eaed;
+
+            /* ── Text ── */
+            --text-primary: #1a1d21;
+            --text-secondary: #4a5568;
+            --text-muted: #9aa0a6;
+            --text-inverse: #ffffff;
+
+            /* ── Accent — 运动蓝 ── */
+            --accent: #1d4ed8;          /* 运动蓝 */
+            --accent-hover: #1e40af;
+            --accent-light: rgba(29,78,216,0.08);
+            --accent-border: rgba(29,78,216,0.25);
+
+            /* ── Semantic ── */
+            --positive: #059669;          /* emerald */
+            --positive-bg: #d1fae5;
+            --negative: #dc2626;
+            --negative-bg: #fee2e2;
+            --neutral-bg: #f3f4f6;
+            --neutral-text: #6b7280;
+
+            /* ── Tier badge colors (mystic factor) ── */
+            --tier-gold: #b45309;
+            --tier-gold-bg: #fef3c7;
+            --tier-silver: #374151;
+            --tier-silver-bg: #e5e7eb;
+            --tier-bronze: #78350f;
+            --tier-bronze-bg: #fde68a;
+
+            /* ── Shadows ── */
+            --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-elevated: 0 4px 12px rgba(0,0,0,0.10);
+            --shadow-header: 0 2px 8px rgba(0,0,0,0.25);
+
+            /* ── Borders ── */
+            --border: #e2e5e9;
+            --border-strong: #cdd2d8;
+
+            /* ── Spacing ── */
             --radius-sm: 6px;
-            --radius-md: 8px;
-            --radius-lg: 12px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
             --radius-pill: 9999px;
-            --shadow-card: 0 0 0 1px rgba(255,255,255,0.06), 0 4px 16px rgba(0,0,0,0.4);
-            --shadow-elevated: 0 8px 32px rgba(0,0,0,0.6);
         }
 
-        /* Base */
-        * { font-family: 'Inter', system-ui, -apple-system, sans-serif !important; box-sizing: border-box; }
-        body, html { background: var(--bg-base) !important; color: var(--text-primary) !important; }
+        /* ── Base Reset ── */
+        * { font-family: 'Inter', system-ui, -apple-system, -sf-pro-display, sans-serif !important;
+            box-sizing: border-box; }
+        body, html {
+            background: var(--bg-page) !important;
+            color: var(--text-primary) !important;
+            -webkit-font-smoothing: antialiased;
+        }
         .gradio-container { max-width: 100% !important; padding: 0 !important; }
 
-        /* Scrollbar */
+        /* ── Scrollbar ── */
         ::-webkit-scrollbar { width: 4px; height: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--bg-elevated); border-radius: 2px; }
+        ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
 
-        /* Header */
+        /* ── Header Block ── */
         .header-block {
-            background: var(--bg-panel);
-            border-bottom: 1px solid var(--border-subtle);
-            padding: 20px 20px 16px;
+            background: var(--bg-header);
+            padding: 18px 20px 16px;
+            box-shadow: var(--shadow-header);
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(12px);
         }
         .header-title {
-            font-size: 22px;
-            font-weight: 590;
-            letter-spacing: -0.4px;
-            color: var(--text-primary);
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            color: var(--text-inverse);
             margin: 0 0 4px;
         }
         .header-sub {
-            font-size: 13px;
-            color: var(--text-muted);
+            font-size: 12px;
+            color: rgba(255,255,255,0.55);
             font-weight: 400;
             margin: 0;
         }
-        .header-tag {
+        .header-badge {
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            background: var(--accent-glow);
-            color: var(--accent);
-            border: 1px solid rgba(113,112,255,0.25);
+            background: rgba(29,78,216,0.30);
+            border: 1px solid rgba(29,78,216,0.45);
+            color: #93c5fd;
             border-radius: var(--radius-pill);
-            padding: 3px 10px;
+            padding: 4px 10px;
             font-size: 11px;
-            font-weight: 510;
-            margin-top: 8px;
+            font-weight: 500;
+            margin-top: 10px;
         }
 
-        /* Tab Navigation — Linear pill style */
+        /* ── Tab Navigation ── */
         .tab-nav {
             display: flex;
             gap: 4px;
-            padding: 12px 16px;
-            background: var(--bg-panel);
-            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 16px;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
             overflow-x: auto;
             scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
         }
         .tab-nav::-webkit-scrollbar { display: none; }
         .tab-btn {
             display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 7px 14px;
+            gap: 5px;
+            padding: 8px 14px;
             border-radius: var(--radius-pill);
-            border: 1px solid transparent;
-            background: transparent;
-            color: var(--text-muted);
+            border: 1px solid var(--border);
+            background: var(--bg-page);
+            color: var(--text-secondary);
             font-size: 13px;
-            font-weight: 510;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.15s ease;
             white-space: nowrap;
             flex-shrink: 0;
+            -webkit-tap-highlight-color: transparent;
         }
-        .tab-btn:hover { background: rgba(255,255,255,0.05); color: var(--text-secondary); }
+        .tab-btn:hover { background: var(--bg-surface); color: var(--text-primary); }
         .tab-btn.active {
-            background: rgba(113,112,255,0.15);
-            border-color: rgba(113,112,255,0.3);
-            color: var(--accent);
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--text-inverse);
         }
 
-        /* Content area */
+        /* ── Content Area ── */
         .content-area { padding: 16px 16px 80px; }
 
-        /* Cards — Linear style */
+        /* ── Section Labels ── */
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin: 0 0 12px;
+        }
+
+        /* ── Team Cards — 纯白卡片风格 ── */
         .lcards { display: flex; flex-direction: column; gap: 8px; }
         .lcard {
-            background: rgba(255,255,255,0.02);
+            background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
             padding: 14px 16px;
-            transition: background 0.12s ease, border-color 0.12s ease;
+            box-shadow: var(--shadow-card);
+            transition: box-shadow 0.15s ease;
         }
-        .lcard:hover { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.12); }
+        .lcard:hover { box-shadow: var(--shadow-elevated); }
+
         .lcard-top {
             display: flex;
             align-items: center;
@@ -430,39 +475,64 @@ def build_ui():
             margin-bottom: 10px;
         }
         .lcard-left { display: flex; align-items: center; gap: 12px; }
-        .flag-emoji { font-size: 1.5rem; line-height: 1; }
+        .rank-num {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            min-width: 18px;
+        }
+        .flag-emoji { font-size: 1.6rem; line-height: 1; }
         .team-name {
             font-size: 15px;
-            font-weight: 590;
+            font-weight: 600;
             color: var(--text-primary);
-            letter-spacing: -0.1px;
+            letter-spacing: -0.2px;
         }
-        .team-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-        .prob-display { text-align: right; }
+        .team-meta {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+        .prob-display { text-align: right; flex-shrink: 0; }
         .prob-number {
-            font-size: 1.65rem;
-            font-weight: 510;
+            font-size: 1.7rem;
+            font-weight: 700;
             letter-spacing: -0.5px;
             color: var(--text-primary);
             line-height: 1;
         }
-        .prob-label { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+        .prob-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-        /* Shift badge — Linear pill */
+        /* ── Shift Badge — 语义化颜色 ── */
         .lcard-shift {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
             padding: 3px 8px;
             border-radius: var(--radius-pill);
             font-size: 12px;
-            font-weight: 510;
+            font-weight: 600;
         }
-        .shift-up { background: var(--green-dim); color: var(--green); }
-        .shift-down { background: var(--red-dim); color: var(--red); }
-        .shift-flat { background: rgba(255,255,255,0.05); color: var(--text-muted); }
+        .shift-up {
+            background: var(--positive-bg);
+            color: var(--positive);
+        }
+        .shift-down {
+            background: var(--negative-bg);
+            color: var(--negative);
+        }
+        .shift-flat {
+            background: var(--neutral-bg);
+            color: var(--neutral-text);
+        }
 
-        /* Tags row */
+        /* ── Tags ── */
         .lcard-tags {
             display: flex;
             flex-wrap: wrap;
@@ -475,188 +545,209 @@ def build_ui():
             gap: 4px;
             padding: 3px 8px;
             border-radius: var(--radius-sm);
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.06);
+            background: var(--neutral-bg);
+            border: 1px solid var(--border);
             font-size: 11px;
-            color: var(--text-muted);
+            color: var(--text-secondary);
             font-weight: 500;
         }
-        .ltag-accent { background: var(--accent-glow); color: var(--accent); border-color: rgba(113,112,255,0.2); }
-        .ltag-green { background: var(--green-dim); color: var(--green); border-color: rgba(16,185,129,0.2); }
-        .ltag-red { background: var(--red-dim); color: var(--red); border-color: rgba(248,81,73,0.2); }
+        .ltag-accent {
+            background: var(--accent-light);
+            color: var(--accent);
+            border-color: var(--accent-border);
+        }
+        .ltag-green {
+            background: var(--positive-bg);
+            color: var(--positive);
+            border-color: rgba(5,150,105,0.25);
+        }
+        .ltag-red {
+            background: var(--negative-bg);
+            color: var(--negative);
+            border-color: rgba(220,38,38,0.25);
+        }
 
-        /* Verdict badge */
+        /* ── Verdict Badge ── */
         .verdict-badge {
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            padding: 3px 10px;
+            padding: 3px 9px;
             border-radius: var(--radius-pill);
             font-size: 12px;
-            font-weight: 590;
+            font-weight: 600;
         }
-        .verdict-up { background: var(--green-dim); color: var(--green); }
-        .verdict-down { background: var(--red-dim); color: var(--red); }
-        .verdict-flat { background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.08); }
+        .verdict-up { background: var(--positive-bg); color: var(--positive); }
+        .verdict-down { background: var(--negative-bg); color: var(--negative); }
+        .verdict-flat { background: var(--neutral-bg); color: var(--neutral-text); }
 
-        /* Section headers */
-        .section-label {
-            font-size: 11px;
-            font-weight: 590;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            margin: 0 0 10px;
-            padding-left: 2px;
-        }
-
-        /* Detail card */
+        /* ── Detail Card ── */
         .detail-card {
-            background: var(--bg-surface);
+            background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
             overflow: hidden;
+            box-shadow: var(--shadow-card);
         }
         .detail-header {
+            background: var(--bg-header);
             padding: 20px;
-            border-bottom: 1px solid var(--border-subtle);
             display: flex;
             align-items: center;
             gap: 14px;
         }
         .detail-flag { font-size: 2.2rem; }
-        .detail-title { font-size: 20px; font-weight: 590; letter-spacing: -0.3px; }
-        .detail-elo { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
-        .detail-body { padding: 16px 20px; }
+        .detail-title { font-size: 20px; font-weight: 600; color: var(--text-inverse); letter-spacing: -0.3px; }
+        .detail-elo { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 4px; }
+        .detail-body { padding: 0; }
         .detail-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border-subtle);
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--border);
         }
         .detail-row:last-child { border-bottom: none; }
-        .detail-key { font-size: 13px; color: var(--text-muted); }
-        .detail-val { font-size: 14px; font-weight: 510; color: var(--text-primary); }
+        .detail-key { font-size: 13px; color: var(--text-secondary); }
+        .detail-val { font-size: 14px; font-weight: 600; color: var(--text-primary); }
         .detail-val-accent { color: var(--accent); }
         .detail-section {
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border-subtle);
+            padding: 14px 18px;
+            border-top: 1px solid var(--border);
         }
         .detail-section-title {
-            font-size: 12px;
-            font-weight: 590;
-            letter-spacing: 0.6px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.7px;
             text-transform: uppercase;
             color: var(--accent);
             margin: 0 0 12px;
         }
 
-        /* UCL Player Card */
+        /* ── UCL Player Card — 框架边框颜色 ── */
         .player-card {
-            background: rgba(255,255,255,0.02);
+            background: var(--bg-card);
             border: 1px solid var(--border);
             border-left: 3px solid var(--accent);
             border-radius: var(--radius-md);
             padding: 12px 14px;
             margin-bottom: 8px;
+            box-shadow: var(--shadow-card);
         }
-        .player-name { font-size: 14px; font-weight: 590; color: var(--text-primary); }
-        .player-score { font-size: 1.4rem; font-weight: 510; }
-        .score-pos { color: var(--green); }
-        .score-neg { color: var(--red); }
+        .player-name { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+        .player-score { font-size: 1.5rem; font-weight: 700; }
+        .score-pos { color: var(--positive); }
+        .score-neg { color: var(--negative); }
         .score-neu { color: var(--text-muted); }
-        .player-meta { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+        .player-meta { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
         .player-framework {
             display: inline-block;
             padding: 2px 8px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: var(--neutral-bg);
+            border: 1px solid var(--border);
             border-radius: var(--radius-pill);
             font-size: 11px;
             color: var(--text-secondary);
             margin-top: 6px;
         }
-        .player-narrative { font-size: 12px; color: var(--text-muted); margin-top: 6px; line-height: 1.5; }
+        .player-narrative { font-size: 12px; color: var(--text-secondary); margin-top: 6px; line-height: 1.55; }
 
-        /* Dropdown styling */
-        .gradio-dropdown .selected-value, .gradio-dropdown option {
-            background: var(--bg-surface) !important;
-            color: var(--text-primary) !important;
+        /* ── Stat Grid ── */
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 12px; }
+        .stat-box {
+            background: var(--bg-page);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 10px 8px;
+            text-align: center;
         }
-        select, .gr-dropdown {
-            background: var(--bg-surface) !important;
+        .stat-val { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); }
+        .stat-lbl { font-size: 10px; color: var(--text-muted); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.4px; }
+
+        /* ── Iching Display ── */
+        .iching-hex {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--neutral-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 6px 12px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* ── Full Table ── */
+        .full-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        .full-table th {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 8px 6px;
+            border-bottom: 2px solid var(--border-strong);
+            text-align: left;
+            background: var(--bg-page);
+        }
+        .full-table td {
+            padding: 9px 6px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        .full-table tr:hover td { background: var(--bg-page); }
+        .full-table td.rank-num { color: var(--text-muted); font-weight: 500; }
+
+        /* ── Gradio Component Overrides ── */
+        .gr-box, .gr-dropdown {
+            background: var(--bg-card) !important;
             border-color: var(--border) !important;
             color: var(--text-primary) !important;
         }
+        select, .gr-dropdown {
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border-strong) !important;
+            border-radius: var(--radius-md) !important;
+            color: var(--text-primary) !important;
+            font-size: 14px !important;
+        }
+        .gr-input-component label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary) !important;
+            letter-spacing: 0.3px;
+        }
+        .gr-sample-dropdown { background: var(--bg-card) !important; }
 
-        /* Footer */
+        /* ── Footer ── */
         .footer {
             text-align: center;
             padding: 20px 16px 32px;
             font-size: 11px;
-            color: var(--text-dim);
-            line-height: 1.6;
+            color: var(--text-muted);
+            line-height: 1.7;
         }
-        .footer a { color: var(--text-muted); text-decoration: none; }
         .footer .accent { color: var(--accent); }
+        .footer a { color: var(--text-muted); text-decoration: underline; }
 
-        /* Dropdown/select overrides */
-        .gr-box { background: var(--bg-surface) !important; border-color: var(--border) !important; }
-
-        /* Stat grid */
-        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
-        .stat-box {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 10px 12px;
-            text-align: center;
+        /* ── Mobile Touch Optimization ── */
+        @media (max-width: 480px) {
+            .prob-number { font-size: 1.5rem; }
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            .lcard { padding: 12px 14px; }
+            .detail-header { padding: 16px; }
+            .detail-row { padding: 10px 14px; }
+            .detail-section { padding: 12px 14px; }
         }
-        .stat-val { font-size: 1.1rem; font-weight: 510; color: var(--text-primary); }
-        .stat-lbl { font-size: 10px; color: var(--text-dim); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
-
-        /* Iching display */
-        .iching-hex {
-            font-size: 1.5rem;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            padding: 8px 14px;
-            display: inline-flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        /* Full table */
-        .full-table { width: 100%; border-collapse: collapse; }
-        .full-table th {
-            font-size: 10px;
-            font-weight: 590;
-            letter-spacing: 0.6px;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            padding: 8px 6px;
-            border-bottom: 1px solid var(--border);
-            text-align: left;
-        }
-        .full-table td {
-            font-size: 13px;
-            color: var(--text-secondary);
-            padding: 8px 6px;
-            border-bottom: 1px solid var(--border-subtle);
-        }
-        .full-table tr:hover td { background: rgba(255,255,255,0.02); }
-        .rank-num { color: var(--text-dim); font-weight: 510; width: 20px; }
-        """,
+        """
     ) as demo:
         # ── Header ───────────────────────────────────────────────────────────
         gr.HTML("""
         <div class="header-block">
             <div class="header-title">🏆 世界杯冠军预测</div>
             <div class="header-sub">2026 美加墨世界杯 · 玄学 + 数据双轨分析</div>
-            <div class="header-tag">⚡ 含欧冠决赛心态信号</div>
+            <div class="header-badge">⚡ 含欧冠决赛心态信号</div>
         </div>
         """)
         # ── Tab Navigation ──────────────────────────────────────────────────
@@ -738,15 +829,14 @@ def build_ui():
         team_select = gr.Dropdown(
             choices=team_names,
             value="France",
-            label="",
-            info="选择球队",
+            label="选择球队",
         )
         detail_output = gr.HTML("")
 
         def on_select_team(country):
             r = next((x for x in results if x["country"] == country), None)
             if not r:
-                return "<p style='color:#8a8f98'>未找到数据</p>"
+                return "<p style='color:#9aa0a6'>未找到数据</p>"
             flag = FLAG.get(country, "🏳️")
             shift = r["shift"]
             shift_str = f"{shift*100:+.1f}%" if abs(shift) > 0.005 else "~0%"
@@ -801,7 +891,7 @@ def build_ui():
                     </div>
                     <div class="detail-row">
                         <span class="detail-key">易经卦象</span>
-                        <span class="iching-hex">{r["iching"]} <span style="font-size:13px;color:#8a8f98">{r["verdict"][:10]}</span></span>
+                        <span class="iching-hex">{r["iching"]} <span style="font-size:13px;color:#9aa0a6">{r["verdict"][:10]}</span></span>
                     </div>
                     <div class="detail-row">
                         <span class="detail-key">Zen 建议</span>
@@ -816,11 +906,11 @@ def build_ui():
                                 <div class="stat-lbl">彩票悖论</div>
                             </div>
                             <div class="stat-box">
-                                <div class="stat-val" style="color:#8a8f98">{r['gs_vol']:.3f}</div>
+                                <div class="stat-val" style="color:#9aa0a6">{r['gs_vol']:.3f}</div>
                                 <div class="stat-lbl">小组赛波动</div>
                             </div>
                             <div class="stat-box">
-                                <div class="stat-val" style="color:#8a8f98">{r['knock_unc']:.3f}</div>
+                                <div class="stat-val" style="color:#9aa0a6">{r['knock_unc']:.3f}</div>
                                 <div class="stat-lbl">淘汰赛弹性</div>
                             </div>
                             <div class="stat-box">
@@ -845,8 +935,8 @@ def build_ui():
         gr.HTML('<div id="content-ucl" class="tab-content" style="display:none">')
         gr.HTML("""
         <p class="section-label">欧冠决赛 → 世界杯心态映射</p>
-        <p style="font-size:13px;color:#8a8f98;margin:0 0 16px;line-height:1.6">
-        基于2024-25赛季欧冠淘汰赛关键动作，对照<span style="color:#7170ff">2014巴西1-7</span>（心理崩溃型）和<span style="color:#10b981">2018法国</span>（顺势爆发型）框架，量化球员在世界杯决赛圈的心态信号。
+        <p style="font-size:13px;color:#9aa0a6;margin:0 0 16px;line-height:1.6">
+        基于2024-25赛季欧冠决赛关键动作，对照<span style="color:#dc2626">2014巴西1-7</span>（心理崩溃型）和<span style="color:#059669">2018法国</span>（顺势爆发型）框架，量化球员在世界杯决赛圈的心态信号。
         </p>
         """)
 
@@ -863,7 +953,7 @@ def build_ui():
             signals = bonus.get("signals", [])
             flag = FLAG.get(country, "🏳️")
             if not signals:
-                return f'<div class="lcard"><p style="color:#8a8f98;margin:0">暂无{country}的欧冠决赛心态数据</p></div>'
+                return f'<div class="lcard"><p style="color:#9aa0a6;margin:0">暂无{country}的欧冠决赛心态数据</p></div>'
             cards = []
             for sig in signals:
                 tier_name = str(sig.tier).split(".")[-1].upper()
@@ -928,12 +1018,12 @@ def build_ui():
             <tr>
                 <td class="rank-num">{idx}</td>
                 <td>{flag} {r["country"]}</td>
-                <td style="color:#62666d">{int(r["elo"])}</td>
+                <td style="color:#9aa0a6">{int(r["elo"])}</td>
                 <td>{r["logical_prob"]:.1%}</td>
-                <td style="color:#f7f8f8;font-weight:510">{r["final_prob"]:.1%}</td>
-                <td style="color:{'#10b981' if shift>0.005 else '#f85149' if shift<-0.005 else '#8a8f98'}">{shift_str}</td>
+                <td style="color:#1a1d21;font-weight:600">{r["final_prob"]:.1%}</td>
+                <td style="color:{'#059669' if shift>0.005 else '#dc2626' if shift<-0.005 else '#9aa0a6'}">{shift_str}</td>
                 <td style="font-size:15px">{r["iching"]}</td>
-                <td style="font-size:11px;color:#8a8f98">{v_short}</td>
+                <td style="font-size:11px;color:#9aa0a6">{v_short}</td>
             </tr>""")
 
         gr.HTML(f"""
