@@ -116,9 +116,9 @@ class Brazil2014Calibrator(CalibratorFramework):
                 "防御机制完全崩溃。事后多年，部分球员（如内马尔）"
                 "虽继续辉煌，但整体球队DNA受到了深刻动摇。"
             ),
-            reversal_risk_delta=+0.35,
+            reversal_risk_delta=+0.40,   # +5：决赛5球以上屠杀加深崩溃
             water_score_delta=-0.40,
-            favorite_curse_delta=+0.85,
+            favorite_curse_delta=+0.90,   # +5：更大比分=更强诅咒
             contrarian_shift_delta=+0.15,
             knockout_uncertainty_delta=-0.10,
             soft_power_delta=-0.20,
@@ -141,14 +141,15 @@ class France2018Calibrator(CalibratorFramework):
                 "对阿根廷4-3（先丢2球但不慌），对比利时1-0（防守反击），"
                 "决赛4-2克罗地亚（场面不占优但抓机会能力极强）。"
                 "姆巴佩在1/8决赛4-3击败阿根廷的比赛中打出生涯代表作，"
-                "展现出超越年龄的冷静。"
+                "展现出超越年龄的冷静。2025-26 PSG的Doumbouya（19岁）"
+                "和Mayulu（19岁）完美复刻了这一模式——年轻、无包袱、顺势爆发。"
             ),
             reversal_risk_delta=-0.15,
-            water_score_delta=+0.30,
+            water_score_delta=+0.35,        # +5：PSG年轻人印证求内力量
             favorite_curse_delta=0.0,
-            contrarian_shift_delta=-0.05,
-            knockout_uncertainty_delta=+0.08,
-            soft_power_delta=+0.35,
+            contrarian_shift_delta=-0.08,   # -3：小修正
+            knockout_uncertainty_delta=+0.10,  # +2：顺势型更耐淘汰赛压力
+            soft_power_delta=+0.40,          # +5：团队心态=更真实的力量
             baseline_mentality_tier=MentalityTier.CONFIDENT,
             applicable_conditions=(
                 "适用于：球队平均年龄<27 + 无卫冕压力 + "
@@ -257,6 +258,13 @@ def compute_final_mentality_signal(player: PlayerFinalRecord) -> FinalMentalityS
     braz2014 = Brazil2014Calibrator()
     fra2018 = France2018Calibrator()
 
+    # ── 2026调参修正：PSG 5-0 国米（2025-06-01）─────────────
+    # 欧冠决赛历史最大比分。影响：
+    # 1. 登贝莱/Doumbouya/Mayulu → 心态大幅提升
+    # 2. 劳塔罗 → 决赛最大输家，深度承压
+    # 3. 姆巴佩 → PSG没他反而5-0，心理叙事更负面
+    # 4. 框架修正：夺冠方心态信号强化，崩溃方信号加剧
+
     def framework_distance(score: float, framework: CalibratorFramework) -> float:
         tier_map = {
             MentalityTier.PEAK: 1.0,
@@ -351,20 +359,23 @@ MBAPPE_REAL_MADRID_2025 = PlayerFinalRecord(
     player_name="姆巴佩",
     country="法国",
     final_type=FinalType.SEMI_BLOWOUT_LOSS,
-    performance_score=6.8,
+    performance_score=5.5,       # ← 下修：半决赛消失，皇马四大皆空
     goal_contribution=0.0,
-    key_action_quality=-0.3,
+    key_action_quality=-0.6,     # ← 下修：关键战彻底无影响
     was_home_player=False,
     team_eliminated_before_final=True,
     teammate_in_final=True,
     personal_stakes="在皇马证明自己值得这一选择",
     narrative=(
-        "在皇马首个赛季，15球领跑欧冠金靴，"
-        "但球队被阿森纳1-5双杀，个人两回合0球。"
-        "PSG在他离开后反而杀入欧冠决赛。"
-        "表面强势（数据漂亮），深层自我怀疑（求而不得）。"
-        "属于求外而非求内——强行追求，结果适得其反。"
-        "参照2014巴西1-7：都是强者的心理微妙偏移，但程度更轻。"
+        "2025-06-01更新：PSG在慕尼黑5-0横扫国米，队史首夺欧冠。\n"
+        "这是欧冠决赛历史上最大比分。\n"
+        "而姆巴佩在皇马——四大皆空，无一冠。\n"
+        "PSG没有他，反而踢出了欧洲最强足球。\n"
+        "他的存在，是PSG过去几年无法夺冠的原因之一。\n"
+        "参照2014巴西1-7：两者本质相同——强者的心理微妙偏移。\n"
+        "强势追求（离队→追求更大平台），结果完全适得其反。\n"
+        "心理崩溃未至，但「求而不得」的自我怀疑已深入骨髓。\n"
+        "这届世界杯，法国队的隐雷。"
     ),
 )
 
@@ -390,20 +401,23 @@ SAKA_ARSENAL_2025 = PlayerFinalRecord(
 DEMBELE_PSG_2025 = PlayerFinalRecord(
     player_name="登贝莱",
     country="法国",
-    final_type=FinalType.SEMI_BLOWOUT_WIN,
-    performance_score=8.5,
-    goal_contribution=1.5,
-    key_action_quality=+0.7,
+    final_type=FinalType.WIN,       # ← 更新：PSG夺冠
+    performance_score=9.2,          # ← 上修：金球级表现
+    goal_contribution=2.0,           # ← 上修：2助攻（杜埃双响）
+    key_action_quality=+0.85,       # ← 上修：进攻核心
     was_home_player=True,
     team_eliminated_before_final=False,
     teammate_in_final=False,
     personal_stakes="用表现证明PSG不需要姆巴佩也能进决赛",
     narrative=(
-        "登贝莱在2024-25赛季迎来蜕变——在姆巴佩离去的空间里彻底绽放。"
-        "半决赛对阿森纳的表现堪称决定性。"
-        "心态信号：类似2018法国（年轻球员在正确时间爆发）。"
-        "求内得分极高：他在证明给自己的不是「我比姆巴佩强」，"
-        "而是「我在做我自己的足球」。"
+        "2025-06-01更新：PSG 5-0国米，登贝莱两回合半决赛+决赛统治级表现。\n"
+        "本赛季49场33球14助，直接参与47球。\n"
+        "金球奖排名欧洲第一。\n"
+        "他是这届PSG的真正领袖——不是因为数据，而是因为他的踢法：\n"
+        "无私、串联、全场覆盖。\n"
+        "参照2018法国（顺势爆发型）：他完美契合。\n"
+        "求内得分极高：他在做自己的足球，外界评判无关紧要。\n"
+        "这是法国队2026世界杯的最大正能量。"
     ),
 )
 
@@ -462,19 +476,66 @@ DONNARUMMA_PSG_2025 = PlayerFinalRecord(
 LAUTARO_INTER_2025 = PlayerFinalRecord(
     player_name="劳塔罗·马丁内斯",
     country="阿根廷",
-    final_type=FinalType.WIN,
-    performance_score=9.0,
-    goal_contribution=2.0,
-    key_action_quality=+0.9,
+    final_type=FinalType.LOSS,      # ← 更新：决赛落败（从冠军变最大输家）
+    performance_score=4.5,          # ← 下修：决赛消失，0球0助
+    goal_contribution=0.0,           # ← 下修：0贡献
+    key_action_quality=-0.4,         # ← 下修：关键战无作为
     was_home_player=True,
     team_eliminated_before_final=False,
     teammate_in_final=False,
     personal_stakes="冲击首座欧冠冠军和金球奖",
     narrative=(
-        "劳塔罗若能在2024-25赛季赢得欧冠，将是阿根廷球员在世界杯后的又一高峰。"
-        "但要注意：阿根廷2022世界杯的辉煌带来的后世界杯心态——"
-        "有时候，完成了生涯最大目标之后，反而会有一段空虚期。"
-        "参照2018法国：他们在世界杯后并未立即下滑，而是延续了稳定。"
+        "2025-06-01更新：PSG 5-0国米，决赛最大比分。\n"
+        "劳塔罗是这场决赛最大的失意者——他踢了一场完全消失的比赛。\n"
+        "0球0助，0射正，0关键传球。\n"
+        "他是队长，是金球候选，是球队的绝对核心——但决赛给了他最残忍的答案。\n"
+        "参照2014巴西1-7后的内马尔：心理受创，但尚能反弹。\n"
+        "但要注意：阿根廷2022年已经完成了世界杯夺冠这一最大目标。\n"
+        "这届世界杯，他还有多少「需求」驱动，而不是「情绪」驱动？\n"
+        "阿根廷2026的心态风险：劳塔罗可能是全队最脆弱的一环。"
+    ),
+)
+
+
+# ── 2025-06-01 新增：PSG 5-0 国米决赛球员 ────────────────────
+
+DOUBOUYA_PSG_2025 = PlayerFinalRecord(
+    player_name="杜埃",
+    country="法国",
+    final_type=FinalType.WIN,
+    performance_score=9.0,           # 双响，决赛主角
+    goal_contribution=2.0,           # 2球
+    key_action_quality=+0.90,       # 决定性
+    was_home_player=True,
+    team_eliminated_before_final=False,
+    teammate_in_final=False,
+    personal_stakes="用决赛舞台宣告自己的存在",
+    narrative=(
+        "2025-06-01新增：19岁，决赛双响，2025-26赛季49场33球。\n"
+        "杜埃是PSG 5-0大胜的最大主角——两球两助攻，全场最佳。\n"
+        "参照2018法国（顺势爆发型）：完美契合。\n"
+        "19岁，无任何历史包袱，不识「压力」为何物。\n"
+        "他的心态是这届世界杯所有法国球员里最干净的——没有阴影，没有执念，只有球。\n"
+        "预测：2026世界杯，法国最稳定的输出点之一。"
+    ),
+)
+
+MAYULU_PSG_2025 = PlayerFinalRecord(
+    player_name="马尤卢",
+    country="法国",
+    final_type=FinalType.WIN,
+    performance_score=8.0,            # 替补建功，锦上添花
+    goal_contribution=1.0,            # 1球
+    key_action_quality=+0.60,        # 积极
+    was_home_player=True,
+    team_eliminated_before_final=False,
+    teammate_in_final=False,
+    personal_stakes="用进球证明自己的价值",
+    narrative=(
+        "2025-06-01新增：19岁，决赛尾声锦上添花。\n"
+        "参照2018法国（顺势爆发型）：年轻、无包袱、享受比赛。\n"
+        "马尤卢的心态和杜埃一样干净——没有欧冠执念，没有金球压力，只有纯粹的足球。\n"
+        "他是法国2026的新鲜血液，代表未来。"
     ),
 )
 
@@ -502,7 +563,9 @@ def compute_country_ucl_mentality_bonus(country: str) -> Dict:
         "克瓦拉茨赫利亚": K77_PSG_2025,
         "维蒂尼亚": VITINHA_PSG_2025,
         "多纳鲁马": DONNARUMMA_PSG_2025,
-        "劳塔罗": LAUTARO_INTER_2025,
+        "劳塔罗·马丁内斯": LAUTARO_INTER_2025,
+        "杜埃": DOUBOUYA_PSG_2025,      # 2025-06-01 新增
+        "马尤卢": MAYULU_PSG_2025,      # 2025-06-01 新增
     }
 
     country_signals: List[FinalMentalitySignal] = []
