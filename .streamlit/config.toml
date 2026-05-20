@@ -1,0 +1,9 @@
+[theme]
+primaryColor = "#D4AF37"      # World Cup Gold
+backgroundColor = "#0D1117"   # GitHub Dark background
+secondaryBackgroundColor = "#161B22"
+textColor = "#E6EDF3"
+font = "sans serif"
+
+[server]
+headless = true

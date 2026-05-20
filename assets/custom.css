@@ -1,0 +1,501 @@
+/* ═══════════════════════════════════════════════════════════════════
+   World Cup 2026 Dashboard — Custom Dark Theme CSS
+   Design: Linear-style dark dashboard + World Cup Gold accent
+   Mobile-first responsive based on Linear design system breakpoints
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Google Fonts ──────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg-primary: #0D1117;       /* GitHub dark canvas */
+  --bg-secondary: #161B22;    /* Slightly lighter panels */
+  --bg-card: #1C2128;          /* Card surfaces */
+  --bg-hover: #21262D;         /* Hover states */
+  --border: rgba(255,255,255,0.08);
+  --border-dim: rgba(255,255,255,0.05);
+
+  --gold: #D4AF37;
+  --gold-dim: rgba(212,175,55,0.4);
+  --gold-light: rgba(212,175,55,0.2);
+  --gold-glow: rgba(212,175,55,0.12);
+
+  --text-primary: #E6EDF3;
+  --text-secondary: #8B949E;
+  --text-muted: #6E7681;
+
+  --silver: #C0C0C0;
+  --bronze: #CD7F32;
+
+  --green: #238636;
+  --red: #DA3633;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Linear-style breakpoints */
+  --bp-mobile-s: 600px;
+  --bp-mobile: 640px;
+  --bp-tablet: 768px;
+  --bp-desktop-s: 1024px;
+  --bp-desktop: 1280px;
+}
+
+/* ── Global ───────────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+
+.stApp {
+  background-color: var(--bg-primary);
+  background-image: radial-gradient(ellipse at 15% 0%, #1a2540 0%, var(--bg-primary) 55%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Streamlit native elements cleanup */
+[data-testid="stToolbar"] { display: none !important; }
+.stDeployButton { display: none !important; }
+#MainMenu { display: none !important; }
+footer { display: none !important; }
+[data-testid="stAppUploadFileButton"] { display: none !important; }
+[data-testid="stAppViewHeader"] { display: none !important; }
+
+/* Streamlit wide mode body padding */
+.block-container {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  padding-top: 68px !important;   /* 60px header height + 8px original */
+  padding-bottom: 2rem !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Main content area — push below the 60px absolute header */
+[data-testid="stMainBlockContainer"] {
+  padding-top: 68px !important;
+  margin-top: 0 !important;
+}
+
+/* Sidebar — add top padding to clear the fixed header */
+[data-testid="stSidebar"] {
+  padding-top: 0 !important;
+}
+
+/* Sidebar styling */
+[data-testid="stSidebar"] {
+  background-color: var(--bg-secondary) !important;
+  border-right: 1px solid var(--border) !important;
+}
+
+/* ── Typography ───────────────────────────────────────────────── */
+h1, h2, h3 {
+  color: var(--text-primary) !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+}
+
+/* ── Metric Cards (st.metric) ────────────────────────────────── */
+[data-testid="stMetric"] {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 16px 20px !important;
+}
+[data-testid="stMetricLabel"] {
+  color: var(--text-secondary) !important;
+  font-size: 0.72rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600 !important;
+}
+[data-testid="stMetricValue"] {
+  color: var(--gold) !important;
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  font-variant-numeric: tabular-nums;
+}
+[data-testid="stMetricDelta"] {
+  font-size: 0.8rem !important;
+}
+
+/* ── Hero Podium Cards (Top 3 Teams) ─────────────────────────── */
+.hero-podium {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 16px 0 24px 0;
+}
+.hero-card {
+  background: linear-gradient(145deg, var(--bg-card), var(--bg-secondary));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 20px 24px;
+  text-align: center;
+  flex: 1;
+  min-width: 160px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.hero-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(212,175,55,0.15);
+}
+.hero-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+}
+.hero-card.rank-1 {
+  border-color: var(--gold);
+  flex: 1.4;
+}
+.hero-card.rank-1::before {
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold-light), var(--gold-dim));
+  height: 4px;
+}
+.hero-card.rank-2 { border-color: var(--silver); }
+.hero-card.rank-3 { border-color: var(--bronze); }
+.hero-rank-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+.hero-team-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.hero-prob {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.hero-prob-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 2px;
+}
+.hero-elo {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+  padding-bottom: 4px;
+}
+
+/* ── Probability Bar List ─────────────────────────────────────── */
+.prob-bar-container {
+  margin-bottom: 8px;
+}
+.prob-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3px;
+}
+.prob-bar-team {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.prob-bar-value {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+.prob-bar-track {
+  background: var(--bg-hover);
+  border-radius: 3px;
+  height: 6px;
+  overflow: hidden;
+}
+.prob-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+  min-width: 0;
+}
+.prob-bar-fill.high { background: var(--gold); }
+.prob-bar-fill.medium { background: linear-gradient(90deg, var(--gold-dim), var(--gold-light)); }
+.prob-bar-fill.low { background: var(--text-muted); }
+
+/* ── Data Tables ─────────────────────────────────────────────── */
+[data-testid="stDataFrame"] {
+  border-radius: var(--radius-md) !important;
+  overflow: hidden;
+}
+[data-testid="stTable"] {
+  border-radius: var(--radius-md) !important;
+  overflow: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+table thead tr th {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.72rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600 !important;
+  border-bottom: 2px solid var(--border) !important;
+}
+table tbody tr:hover {
+  background-color: var(--bg-hover) !important;
+}
+table tbody tr td {
+  border-color: var(--border) !important;
+  font-size: 0.82rem !important;
+}
+.rank-cell {
+  font-weight: 800;
+  color: var(--gold);
+  font-size: 1rem;
+}
+
+/* ── Section Headers ──────────────────────────────────────────── */
+.section-header {
+  background: linear-gradient(90deg, var(--bg-secondary), transparent);
+  border-left: 3px solid var(--gold);
+  padding: 8px 12px;
+  margin: 12px 0 10px 0;
+  border-radius: 0 6px 6px 0;
+}
+.section-header h4 {
+  color: var(--text-primary) !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  margin: 0 !important;
+}
+
+/* ── Expanders ───────────────────────────────────────────────── */
+streamlit-expander {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.stButton > button {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
+  transition: all 0.15s;
+}
+.stButton > button:hover {
+  border-color: var(--gold-dim) !important;
+  background-color: var(--bg-hover) !important;
+}
+
+/* ── Tabs ────────────────────────────────────────────────────── */
+[data-testid="stTab"] {
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  color: var(--text-muted) !important;
+  padding: 6px 14px !important;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important;
+}
+[data-testid="stTab"]:hover {
+  color: var(--text-secondary) !important;
+  background: var(--bg-hover) !important;
+}
+.css-1eg7qr2.effgkb30,
+[data-testid="stTab"][aria-selected="true"] {
+  color: var(--gold) !important;
+  border-bottom: 2px solid var(--gold) !important;
+}
+
+/* ── Select / Selectbox ───────────────────────────────────────── */
+.stSelectbox > div > div {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+}
+[data-testid="stSelectbox"] label {
+  color: var(--text-secondary) !important;
+  font-size: 0.8rem !important;
+}
+
+/* ── Slider ──────────────────────────────────────────────────── */
+.stSlider > div > div > div {
+  background: var(--bg-hover) !important;
+}
+.stSlider [data-testid="stThumbValue"] {
+  color: var(--gold) !important;
+}
+
+/* ── Divider ─────────────────────────────────────────────────── */
+hr {
+  border-color: var(--border) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE — Based on Linear Design System Breakpoints
+   Mobile Small <600px | Mobile 600-640px | Tablet 640-768px
+   Desktop Small 768-1024px | Desktop 1024-1280px | Large >1280px
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Mobile Small (<600px) — Single column, compact ──────────── */
+@media (max-width: 600px) {
+  .stApp { font-size: 14px; }
+
+  .hero-podium {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0 16px 0;
+  }
+  .hero-card {
+    width: 100% !important;
+    flex: unset !important;
+    padding: 14px 16px;
+    border-radius: var(--radius-lg) !important;
+  }
+  .hero-prob { font-size: 1.8rem !important; }
+  .hero-team-name { font-size: 0.85rem !important; }
+  .hero-elo { font-size: 0.65rem !important; }
+  .hero-rank-badge { font-size: 0.6rem !important; }
+
+  /* Cards single column */
+  [data-testid="stHorizontalBlock"] > div {
+    min-width: 100% !important;
+    flex: 0 0 100% !important;
+  }
+
+  /* Section headers compact */
+  .section-header { margin: 10px 0 8px 0; padding: 6px 10px; }
+  .section-header h4 { font-size: 0.8rem !important; }
+
+  /* Tables — horizontal scroll, smaller font */
+  [data-testid="stDataFrame"],
+  [data-testid="stTable"],
+  .element-container:has(table) {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.7rem !important;
+  }
+  table { min-width: 500px; font-size: 0.7rem !important; }
+  table td, table th { padding: 5px 6px !important; white-space: nowrap; }
+
+  /* Tabs — smaller, scrollable */
+  [data-testid="stTab"] { font-size: 0.75rem !important; padding: 5px 10px !important; }
+
+  /* Sidebar — full width overlay */
+  [data-testid="stSidebar"] {
+    width: 100% !important;
+    z-index: 1000;
+  }
+
+  /* Title shrink */
+  h1 { font-size: 1rem !important; }
+
+  /* Metric cards — smaller */
+  [data-testid="stMetricValue"] { font-size: 1.4rem !important; }
+
+  /* Expander — full width */
+  streamlit-expander { border-radius: var(--radius-sm) !important; }
+}
+
+/* ── Mobile / Large Phone (600-767px) ────────────────────────── */
+@media (min-width: 601px) and (max-width: 767px) {
+  .hero-podium {
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-card {
+    width: 90% !important;
+    flex: unset !important;
+  }
+  .hero-prob { font-size: 2rem !important; }
+
+  /* Two-column where possible */
+  [data-testid="stHorizontalBlock"] > div {
+    min-width: calc(50% - 8px) !important;
+    flex: 1 1 calc(50% - 8px) !important;
+  }
+
+  /* Tables horizontal scroll */
+  [data-testid="stDataFrame"],
+  [data-testid="stTable"] {
+    overflow-x: auto !important;
+  }
+  table { min-width: 600px; }
+
+  /* Sidebar overlay */
+  [data-testid="stSidebar"] {
+    width: 280px !important;
+  }
+}
+
+/* ── Tablet (768-1023px) ────────────────────────────────────── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Sidebar narrower */
+  [data-testid="stSidebar"] {
+    width: 240px !important;
+  }
+
+  /* Cards two-column */
+  [data-testid="stHorizontalBlock"] > div {
+    min-width: calc(50% - 8px) !important;
+    flex: 1 1 calc(50% - 8px) !important;
+  }
+
+  /* Table scroll if needed */
+  [data-testid="stDataFrame"] {
+    overflow-x: auto !important;
+  }
+}
+
+/* ── Desktop Small (1024-1279px) ────────────────────────────── */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  [data-testid="stSidebar"] {
+    width: 220px !important;
+  }
+}
+
+/* ── Large Desktop (≥1280px) ───────────────────────────────── */
+@media (min-width: 1280px) {
+  /* Full layout with generous margins */
+  .block-container {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+  [data-testid="stSidebar"] {
+    width: 260px !important;
+  }
+}
+
+/* ── Streamlit native element overrides per breakpoint ──────────── */
+@media (max-width: 600px) {
+  /* Force single column for all column layouts */
+  .stColumn {
+    min-width: 100% !important;
+    flex: 0 0 100% !important;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1023px) {
+  .stColumn {
+    min-width: calc(50% - 8px) !important;
+    flex: 1 1 calc(50% - 8px) !important;
+  }
+}

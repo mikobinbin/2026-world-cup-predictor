@@ -1,0 +1,8 @@
+streamlit==1.50.0
+pandas==2.3.3
+numpy==2.0.2
+matplotlib==3.9.4
+altair==5.5.0
+pillow==11.3.0
+requests==2.32.5
+requests-file==3.0.1
