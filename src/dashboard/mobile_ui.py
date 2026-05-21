@@ -896,35 +896,57 @@ function buildScorePred(ta, tb, r) {
     // Base lambda from Elo
     var lambdaA = 1.3 + (eloA - 1700) / 500 * 1.0;
     var lambdaB = 1.3 + (eloB - 1700) / 500 * 1.0;
-    // Mystic shift: shift = mystical probability adjustment (mystic engine + UCL mental data)
-    // Applied as proportional lambda modifier -- positive shift means higher expected goals
+    // Mystic shift: shift = mystical probability adjustment
     var shiftA = ta.shift || 0;
     var shiftB = tb.shift || 0;
-    // Scale: +1% shift (0.01) boosts lambda by 3%, amplifying prob signal into goals domain
     lambdaA = lambdaA * (1 + shiftA * 3.0);
     lambdaB = lambdaB * (1 + shiftB * 3.0);
     lambdaA = Math.max(0.3, Math.min(4.0, lambdaA));
     lambdaB = Math.max(0.3, Math.min(4.0, lambdaB));
+
     function pois(k, lam) {
         if (lam <= 0) return k === 0 ? 1 : 0;
         var p = Math.exp(-lam);
         for (var i = 1; i <= k; i++) p *= lam / i;
         return p;
     }
-    var results = [];
+
+    // Extreme tail boost model: football data shows blowouts (total>=4) more likely than Poisson predicts
+    // Apply 3x boost to extreme scorelines (total>=4), then renormalize
+    var EXTREME_THRESH = 4;
+    var BOOST_FACTOR = 3.0;
+
+    var raw = [];
     for (var ga = 0; ga <= 5; ga++) {
         for (var gb = 0; gb <= 5; gb++) {
-            results.push({ga: ga, gb: gb, prob: pois(ga, lambdaA) * pois(gb, lambdaB), total: ga + gb});
+            var p = pois(ga, lambdaA) * pois(gb, lambdaB);
+            raw.push({ga: ga, gb: gb, pois: p, total: ga + gb});
         }
     }
-    results.sort(function(a, b){ return b.prob - a.prob; });
-    var top6 = results.slice(0, 6);
+
+    // Apply extreme tail boost
+    var sumBoosted = 0;
+    for (var i = 0; i < raw.length; i++) {
+        var x = raw[i];
+        x.boosted = x.total >= EXTREME_THRESH ? x.pois * BOOST_FACTOR : x.pois;
+        sumBoosted += x.boosted;
+    }
+
+    // Renormalize so total probability = 1.0
+    for (var i = 0; i < raw.length; i++) {
+        raw[i].prob = raw[i].boosted / sumBoosted;
+    }
+
+    // Top 6 by final probability (for main grid)
+    var sorted = raw.slice().sort(function(a, b){ return b.prob - a.prob; });
+    var top6 = sorted.slice(0, 6);
     var totalShown = top6.reduce(function(s, x){ return s + x.prob; }, 0);
 
-    // High-scoring section: total goals >= 3, sorted by probability
-    var hiResults = results.filter(function(x){ return x.total >= 3; });
-    hiResults.sort(function(a, b){ return b.prob - a.prob; });
-    var topHi = hiResults.slice(0, 8);
+    // High-scoring section: sorted by boosted probability, NB tag indicates extreme-tail boost
+    var hiAll = raw.filter(function(x){ return x.total >= 3; });
+    hiAll.sort(function(a, b){ return b.prob - a.prob; });
+    var topHi = hiAll.slice(0, 8);
+    var hiTotal = topHi.reduce(function(s, x){ return s + x.prob; }, 0);
 
     var h = '<div class="sc-pred">';
 
@@ -935,7 +957,7 @@ function buildScorePred(ta, tb, r) {
     h += '<div class="sc-team"><div class="sc-team-nm">' + tb.country + '</div><div class="sc-goals"><span class="sc-gl">' + lambdaB.toFixed(1) + '</span></div></div>';
     h += '</div>';
 
-    // Top 6 grid
+    // Top 6 grid (Poisson base, extreme outcomes naturally boosted via renorm)
     h += '<div class="sc-hd"><span>最可能 / Most Likely</span><span class="sc-hd-sub">+' + (totalShown * 100).toFixed(0) + '%</span></div>';
     h += '<div class="sc-grid">';
     for (var i = 0; i < top6.length; i++) {
@@ -948,20 +970,20 @@ function buildScorePred(ta, tb, r) {
     }
     h += '</div>';
 
-    // High-scoring section
+    // High-scoring section with extreme tail boost (✦ = extreme outcome boosted)
     if (topHi.length > 0) {
-        var hiTotal = topHi.reduce(function(s, x){ return s + x.prob; }, 0);
-        h += '<div class="sc-hd sc-hd-hi"><span>&#9888;&#65039; 大比分博弈 / High-Score Upside</span><span class="sc-hd-sub">' + (hiTotal * 100).toFixed(0) + '%</span></div>';
+        h += '<div class="sc-hd sc-hd-hi"><span>&#9888;&#65039; 大比分博弈 / High-Score (&#215;3 boost for total&#8805;4)</span><span class="sc-hd-sub">' + (hiTotal * 100).toFixed(0) + '%</span></div>';
         h += '<div class="sc-grid sc-grid-hi">';
         for (var j = 0; j < topHi.length; j++) {
             var s3 = topHi[j];
             var pct2 = (s3.prob * 100).toFixed(1);
-            h += '<div class="sc-cell sc-cell-hi">';
-            h += '<div class="sc-s">' + s3.ga + ' - ' + s3.gb + '</div>';
+            var isExtreme = s3.total >= EXTREME_THRESH;
+            h += '<div class="sc-cell sc-cell-hi' + (isExtreme ? '" style="border-color:var(--gd)"' : '') + '">';
+            h += '<div class="sc-s">' + s3.ga + ' - ' + s3.gb + (isExtreme ? ' &#10023;' : '') + '</div>';
             h += '<div class="sc-p">' + pct2 + '%</div></div>';
         }
         h += '</div>';
-        h += '<div class="sc-note">&#128293; 高于 ' + lambdaA.toFixed(1) + '-' + lambdaB.toFixed(1) + ' 期望的大比分选项，适合搏冷 / Long-shot scorelines above expected goals</div>';
+        h += '<div class="sc-note">&#128293; &#215;3 boost for extreme outcomes (total&#8805;4: 4-0,5-0,4-1...). Renormalized from base Poisson | Elo &#955;: ' + lambdaA.toFixed(2) + ' vs ' + lambdaB.toFixed(2) + '</div>';
     }
 
     // Most likely scoreline list
@@ -978,7 +1000,7 @@ function buildScorePred(ta, tb, r) {
         h += '<span class="sc-ml-d" style="color:' + outcomeColor + '">' + pct3 + '%</span></div>';
     }
     h += '</div>';
-    h += '<div class="sc-note">Poisson xG model based on Elo differential | Elo λ: ' + lambdaA.toFixed(2) + ' vs ' + lambdaB.toFixed(2) + '</div></div>';
+    h += '<div class="sc-note">Poisson xG + extreme-tail renormalized boost | Elo &#955;: ' + lambdaA.toFixed(2) + ' vs ' + lambdaB.toFixed(2) + '</div></div>';
     return h;
 }
 function h2hChange(){
