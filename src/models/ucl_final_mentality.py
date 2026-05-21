@@ -373,41 +373,41 @@ def compute_final_mentality_signal(player: PlayerFinalRecord) -> FinalMentalityS
 MBAPPE_REAL_MADRID_2025 = PlayerFinalRecord(
     player_name="姆巴佩",
     country="法国",
-    final_type=FinalType.SEMI_BLOWOUT_LOSS,
-    performance_score=6.8,
-    goal_contribution=0.0,
-    key_action_quality=-0.3,
+    final_type=FinalType.QUARTERFINAL_BLOWOUT_LOSS,
+    performance_score=7.0,
+    goal_contribution=1.0,
+    key_action_quality=+0.1,
     was_home_player=False,
     team_eliminated_before_final=True,
     teammate_in_final=True,
-    personal_stakes="在皇马证明自己值得这一选择",
+    personal_stakes="在皇马首个赛季证明自己值得这一选择",
     narrative=(
-        "在皇马首个赛季，15球领跑欧冠金靴，"
-        "但球队被阿森纳1-5双杀，个人两回合0球。"
-        "PSG在他离开后反而杀入欧冠决赛。"
-        "表面强势（数据漂亮），深层自我怀疑（求而不得）。"
-        "属于求外而非求内——强行追求，结果适得其反。"
-        "参照2014巴西1-7：都是强者的心理微妙偏移，但程度更轻。"
+        "2024-25赛季，皇马在QFs以3-4总比分被拜仁慕尼黑淘汰（姆巴佩有进球）。"
+        "与此同时，他离开的PSG反而一路杀入欧冠决赛（最终0-5负于国际米兰）。"
+        "表面强势（联赛稳定+进球数据），深层是「求而不得」的自我怀疑。"
+        "但对比：PSG进决赛说明他的离开不是「结构性问题」，更接近「时运不济」。"
+        "参照2014巴西1-7框架：他属于轻微的心态偏移，而非结构性崩溃。"
     ),
 )
 
 SAKA_ARSENAL_2025 = PlayerFinalRecord(
     player_name="萨卡",
     country="英格兰",
-    final_type=FinalType.SEMI_BLOWOUT_LOSS,
-    performance_score=7.2,
-    goal_contribution=1.0,
-    key_action_quality=+0.4,
+    final_type=FinalType.SEMI_BLOWOUT_WIN,
+    performance_score=8.5,
+    goal_contribution=2.0,
+    key_action_quality=+0.85,
     was_home_player=True,
     team_eliminated_before_final=False,
-    teammate_in_final=False,
-    personal_stakes="首次欧冠决赛机会，错失后证明自己仍需成长",
+    teammate_in_final=True,
+    personal_stakes="首次欧冠决赛+本土英超冠军，两条战线同时证明自己",
     narrative=(
-        "萨卡在半决赛次回合打进球，但整体未能带领阿森纳晋级决赛。 "
-        "阿森纳两回合5-4负于PSG（主场0-1，客场4-5），是惜败而非崩溃。 "
-        "他和阿森纳一样：缺乏欧冠决赛经验，在关键时刻的把握能力尚缺。 "
-        "但心态没有崩溃——属于「学习」而非「坍塌」。 "
-        "英格兰队的福气：他年轻，仍有时间。"
+        "萨卡在2024-25赛季两回合对马竞都有进球（首回合制胜球），"
+        "带领阿森纳时隔20年重返欧冠决赛（总分2-1淘汰马竞）。"
+        "与此同时阿森纳赢得2024-25英超冠军（22年首冠）。"
+        "心态信号：典型的「求内」型——他在做他的足球，赢球的欲望来自内在而非外在压力。"
+        "参照2018法国：顺势而为，柔弱胜刚强，两条战线互相加持而非互相消耗。"
+        "他对世界杯的影响：英格兰心态加持，France2018框架信号。"
     ),
 )
 
@@ -509,6 +509,52 @@ LAUTARO_INTER_2025 = PlayerFinalRecord(
 
 
 # ══════════════════════════════════════════════════════════════════
+# 2025-26 赛季记录（皇马3-5被阿森纳双杀）
+# ══════════════════════════════════════════════════════════════════
+
+MBAPPE_REAL_MADRID_2026 = PlayerFinalRecord(
+    player_name="姆巴佩",
+    country="法国",
+    final_type=FinalType.QUARTERFINAL_BLOWOUT_LOSS,
+    performance_score=7.2,
+    goal_contribution=2.0,
+    key_action_quality=+0.3,
+    was_home_player=True,
+    team_eliminated_before_final=True,
+    teammate_in_final=False,
+    personal_stakes="连续两年在皇马被淘汰，需要在世界杯前重置心态",
+    narrative=(
+        "2025-26赛季，皇马在QFs以3-5总比分被阿森纳双杀（两回合均有进球）。"
+        "值得注意的是，这是皇马连续第二年在QFs被淘汰——去年是3-4拜仁，今年是3-5阿森纳。"
+        "叙事重构：去年是「时运不济」，今年变成「结构性失败」——同样的错误模式重复出现。"
+        "「求外」型：问题不在能力，在他对胜利的执念和皇马的系统性不兼容。"
+        "参照2014巴西1-7框架：心态的崩塌是递进的，从「偏移」到「坍塌」。"
+        "对法国2026世界杯的影响：最大风险信号，不是个人状态而是心理预期管理。"
+    ),
+)
+
+SAKA_ARSENAL_2026 = PlayerFinalRecord(
+    player_name="萨卡",
+    country="英格兰",
+    final_type=FinalType.SEMI_BLOWOUT_WIN,
+    performance_score=8.2,
+    goal_contribution=2.0,
+    key_action_quality=+0.7,
+    was_home_player=True,
+    team_eliminated_before_final=True,
+    teammate_in_final=False,
+    personal_stakes="连续两年带领阿森纳晋级欧冠决赛均失败",
+    narrative=(
+        "2025-26赛季，萨卡继续高光表现（两回合对皇马都有进球或助攻），"
+        "但阿森纳在半决赛被国际米兰淘汰（未能连续两年进决赛）。"
+        "关键心态信号：去年是「赢了一切只是还没赢决赛」，今年变成「为什么总是差一步」。"
+        "「求内」型，但今年开始出现「求不得」的影子——从内在驱动开始滑向外在认可。"
+        "参照2018法国框架：他在学习如何赢，但还没学会如何在关键时刻不失去自我。"
+        "对英格兰世界杯的影响：心态信号偏中性，需要看他能否将「失败经验」转化为内在智慧。"
+    ),
+)
+
+# ══════════════════════════════════════════════════════════════════
 # 批量计算 & 整合
 # ══════════════════════════════════════════════════════════════════
 
@@ -524,18 +570,26 @@ def compute_country_ucl_mentality_bonus(country: str) -> Dict:
     }
     lookup = EN_TO_ZH.get(country, country)
 
-    PLAYER_DB: Dict[str, PlayerFinalRecord] = {
-        "姆巴佩": MBAPPE_REAL_MADRID_2025,
-        "萨卡": SAKA_ARSENAL_2025,
-        "登贝莱": DEMBELE_PSG_2025,
-        "克瓦拉茨赫利亚": K77_PSG_2025,
-        "维蒂尼亚": VITINHA_PSG_2025,
-        "多纳鲁马": DONNARUMMA_PSG_2025,
-        "劳塔罗": LAUTARO_INTER_2025,
-    }
+    ALL_PLAYER_RECORDS: List[PlayerFinalRecord] = [
+        # 法国 — 双赛季姆巴佩（两条独立心态轨迹）
+        MBAPPE_REAL_MADRID_2025,         # 法国，2024-25赛季皇马3-4拜仁，PSG进决赛（对比参照）
+        MBAPPE_REAL_MADRID_2026,         # 法国，2025-26赛季皇马3-5阿森纳，连续两年出局（最大风险信号）
+        DEMBELE_PSG_2025,                # 法国，决赛2助攻，金球奖
+        DOUE_PSG_2025,                   # 法国，决赛梅开二度，评分10
+        MAYULU_PSG_2025,                 # 法国，决赛锦上添花
+        # 英格兰 — 双赛季萨卡
+        SAKA_ARSENAL_2025,               # 英格兰，2024-25带领阿森纳进决赛（英超冠军）
+        SAKA_ARSENAL_2026,               # 英格兰，2025-26半决赛出局
+        # 其他国家
+        K77_PSG_2025,                    # 格鲁吉亚，决赛进球
+        VITINHA_PSG_2025,                # 葡萄牙，决赛稳定控场
+        DONNARUMMA_PSG_2025,             # 意大利，零封
+        LAUTARO_INTER_2025,              # 阿根廷，决赛0-5惨败
+        HAKIMI_INTER_2025,               # 摩洛哥，国米进球但队输0-5
+    ]
 
     country_signals: List[FinalMentalitySignal] = []
-    for name, record in PLAYER_DB.items():
+    for record in ALL_PLAYER_RECORDS:
         if record.country == lookup:
             sig = compute_final_mentality_signal(record)
             country_signals.append(sig)
