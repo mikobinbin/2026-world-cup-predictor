@@ -620,7 +620,7 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .pm-bar{flex:1;height:6px;background:var(--s2);border-radius:3px;overflow:hidden}
 .pm-bar-in{height:100%;border-radius:3px;transition:width .4s}
 .pm-val{width:64px;text-align:right;font-size:12px;font-weight:700;flex-shrink:0}
-.pm-val.pos{color:var(--gd)}
+.pm-val.pos{color:var(--gr)}
 .pm-val.neg{color:var(--rd)}
 .pm-val.neu{color:var(--tx2)}
 .pm-legend{display:flex;gap:14px;margin-top:10px;font-size:11px;color:var(--tx2)}
