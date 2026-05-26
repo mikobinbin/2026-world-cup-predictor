@@ -1,7 +1,7 @@
 """
 世界杯预测 — 移动端独立版（纯 HTML/CSS/JS，无 Gradio）
-Apple Sports 深黑主题，6 Tab 完整功能
-Champion | Factor | Mystic | UCL | Squad | Info
+Apple Sports 深黑主题，7 Tab 完整功能
+Champion | Factor | Mystic | H2H | Squad | Polymarket | Info
 
 用法:
     cd ~/Desktop/world_cup_predictor
@@ -354,7 +354,7 @@ def _load_analysis():
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# 纯 HTML/CSS/JS 移动端界面（6 Tab）
+# 纯 HTML/CSS/JS 移动端界面（7 Tab）
 # ═══════════════════════════════════════════════════════════════════════════
 
 HTML_BODY = r'''<!DOCTYPE html>
@@ -609,7 +609,22 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .calibration{background:var(--s);border-radius:12px;padding:16px;margin-bottom:10px}
 .cal-hd{font-size:13px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:8px}
 .cal-bd{font-size:12px;color:var(--tx2);line-height:1.7}
-
+/* Polymarket Market Comparison */
+.pm-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.pm-sub{font-size:11px;color:var(--tx2);margin-bottom:14px}
+.pm-mkt{margin-bottom:20px}
+.pm-mkt-tl{font-size:10px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.pm-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:.5px solid var(--bd)}
+.pm-fl{font-size:20px;line-height:1;flex-shrink:0}
+.pm-nm{flex:1;font-size:13px;font-weight:600;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pm-bar{flex:1;height:6px;background:var(--s2);border-radius:3px;overflow:hidden}
+.pm-bar-in{height:100%;border-radius:3px;transition:width .4s}
+.pm-val{width:64px;text-align:right;font-size:12px;font-weight:700;flex-shrink:0}
+.pm-val.pos{color:var(--gd)}
+.pm-val.neg{color:var(--rd)}
+.pm-val.neu{color:var(--tx2)}
+.pm-legend{display:flex;gap:14px;margin-top:10px;font-size:11px;color:var(--tx2)}
+.pm-legend span::before{content:'▪ ';font-size:8px;vertical-align:middle}
 </style>
 </head>
 <body>
@@ -624,6 +639,7 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
   <button class="tab" id="tb-mystic" onclick="showTab('mystic')"><span class="ico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8.5" stroke="currentColor" stroke-width="1.6"/><circle cx="11" cy="11" r="3.5" fill="currentColor" opacity="0.4"/><path d="M11 2.5V5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M11 17V19.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M2.5 11H5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M17 11H19.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span>玄学</span></button>
   <button class="tab" id="tb-h2h" onclick="showTab('h2h')"><span class="ico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11H10M10 11L7 8M10 11L7 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 11H12M12 11L15 8M12 11L15 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>对战</span></button>
   <button class="tab" id="tb-squad" onclick="showTab('squad')"><span class="ico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="7" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M2 17.5C2 14.4624 4.23858 12 7 12H7C9.76142 12 12 14.4624 12 17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="15" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M10 17.5C10 14.4624 12.2386 12 15 12H15C17.7614 12 20 14.4624 20 17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span>球队</span></button>
+  <button class="tab" id="tb-poly" onclick="showTab('poly')"><span class="ico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 17L8 10L13 14L19 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/></svg></span><span>市场</span></button>
   <button class="tab" id="tb-info" onclick="showTab('info')"><span class="ico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M11 10V16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="11" cy="6.5" r="0.9" fill="currentColor"/></svg></span><span>说明</span></button>
 </div>
 
@@ -718,6 +734,26 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
       <select class="sel" id="sq-sel" onchange="sqChange()"></select>
     </div>
     <div id="sq-content"></div>
+  </div>
+</div>
+
+<!-- TAB: Polymarket Market -->
+<div class="pg" id="pg-poly">
+  <div class="card">
+    <div class="card-title">市场博弈 / Polymarket</div>
+    <div class="pm-hdr">
+      <span style="font-size:13px;color:var(--tx2)">我的概率 vs 市场定价</span>
+      <span id="poly-upd" style="font-size:11px;color:var(--tx2)"></span>
+    </div>
+    <div class="pm-sub">红色=你的模型比市场更乐观，潜在高估 &nbsp;|&nbsp; 绿色=你的模型比市场更保守，潜在低估</div>
+    <div class="pm-mkt">
+      <div class="pm-mkt-tl">🏆 冠军投注 / Winner</div>
+      <div id="poly-winner"></div>
+    </div>
+    <div class="pm-legend">
+      <span style="color:var(--gd)">你的概率 &gt; 市场 → 可能价值</span>
+      <span style="color:var(--rd)">你的概率 &lt; 市场 → 可能偏高</span>
+    </div>
   </div>
 </div>
 
@@ -1063,6 +1099,48 @@ function h2hChange(){
 /* ── Squad ── */
 function sqChange(){var sel=document.getElementById("sq-sel");var c=sel.value;var t=D.find(function(x){return x.country===c;});if(!t){document.getElementById("sq-content").innerHTML="<p style='color:var(--tx2);font-size:14px;padding:20px 0'>No data</p>";return;}var h='<div class="sq-card"><div class="sq-ph"><span class="sq-ph-fl">'+fl(t.country)+'</span><div><div class="sq-ph-nm">'+t.country+'</div><div class="sq-ph-elo">Elo '+(t.elo||0).toFixed(0)+' · '+(t.players?t.players.length:0)+' players</div></div></div>';if(t.players&&t.players.length>0){h+='<table class="sq-table"><thead><tr><th class="sq-th" style="width:32px">Pos</th><th class="sq-th">Name / Club</th><th class="sq-th" style="text-align:right">Caps</th><th class="sq-th" style="text-align:right">Goals</th><th class="sq-th" style="text-align:right">MV</th></tr></thead><tbody>';var pos_c={GK:"#8e8e93",DF:"#0a84ff",MF:"#30d158",FW:"#ff453a"};for(var k=0;k<t.players.length;k++){var p=t.players[k];var pc2=pos_c[p.position]||"var(--tx2)";h+='<tr><td class="sq-td"><span class="sq-pos" style="color:'+pc2+'">'+p.position+'</span></td>';h+='<td class="sq-td"><div class="sq-name">'+p.name+'</div><div class="sq-club">'+(p.club||"")+"</div></td>";h+='<td class="sq-td sq-caps">'+p.national_caps+"</td>";h+='<td class="sq-td sq-goals">'+p.national_goals+"</td>";h+='<td class="sq-td"><span class="sq-mv">'+(p.market_value||0).toFixed(1)+"M</span></td></tr>";}h+="</tbody></table>";}else{h+='<div style="padding:20px;color:var(--tx2);font-size:13px">Sample squad (no Wikipedia data) / 样本阵容（无维基数据）</div>';}h+="</div>";document.getElementById("sq-content").innerHTML=h;}
 
+/* Polymarket comparison data */
+var POLY_WINNER={
+"France":{price:0.175},"Spain":{price:0.174},"England":{price:0.113},"Portugal":{price:0.104},
+"Brazil":{price:0.092},"Argentina":{price:0.083},"Germany":{price:0.052},"Netherlands":{price:0.034},
+"Norway":{price:0.025},"Japan":{price:0.020},"Italy":{price:0.017},"Uruguay":{price:0.015},
+"Belgium":{price:0.014},"Croatia":{price:0.011},"USA":{price:0.010},"Denmark":{price:0.009},
+"Mexico":{price:0.008},"Colombia":{price:0.007},"Switzerland":{price:0.006},"Poland":{price:0.005}
+};
+
+function buildPoly(){
+  var el=document.getElementById("poly-winner");
+  if(!el)return;
+  var rows=[];
+  for(var i=0;i<D.length;i++){
+    var t=D[i];
+    var market=POLY_WINNER[t.country];
+    if(!market)continue;
+    var modelPct=(t.final_prob*100).toFixed(1);
+    var mktPct=(market.price*100).toFixed(1);
+    var dev=(t.final_prob-market.price)*100;
+    var devStr=(dev>=0?"+":"")+dev.toFixed(1)+"%";
+    var cls=dev>2?"pos":dev<-2?"neg":"neu";
+    var maxP=Math.max(t.final_prob,market.price);
+    rows.push({country:t.country,modelPct:modelPct,mktPct:mktPct,dev:dev,devStr:devStr,cls:cls,maxP:maxP,barW:(maxP*100).toFixed(1)});
+  }
+  rows.sort(function(a,b){return b.dev-a.dev;});
+  var html="";
+  for(var j=0;j<rows.length;j++){
+    var r=rows[j];
+    var modelBar=(parseFloat(r.modelPct)/parseFloat(r.barW)*100).toFixed(0);
+    var mktBar=(parseFloat(r.mktPct)/parseFloat(r.barW)*100).toFixed(0);
+    html+='<div class="pm-row">';
+    html+='<span class="pm-fl">'+fl(r.country)+'</span>';
+    html+='<span class="pm-nm">'+r.country+'</span>';
+    html+='<div class="pm-bar"><div class="pm-bar-in" style="width:'+modelBar+'%;background:var(--bl);opacity:0.7;border-radius:3px"></div></div>';
+    html+='<div class="pm-bar"><div class="pm-bar-in" style="width:'+mktBar+'%;background:var(--gd);opacity:0.7;border-radius:3px"></div></div>';
+    html+='<span class="pm-val '+r.cls+'">'+r.devStr+'</span>';
+    html+='</div>';
+  }
+  el.innerHTML=html||'<div style="color:var(--tx2);font-size:13px;padding:16px 0">No matching market data</div>';
+  document.getElementById("poly-upd").textContent=new Date().toLocaleString("zh-CN",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"});
+}
 
 var _pickerSide=null;function openPicker(side){_pickerSide=side;var t=side==="a"?"Team A / 球队A":"Team B / 球队B";document.getElementById("pick-title").textContent=t;document.getElementById("pick-search").value="";filterPickList();document.getElementById("pick-overlay").classList.add("on");document.body.style.overflow="hidden"}function closePicker(e){if(e&&e.target!==document.getElementById("pick-overlay"))return;document.getElementById("pick-overlay").classList.remove("on");document.body.style.overflow=""}function filterPickList(){var q=document.getElementById("pick-search").value.toLowerCase();var list=document.getElementById("pick-list");var curVal=_pickerSide==="a"?document.getElementById("h2h-a").value:document.getElementById("h2h-b").value;var html="";for(var i=0;i<D.length;i++){var t=D[i];if(t.country.toLowerCase().indexOf(q)===-1&&fl(t.country).toLowerCase().indexOf(q)===-1)continue;var isSel=t.country===curVal;html+="<div class=\"pick-item"+(isSel?" sel":"")+"\" onclick=\"selectPick(\'"+t.country+"\')\">";html+="<span class=\"pick-item-fl\">"+fl(t.country)+"</span>";html+="<span class=\"pick-item-info\"><span class=\"pick-item-nm\">"+t.country+"</span>";html+="<span class=\"pick-item-pr\">"+(t.final_prob*100).toFixed(2)+"%</span></span>";html+="<span class=\"pick-item-chk\">&#10003;</span></div>"}list.innerHTML=html||"<div style=\"padding:24px;text-align:center;color:var(--tx2);font-size:14px\">No result</div>"}function selectPick(country){if(_pickerSide==="a"){document.getElementById("h2h-a").value=country;updatePickCard("a",country)}else{document.getElementById("h2h-b").value=country;updatePickCard("b",country)}closePicker();h2hChange()}function updatePickCard(side,country){var t=D.find(function(x){return x.country===country;});if(!t)return;document.getElementById("h2h-pick-fl-"+side).textContent=fl(t.country);document.getElementById("h2h-pick-nm-"+side).textContent=t.country;document.getElementById("h2h-pick-pr-"+side).textContent=(t.final_prob*100).toFixed(2)+"%"}
 
@@ -1072,6 +1150,7 @@ document.getElementById("infTime").textContent="__UPDATE_TIME__";
 buildLB();
 buildFB();
 buildML();
+buildPoly();
 // H2H: populate team selectors
 var teams=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});
 var selA=document.getElementById("h2h-a");
