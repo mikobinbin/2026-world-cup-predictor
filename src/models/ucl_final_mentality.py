@@ -487,6 +487,66 @@ DONNARUMMA_PSG_2025 = PlayerFinalRecord(
     ),
 )
 
+# ── PSG 法国球员（2025 UCL Final：PSG 5-0 Inter）───────────────
+DOUE_PSG_2025 = PlayerFinalRecord(
+    player_name="杜埃",
+    country="法国",
+    final_type=FinalType.WIN,
+    performance_score=10.0,
+    goal_contribution=2.0,
+    key_action_quality=+1.0,
+    was_home_player=True,
+    team_eliminated_before_final=False,
+    teammate_in_final=False,
+    personal_stakes="首秀决赛就梅开二度，潜力新星，金球候选",
+    narrative=(
+        "PSG对国际米兰的决赛中，杜埃展现出超龄的冷静和杀手本能—— "
+        "两次精准射门，两粒进球，帮助PSG5-0大胜。 "
+        "这是他第一届欧冠决赛，两个进球展现了他的跑位智慧和射门技术。 "
+        "心态上属于「内外兼修」型：自我认知稳定，不因进球而飘，不因大胜而忘形。 "
+        "对法国2026世界杯是极强正能量信号——PSG帮法国球员建立了冠军心态。"
+    ),
+)
+
+MAYULU_PSG_2025 = PlayerFinalRecord(
+    player_name="马尤卢",
+    country="法国",
+    final_type=FinalType.WIN,
+    performance_score=8.5,
+    goal_contribution=1.0,
+    key_action_quality=+0.7,
+    was_home_player=True,
+    team_eliminated_before_final=False,
+    teammate_in_final=False,
+    personal_stakes="青训成果，决赛锦上添花",
+    narrative=(
+        "PSG决赛5-0大胜，马尤卢在比赛后段攻入1球，锦上添花。 "
+        "作为PSG青训培养的法国年轻球员，这场冠军经历对他的职业生涯意义重大。 "
+        "心态上属于「求外」型——需要持续证明自己配得上这支球队。 "
+        "决赛进球是重要的自我确认，但真正的考验是持续的稳定性。 "
+        "对法国2026世界杯的信号：法国青训成果开始兑现，板凳深度充足。"
+    ),
+)
+
+# ── Inter 意大利/摩洛哥球员（2025 UCL Final：PSG 5-0 Inter）────────
+HAKIMI_INTER_2025 = PlayerFinalRecord(
+    player_name="阿什拉夫",
+    country="摩洛哥",
+    final_type=FinalType.WIN,
+    performance_score=8.0,
+    goal_contribution=1.0,
+    key_action_quality=+0.8,
+    was_home_player=False,
+    team_eliminated_before_final=False,
+    teammate_in_final=False,
+    personal_stakes="为摩洛哥足球创造历史",
+    narrative=(
+        "国际米兰5-0大胜PSG，阿什拉夫在右路攻防两端均有出色表现，攻入1球。 "
+        "作为摩洛哥球员，他对欧洲顶级赛场的适应力和心态稳定值得注意。 "
+        "这场胜利对摩洛哥2026世界杯是积极信号——非洲球员在欧洲顶级舞台的成功经验。"
+    ),
+)
+
 LAUTARO_INTER_2025 = PlayerFinalRecord(
     player_name="劳塔罗·马丁内斯",
     country="阿根廷",
