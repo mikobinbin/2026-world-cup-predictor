@@ -397,51 +397,28 @@ def score_all_teams(teams: List[Squad],
                 min(0.25,   r.final_probability + uncertainty),
             )
 
-        # ── 概率校准 v7：MC排名锚定 + Logistic校准 + 历史偏移 ──────────────
-        # 核心洞察：
-        #   MC 模拟：极端值（>15% 或 <0.5%）通常反映分组随机性，非真实概率
-        #   Logistic校准：提供 Elo 内在的胜率估算，作为稳健基准
-        #   历史偏移：对从未夺冠的强队做软惩罚（+历史半衰期平滑）
+        # ── 概率校准：不用bracket模拟，改用修正后的 Elo softmax ─────────────
+        # 问题：bracket模拟中强队各自守1/4区，不互相淘汰，概率虚高
+        # 解决：直接用 modified Elo 的 softmax 分布，更符合现实竞猜市场
         #
-        # Step 1: MC 概率裁剪（去除 MC 的极端值影响）
-        #   MC > 15% → 裁剪到 15%（超过15%的MC通常是分组运气，不是实力）
-        #   MC < 0.5% → 提升到 0.5%（避免极低概率队完全消失）
+        # 获取各队修正Elo
         elo_vals = [modified_elos[r.country] for r in results]
         elo_arr = np.array(elo_vals)
 
-        # Step 2: Logistic-Elo（陡峭度适中，elo差400分≈概率差10倍）
-        elo_mid = 1820.0
-        elo_k = 0.025
-        raw_logistic = 1.0 / (1.0 + np.exp(-elo_k * (elo_arr - elo_mid)))
-        logit_probs = raw_logistic / raw_logistic.sum()   # 归一化，sum=1
+        # 方案：用修正Elo的相对差距做softmax
+        # temperature=300 模拟胜率-概率的非线性关系
+        temp = 300.0
+        exp_scores = np.exp((elo_arr - elo_arr.max()) / temp)
+        softmax_probs = exp_scores / exp_scores.sum()
 
-        # Step 3: 历史偏移惩罚（从未进决赛的强队：Colombia, Turkey, Ecuador）
-        #   这些队的 logit 值偏高（Elo高），但历史上从未证明能夺冠
-        #   惩罚因子：0.65（降到原来的65%）
-        no_finals_penalty = {
-            "Colombia": 0.65, "Turkey": 0.65, "Ecuador": 0.70,
-            "Uzbekistan": 0.60, "Jordan": 0.60,
-            "USA": 0.80, "Mexico": 0.75, "Canada": 0.70,
-            "Japan": 0.70, "South Korea": 0.70, "Iran": 0.70,
-            "Saudi Arabia": 0.60, "Australia": 0.70,
-            "Morocco": 0.75, "Nigeria": 0.70, "Senegal": 0.75,
-            "Egypt": 0.65, "Cameroon": 0.65, "Ghana": 0.70,
-            "Ivory Coast": 0.70, "Tunisia": 0.65, "DR Congo": 0.60,
-            "Cape Verde": 0.50,
-        }
-
-        # Step 4: 混合 MC(55%) + Logistic(35%) + 历史偏移(10%)
+        # 混合：MC概率(权重40%) + softmax概率(权重60%)
+        # MC保留了因子加成后的排名顺序，softmax让分布更扁平
         for i, r in enumerate(results):
-            mc_p = float(r.final_probability)
-            log_p = float(logit_probs[i])
-            # 裁剪 MC 极端值
-            mc_clipped = max(0.003, min(0.15, mc_p))
-            # 应用历史惩罚
-            penalty = no_finals_penalty.get(r.country, 1.0)
-            log_penalized = log_p * penalty
-            # 混合
-            blended = 0.55 * mc_clipped + 0.35 * log_penalized + 0.10 * log_p
-            r.final_probability = blended
+            mc_p = r.final_probability
+            sm_p = float(softmax_probs[i])
+            blended = 0.40 * mc_p + 0.60 * sm_p
+            # 软上限：巴西不超过15%
+            r.final_probability = min(blended, 0.15)
             # 更新置信区间
             uncertainty = mystic_config.luck_ceiling
             r.confidence_interval = (
