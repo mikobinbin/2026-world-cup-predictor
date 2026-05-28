@@ -1,0 +1,8989 @@
+{
+  "Czech Republic": {
+    "players": [
+      {
+        "name": "Matěj Kovář",
+        "position": "1GK",
+        "number": "",
+        "age": 26,
+        "caps": 19,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jindřich Staněk",
+        "position": "1GK",
+        "number": "",
+        "age": 30,
+        "caps": 14,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Martin Jedlička",
+        "position": "1GK",
+        "number": "",
+        "age": 28,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Lukáš Horníček",
+        "position": "1GK",
+        "number": "",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Antonín Kinský",
+        "position": "1GK",
+        "number": "",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jan Koutný",
+        "position": "1GK",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jakub Markovič",
+        "position": "1GK",
+        "number": "",
+        "age": 24,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Vladimír Coufal",
+        "position": "2DF",
+        "number": "",
+        "age": 33,
+        "caps": 61,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Tomáš Holeš",
+        "position": "2DF",
+        "number": "",
+        "age": 33,
+        "caps": 39,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Ladislav Krejčí",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 25,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "David Zima",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 24,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Jaroslav Zelený",
+        "position": "2DF",
+        "number": "",
+        "age": 33,
+        "caps": 21,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "David Jurásek",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 16,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "David Douděra",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 15,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Robin Hranáč",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 12,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Václav Jemelka",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 12,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Martin Vitík",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 9,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Štěpán Chaloupek",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Tomáš Vlček",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Matěj Hadaš",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Adam Ševínský",
+        "position": "2DF",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Karel Spáčil",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Tomáš Souček",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 89,
+        "goals": 17,
+        "club": ""
+      },
+      {
+        "name": "Vladimír Darida",
+        "position": "3MF",
+        "number": "",
+        "age": 35,
+        "caps": 78,
+        "goals": 8,
+        "club": ""
+      },
+      {
+        "name": "Lukáš Provod",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 37,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Michal Sadílek",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 33,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Pavel Šulc",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 20,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Lukáš Červ",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 15,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Adam Karabec",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 5,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Michal Beran",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Lukáš Sadílek",
+        "position": "3MF",
+        "number": "",
+        "age": 30,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Kryštof Daněk",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Matěj Ryneš",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Patrik Hellebrand",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Tomáš Ladra",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Lukáš Ambros",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Pavel Bucha",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ondřej Kričfaluši",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "David Planka",
+        "position": "3MF",
+        "number": "",
+        "age": 20,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Hugo Sochůrek",
+        "position": "3MF",
+        "number": "",
+        "age": 18,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Alexandr Sojka",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Denis Višinský",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Patrik Schick",
+        "position": "4FW",
+        "number": "",
+        "age": 30,
+        "caps": 52,
+        "goals": 25,
+        "club": ""
+      },
+      {
+        "name": "Matěj Vydra",
+        "position": "4FW",
+        "number": "",
+        "age": 34,
+        "caps": 48,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Adam Hložek",
+        "position": "4FW",
+        "number": "",
+        "age": 23,
+        "caps": 41,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Jan Kuchta",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 30,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Tomáš Chorý",
+        "position": "4FW",
+        "number": "",
+        "age": 31,
+        "caps": 21,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Mojmír Chytil",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 21,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Jan Kliment",
+        "position": "4FW",
+        "number": "",
+        "age": 32,
+        "caps": 10,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Vasil Kušej",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 6,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Václav Sejk",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Christophe Kabongo",
+        "position": "4FW",
+        "number": "",
+        "age": 22,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ondřej Mihálik",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Vojtěch Patrák",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 54,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Mexico": {
+    "players": [
+      {
+        "name": "Guillermo Ochoa",
+        "position": "1GK",
+        "number": "",
+        "age": 40,
+        "caps": 151,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Raúl Rangel",
+        "position": "1GK",
+        "number": "",
+        "age": 26,
+        "caps": 11,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Carlos Acevedo",
+        "position": "1GK",
+        "number": "",
+        "age": 30,
+        "caps": 6,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "José Antonio Rodríguez",
+        "position": "1GK",
+        "number": "",
+        "age": 33,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Carlos Moreno",
+        "position": "1GK",
+        "number": "",
+        "age": 28,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Alex Padilla",
+        "position": "1GK",
+        "number": "",
+        "age": 22,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jesús Gallardo",
+        "position": "2DF",
+        "number": "",
+        "age": 31,
+        "caps": 118,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "César Montes",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 65,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Jorge Sánchez",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 56,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Johan Vásquez",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 44,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Israel Reyes",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 31,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Jesús Alberto Angulo",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 19,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Julián Araujo",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 16,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mateo Chávez",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 7,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Víctor Guzmán",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 6,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Richard Ledezma",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 3,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Everardo López",
+        "position": "2DF",
+        "number": "",
+        "age": 21,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Denzell García",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Bryan González",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ramón Juárez",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Eduardo Águila",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Alejandro Gómez",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Luis Rey",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Edson Álvarez",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 95,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Orbelín Pineda",
+        "position": "3MF",
+        "number": "",
+        "age": 30,
+        "caps": 90,
+        "goals": 12,
+        "club": ""
+      },
+      {
+        "name": "Carlos Rodríguez",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 67,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Roberto Alvarado",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 65,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Luis Romo",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 60,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Luis Chávez",
+        "position": "3MF",
+        "number": "",
+        "age": 30,
+        "caps": 42,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Érick Sánchez",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 38,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Diego Lainez",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 33,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Érik Lira",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 22,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Marcel Ruiz",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 17,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Efraín Álvarez",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 7,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Brian Gutiérrez",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 5,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Alexis Gutiérrez",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 5,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Gilberto Mora",
+        "position": "3MF",
+        "number": "",
+        "age": 17,
+        "caps": 5,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Obed Vargas",
+        "position": "3MF",
+        "number": "",
+        "age": 20,
+        "caps": 5,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jesús Ricardo Angulo",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 3,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Jordán Carrillo",
+        "position": "3MF",
+        "number": "",
+        "age": 24,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Kevin Castañeda",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Álvaro Fidalgo",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jorge Ruvalcaba",
+        "position": "3MF",
+        "number": "",
+        "age": 24,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Alexéi Domínguez",
+        "position": "3MF",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jeremy Márquez",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Elías Montiel",
+        "position": "3MF",
+        "number": "",
+        "age": 20,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Isaías Violante",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Raúl Jiménez",
+        "position": "4FW",
+        "number": "",
+        "age": 35,
+        "caps": 123,
+        "goals": 44,
+        "club": ""
+      },
+      {
+        "name": "Alexis Vega",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 49,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Santiago Giménez",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 46,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "César Huerta",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 25,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Julián Quiñones",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 20,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Germán Berterame",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 9,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Guillermo Martínez",
+        "position": "4FW",
+        "number": "",
+        "age": 31,
+        "caps": 9,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Armando González",
+        "position": "4FW",
+        "number": "",
+        "age": 23,
+        "caps": 6,
+        "goals": 1,
+        "club": ""
+      }
+    ],
+    "count": 55,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "South Korea": {
+    "players": [
+      {
+        "name": "Kim Seung-gyu",
+        "position": "1GK",
+        "number": "",
+        "age": 35,
+        "caps": 85,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jo Hyeon-woo",
+        "position": "1GK",
+        "number": "",
+        "age": 34,
+        "caps": 47,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Song Bum-keun",
+        "position": "1GK",
+        "number": "",
+        "age": 28,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Kim Min-jae",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 77,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Kim Moon-hwan",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 34,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Seol Young-woo",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 32,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Cho Yu-min",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 18,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Lee Tae-seok",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 14,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Park Jin-seob",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 12,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Kim Tae-hyeon",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 7,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Lee Han-beom",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 6,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jens Castrop",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 5,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Lee Ki-hyuk",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Lee Jae-sung",
+        "position": "3MF",
+        "number": "",
+        "age": 33,
+        "caps": 103,
+        "goals": 15,
+        "club": ""
+      },
+      {
+        "name": "Hwang Hee-chan",
+        "position": "3MF",
+        "number": "",
+        "age": 30,
+        "caps": 77,
+        "goals": 16,
+        "club": ""
+      },
+      {
+        "name": "Hwang In-beom",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 71,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Lee Kang-in",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 46,
+        "goals": 11,
+        "club": ""
+      },
+      {
+        "name": "Paik Seung-ho",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 25,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Kim Jin-gyu",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 20,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Lee Dong-gyeong",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 16,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Bae Jun-ho",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 12,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Eom Ji-sung",
+        "position": "3MF",
+        "number": "",
+        "age": 24,
+        "caps": 8,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Yang Hyun-jun",
+        "position": "3MF",
+        "number": "",
+        "age": 24,
+        "caps": 8,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Son Heung-min",
+        "position": "4FW",
+        "number": "",
+        "age": 33,
+        "caps": 142,
+        "goals": 54,
+        "club": ""
+      },
+      {
+        "name": "Cho Gue-sung",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 42,
+        "goals": 10,
+        "club": ""
+      },
+      {
+        "name": "Oh Hyeon-gyu",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 26,
+        "goals": 6,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Bosnia and Herzegovina": {
+    "players": [
+      {
+        "name": "Nikola Vasilj",
+        "position": "1GK",
+        "number": "",
+        "age": 30,
+        "caps": 25,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Martin Zlomislić",
+        "position": "1GK",
+        "number": "",
+        "age": 27,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Osman Hadžikić",
+        "position": "1GK",
+        "number": "",
+        "age": 30,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Sead Kolašinac",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 64,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Dennis Hadžikadunić",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 30,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Amar Dedić",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 26,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Nikola Katić",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 15,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Tarik Muharemović",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 12,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Nihad Mujakić",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 10,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Stjepan Radeljić",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Nidal Čelik",
+        "position": "2DF",
+        "number": "",
+        "age": 19,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Amir Hadžiahmetović",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 34,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Benjamin Tahirović",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 26,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Armin Gigović",
+        "position": "3MF",
+        "number": "",
+        "age": 24,
+        "caps": 18,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Dženis Burnić",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 18,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ivan Bašić",
+        "position": "3MF",
+        "number": "",
+        "age": 24,
+        "caps": 15,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Esmir Bajraktarević",
+        "position": "3MF",
+        "number": "",
+        "age": 21,
+        "caps": 14,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Amar Memić",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 11,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Ivan Šunjić",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 11,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Kerim Alajbegović",
+        "position": "3MF",
+        "number": "",
+        "age": 18,
+        "caps": 8,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Ermin Mahmić",
+        "position": "3MF",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Edin Džeko",
+        "position": "4FW",
+        "number": "",
+        "age": 40,
+        "caps": 148,
+        "goals": 73,
+        "club": ""
+      },
+      {
+        "name": "Ermedin Demirović",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 38,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Samed Baždar",
+        "position": "4FW",
+        "number": "",
+        "age": 22,
+        "caps": 11,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Haris Tabaković",
+        "position": "4FW",
+        "number": "",
+        "age": 31,
+        "caps": 10,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Jovo Lukić",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Qatar": {
+    "players": [
+      {
+        "name": "Meshaal Barsham",
+        "position": "1GK",
+        "number": "",
+        "age": 28,
+        "caps": 52,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Salah Zakaria",
+        "position": "1GK",
+        "number": "",
+        "age": 27,
+        "caps": 8,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mahmud Abunada",
+        "position": "1GK",
+        "number": "",
+        "age": 26,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Shehab Ellethy",
+        "position": "1GK",
+        "number": "",
+        "age": 26,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Fahad Younis",
+        "position": "1GK",
+        "number": "",
+        "age": 31,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Boualem Khoukhi",
+        "position": "2DF",
+        "number": "",
+        "age": 35,
+        "caps": 114,
+        "goals": 20,
+        "club": ""
+      },
+      {
+        "name": "Pedro Miguel",
+        "position": "2DF",
+        "number": "",
+        "age": 35,
+        "caps": 97,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Tarek Salman",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 90,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Bassam Al-Rawi",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 70,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Homam Ahmed",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 66,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Lucas Mendes",
+        "position": "2DF",
+        "number": "",
+        "age": 35,
+        "caps": 24,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Sultan Al-Brake",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 16,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Al-Hashmi Al-Hussain",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 6,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ayoub Al-Oui",
+        "position": "2DF",
+        "number": "",
+        "age": 21,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Issa Laye",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Rayyan Al-Ali",
+        "position": "2DF",
+        "number": "",
+        "age": 20,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Niall Mason",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Abdulaziz Hatem",
+        "position": "3MF",
+        "number": "",
+        "age": 35,
+        "caps": 116,
+        "goals": 11,
+        "club": ""
+      },
+      {
+        "name": "Karim Boudiaf",
+        "position": "3MF",
+        "number": "",
+        "age": 35,
+        "caps": 116,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Assim Madibo",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 49,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mohammed Waad",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 49,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ahmed Fathy",
+        "position": "3MF",
+        "number": "",
+        "age": 33,
+        "caps": 46,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jassem Gaber",
+        "position": "3MF",
+        "number": "",
+        "age": 24,
+        "caps": 31,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Mohamed Al-Mannai",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 8,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Tahsin Jamshid",
+        "position": "3MF",
+        "number": "",
+        "age": 19,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Hassan Al-Haydos",
+        "position": "4FW",
+        "number": "",
+        "age": 35,
+        "caps": 184,
+        "goals": 41,
+        "club": ""
+      },
+      {
+        "name": "Sebastián Soria",
+        "position": "4FW",
+        "number": "",
+        "age": 42,
+        "caps": 124,
+        "goals": 39,
+        "club": ""
+      },
+      {
+        "name": "Akram Afif",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 123,
+        "goals": 39,
+        "club": ""
+      },
+      {
+        "name": "Almoez Ali",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 114,
+        "goals": 55,
+        "club": ""
+      },
+      {
+        "name": "Mohammed Muntari",
+        "position": "4FW",
+        "number": "",
+        "age": 32,
+        "caps": 67,
+        "goals": 16,
+        "club": ""
+      },
+      {
+        "name": "Ahmed Alaaeldin",
+        "position": "4FW",
+        "number": "",
+        "age": 33,
+        "caps": 66,
+        "goals": 9,
+        "club": ""
+      },
+      {
+        "name": "Yusuf Abdurisag",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 37,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Edmilson Junior",
+        "position": "4FW",
+        "number": "",
+        "age": 31,
+        "caps": 14,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ahmed Al-Ganehi",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 13,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Mubarak Shanan",
+        "position": "4FW",
+        "number": "",
+        "age": 22,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 35,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Brazil": {
+    "players": [
+      {
+        "name": "Alisson",
+        "position": "1GK",
+        "number": "",
+        "age": 33,
+        "caps": 76,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ederson",
+        "position": "1GK",
+        "number": "",
+        "age": 32,
+        "caps": 31,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Weverton",
+        "position": "1GK",
+        "number": "",
+        "age": 38,
+        "caps": 10,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Marquinhos",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 104,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Danilo Luiz",
+        "position": "2DF",
+        "number": "",
+        "age": 34,
+        "caps": 68,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Alex Sandro",
+        "position": "2DF",
+        "number": "",
+        "age": 35,
+        "caps": 43,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Gabriel Magalhães",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 17,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Bremer",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 6,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Wesley",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 6,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Roger Ibañez",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 5,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Douglas Santos",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 5,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Léo Pereira",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Casemiro",
+        "position": "3MF",
+        "number": "",
+        "age": 34,
+        "caps": 84,
+        "goals": 8,
+        "club": ""
+      },
+      {
+        "name": "Lucas Paquetá",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 61,
+        "goals": 12,
+        "club": ""
+      },
+      {
+        "name": "Bruno Guimarães",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 41,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Fabinho",
+        "position": "3MF",
+        "number": "",
+        "age": 32,
+        "caps": 31,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Danilo Santos",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 2,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Neymar",
+        "position": "4FW",
+        "number": "",
+        "age": 34,
+        "caps": 128,
+        "goals": 79,
+        "club": ""
+      },
+      {
+        "name": "Vinícius Júnior",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 47,
+        "goals": 8,
+        "club": ""
+      },
+      {
+        "name": "Raphinha",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 37,
+        "goals": 11,
+        "club": ""
+      },
+      {
+        "name": "Gabriel Martinelli",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 22,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Matheus Cunha",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 21,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Endrick",
+        "position": "4FW",
+        "number": "",
+        "age": 19,
+        "caps": 15,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Luiz Henrique",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 13,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Igor Thiago",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 2,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Rayan",
+        "position": "4FW",
+        "number": "",
+        "age": 19,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Haiti": {
+    "players": [
+      {
+        "name": "Johny Placide",
+        "position": "1GK",
+        "number": "",
+        "age": 38,
+        "caps": 79,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Alexandre Pierre",
+        "position": "1GK",
+        "number": "",
+        "age": 25,
+        "caps": 14,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Josué Duverger",
+        "position": "1GK",
+        "number": "",
+        "age": 26,
+        "caps": 6,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ricardo Adé",
+        "position": "2DF",
+        "number": "",
+        "age": 36,
+        "caps": 57,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Carlens Arcus",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 51,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Martin Expérience",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 19,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jean-Kévin Duverne",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 15,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Duke Lacroix",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 14,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Wilguens Paugain",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 6,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Hannes Delcroix",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 5,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Keeto Thermoncy",
+        "position": "2DF",
+        "number": "",
+        "age": 20,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Leverton Pierre",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 33,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Danley Jean Jacques",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 28,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Carl Sainté",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 25,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jean-Ricner Bellegarde",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 8,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Woodensky Pierre",
+        "position": "3MF",
+        "number": "",
+        "age": 21,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Dominique Simon",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Duckens Nazon",
+        "position": "4FW",
+        "number": "",
+        "age": 32,
+        "caps": 76,
+        "goals": 44,
+        "club": ""
+      },
+      {
+        "name": "Frantzdy Pierrot",
+        "position": "4FW",
+        "number": "",
+        "age": 31,
+        "caps": 49,
+        "goals": 33,
+        "club": ""
+      },
+      {
+        "name": "Derrick Etienne Jr.",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 46,
+        "goals": 8,
+        "club": ""
+      },
+      {
+        "name": "Louicius Deedson",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 30,
+        "goals": 10,
+        "club": ""
+      },
+      {
+        "name": "Ruben Providence",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 13,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Josué Casimir",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 5,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Yassin Fortuné",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Wilson Isidor",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 2,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Lenny Joseph",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Scotland": {
+    "players": [
+      {
+        "name": "Craig Gordon",
+        "position": "1GK",
+        "number": "",
+        "age": 43,
+        "caps": 83,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Angus Gunn",
+        "position": "1GK",
+        "number": "",
+        "age": 30,
+        "caps": 21,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Liam Kelly",
+        "position": "1GK",
+        "number": "",
+        "age": 30,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Andy Robertson",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 92,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Grant Hanley",
+        "position": "2DF",
+        "number": "",
+        "age": 34,
+        "caps": 66,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Kieran Tierney",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 55,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Scott McKenna",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 49,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Jack Hendry",
+        "position": "2DF",
+        "number": "",
+        "age": 31,
+        "caps": 37,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Nathan Patterson",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 25,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Anthony Ralston",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 25,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "John Souttar",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 22,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Aaron Hickey",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 19,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Dominic Hyam",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "John McGinn",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 85,
+        "goals": 20,
+        "club": ""
+      },
+      {
+        "name": "Scott McTominay",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 69,
+        "goals": 14,
+        "club": ""
+      },
+      {
+        "name": "Ryan Christie",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 66,
+        "goals": 9,
+        "club": ""
+      },
+      {
+        "name": "Kenny McLean",
+        "position": "3MF",
+        "number": "",
+        "age": 34,
+        "caps": 56,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Billy Gilmour",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 45,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Lewis Ferguson",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 23,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Ben Gannon-Doak",
+        "position": "3MF",
+        "number": "",
+        "age": 20,
+        "caps": 12,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Findlay Curtis",
+        "position": "3MF",
+        "number": "",
+        "age": 20,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Lyndon Dykes",
+        "position": "4FW",
+        "number": "",
+        "age": 30,
+        "caps": 50,
+        "goals": 10,
+        "club": ""
+      },
+      {
+        "name": "Ché Adams",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 46,
+        "goals": 11,
+        "club": ""
+      },
+      {
+        "name": "Lawrence Shankland",
+        "position": "4FW",
+        "number": "",
+        "age": 30,
+        "caps": 18,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "George Hirst",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 8,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Ross Stewart",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Paraguay": {
+    "players": [
+      {
+        "name": "Gatito Fernández",
+        "position": "1GK",
+        "number": "",
+        "age": 38,
+        "caps": 30,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Carlos Coronel",
+        "position": "1GK",
+        "number": "",
+        "age": 29,
+        "caps": 9,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Orlando Gill",
+        "position": "1GK",
+        "number": "",
+        "age": 26,
+        "caps": 5,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Santiago Rojas",
+        "position": "1GK",
+        "number": "",
+        "age": 30,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Juan Espínola",
+        "position": "1GK",
+        "number": "",
+        "age": 31,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Gastón Olveira",
+        "position": "1GK",
+        "number": "",
+        "age": 33,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Gustavo Gómez",
+        "position": "2DF",
+        "number": "",
+        "age": 33,
+        "caps": 88,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Júnior Alonso",
+        "position": "2DF",
+        "number": "",
+        "age": 33,
+        "caps": 70,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Fabián Balbuena",
+        "position": "2DF",
+        "number": "",
+        "age": 34,
+        "caps": 47,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Omar Alderete",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 35,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Juan José Cáceres",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 16,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Blas Riveros",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 15,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Gustavo Velázquez",
+        "position": "2DF",
+        "number": "",
+        "age": 35,
+        "caps": 12,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Alan Benítez",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 8,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Agustín Sández",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 5,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mateo Gamarra",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Saúl Salcedo",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "José Canale",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Diego León",
+        "position": "2DF",
+        "number": "",
+        "age": 19,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Alexandro Maidana",
+        "position": "2DF",
+        "number": "",
+        "age": 20,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Alcides Benítez",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ronaldo Dejesús",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Alan Núñez",
+        "position": "2DF",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Miguel Almirón",
+        "position": "3MF",
+        "number": "",
+        "age": 32,
+        "caps": 75,
+        "goals": 9,
+        "club": ""
+      },
+      {
+        "name": "Mathías Villasanti",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 51,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Kaku",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 32,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Andrés Cubas",
+        "position": "3MF",
+        "number": "",
+        "age": 30,
+        "caps": 32,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ramón Sosa",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 28,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Diego Gómez",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 23,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Damián Bobadilla",
+        "position": "3MF",
+        "number": "",
+        "age": 24,
+        "caps": 19,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Braian Ojeda",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 16,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Matías Galarza",
+        "position": "3MF",
+        "number": "",
+        "age": 24,
+        "caps": 14,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Robert Piris Da Motta",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 9,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Álvaro Campuzano",
+        "position": "3MF",
+        "number": "",
+        "age": 30,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Diego González",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Hugo Cuenca",
+        "position": "3MF",
+        "number": "",
+        "age": 21,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Maurício",
+        "position": "3MF",
+        "number": "",
+        "age": 24,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Lucas Romero",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Enso González",
+        "position": "3MF",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Rubén Lezcano",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Óscar Romero",
+        "position": "4FW",
+        "number": "",
+        "age": 33,
+        "caps": 55,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Ángel Romero",
+        "position": "4FW",
+        "number": "",
+        "age": 33,
+        "caps": 51,
+        "goals": 8,
+        "club": ""
+      },
+      {
+        "name": "Antonio Sanabria",
+        "position": "4FW",
+        "number": "",
+        "age": 30,
+        "caps": 47,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Julio Enciso",
+        "position": "4FW",
+        "number": "",
+        "age": 22,
+        "caps": 31,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Gabriel Ávalos",
+        "position": "4FW",
+        "number": "",
+        "age": 34,
+        "caps": 22,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Carlos González",
+        "position": "4FW",
+        "number": "",
+        "age": 33,
+        "caps": 15,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Álex Arce",
+        "position": "4FW",
+        "number": "",
+        "age": 30,
+        "caps": 14,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Adam Bareiro",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 8,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Lorenzo Melgarejo",
+        "position": "4FW",
+        "number": "",
+        "age": 35,
+        "caps": 5,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Isidro Pitta",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 5,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ronaldo Martínez",
+        "position": "4FW",
+        "number": "",
+        "age": 30,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Gustavo Caballero",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 2,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Robert Morales",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 2,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Adrián Alcaraz",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Rodney Redes",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 55,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Turkey": {
+    "players": [
+      {
+        "name": "Uğurcan Çakır",
+        "position": "1GK",
+        "number": "",
+        "age": 30,
+        "caps": 38,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mert Günok",
+        "position": "1GK",
+        "number": "",
+        "age": 37,
+        "caps": 37,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Altay Bayındır",
+        "position": "1GK",
+        "number": "",
+        "age": 28,
+        "caps": 11,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ersin Destanoğlu",
+        "position": "1GK",
+        "number": "",
+        "age": 25,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Muhammed Şengezer",
+        "position": "1GK",
+        "number": "",
+        "age": 29,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Merih Demiral",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 61,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Zeki Çelik",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 59,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Çağlar Söyüncü",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 59,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Mert Müldür",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 43,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Ferdi Kadıoğlu",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 30,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Ozan Kabak",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 28,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Abdülkerim Bardakcı",
+        "position": "2DF",
+        "number": "",
+        "age": 31,
+        "caps": 26,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Eren Elmalı",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 21,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Samet Akaydin",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 18,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Yusuf Akçiçek",
+        "position": "2DF",
+        "number": "",
+        "age": 20,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mustafa Eskihellaç",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ahmetcan Kaplan",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Hakan Çalhanoğlu",
+        "position": "3MF",
+        "number": "",
+        "age": 32,
+        "caps": 104,
+        "goals": 22,
+        "club": ""
+      },
+      {
+        "name": "Kaan Ayhan",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 72,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Orkun Kökçü",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 48,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "İsmail Yüksek",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 31,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Salih Özcan",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 28,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Atakan Karazor",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Demir Ege Tıknaz",
+        "position": "3MF",
+        "number": "",
+        "age": 21,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Kerem Aktürkoğlu",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 51,
+        "goals": 15,
+        "club": ""
+      },
+      {
+        "name": "İrfan Can Kahveci",
+        "position": "4FW",
+        "number": "",
+        "age": 30,
+        "caps": 45,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Barış Alper Yılmaz",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 33,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Arda Güler",
+        "position": "4FW",
+        "number": "",
+        "age": 21,
+        "caps": 28,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Kenan Yıldız",
+        "position": "4FW",
+        "number": "",
+        "age": 21,
+        "caps": 28,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Yunus Akgün",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 17,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Oğuz Aydın",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 9,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Deniz Gül",
+        "position": "4FW",
+        "number": "",
+        "age": 21,
+        "caps": 6,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Yusuf Sarı",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 6,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Can Uzun",
+        "position": "4FW",
+        "number": "",
+        "age": 20,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Aral Şimşir",
+        "position": "4FW",
+        "number": "",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 35,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Curaçao": {
+    "players": [
+      {
+        "name": "Eloy Room",
+        "position": "1GK",
+        "number": "",
+        "age": 37,
+        "caps": 70,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Trevor Doornbusch",
+        "position": "1GK",
+        "number": "",
+        "age": 26,
+        "caps": 7,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Tyrick Bodak",
+        "position": "1GK",
+        "number": "",
+        "age": 24,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Juriën Gaari",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 58,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Roshon van Eijma",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 27,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Sherel Floranus",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 26,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Joshua Brenet",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 17,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Shurandy Sambo",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 7,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Armando Obispo",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Riechedly Bazoer",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Deveron Fonville",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Leandro Bacuna",
+        "position": "3MF",
+        "number": "",
+        "age": 34,
+        "caps": 70,
+        "goals": 16,
+        "club": ""
+      },
+      {
+        "name": "Juninho Bacuna",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 47,
+        "goals": 14,
+        "club": ""
+      },
+      {
+        "name": "Godfried Roemeratoe",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 26,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Kevin Felida",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 19,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Livano Comenencia",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 18,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Ar'jany Martha",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 8,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Tyrese Noslin",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 5,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Kenji Gorré",
+        "position": "4FW",
+        "number": "",
+        "age": 31,
+        "caps": 37,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Brandley Kuwas",
+        "position": "4FW",
+        "number": "",
+        "age": 33,
+        "caps": 34,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Gervane Kastaneer",
+        "position": "4FW",
+        "number": "",
+        "age": 30,
+        "caps": 27,
+        "goals": 9,
+        "club": ""
+      },
+      {
+        "name": "Jeremy Antonisse",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 25,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Jearl Margaritha",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 21,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Jürgen Locadia",
+        "position": "4FW",
+        "number": "",
+        "age": 32,
+        "caps": 12,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Sontje Hansen",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 5,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Tahith Chong",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 4,
+        "goals": 2,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Ivory Coast": {
+    "players": [
+      {
+        "name": "Yahia Fofana",
+        "position": "1GK",
+        "number": "",
+        "age": 25,
+        "caps": 34,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Alban Lafont",
+        "position": "1GK",
+        "number": "",
+        "age": 27,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mohamed Koné",
+        "position": "1GK",
+        "number": "",
+        "age": 24,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ghislain Konan",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 53,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Odilon Kossounou",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 35,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Wilfried Singo",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 33,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Evan Ndicka",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 28,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Emmanuel Agbadou",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 19,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Guéla Doué",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 19,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Ousmane Diomande",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 14,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Clément Akpa",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 5,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Franck Kessié",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 102,
+        "goals": 15,
+        "club": ""
+      },
+      {
+        "name": "Jean Michaël Seri",
+        "position": "3MF",
+        "number": "",
+        "age": 34,
+        "caps": 65,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Ibrahim Sangaré",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 57,
+        "goals": 12,
+        "club": ""
+      },
+      {
+        "name": "Seko Fofana",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 31,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Christ Inao Oulaï",
+        "position": "3MF",
+        "number": "",
+        "age": 20,
+        "caps": 8,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Parfait Guiagon",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 5,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Nicolas Pépé",
+        "position": "4FW",
+        "number": "",
+        "age": 31,
+        "caps": 54,
+        "goals": 12,
+        "club": ""
+      },
+      {
+        "name": "Oumar Diakité",
+        "position": "4FW",
+        "number": "",
+        "age": 22,
+        "caps": 28,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Simon Adingra",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 28,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Evann Guessand",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 21,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Amad Diallo",
+        "position": "4FW",
+        "number": "",
+        "age": 23,
+        "caps": 18,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Yan Diomande",
+        "position": "4FW",
+        "number": "",
+        "age": 19,
+        "caps": 9,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Bazoumana Touré",
+        "position": "4FW",
+        "number": "",
+        "age": 20,
+        "caps": 5,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Elye Wahi",
+        "position": "4FW",
+        "number": "",
+        "age": 23,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ange-Yoan Bonny",
+        "position": "4FW",
+        "number": "",
+        "age": 22,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Japan": {
+    "players": [
+      {
+        "name": "Zion Suzuki",
+        "position": "1GK",
+        "number": "",
+        "age": 23,
+        "caps": 23,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Keisuke Ōsako",
+        "position": "1GK",
+        "number": "",
+        "age": 26,
+        "caps": 11,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Tomoki Hayakawa",
+        "position": "1GK",
+        "number": "",
+        "age": 27,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Yūto Nagatomo",
+        "position": "2DF",
+        "number": "",
+        "age": 39,
+        "caps": 144,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Takehiro Tomiyasu",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 42,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Kō Itakura",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 39,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Shōgo Taniguchi",
+        "position": "2DF",
+        "number": "",
+        "age": 34,
+        "caps": 37,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Hiroki Itō",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 23,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Yukinari Sugawara",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 20,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Ayumu Seko",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 13,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Tsuyoshi Watanabe",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 10,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Junnosuke Suzuki",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 6,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Wataru Endo",
+        "position": "3MF",
+        "number": "",
+        "age": 33,
+        "caps": 72,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Junya Itō",
+        "position": "3MF",
+        "number": "",
+        "age": 33,
+        "caps": 68,
+        "goals": 15,
+        "club": ""
+      },
+      {
+        "name": "Ritsu Dōan",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 64,
+        "goals": 11,
+        "club": ""
+      },
+      {
+        "name": "Daichi Kamada",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 49,
+        "goals": 12,
+        "club": ""
+      },
+      {
+        "name": "Takefusa Kubo",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 48,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Ao Tanaka",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 37,
+        "goals": 8,
+        "club": ""
+      },
+      {
+        "name": "Keito Nakamura",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 24,
+        "goals": 10,
+        "club": ""
+      },
+      {
+        "name": "Kaishū Sano",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 12,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ayase Ueda",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 38,
+        "goals": 16,
+        "club": ""
+      },
+      {
+        "name": "Daizen Maeda",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 27,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Kōki Ogawa",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 14,
+        "goals": 10,
+        "club": ""
+      },
+      {
+        "name": "Yuito Suzuki",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 6,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Keisuke Gotō",
+        "position": "4FW",
+        "number": "",
+        "age": 21,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Kento Shiogai",
+        "position": "4FW",
+        "number": "",
+        "age": 21,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Sweden": {
+    "players": [
+      {
+        "name": "Kristoffer Nordfeldt",
+        "position": "1GK",
+        "number": "",
+        "age": 36,
+        "caps": 20,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Viktor Johansson",
+        "position": "1GK",
+        "number": "",
+        "age": 27,
+        "caps": 12,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jacob Widell Zetterström",
+        "position": "1GK",
+        "number": "",
+        "age": 27,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Victor Lindelöf",
+        "position": "2DF",
+        "number": "",
+        "age": 31,
+        "caps": 75,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Isak Hien",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 27,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Gabriel Gudmundsson",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 23,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Carl Starfelt",
+        "position": "2DF",
+        "number": "",
+        "age": 31,
+        "caps": 17,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Emil Holm",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 16,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Hjalmar Ekdal",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 11,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Daniel Svensson",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 11,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Gustaf Lagerbielke",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 9,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Eric Smith",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Elliot Stroud",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mattias Svanberg",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 39,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Jesper Karlström",
+        "position": "3MF",
+        "number": "",
+        "age": 30,
+        "caps": 23,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Yasin Ayari",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 19,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Lucas Bergvall",
+        "position": "3MF",
+        "number": "",
+        "age": 20,
+        "caps": 8,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Besfort Zeneli",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 6,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Alexander Isak",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 56,
+        "goals": 16,
+        "club": ""
+      },
+      {
+        "name": "Viktor Gyökeres",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 32,
+        "goals": 19,
+        "club": ""
+      },
+      {
+        "name": "Ken Sema",
+        "position": "4FW",
+        "number": "",
+        "age": 32,
+        "caps": 32,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Anthony Elanga",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 28,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Benjamin Nygren",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 9,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Alexander Bernhardsson",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 9,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Gustaf Nilsson",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 8,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Taha Ali",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Tunisia": {
+    "players": [
+      {
+        "name": "Aymen Dahmen",
+        "position": "1GK",
+        "number": "",
+        "age": 29,
+        "caps": 37,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Sabri Ben Hessen",
+        "position": "1GK",
+        "number": "",
+        "age": 29,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mouhib Chamakh",
+        "position": "1GK",
+        "number": "",
+        "age": 24,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Montassar Talbi",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 62,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Dylan Bronn",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 52,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Ali Abdi",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 45,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Yan Valery",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 21,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mohamed Amine Ben Hamida",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 12,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Moutaz Neffati",
+        "position": "2DF",
+        "number": "",
+        "age": 21,
+        "caps": 5,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Omar Rekik",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Adem Arous",
+        "position": "2DF",
+        "number": "",
+        "age": 21,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Raed Chikhaoui",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ellyes Skhiri",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 81,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Hannibal Mejbri",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 44,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Anis Ben Slimane",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 39,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Mortadha Ben Ouanes",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 17,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ismaël Gharbi",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 15,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Hadj Mahmoud",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 7,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Rani Khedira",
+        "position": "3MF",
+        "number": "",
+        "age": 32,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Elias Achouri",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 29,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Firas Chaouat",
+        "position": "4FW",
+        "number": "",
+        "age": 30,
+        "caps": 28,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Hazem Mastouri",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 18,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Elias Saad",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 14,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Sebastian Tounekti",
+        "position": "4FW",
+        "number": "",
+        "age": 23,
+        "caps": 10,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Khalil Ayari",
+        "position": "4FW",
+        "number": "",
+        "age": 21,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Rayan Elloumi",
+        "position": "4FW",
+        "number": "",
+        "age": 18,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Belgium": {
+    "players": [
+      {
+        "name": "Thibaut Courtois",
+        "position": "1GK",
+        "number": "",
+        "age": 34,
+        "caps": 107,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Senne Lammens",
+        "position": "1GK",
+        "number": "",
+        "age": 23,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mike Penders",
+        "position": "1GK",
+        "number": "",
+        "age": 20,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Thomas Meunier",
+        "position": "2DF",
+        "number": "",
+        "age": 34,
+        "caps": 78,
+        "goals": 10,
+        "club": ""
+      },
+      {
+        "name": "Timothy Castagne",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 62,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Arthur Theate",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 32,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Zeno Debast",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 26,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Maxim De Cuyper",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 17,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Brandon Mechele",
+        "position": "2DF",
+        "number": "",
+        "age": 33,
+        "caps": 7,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Koni De Winter",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 7,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Joaquin Seys",
+        "position": "2DF",
+        "number": "",
+        "age": 21,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Nathan Ngoy",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Axel Witsel",
+        "position": "3MF",
+        "number": "",
+        "age": 37,
+        "caps": 136,
+        "goals": 12,
+        "club": ""
+      },
+      {
+        "name": "Kevin De Bruyne",
+        "position": "3MF",
+        "number": "",
+        "age": 34,
+        "caps": 117,
+        "goals": 36,
+        "club": ""
+      },
+      {
+        "name": "Youri Tielemans",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 83,
+        "goals": 12,
+        "club": ""
+      },
+      {
+        "name": "Hans Vanaken",
+        "position": "3MF",
+        "number": "",
+        "age": 33,
+        "caps": 32,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Amadou Onana",
+        "position": "3MF",
+        "number": "",
+        "age": 24,
+        "caps": 27,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Nicolas Raskin",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 11,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Romelu Lukaku",
+        "position": "4FW",
+        "number": "",
+        "age": 33,
+        "caps": 124,
+        "goals": 89,
+        "club": ""
+      },
+      {
+        "name": "Leandro Trossard",
+        "position": "4FW",
+        "number": "",
+        "age": 31,
+        "caps": 50,
+        "goals": 11,
+        "club": ""
+      },
+      {
+        "name": "Jérémy Doku",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 41,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Dodi Lukébakio",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 29,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Charles De Ketelaere",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 28,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Alexis Saelemaekers",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 23,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Diego Moreira",
+        "position": "4FW",
+        "number": "",
+        "age": 21,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Matias Fernandez-Pardo",
+        "position": "4FW",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Iran": {
+    "players": [
+      {
+        "name": "Alireza Beiranvand",
+        "position": "1GK",
+        "number": "",
+        "age": 33,
+        "caps": 84,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Payam Niazmand",
+        "position": "1GK",
+        "number": "",
+        "age": 31,
+        "caps": 15,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Hossein Hosseini",
+        "position": "1GK",
+        "number": "",
+        "age": 33,
+        "caps": 13,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mohammad Khalife",
+        "position": "1GK",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ehsan Hajsafi",
+        "position": "2DF",
+        "number": "",
+        "age": 36,
+        "caps": 144,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Milad Mohammadi",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 75,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Ramin Rezaeian",
+        "position": "2DF",
+        "number": "",
+        "age": 36,
+        "caps": 72,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Hossein Kanaanizadegan",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 63,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Shojae Khalilzadeh",
+        "position": "2DF",
+        "number": "",
+        "age": 37,
+        "caps": 56,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Saleh Hardani",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 17,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Ali Nemati",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 15,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Aria Yousefi",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 12,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Danial Eiri",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Alireza Jahanbakhsh",
+        "position": "3MF",
+        "number": "",
+        "age": 32,
+        "caps": 98,
+        "goals": 17,
+        "club": ""
+      },
+      {
+        "name": "Saeid Ezatolahi",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 81,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Saman Ghoddos",
+        "position": "3MF",
+        "number": "",
+        "age": 32,
+        "caps": 67,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Mehdi Torabi",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 51,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Rouzbeh Cheshmi",
+        "position": "3MF",
+        "number": "",
+        "age": 32,
+        "caps": 40,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Omid Noorafkan",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 39,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Mohammad Mohebi",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 35,
+        "goals": 14,
+        "club": ""
+      },
+      {
+        "name": "Mohammad Ghorbani",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 14,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Amirmohammad Razzaghinia",
+        "position": "3MF",
+        "number": "",
+        "age": 20,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Hadi Habibinejad",
+        "position": "3MF",
+        "number": "",
+        "age": 30,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mehdi Taremi",
+        "position": "4FW",
+        "number": "",
+        "age": 33,
+        "caps": 103,
+        "goals": 59,
+        "club": ""
+      },
+      {
+        "name": "Mehdi Ghayedi",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 29,
+        "goals": 10,
+        "club": ""
+      },
+      {
+        "name": "Amirhossein Hosseinzadeh",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 16,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Ali Alipour",
+        "position": "4FW",
+        "number": "",
+        "age": 30,
+        "caps": 12,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Kasra Taheri",
+        "position": "4FW",
+        "number": "",
+        "age": 19,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Amirhossein Mahmoudi",
+        "position": "4FW",
+        "number": "",
+        "age": 19,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Dennis Eckert",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 30,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "New Zealand": {
+    "players": [
+      {
+        "name": "Max Crocombe",
+        "position": "1GK",
+        "number": "1",
+        "age": 32,
+        "caps": 22,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Tim Payne",
+        "position": "2DF",
+        "number": "2",
+        "age": 32,
+        "caps": 49,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Francis de Vries",
+        "position": "2DF",
+        "number": "3",
+        "age": 31,
+        "caps": 18,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Tyler Bindon",
+        "position": "2DF",
+        "number": "4",
+        "age": 21,
+        "caps": 23,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Michael Boxall",
+        "position": "2DF",
+        "number": "5",
+        "age": 37,
+        "caps": 61,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Joe Bell",
+        "position": "3MF",
+        "number": "6",
+        "age": 27,
+        "caps": 31,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Matthew Garbett",
+        "position": "3MF",
+        "number": "7",
+        "age": 24,
+        "caps": 35,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Marko Stamenić",
+        "position": "3MF",
+        "number": "8",
+        "age": 24,
+        "caps": 37,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Chris Wood",
+        "position": "4FW",
+        "number": "9",
+        "age": 34,
+        "caps": 88,
+        "goals": 45,
+        "club": ""
+      },
+      {
+        "name": "Sarpreet Singh",
+        "position": "3MF",
+        "number": "10",
+        "age": 27,
+        "caps": 26,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Elijah Just",
+        "position": "3MF",
+        "number": "11",
+        "age": 26,
+        "caps": 42,
+        "goals": 9,
+        "club": ""
+      },
+      {
+        "name": "Alex Paulsen",
+        "position": "1GK",
+        "number": "12",
+        "age": 23,
+        "caps": 6,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Liberato Cacace",
+        "position": "2DF",
+        "number": "13",
+        "age": 25,
+        "caps": 35,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Alex Rufer",
+        "position": "3MF",
+        "number": "14",
+        "age": 29,
+        "caps": 24,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Nando Pijnaker",
+        "position": "2DF",
+        "number": "15",
+        "age": 27,
+        "caps": 23,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Finn Surman",
+        "position": "2DF",
+        "number": "16",
+        "age": 22,
+        "caps": 17,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Kosta Barbarouses",
+        "position": "4FW",
+        "number": "17",
+        "age": 36,
+        "caps": 74,
+        "goals": 10,
+        "club": ""
+      },
+      {
+        "name": "Ben Waine",
+        "position": "4FW",
+        "number": "18",
+        "age": 25,
+        "caps": 30,
+        "goals": 9,
+        "club": ""
+      },
+      {
+        "name": "Ben Old",
+        "position": "3MF",
+        "number": "19",
+        "age": 23,
+        "caps": 22,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Callum McCowatt",
+        "position": "3MF",
+        "number": "20",
+        "age": 27,
+        "caps": 30,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Jesse Randall",
+        "position": "4FW",
+        "number": "21",
+        "age": 23,
+        "caps": 9,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Michael Woud",
+        "position": "1GK",
+        "number": "22",
+        "age": 27,
+        "caps": 6,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ryan Thomas",
+        "position": "3MF",
+        "number": "23",
+        "age": 31,
+        "caps": 25,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Callan Elliot",
+        "position": "2DF",
+        "number": "24",
+        "age": 26,
+        "caps": 9,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Lachlan Bayliss",
+        "position": "3MF",
+        "number": "25",
+        "age": 23,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Tommy Smith",
+        "position": "2DF",
+        "number": "26",
+        "age": 36,
+        "caps": 56,
+        "goals": 2,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Cape Verde": {
+    "players": [
+      {
+        "name": "Vozinha",
+        "position": "1GK",
+        "number": "",
+        "age": 40,
+        "caps": 85,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Márcio Rosa",
+        "position": "1GK",
+        "number": "",
+        "age": 29,
+        "caps": 10,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "CJ dos Santos",
+        "position": "1GK",
+        "number": "",
+        "age": 25,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Stopira",
+        "position": "2DF",
+        "number": "",
+        "age": 38,
+        "caps": 60,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Roberto Lopes",
+        "position": "2DF",
+        "number": "",
+        "age": 33,
+        "caps": 44,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "João Paulo",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 40,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Diney",
+        "position": "2DF",
+        "number": "",
+        "age": 31,
+        "caps": 29,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Logan Costa",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 26,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Steven Moreira",
+        "position": "2DF",
+        "number": "",
+        "age": 31,
+        "caps": 18,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Wagner Pina",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 12,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Sidny Lopes Cabral",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 8,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Kelvin Pires",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 4,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Jamiro Monteiro",
+        "position": "3MF",
+        "number": "",
+        "age": 32,
+        "caps": 53,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Kevin Pina",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 30,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Deroy Duarte",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 30,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Telmo Arcanjo",
+        "position": "3MF",
+        "number": "",
+        "age": 24,
+        "caps": 14,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Laros Duarte",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 12,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Yannick Semedo",
+        "position": "3MF",
+        "number": "",
+        "age": 30,
+        "caps": 10,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Ryan Mendes",
+        "position": "4FW",
+        "number": "",
+        "age": 36,
+        "caps": 94,
+        "goals": 22,
+        "club": ""
+      },
+      {
+        "name": "Garry Rodrigues",
+        "position": "4FW",
+        "number": "",
+        "age": 35,
+        "caps": 59,
+        "goals": 9,
+        "club": ""
+      },
+      {
+        "name": "Willy Semedo",
+        "position": "4FW",
+        "number": "",
+        "age": 32,
+        "caps": 36,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Jovane Cabral",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 25,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Gilson Benchimol",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 21,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Dailon Livramento",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 20,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Hélio Varela",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 19,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Nuno da Costa",
+        "position": "4FW",
+        "number": "",
+        "age": 35,
+        "caps": 7,
+        "goals": 1,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "France": {
+    "players": [
+      {
+        "name": "Mike Maignan",
+        "position": "1GK",
+        "number": "",
+        "age": 30,
+        "caps": 38,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Brice Samba",
+        "position": "1GK",
+        "number": "",
+        "age": 32,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Robin Risser",
+        "position": "1GK",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Lucas Digne",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 56,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jules Koundé",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 46,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Théo Hernandez",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 42,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Lucas Hernandez",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 41,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Dayot Upamecano",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 36,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "William Saliba",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 31,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ibrahima Konaté",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 27,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Malo Gusto",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 9,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Maxence Lacroix",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "N'Golo Kanté",
+        "position": "3MF",
+        "number": "",
+        "age": 35,
+        "caps": 67,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Adrien Rabiot",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 57,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Aurélien Tchouaméni",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 44,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Manu Koné",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 12,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Warren Zaïre-Emery",
+        "position": "3MF",
+        "number": "",
+        "age": 20,
+        "caps": 10,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Kylian Mbappé",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 96,
+        "goals": 56,
+        "club": ""
+      },
+      {
+        "name": "Ousmane Dembélé",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 58,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Marcus Thuram",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 33,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Bradley Barcola",
+        "position": "4FW",
+        "number": "",
+        "age": 23,
+        "caps": 18,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Michael Olise",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 15,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Maghnes Akliouche",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 7,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Désiré Doué",
+        "position": "4FW",
+        "number": "",
+        "age": 21,
+        "caps": 6,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Rayan Cherki",
+        "position": "4FW",
+        "number": "",
+        "age": 22,
+        "caps": 5,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Jean-Philippe Mateta",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 3,
+        "goals": 2,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Argentina": {
+    "players": [
+      {
+        "name": "Emiliano Martínez",
+        "position": "1GK",
+        "number": "",
+        "age": 33,
+        "caps": 59,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Gerónimo Rulli",
+        "position": "1GK",
+        "number": "",
+        "age": 34,
+        "caps": 7,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Juan Musso",
+        "position": "1GK",
+        "number": "",
+        "age": 32,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Walter Benítez",
+        "position": "1GK",
+        "number": "",
+        "age": 33,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Facundo Cambeses",
+        "position": "1GK",
+        "number": "",
+        "age": 29,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Santiago Beltrán",
+        "position": "1GK",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Nicolás Otamendi",
+        "position": "2DF",
+        "number": "",
+        "age": 38,
+        "caps": 130,
+        "goals": 8,
+        "club": ""
+      },
+      {
+        "name": "Nicolás Tagliafico",
+        "position": "2DF",
+        "number": "",
+        "age": 33,
+        "caps": 75,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Marcos Acuña",
+        "position": "2DF",
+        "number": "",
+        "age": 34,
+        "caps": 62,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Nahuel Molina",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 58,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Cristian Romero",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 49,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Germán Pezzella",
+        "position": "2DF",
+        "number": "",
+        "age": 34,
+        "caps": 42,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Gonzalo Montiel",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 38,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Lisandro Martínez",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 26,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Lucas Martínez Quarta",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 16,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Leonardo Balerdi",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 11,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Facundo Medina",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 7,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Marcos Senesi",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Agustín Giay",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Kevin Mac Allister",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Gabriel Rojas",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Nicolás Capaldo",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Lautaro Di Lollo",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Zaid Romero",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Rodrigo De Paul",
+        "position": "3MF",
+        "number": "",
+        "age": 32,
+        "caps": 85,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Leandro Paredes",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 77,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Giovani Lo Celso",
+        "position": "3MF",
+        "number": "",
+        "age": 30,
+        "caps": 65,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Alexis Mac Allister",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 44,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Enzo Fernández",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 40,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Exequiel Palacios",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 38,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Guido Rodríguez",
+        "position": "3MF",
+        "number": "",
+        "age": 32,
+        "caps": 30,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Thiago Almada",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 14,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Nicolás Domínguez",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 11,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Giuliano Simeone",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 11,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Nico Paz",
+        "position": "3MF",
+        "number": "",
+        "age": 21,
+        "caps": 8,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Valentín Barco",
+        "position": "3MF",
+        "number": "",
+        "age": 21,
+        "caps": 2,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Emiliano Buendía",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Máximo Perrone",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Aníbal Moreno",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Milton Delgado",
+        "position": "3MF",
+        "number": "",
+        "age": 20,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Equi Fernández",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Alan Varela",
+        "position": "3MF",
+        "number": "",
+        "age": 24,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Lionel Messi",
+        "position": "4FW",
+        "number": "",
+        "age": 38,
+        "caps": 198,
+        "goals": 116,
+        "club": ""
+      },
+      {
+        "name": "Lautaro Martínez",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 75,
+        "goals": 36,
+        "club": ""
+      },
+      {
+        "name": "Julián Alvarez",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 51,
+        "goals": 14,
+        "club": ""
+      },
+      {
+        "name": "Nicolás González",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 50,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Alejandro Garnacho",
+        "position": "4FW",
+        "number": "",
+        "age": 21,
+        "caps": 8,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Franco Mastantuono",
+        "position": "4FW",
+        "number": "",
+        "age": 18,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "José Manuel López",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Gianluca Prestianni",
+        "position": "4FW",
+        "number": "",
+        "age": 20,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Tomás Aranda",
+        "position": "4FW",
+        "number": "",
+        "age": 19,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Santiago Castro",
+        "position": "4FW",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Claudio Echeverri",
+        "position": "4FW",
+        "number": "",
+        "age": 20,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mateo Pellegrino",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Matías Soulé",
+        "position": "4FW",
+        "number": "",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 55,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Austria": {
+    "players": [
+      {
+        "name": "Alexander Schlager",
+        "position": "1GK",
+        "number": "1",
+        "age": 30,
+        "caps": 25,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "David Affengruber",
+        "position": "2DF",
+        "number": "2",
+        "age": 25,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Kevin Danso",
+        "position": "2DF",
+        "number": "3",
+        "age": 27,
+        "caps": 31,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Xaver Schlager",
+        "position": "3MF",
+        "number": "4",
+        "age": 28,
+        "caps": 50,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Stefan Posch",
+        "position": "2DF",
+        "number": "5",
+        "age": 29,
+        "caps": 51,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Nicolas Seiwald",
+        "position": "3MF",
+        "number": "6",
+        "age": 25,
+        "caps": 46,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Marko Arnautović",
+        "position": "4FW",
+        "number": "7",
+        "age": 37,
+        "caps": 132,
+        "goals": 47,
+        "club": ""
+      },
+      {
+        "name": "David Alaba",
+        "position": "2DF",
+        "number": "8",
+        "age": 33,
+        "caps": 112,
+        "goals": 15,
+        "club": ""
+      },
+      {
+        "name": "Marcel Sabitzer",
+        "position": "3MF",
+        "number": "9",
+        "age": 32,
+        "caps": 97,
+        "goals": 25,
+        "club": ""
+      },
+      {
+        "name": "Florian Grillitsch",
+        "position": "3MF",
+        "number": "10",
+        "age": 30,
+        "caps": 58,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Michael Gregoritsch",
+        "position": "4FW",
+        "number": "11",
+        "age": 32,
+        "caps": 74,
+        "goals": 24,
+        "club": ""
+      },
+      {
+        "name": "Florian Wiegele",
+        "position": "1GK",
+        "number": "12",
+        "age": 25,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Patrick Pentz",
+        "position": "1GK",
+        "number": "13",
+        "age": 29,
+        "caps": 18,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Saša Kalajdžić",
+        "position": "4FW",
+        "number": "14",
+        "age": 28,
+        "caps": 21,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Philipp Lienhart",
+        "position": "2DF",
+        "number": "15",
+        "age": 29,
+        "caps": 40,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Phillipp Mwene",
+        "position": "2DF",
+        "number": "16",
+        "age": 32,
+        "caps": 29,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Carney Chukwuemeka",
+        "position": "3MF",
+        "number": "17",
+        "age": 22,
+        "caps": 2,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Romano Schmid",
+        "position": "3MF",
+        "number": "18",
+        "age": 26,
+        "caps": 33,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Christoph Baumgartner",
+        "position": "3MF",
+        "number": "19",
+        "age": 26,
+        "caps": 58,
+        "goals": 19,
+        "club": ""
+      },
+      {
+        "name": "Konrad Laimer",
+        "position": "3MF",
+        "number": "20",
+        "age": 29,
+        "caps": 56,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Patrick Wimmer",
+        "position": "3MF",
+        "number": "21",
+        "age": 25,
+        "caps": 30,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Alexander Prass",
+        "position": "2DF",
+        "number": "22",
+        "age": 25,
+        "caps": 18,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Marco Friedl",
+        "position": "2DF",
+        "number": "23",
+        "age": 28,
+        "caps": 10,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Paul Wanner",
+        "position": "3MF",
+        "number": "24",
+        "age": 20,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Michael Svoboda",
+        "position": "2DF",
+        "number": "25",
+        "age": 27,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Alessandro Schöpf",
+        "position": "3MF",
+        "number": "26",
+        "age": 32,
+        "caps": 35,
+        "goals": 6,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Jordan": {
+    "players": [
+      {
+        "name": "Yazeed Abulaila",
+        "position": "1GK",
+        "number": "",
+        "age": 33,
+        "caps": 74,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Abdallah Al-Fakhouri",
+        "position": "1GK",
+        "number": "",
+        "age": 26,
+        "caps": 11,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Nour Bani Attiah",
+        "position": "1GK",
+        "number": "",
+        "age": 33,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ahmad Al-Juaidi",
+        "position": "1GK",
+        "number": "",
+        "age": 25,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ihsan Haddad",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 90,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Yazan Al-Arab",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 78,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Abdallah Nasib",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 64,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Saed Al-Rosan",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 19,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Husam Abu Dahab",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 16,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mo Abualnadi",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 16,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Salim Obaid",
+        "position": "2DF",
+        "number": "",
+        "age": 34,
+        "caps": 9,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ahmad Assaf",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 6,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Anas Badawi",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Rajaei Ayed",
+        "position": "3MF",
+        "number": "",
+        "age": 32,
+        "caps": 72,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Noor Al-Rawabdeh",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 66,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Ibrahim Sadeh",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 55,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Mohammad Abu Hashish",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 54,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Nizar Al-Rashdan",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 45,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Mohannad Abu Taha",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 27,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Amer Jamous",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 18,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Mohammad Al-Dawoud",
+        "position": "3MF",
+        "number": "",
+        "age": 33,
+        "caps": 11,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Yousef Qashi",
+        "position": "3MF",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mohammad Taha",
+        "position": "3MF",
+        "number": "",
+        "age": 20,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Musa Al-Taamari",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 90,
+        "goals": 24,
+        "club": ""
+      },
+      {
+        "name": "Mahmoud Al-Mardi",
+        "position": "4FW",
+        "number": "",
+        "age": 32,
+        "caps": 87,
+        "goals": 9,
+        "club": ""
+      },
+      {
+        "name": "Ali Olwan",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 64,
+        "goals": 29,
+        "club": ""
+      },
+      {
+        "name": "Mohammad Abu Zrayq",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 39,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Ibrahim Sabra",
+        "position": "4FW",
+        "number": "",
+        "age": 20,
+        "caps": 9,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Odeh Al-Fakhouri",
+        "position": "4FW",
+        "number": "",
+        "age": 20,
+        "caps": 8,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ali Azaizeh",
+        "position": "4FW",
+        "number": "",
+        "age": 22,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 30,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Colombia": {
+    "players": [
+      {
+        "name": "David Ospina",
+        "position": "1GK",
+        "number": "",
+        "age": 37,
+        "caps": 129,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Camilo Vargas",
+        "position": "1GK",
+        "number": "",
+        "age": 37,
+        "caps": 40,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Álvaro Montero",
+        "position": "1GK",
+        "number": "",
+        "age": 31,
+        "caps": 11,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Kevin Mier",
+        "position": "1GK",
+        "number": "",
+        "age": 26,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Andrés Mosquera",
+        "position": "1GK",
+        "number": "",
+        "age": 34,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Aldair Quintana",
+        "position": "1GK",
+        "number": "",
+        "age": 31,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Davinson Sánchez",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 77,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Santiago Arias",
+        "position": "2DF",
+        "number": "",
+        "age": 34,
+        "caps": 66,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Yerry Mina",
+        "position": "2DF",
+        "number": "",
+        "age": 31,
+        "caps": 52,
+        "goals": 8,
+        "club": ""
+      },
+      {
+        "name": "Daniel Muñoz",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 44,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Johan Mojica",
+        "position": "2DF",
+        "number": "",
+        "age": 33,
+        "caps": 43,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Jhon Lucumí",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 35,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Carlos Cuesta",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 24,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Deiver Machado",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 14,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Cristian Borja",
+        "position": "2DF",
+        "number": "",
+        "age": 33,
+        "caps": 8,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Yerson Mosquera",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 4,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Álvaro Angulo",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Juan Cabal",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Willer Ditta",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Andrés Román",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Junior Hernández",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Édier Ocampo",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jhohan Romaña",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "James Rodríguez",
+        "position": "3MF",
+        "number": "",
+        "age": 34,
+        "caps": 124,
+        "goals": 31,
+        "club": ""
+      },
+      {
+        "name": "Juan Cuadrado",
+        "position": "3MF",
+        "number": "",
+        "age": 38,
+        "caps": 116,
+        "goals": 11,
+        "club": ""
+      },
+      {
+        "name": "Jefferson Lerma",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 64,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Wilmar Barrios",
+        "position": "3MF",
+        "number": "",
+        "age": 32,
+        "caps": 55,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Juan Fernando Quintero",
+        "position": "3MF",
+        "number": "",
+        "age": 33,
+        "caps": 47,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Jhon Arias",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 36,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Richard Ríos",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 30,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Kevin Castaño",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 24,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jorge Carrascal",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 22,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Yáser Asprilla",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 11,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Jaminton Campaz",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 9,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Juan Portilla",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 8,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Gustavo Puerta",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 4,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Sebastián Gómez",
+        "position": "3MF",
+        "number": "",
+        "age": 30,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jordan Barrera",
+        "position": "3MF",
+        "number": "",
+        "age": 20,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Nelson Deossa",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Juan Manuel Rengifo",
+        "position": "3MF",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Johan Rojas",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jhon Solís",
+        "position": "3MF",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Luis Díaz",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 72,
+        "goals": 21,
+        "club": ""
+      },
+      {
+        "name": "Rafael Santos Borré",
+        "position": "4FW",
+        "number": "",
+        "age": 30,
+        "caps": 44,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Jhon Córdoba",
+        "position": "4FW",
+        "number": "",
+        "age": 33,
+        "caps": 21,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Jhon Durán",
+        "position": "4FW",
+        "number": "",
+        "age": 22,
+        "caps": 17,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Luis Suárez",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 10,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Cucho Hernández",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 7,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Andrés Gómez",
+        "position": "4FW",
+        "number": "",
+        "age": 23,
+        "caps": 6,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Sebastián Villa",
+        "position": "4FW",
+        "number": "",
+        "age": 30,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Johan Carbonero",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 2,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Stiven Mendoza",
+        "position": "4FW",
+        "number": "",
+        "age": 33,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Edwuin Cetré",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Néiser Villarreal",
+        "position": "4FW",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Kevin Viveros",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      }
+    ],
+    "count": 55,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "DR Congo": {
+    "players": [
+      {
+        "name": "Lionel Mpasi",
+        "position": "1GK",
+        "number": "",
+        "age": 31,
+        "caps": 27,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Timothy Fayulu",
+        "position": "1GK",
+        "number": "",
+        "age": 26,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Matthieu Epolo",
+        "position": "1GK",
+        "number": "",
+        "age": 21,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Chancel Mbemba",
+        "position": "2DF",
+        "number": "",
+        "age": 31,
+        "caps": 107,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Arthur Masuaku",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 44,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Gédéon Kalulu",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 27,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Joris Kayembe",
+        "position": "2DF",
+        "number": "",
+        "age": 31,
+        "caps": 24,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Dylan Batubinsika",
+        "position": "2DF",
+        "number": "",
+        "age": 30,
+        "caps": 14,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Axel Tuanzebe",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 12,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Aaron Wan-Bissaka",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 10,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Rocky Bushiri",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 7,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Steve Kapuadi",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Meschak Elia",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 68,
+        "goals": 12,
+        "club": ""
+      },
+      {
+        "name": "Samuel Moutoussamy",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 56,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Edo Kayembe",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 41,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Charles Pickel",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 33,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Gaël Kakuta",
+        "position": "3MF",
+        "number": "",
+        "age": 34,
+        "caps": 30,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Noah Sadiki",
+        "position": "3MF",
+        "number": "",
+        "age": 21,
+        "caps": 18,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Nathanaël Mbuku",
+        "position": "3MF",
+        "number": "",
+        "age": 24,
+        "caps": 17,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Ngal'ayel Mukau",
+        "position": "3MF",
+        "number": "",
+        "age": 21,
+        "caps": 12,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Brian Cipenga",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 7,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Cédric Bakambu",
+        "position": "4FW",
+        "number": "",
+        "age": 35,
+        "caps": 68,
+        "goals": 21,
+        "club": ""
+      },
+      {
+        "name": "Théo Bongonda",
+        "position": "4FW",
+        "number": "",
+        "age": 30,
+        "caps": 37,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Fiston Mayele",
+        "position": "4FW",
+        "number": "",
+        "age": 31,
+        "caps": 37,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Yoane Wissa",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 36,
+        "goals": 9,
+        "club": ""
+      },
+      {
+        "name": "Simon Banza",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 14,
+        "goals": 2,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Portugal": {
+    "players": [
+      {
+        "name": "Diogo Costa",
+        "position": "1GK",
+        "number": "",
+        "age": 26,
+        "caps": 42,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "José Sá",
+        "position": "1GK",
+        "number": "",
+        "age": 33,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Rui Silva",
+        "position": "1GK",
+        "number": "",
+        "age": 32,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ricardo Velho",
+        "position": "1GK",
+        "number": "",
+        "age": 27,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Rúben Dias",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 74,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "João Cancelo",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 66,
+        "goals": 12,
+        "club": ""
+      },
+      {
+        "name": "Nélson Semedo",
+        "position": "2DF",
+        "number": "",
+        "age": 32,
+        "caps": 48,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Nuno Mendes",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 43,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Diogo Dalot",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 33,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Gonçalo Inácio",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 20,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Renato Veiga",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 11,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Tomás Araújo",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Bernardo Silva",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 107,
+        "goals": 14,
+        "club": ""
+      },
+      {
+        "name": "Bruno Fernandes",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 87,
+        "goals": 28,
+        "club": ""
+      },
+      {
+        "name": "Rúben Neves",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 65,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Vitinha",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 37,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "João Neves",
+        "position": "3MF",
+        "number": "",
+        "age": 21,
+        "caps": 21,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Matheus Nunes",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 19,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Francisco Trincão",
+        "position": "3MF",
+        "number": "",
+        "age": 26,
+        "caps": 17,
+        "goals": 3,
+        "club": ""
+      },
+      {
+        "name": "Samú Costa",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 4,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Cristiano Ronaldo",
+        "position": "4FW",
+        "number": "",
+        "age": 41,
+        "caps": 226,
+        "goals": 143,
+        "club": ""
+      },
+      {
+        "name": "João Félix",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 52,
+        "goals": 12,
+        "club": ""
+      },
+      {
+        "name": "Rafael Leão",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 43,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Gonçalo Guedes",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 33,
+        "goals": 7,
+        "club": ""
+      },
+      {
+        "name": "Gonçalo Ramos",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 24,
+        "goals": 10,
+        "club": ""
+      },
+      {
+        "name": "Pedro Neto",
+        "position": "4FW",
+        "number": "",
+        "age": 26,
+        "caps": 23,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Francisco Conceição",
+        "position": "4FW",
+        "number": "",
+        "age": 23,
+        "caps": 15,
+        "goals": 3,
+        "club": ""
+      }
+    ],
+    "count": 27,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Uzbekistan": {
+    "players": [
+      {
+        "name": "Utkir Yusupov",
+        "position": "1GK",
+        "number": "",
+        "age": 35,
+        "caps": 39,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Abduvohid Nematov",
+        "position": "1GK",
+        "number": "",
+        "age": 25,
+        "caps": 7,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Botirali Ergashev",
+        "position": "1GK",
+        "number": "",
+        "age": 30,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Vladimir Nazarov",
+        "position": "1GK",
+        "number": "",
+        "age": 24,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Rustam Ashurmatov",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 47,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Farrukh Sayfiev",
+        "position": "2DF",
+        "number": "",
+        "age": 35,
+        "caps": 44,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Khojiakbar Alijonov",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 40,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Sherzod Nasrullaev",
+        "position": "2DF",
+        "number": "",
+        "age": 27,
+        "caps": 29,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Umar Eshmurodov",
+        "position": "2DF",
+        "number": "",
+        "age": 33,
+        "caps": 29,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Abdukodir Khusanov",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 25,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ibrokhimkhalil Yuldoshev",
+        "position": "2DF",
+        "number": "",
+        "age": 25,
+        "caps": 16,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Abdulla Abdullaev",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 16,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Bekhruz Karimov",
+        "position": "2DF",
+        "number": "",
+        "age": 18,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mukhammadkodir Khamraliev",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Jakhongir Urozov",
+        "position": "2DF",
+        "number": "",
+        "age": 22,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Mukhammadrasul Abdumazhidov",
+        "position": "2DF",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Diyor Ortikboev",
+        "position": "2DF",
+        "number": "",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Avazbek Ulmasaliev",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Otabek Shukurov",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 82,
+        "goals": 9,
+        "club": ""
+      },
+      {
+        "name": "Odiljon Hamrobekov",
+        "position": "3MF",
+        "number": "",
+        "age": 30,
+        "caps": 71,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Jamshid Iskanderov",
+        "position": "3MF",
+        "number": "",
+        "age": 32,
+        "caps": 37,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Akmal Mozgovoy",
+        "position": "3MF",
+        "number": "",
+        "age": 27,
+        "caps": 23,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Azizjon Ganiev",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 18,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Kuvondik Ruziev",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 6,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Alisher Odilov",
+        "position": "3MF",
+        "number": "",
+        "age": 24,
+        "caps": 2,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Jasurbek Jaloliddinov",
+        "position": "3MF",
+        "number": "",
+        "age": 24,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Umarali Rakhmonaliev",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 1,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Nodirbek Abdurazzokov",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Sardorbek Bakhromov",
+        "position": "3MF",
+        "number": "",
+        "age": 21,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Sherzod Esanov",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Eldor Shomurodov",
+        "position": "4FW",
+        "number": "",
+        "age": 30,
+        "caps": 90,
+        "goals": 44,
+        "club": ""
+      },
+      {
+        "name": "Igor Sergeev",
+        "position": "4FW",
+        "number": "",
+        "age": 33,
+        "caps": 81,
+        "goals": 24,
+        "club": ""
+      },
+      {
+        "name": "Jaloliddin Masharipov",
+        "position": "4FW",
+        "number": "",
+        "age": 32,
+        "caps": 74,
+        "goals": 12,
+        "club": ""
+      },
+      {
+        "name": "Oston Urunov",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 40,
+        "goals": 10,
+        "club": ""
+      },
+      {
+        "name": "Dostonbek Khamdamov",
+        "position": "4FW",
+        "number": "",
+        "age": 29,
+        "caps": 33,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Abbosbek Fayzullaev",
+        "position": "4FW",
+        "number": "",
+        "age": 22,
+        "caps": 30,
+        "goals": 8,
+        "club": ""
+      },
+      {
+        "name": "Azizbek Amonov",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 11,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Ruslanbek Jiyanov",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 5,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Sherzod Temirov",
+        "position": "4FW",
+        "number": "",
+        "age": 27,
+        "caps": 2,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Khusayin Norchaev",
+        "position": "4FW",
+        "number": "",
+        "age": 24,
+        "caps": 1,
+        "goals": 1,
+        "club": ""
+      }
+    ],
+    "count": 40,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "Croatia": {
+    "players": [
+      {
+        "name": "Dominik Livaković",
+        "position": "1GK",
+        "number": "",
+        "age": 31,
+        "caps": 73,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Dominik Kotarski",
+        "position": "1GK",
+        "number": "",
+        "age": 26,
+        "caps": 3,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Ivor Pandur",
+        "position": "1GK",
+        "number": "",
+        "age": 26,
+        "caps": 0,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Joško Gvardiol",
+        "position": "2DF",
+        "number": "",
+        "age": 24,
+        "caps": 46,
+        "goals": 4,
+        "club": ""
+      },
+      {
+        "name": "Duje Ćaleta-Car",
+        "position": "2DF",
+        "number": "",
+        "age": 29,
+        "caps": 38,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Josip Šutalo",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 31,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Josip Stanišić",
+        "position": "2DF",
+        "number": "",
+        "age": 26,
+        "caps": 29,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Marin Pongračić",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 18,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Martin Erlić",
+        "position": "2DF",
+        "number": "",
+        "age": 28,
+        "caps": 12,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Luka Vušković",
+        "position": "2DF",
+        "number": "",
+        "age": 19,
+        "caps": 4,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Luka Modrić",
+        "position": "3MF",
+        "number": "",
+        "age": 40,
+        "caps": 196,
+        "goals": 28,
+        "club": ""
+      },
+      {
+        "name": "Mateo Kovačić",
+        "position": "3MF",
+        "number": "",
+        "age": 32,
+        "caps": 111,
+        "goals": 5,
+        "club": ""
+      },
+      {
+        "name": "Mario Pašalić",
+        "position": "3MF",
+        "number": "",
+        "age": 31,
+        "caps": 83,
+        "goals": 11,
+        "club": ""
+      },
+      {
+        "name": "Nikola Vlašić",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 61,
+        "goals": 10,
+        "club": ""
+      },
+      {
+        "name": "Luka Sučić",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 19,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Martin Baturina",
+        "position": "3MF",
+        "number": "",
+        "age": 23,
+        "caps": 17,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Kristijan Jakić",
+        "position": "3MF",
+        "number": "",
+        "age": 29,
+        "caps": 16,
+        "goals": 2,
+        "club": ""
+      },
+      {
+        "name": "Petar Sučić",
+        "position": "3MF",
+        "number": "",
+        "age": 22,
+        "caps": 15,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Nikola Moro",
+        "position": "3MF",
+        "number": "",
+        "age": 28,
+        "caps": 9,
+        "goals": 0,
+        "club": ""
+      },
+      {
+        "name": "Toni Fruk",
+        "position": "3MF",
+        "number": "",
+        "age": 25,
+        "caps": 7,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Ivan Perišić",
+        "position": "4FW",
+        "number": "",
+        "age": 37,
+        "caps": 152,
+        "goals": 38,
+        "club": ""
+      },
+      {
+        "name": "Andrej Kramarić",
+        "position": "4FW",
+        "number": "",
+        "age": 34,
+        "caps": 114,
+        "goals": 36,
+        "club": ""
+      },
+      {
+        "name": "Ante Budimir",
+        "position": "4FW",
+        "number": "",
+        "age": 34,
+        "caps": 36,
+        "goals": 6,
+        "club": ""
+      },
+      {
+        "name": "Marco Pašalić",
+        "position": "4FW",
+        "number": "",
+        "age": 25,
+        "caps": 13,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Petar Musa",
+        "position": "4FW",
+        "number": "",
+        "age": 28,
+        "caps": 10,
+        "goals": 1,
+        "club": ""
+      },
+      {
+        "name": "Igor Matanović",
+        "position": "4FW",
+        "number": "",
+        "age": 23,
+        "caps": 8,
+        "goals": 2,
+        "club": ""
+      }
+    ],
+    "count": 26,
+    "source": "Wikipedia:2026 FIFA World Cup squads",
+    "fetch_date": "2026-05-19"
+  },
+  "South Africa": {
+    "players": [
+      {
+        "position": "GK",
+        "name": "Ronwen Williams",
+        "age": 2015
+      },
+      {
+        "position": "GK",
+        "name": "Ricardo Goss",
+        "age": 2015
+      },
+      {
+        "position": "GK",
+        "name": "Sipho Chaine",
+        "age": 2015
+      },
+      {
+        "position": "GK",
+        "name": "Brandon Peterson (soccer)",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Aubrey Modiba",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Khuliso Mudau",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Nkosinathi Sibisi",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Mbekezeli Mbokazi",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Ime Okon",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Samukele Kabini",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Khulumani Ndamane",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Thabang Matuludi",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Thabiso Monyane",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Bradley Cross (soccer)",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Olwethu Makhanya",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Teboho Mokoena (soccer, born 1997)",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Sphephelo Sithole",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Lebohang Maboe",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Thalente Mbatha",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Jayden Adams",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Brooklyn Poggenpoel",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Themba Zwane",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Thapelo Morena",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Lyle Foster",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Evidence Makgopa",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Oswin Appollis",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Iqraam Rayners",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Relebohile Mofokeng",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Thapelo Maseko",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Tshepang Moremi",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Patrick Maswanganyi",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Kamogelo Sebelebele",
+        "age": 2015
+      }
+    ]
+  },
+  "Iraq": {
+    "players": [
+      {
+        "position": "GK",
+        "name": "Jalal Hassan",
+        "age": 2015
+      },
+      {
+        "position": "GK",
+        "name": "Fahad Talib",
+        "age": 2015
+      },
+      {
+        "position": "GK",
+        "name": "Ahmed Basil",
+        "age": 2015
+      },
+      {
+        "position": "GK",
+        "name": "Kumel Al-Rekabe",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Rebin Sulaka",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Manaf Younis",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Merchas Doski",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Hussein Ali (footballer, born 2002)",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Zaid Tahseen",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Frans Putros",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Maitham Jabbar",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Ahmed Yahya",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Mustafa Saadoon (footballer, born 2001)",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Akam Hashim",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Ahmed Maknzi",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Dario Naamo",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Ibrahim Bayesh",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Amir Al-Ammari",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Ali Jasim",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Youssef Amyn",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Zidane Iqbal",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Hasan Abdulkareem",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Marko Farji",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Karrar Nabeel",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Kevin Yakob",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Aimar Sher",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Zaid Ismail",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Peter Gwargis",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Jussef Nasrawe",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Ahmed Qasem",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Aymen Hussein",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Mohanad Ali",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Ali Al-Hamadi",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Ali Yousif",
+        "age": 2015
+      }
+    ]
+  },
+  "Norway": {
+    "players": [
+      {
+        "position": "GK",
+        "name": "Ørjan Nyland",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Morten Thorsby",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Kristoffer Ajer",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Leo Østigård",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "David Møller Wolfe",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Patrick Berg",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Alexander Sørloth",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Sander Berge",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Erling Haaland",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Martin Ødegaard",
+        "age": 2015
+      },
+      {
+        "position": "FW",
+        "name": "Jørgen Strand Larsen",
+        "age": 2015
+      },
+      {
+        "position": "GK",
+        "name": "Sander Tangvik",
+        "age": 2015
+      },
+      {
+        "position": "GK",
+        "name": "Egil Selvik",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Fredrik Aursnes",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Fredrik André Bjørkan",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Marcus Holmgren Pedersen",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Torbjørn Heggem",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Kristian Thorstvedt",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Thelo Aasgaard",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Antonio Nusa",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Andreas Schjelderup",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Oscar Bobb",
+        "age": 2015
+      },
+      {
+        "position": "MF",
+        "name": "Jens Petter Hauge",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Sondre Langås",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Henrik Falchener",
+        "age": 2015
+      },
+      {
+        "position": "DF",
+        "name": "Julian Ryerson",
+        "age": 2015
+      }
+    ]
+  },
+  "Algeria": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  },
+  "Australia": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  },
+  "Canada": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  },
+  "Ecuador": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  },
+  "Egypt": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  },
+  "England": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  },
+  "Germany": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  },
+  "Ghana": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  },
+  "Morocco": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  },
+  "Netherlands": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  },
+  "Panama": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  },
+  "Saudi Arabia": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  },
+  "Senegal": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  },
+  "Spain": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  },
+  "Switzerland": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  },
+  "United States": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  },
+  "Uruguay": {
+    "note": "等待 Wikipedia 公布大名单",
+    "players": [],
+    "source": "pending",
+    "fetch_date": "pending"
+  }
+}

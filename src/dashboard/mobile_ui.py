@@ -265,6 +265,23 @@ def _load_analysis():
         squad_dicts[country] = _build_sample(country, elo)
 
     # 4. Build Squad objects for scoring
+    # Set tournament_history for pending teams (those using synthetic samples)
+    # based on ELO tier, compensating for data gaps vs real-data teams:
+    #   ELO > 1850: "Semi" (+2% via world_cup_semi)
+    #   1750 < ELO <= 1850: "Quarter" (+1% via world_cup_quarter)
+    #   ELO <= 1750: no boost
+    for country in QUALIFIED_TEAMS:
+        sq = squad_dicts[country]
+        # Only override if not already set (real-data teams already have tournament_history=["2022"])
+        if sq.get("tournament_history") is None:
+            elo = sq.get("elo", 1650)
+            if elo > 1850:
+                sq["tournament_history"] = ["Semi"]
+            elif elo > 1750:
+                sq["tournament_history"] = ["Quarter"]
+            else:
+                sq["tournament_history"] = []
+
     squad_objs = []
     for country in QUALIFIED_TEAMS:
         sq = squad_dicts[country]
@@ -287,7 +304,7 @@ def _load_analysis():
             elo=sq["elo"],
             recent_win_rate=0.3 + (sq["elo"] - 1500) / 1000 * 0.5,
             coaching_factor=sq["coaching_factor"],
-            tournament_history=["2022"] if sq["country"] == DEFENDING_CHAMPION else [],
+            tournament_history=sq.get("tournament_history", ["2022"] if sq["country"] == DEFENDING_CHAMPION else []),
         ))
 
     # 5. Score
