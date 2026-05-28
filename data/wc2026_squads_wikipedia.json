@@ -8750,140 +8750,6 @@
       }
     ]
   },
-  "Norway": {
-    "players": [
-      {
-        "position": "GK",
-        "name": "Ørjan Nyland",
-        "age": 2015
-      },
-      {
-        "position": "MF",
-        "name": "Morten Thorsby",
-        "age": 2015
-      },
-      {
-        "position": "DF",
-        "name": "Kristoffer Ajer",
-        "age": 2015
-      },
-      {
-        "position": "DF",
-        "name": "Leo Østigård",
-        "age": 2015
-      },
-      {
-        "position": "DF",
-        "name": "David Møller Wolfe",
-        "age": 2015
-      },
-      {
-        "position": "MF",
-        "name": "Patrick Berg",
-        "age": 2015
-      },
-      {
-        "position": "FW",
-        "name": "Alexander Sørloth",
-        "age": 2015
-      },
-      {
-        "position": "MF",
-        "name": "Sander Berge",
-        "age": 2015
-      },
-      {
-        "position": "FW",
-        "name": "Erling Haaland",
-        "age": 2015
-      },
-      {
-        "position": "MF",
-        "name": "Martin Ødegaard",
-        "age": 2015
-      },
-      {
-        "position": "FW",
-        "name": "Jørgen Strand Larsen",
-        "age": 2015
-      },
-      {
-        "position": "GK",
-        "name": "Sander Tangvik",
-        "age": 2015
-      },
-      {
-        "position": "GK",
-        "name": "Egil Selvik",
-        "age": 2015
-      },
-      {
-        "position": "MF",
-        "name": "Fredrik Aursnes",
-        "age": 2015
-      },
-      {
-        "position": "DF",
-        "name": "Fredrik André Bjørkan",
-        "age": 2015
-      },
-      {
-        "position": "DF",
-        "name": "Marcus Holmgren Pedersen",
-        "age": 2015
-      },
-      {
-        "position": "DF",
-        "name": "Torbjørn Heggem",
-        "age": 2015
-      },
-      {
-        "position": "MF",
-        "name": "Kristian Thorstvedt",
-        "age": 2015
-      },
-      {
-        "position": "MF",
-        "name": "Thelo Aasgaard",
-        "age": 2015
-      },
-      {
-        "position": "MF",
-        "name": "Antonio Nusa",
-        "age": 2015
-      },
-      {
-        "position": "MF",
-        "name": "Andreas Schjelderup",
-        "age": 2015
-      },
-      {
-        "position": "MF",
-        "name": "Oscar Bobb",
-        "age": 2015
-      },
-      {
-        "position": "MF",
-        "name": "Jens Petter Hauge",
-        "age": 2015
-      },
-      {
-        "position": "DF",
-        "name": "Sondre Langås",
-        "age": 2015
-      },
-      {
-        "position": "DF",
-        "name": "Henrik Falchener",
-        "age": 2015
-      },
-      {
-        "position": "DF",
-        "name": "Julian Ryerson",
-        "age": 2015
-      }
-    ]
-  },
   "Algeria": {
     "note": "等待 Wikipedia 公布大名单",
     "players": [],
@@ -8974,13 +8840,13 @@
     "source": "pending",
     "fetch_date": "pending"
   },
-  "United States": {
+  "Uruguay": {
     "note": "等待 Wikipedia 公布大名单",
     "players": [],
     "source": "pending",
     "fetch_date": "pending"
   },
-  "Uruguay": {
+  "USA": {
     "note": "等待 Wikipedia 公布大名单",
     "players": [],
     "source": "pending",
