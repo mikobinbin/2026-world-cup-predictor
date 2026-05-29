@@ -420,6 +420,9 @@ def score_all_teams(teams: List[Squad],
         # Step 3: 历史偏移惩罚（从未进决赛的强队：Colombia, Turkey, Ecuador）
         #   这些队的 logit 值偏高（Elo高），但历史上从未证明能夺冠
         #   惩罚因子：0.65（降到原来的65%）
+        # 2026-05 校准：瑞士/挪威Elo虚高，在模型层修正
+        # 挪威：从未进过世界杯8强，Haaland效应导致Elo高于真实实力
+        # 瑞士：2022年才首次进8强，历史底蕴不足，与同等Elo的决赛级球队不符
         no_finals_penalty = {
             "Colombia": 0.65, "Turkey": 0.65, "Ecuador": 0.70,
             "Uzbekistan": 0.60, "Jordan": 0.60,
@@ -430,6 +433,8 @@ def score_all_teams(teams: List[Squad],
             "Egypt": 0.65, "Cameroon": 0.65, "Ghana": 0.70,
             "Ivory Coast": 0.70, "Tunisia": 0.65, "DR Congo": 0.60,
             "Cape Verde": 0.50,
+            "Norway": 0.45,    # 从没进过8强，Elo严重虚高
+            "Switzerland": 0.60,  # 2022才首次进8强，历史底蕴差
         }
 
         # Step 4: 混合 MC(55%) + Logistic(35%) + 历史偏移(10%)
