@@ -276,12 +276,12 @@ def _load_analysis():
     # 2026-05-30 数据层修复：手动覆盖已知真实历史的队
     # （这些队缺Wikipedia数据，但历史成就明确，不能按ELO档位自动分配）
     MANUAL_TOURNAMENT_HISTORY = {
-        "Spain":       ["Final", "Semi"],     # 2010冠军 + 2018四强
-        "Portugal":    ["Semi", "Quarter"],   # 2016欧洲杯冠军 + 2018四强
-        "Germany":     ["Quarter"],           # 2014冠军后重建，仅2022小组赛
-        "England":     ["Quarter", "Final"],  # 2018四强 + 2022六强
-        "Belgium":     ["Quarter"],           # 2018季军后下滑
-        "Netherlands": ["Quarter"],           # 2014三届后重建
+        "Spain":       ["Semi", "Final"],     # 2018四强（早），2010冠军（晚）
+        "Portugal":    ["Quarter", "Semi"],   # 2022十六强（早），2018四强（晚）
+        "Germany":     ["Group"],              # 2022小组赛，2014冠军已是过去
+        "England":     ["Semi", "Quarter"],    # 2018四强（早），2022十六强（晚）
+        "Belgium":     ["Group", "Quarter"],  # 2022小组赛（早），2018季军（晚）
+        "Netherlands": ["Quarter"],            # 2022十六强
     }
     for country in QUALIFIED_TEAMS:
         sq = squad_dicts[country]
