@@ -99,10 +99,23 @@ class TeamScorer:
         mystic_bonus = self._calc_mystic_score(squad, is_host, is_defending_champ)
 
         # 5. modified_elo（用于Monte Carlo）
+        # ── 淘汰赛软脚直接惩罚（ELO层面）────────────────────
+        # 与 _compute_modified_elo 保持一致
+        elo = squad.elo
+        history = squad.tournament_history
+        choke_penalty = 0
+        if elo > 1830:
+            if history and all('Group' in str(h) or '16' in str(h) for h in history):
+                choke_penalty = -80
+            elif len(history) == 0 and elo > 1830:
+                choke_penalty = -50
+            elif elo > 1880 and history and 'Semi' not in str(history[-1]) and 'Final' not in str(history[-1]):
+                choke_penalty = -40
+        effective_elo = elo + choke_penalty
         # 修复：加法而非乘法，防止因子叠加后指数膨胀
         # 每+1%因子加成 = +30 Elo点（ Elo每+100点约胜率+10%）
         ELO_POINTS_PER_MOD = 3000  # 每单位mod对应3000个Elo点
-        modified_elo = squad.elo + total_mod * ELO_POINTS_PER_MOD + mystic_bonus * 50
+        modified_elo = effective_elo + total_mod * ELO_POINTS_PER_MOD + mystic_bonus * 50
 
         # 6. 基准概率 = modified_elo 映射的概率
         base_prob = self._elo_to_prob(modified_elo)
@@ -200,6 +213,26 @@ class TeamScorer:
             elif 'Group' in str(recent_tournament):
                 base += config.world_cup_group
 
+        # ── 淘汰赛软脚惩罚 ───────────────────────────────────────
+        # 高ELO球队（>1850）如果长期止步小组赛/16强，说明是预选赛型伪强队
+        # 典型：瑞士(ELO~1890，常年16强)、哥伦比亚(缺席2022/2018)
+        # 惩罚这类队，使其无法靠预选赛积分排在真正有淘汰赛成就的球队前面
+        elo = getattr(squad, 'elo', 1700)
+        history = getattr(squad, 'tournament_history', [])
+        if elo > 1850 and history:
+            # 长期只有小组赛或16强记录的高ELO队 → 惩罚
+            if all('Group' in str(h) or '16' in str(h) for h in history):
+                base -= 0.025   # 预选赛型高ELO队，持续淘汰赛无能
+            elif 'Semi' not in str(recent_tournament) and 'Final' not in str(recent_tournament):
+                # 从未进过四强的高ELO队，小扣一下
+                if elo > 1880:
+                    base -= 0.010
+
+        # 缺席多届世界杯的高ELO队（典型：哥伦比亚缺席2018+2022）
+        # 预选赛表现好不代表正赛能力
+        if elo > 1830 and len(history) == 0:
+            base -= 0.015  # 缺乏正赛数据，视为不稳定因素
+
         return base
 
     def _calc_mystic_score(self, squad: Squad,
@@ -272,6 +305,21 @@ def _compute_modified_elo(squad: Squad, weights: ModelWeights,
     # 基础 Elo
     base_elo = squad.elo
 
+    # ── 淘汰赛软脚直接惩罚（ELO层面）──────────────────────────
+    # 对预选赛型高ELO球队：长期正赛无作为，直接扣ELO
+    # 这是在 elo_cache 之外的独立校准层，符合 skill 规范
+    elo = squad.elo
+    history = squad.tournament_history
+    choke_penalty = 0
+    if elo > 1830:
+        if history and all('Group' in str(h) or '16' in str(h) for h in history):
+            choke_penalty = -80   # 常年16强/小组赛，高ELO无正赛证明
+        elif len(history) == 0 and elo > 1830:
+            choke_penalty = -50   # 缺席世界杯，高ELO参考价值存疑
+        elif elo > 1880 and history and 'Semi' not in str(history[-1]) and 'Final' not in str(history[-1]):
+            choke_penalty = -40   # ELO>1880但从未进四强
+    base_elo += choke_penalty
+
     # 年龄结构（与 TeamScorer._calc_factor_modifier 一致）
     maturity = squad.get_squad_maturity_index()
     age_bonus = -0.06 + maturity * 0.14
@@ -294,6 +342,17 @@ def _compute_modified_elo(squad: Squad, weights: ModelWeights,
             base_exp += experience_config.world_cup_group
 
     exp_bonus = base_exp
+
+    # ── 淘汰赛软脚惩罚（同 _calc_experience_score 逻辑）────────
+    elo = squad.elo
+    history = squad.tournament_history
+    if elo > 1850 and history:
+        if all('Group' in str(h) or '16' in str(h) for h in history):
+            exp_bonus -= 0.025
+        elif 'Semi' not in str(history[-1]) and 'Final' not in str(history[-1]):
+            if elo > 1880: exp_bonus -= 0.010
+    if elo > 1830 and len(history) == 0:
+        exp_bonus -= 0.015
 
     # 近期状态
     form_bonus = (squad.recent_win_rate - 0.3) * 0.10

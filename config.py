@@ -11,9 +11,9 @@ from typing import Dict
 @dataclass
 class ModelWeights:
     """各因子权重配置 — 可手动调整"""
-    elo: float = 0.35          # Elo评分锚点
+    elo: float = 0.30          # Elo评分锚点（从0.35下调，让经验因素更大）
     age_structure: float = 0.20 # 年龄结构
-    tournament_exp: float = 0.15 # 大赛经验
+    tournament_exp: float = 0.25 # 大赛经验（从0.15上调，区分预选赛型和淘汰赛型）
     recent_form: float = 0.15   # 近期状态
     coaching: float = 0.10     # 教练因素
     mystic: float = 0.05       # 玄学因子
@@ -109,12 +109,16 @@ POSITION_WEIGHTS = PositionWeights()
 
 @dataclass
 class ExperienceConfig:
-    """大赛经验系数（缩小量级，防止因子膨胀Elo）"""
-    world_cup_finals: float = 0.03   # 上届进入决赛（+3% Elo等效）
-    world_cup_semi: float = 0.02     # 上届进入四强（+2% Elo等效）
-    world_cup_quarter: float = 0.01  # 上届进入八强（+1% Elo等效）
+    """大赛经验系数（缩小量级，防止因子膨胀Elo）
+
+    2026-05-30 校准：加大决赛/四强档差距，使有淘汰赛历史成就的球队
+    （西班牙、葡萄牙）能压过预选赛型高ELO球队（瑞士、哥伦比亚）。
+    """
+    world_cup_finals: float = 0.06   # 上届进入决赛（+6%，从0.03上调）
+    world_cup_semi: float = 0.04     # 上届进入四强（+4%，从0.02上调）
+    world_cup_quarter: float = 0.02  # 上届进入八强（+2%，从0.01上调）
     world_cup_group: float = 0.005   # 仅参加小组赛
-    euro_copa_win: float = 0.03      # 近年获得欧洲杯/美洲杯
+    euro_copa_win: float = 0.05      # 近年获得欧洲杯/美洲杯（+5%，从0.03上调）
     no_experience: float = 0.0       # 首次参赛
 
 # ==================== 默认球队数据 ====================
