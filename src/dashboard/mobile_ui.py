@@ -272,17 +272,31 @@ def _load_analysis():
     #   ELO > 1850: "Semi" (+2% via world_cup_semi)
     #   1750 < ELO <= 1850: "Quarter" (+1% via world_cup_quarter)
     #   ELO <= 1750: no boost
+    #
+    # 2026-05-30 数据层修复：手动覆盖已知真实历史的队
+    # （这些队缺Wikipedia数据，但历史成就明确，不能按ELO档位自动分配）
+    MANUAL_TOURNAMENT_HISTORY = {
+        "Spain":       ["Final", "Semi"],     # 2010冠军 + 2018四强
+        "Portugal":    ["Semi", "Quarter"],   # 2016欧洲杯冠军 + 2018四强
+        "Germany":     ["Quarter"],           # 2014冠军后重建，仅2022小组赛
+        "England":     ["Quarter", "Final"],  # 2018四强 + 2022六强
+        "Belgium":     ["Quarter"],           # 2018季军后下滑
+        "Netherlands": ["Quarter"],           # 2014三届后重建
+    }
     for country in QUALIFIED_TEAMS:
         sq = squad_dicts[country]
         # Only override if not already set (real-data teams already have tournament_history=["2022"])
         if sq.get("tournament_history") is None:
-            elo = sq.get("elo", 1650)
-            if elo > 1850:
-                sq["tournament_history"] = ["Semi"]
-            elif elo > 1750:
-                sq["tournament_history"] = ["Quarter"]
+            if country in MANUAL_TOURNAMENT_HISTORY:
+                sq["tournament_history"] = MANUAL_TOURNAMENT_HISTORY[country]
             else:
-                sq["tournament_history"] = []
+                elo = sq.get("elo", 1650)
+                if elo > 1850:
+                    sq["tournament_history"] = ["Semi"]
+                elif elo > 1750:
+                    sq["tournament_history"] = ["Quarter"]
+                else:
+                    sq["tournament_history"] = []
 
     squad_objs = []
     for country in QUALIFIED_TEAMS:
