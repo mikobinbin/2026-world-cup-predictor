@@ -41,17 +41,16 @@ ELO_CACHE = os.path.join(ROOT, "data", "elo_cache_2026.json")
 QUALIFIED_TEAMS = [
     "Argentina", "Brazil", "Uruguay", "Colombia", "Ecuador", "Paraguay",
     "France", "Germany", "Spain", "England", "Portugal", "Netherlands",
-    "Italy", "Belgium", "Croatia", "Switzerland", "Austria", "Poland",
-    "Ukraine", "Romania", "Czech Republic", "Turkey", "Serbia", "Sweden",
-    "Morocco", "Senegal", "Algeria", "Nigeria", "Egypt", "Cameroon",
-    "Ghana", "Ivory Coast", "Tunisia", "DR Congo", "Cape Verde",
-    "Japan", "South Korea", "Iran", "Qatar", "Saudi Arabia", "Australia",
-    "Uzbekistan", "Jordan",
-    "USA", "Mexico", "Canada", "Panama", "Costa Rica", "Honduras", "Jamaica", "Haiti",
-    "New Zealand",
-    # 2026-05 补充漏掉的已晋级队
-    "Norway",
+    "Belgium", "Croatia", "Switzerland", "Austria", "Czech Republic", "Turkey",
+    "Sweden", "Morocco", "Senegal", "Algeria", "Egypt", "Ghana",
+    "Ivory Coast", "Tunisia", "DR Congo", "Cape Verde", "Japan", "South Korea",
+    "Iran", "Iraq", "Qatar", "Saudi Arabia", "Australia", "Uzbekistan", "Jordan",
+    "USA", "Mexico", "Canada", "Panama", "Costa Rica", "Honduras",
+    "Jamaica", "Haiti", "New Zealand", "Norway", "South Africa",
 ]
+
+
+
 
 HOST_COUNTRY = "USA"
 DEFENDING_CHAMPION = "Argentina"
@@ -63,15 +62,16 @@ FLAG = {
     "Belgium": "🇧🇪", "Croatia": "🇭🇷", "Switzerland": "🇨🇭",
     "Uruguay": "🇺🇾", "Colombia": "🇨🇴", "Mexico": "🇲🇽", "USA": "🇺🇸",
     "Japan": "🇯🇵", "South Korea": "🇰🇷", "Australia": "🇦🇺", "Iran": "🇮🇷",
-    "Morocco": "🇲🇦", "Senegal": "🇸🇳", "Nigeria": "🇳🇬", "Egypt": "🇪🇬",
-    "Poland": "🇵🇱", "Austria": "🇦🇹", "Ukraine": "🇺🇦", "Romania": "🇷🇴",
-    "Czech Republic": "🇨🇿", "Turkey": "🇹🇷", "Serbia": "🇷🇸", "Sweden": "🇸🇪",
+    "Morocco": "🇲🇦", "Senegal": "🇸🇳", "Egypt": "🇪🇬",
+    "Austria": "🇦🇹",
+    "Czech Republic": "🇨🇿", "Turkey": "🇹🇷", "Sweden": "🇸🇪",
     "Ecuador": "🇪🇨", "Paraguay": "🇵🇾", "Saudi Arabia": "🇸🇦", "Qatar": "🇶🇦",
-    "Ivory Coast": "🇨🇮", "Ghana": "🇬🇭", "Cameroon": "🇨🇲", "Tunisia": "🇹🇳",
+    "Ivory Coast": "🇨🇮", "Ghana": "🇬🇭", "Tunisia": "🇹🇳",
     "Algeria": "🇩🇿", "DR Congo": "🇨🇩", "Cape Verde": "🇨🇻",
     "Uzbekistan": "🇺🇿", "Jordan": "🇯🇴", "Panama": "🇵🇦",
     "Costa Rica": "🇨🇷", "Honduras": "🇭🇳", "Jamaica": "🇯🇲", "Haiti": "🇭🇹",
-    "Canada": "🇨🇦", "New Zealand": "🇳🇿",
+    "New Zealand": "🇳🇿", "Iraq": "🇮🇶", "Norway": "🇳🇴", "South Africa": "🇿🇦",
+    "Canada": "🇨🇦",
 }
 
 # ── 辅助函数 ───────────────────────────────────────────────────────────
@@ -905,7 +905,7 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 <script>
 var D=__DATA__;
 var U=__UCL__;
-var FL={"Argentina":"AR","Brazil":"BR","France":"FR","Germany":"DE","Spain":"ES","England":"EN","Portugal":"PT","Netherlands":"NL","Italy":"IT","Belgium":"BE","Croatia":"HR","Switzerland":"CH","Austria":"AT","Poland":"PL","Ukraine":"UA","Romania":"RO","Czech Republic":"CZ","Turkey":"TR","Serbia":"RS","Sweden":"SE","Morocco":"MA","Senegal":"SN","Egypt":"EG","Cameroon":"CM","Nigeria":"NG","Algeria":"DZ","Ghana":"GH","Ivory Coast":"CI","Tunisia":"TN","Japan":"JP","South Korea":"KR","Iran":"IR","Qatar":"QA","Saudi Arabia":"SA","Australia":"AU","USA":"US","Mexico":"MX","Canada":"CA","Panama":"PA","Costa Rica":"CR","Honduras":"HN","Jamaica":"JM","Haiti":"HT","New Zealand":"NZ","Ecuador":"EC","Paraguay":"PY","Colombia":"CO","Uruguay":"UY","Uzbekistan":"UZ","Jordan":"JO","Cape Verde":"CV","DR Congo":"CD"};
+var FL={"Argentina":"AR","Brazil":"BR","France":"FR","Germany":"DE","Spain":"ES","England":"EN","Portugal":"PT","Netherlands":"NL","Belgium":"BE","Croatia":"HR","Switzerland":"CH","Austria":"AT","Czech Republic":"CZ","Turkey":"TR","Sweden":"SE","Morocco":"MA","Senegal":"SN","Egypt":"EG","Algeria":"DZ","Ghana":"GH","Ivory Coast":"CI","Tunisia":"TN","DR Congo":"CD","Cape Verde":"CV","Japan":"JP","South Korea":"KR","Iran":"IR","Iraq":"IQ","Qatar":"QA","Saudi Arabia":"SA","Australia":"AU","Uzbekistan":"UZ","Jordan":"JO","USA":"US","Mexico":"MX","Canada":"CA","Panama":"PA","Costa Rica":"CR","Honduras":"HN","Jamaica":"JM","Haiti":"HT","New Zealand":"NZ","Ecuador":"EC","Paraguay":"PY","Colombia":"CO","Uruguay":"UY","Norway":"NO","South Africa":"ZA","Scotland":"XS"};
 function fl(c){return FL[c]||"--";}
 function pc(p){return p>15?"var(--bl)":p>5?"var(--gr)":"var(--tx2)";}
 function st(s){return s>0?"+"+s.toFixed(2)+"%":s<0?s.toFixed(2)+"%":"--";}
