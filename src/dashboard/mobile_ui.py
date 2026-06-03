@@ -45,8 +45,8 @@ QUALIFIED_TEAMS = [
     "Sweden", "Morocco", "Senegal", "Algeria", "Egypt", "Ghana",
     "Ivory Coast", "Tunisia", "DR Congo", "Cape Verde", "Japan", "South Korea",
     "Iran", "Iraq", "Qatar", "Saudi Arabia", "Australia", "Uzbekistan", "Jordan",
-    "USA", "Mexico", "Canada", "Panama", "Costa Rica", "Honduras",
-    "Jamaica", "Haiti", "New Zealand", "Norway", "South Africa",
+    "USA", "Mexico", "Canada", "Panama", "Curaçao", "Haiti",
+    "New Zealand", "Norway", "South Africa", "Bosnia and Herzegovina", "Scotland",
 ]
 
 
@@ -58,7 +58,7 @@ DEFENDING_CHAMPION = "Argentina"
 FLAG = {
     "Brazil": "🇧🇷", "Argentina": "🇦🇷", "France": "🇫🇷",
     "England": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Germany": "🇩🇪", "Spain": "🇪🇸",
-    "Portugal": "🇵🇹", "Netherlands": "🇳🇱", "Italy": "🇮🇹",
+    "Portugal": "🇵🇹", "Netherlands": "🇳🇱",
     "Belgium": "🇧🇪", "Croatia": "🇭🇷", "Switzerland": "🇨🇭",
     "Uruguay": "🇺🇾", "Colombia": "🇨🇴", "Mexico": "🇲🇽", "USA": "🇺🇸",
     "Japan": "🇯🇵", "South Korea": "🇰🇷", "Australia": "🇦🇺", "Iran": "🇮🇷",
@@ -69,9 +69,10 @@ FLAG = {
     "Ivory Coast": "🇨🇮", "Ghana": "🇬🇭", "Tunisia": "🇹🇳",
     "Algeria": "🇩🇿", "DR Congo": "🇨🇩", "Cape Verde": "🇨🇻",
     "Uzbekistan": "🇺🇿", "Jordan": "🇯🇴", "Panama": "🇵🇦",
-    "Costa Rica": "🇨🇷", "Honduras": "🇭🇳", "Jamaica": "🇯🇲", "Haiti": "🇭🇹",
+    "Curaçao": "🇨🇼", "Haiti": "🇭🇹",
     "New Zealand": "🇳🇿", "Iraq": "🇮🇶", "Norway": "🇳🇴", "South Africa": "🇿🇦",
     "Canada": "🇨🇦",
+    "Bosnia and Herzegovina": "🇧🇦", "Scotland": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
 }
 
 # ── 辅助函数 ───────────────────────────────────────────────────────────
