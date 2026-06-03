@@ -8510,113 +8510,4333 @@
     ]
   },
   "Algeria": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Melvin Mastil",
+        "position": "1GK",
+        "number": "1",
+        "age": 26,
+        "caps": 1,
+        "goals": 0,
+        "club": "Stade Nyonnais"
+      },
+      {
+        "name": "Aïssa Mandi",
+        "position": "2DF",
+        "number": "2",
+        "age": 35,
+        "caps": 116,
+        "goals": 7,
+        "club": "Lille"
+      },
+      {
+        "name": "Achref Abada",
+        "position": "2DF",
+        "number": "3",
+        "age": 27,
+        "caps": 6,
+        "goals": 1,
+        "club": "USM Alger"
+      },
+      {
+        "name": "Mohamed Amine Tougai",
+        "position": "2DF",
+        "number": "4",
+        "age": 26,
+        "caps": 28,
+        "goals": 2,
+        "club": "Espérance de Tunis"
+      },
+      {
+        "name": "Zineddine Belaïd",
+        "position": "2DF",
+        "number": "5",
+        "age": 27,
+        "caps": 9,
+        "goals": 1,
+        "club": "JS Kabylie"
+      },
+      {
+        "name": "Ramiz Zerrouki",
+        "position": "3MF",
+        "number": "6",
+        "age": 28,
+        "caps": 51,
+        "goals": 3,
+        "club": "Twente"
+      },
+      {
+        "name": "Riyad Mahrez",
+        "position": "4FW",
+        "number": "7",
+        "age": 35,
+        "caps": 113,
+        "goals": 38,
+        "club": "Al-Ahli"
+      },
+      {
+        "name": "Houssem Aouar",
+        "position": "3MF",
+        "number": "8",
+        "age": 28,
+        "caps": 19,
+        "goals": 6,
+        "club": "Al-Ittihad"
+      },
+      {
+        "name": "Amine Gouiri",
+        "position": "4FW",
+        "number": "9",
+        "age": 26,
+        "caps": 21,
+        "goals": 8,
+        "club": "Marseille"
+      },
+      {
+        "name": "Farès Chaïbi",
+        "position": "3MF",
+        "number": "10",
+        "age": 24,
+        "caps": 28,
+        "goals": 3,
+        "club": "Eintracht Frankfurt"
+      },
+      {
+        "name": "Anis Hadj Moussa",
+        "position": "4FW",
+        "number": "11",
+        "age": 24,
+        "caps": 13,
+        "goals": 0,
+        "club": "Feyenoord"
+      },
+      {
+        "name": "Nadhir Benbouali",
+        "position": "4FW",
+        "number": "12",
+        "age": 26,
+        "caps": 2,
+        "goals": 1,
+        "club": "Győri ETO"
+      },
+      {
+        "name": "Jaouen Hadjam",
+        "position": "2DF",
+        "number": "13",
+        "age": 23,
+        "caps": 16,
+        "goals": 3,
+        "club": "Young Boys"
+      },
+      {
+        "name": "Hicham Boudaoui",
+        "position": "3MF",
+        "number": "14",
+        "age": 27,
+        "caps": 32,
+        "goals": 0,
+        "club": "Nice"
+      },
+      {
+        "name": "Rayan Aït-Nouri",
+        "position": "2DF",
+        "number": "15",
+        "age": 25,
+        "caps": 27,
+        "goals": 0,
+        "club": "Manchester City"
+      },
+      {
+        "name": "Oussama Benbot",
+        "position": "1GK",
+        "number": "16",
+        "age": 32,
+        "caps": 2,
+        "goals": 0,
+        "club": "USM Alger"
+      },
+      {
+        "name": "Rafik Belghali",
+        "position": "2DF",
+        "number": "17",
+        "age": 24,
+        "caps": 11,
+        "goals": 1,
+        "club": "Hellas Verona"
+      },
+      {
+        "name": "Mohamed Amoura",
+        "position": "4FW",
+        "number": "18",
+        "age": 26,
+        "caps": 44,
+        "goals": 19,
+        "club": "VfL Wolfsburg"
+      },
+      {
+        "name": "Nabil Bentaleb",
+        "position": "3MF",
+        "number": "19",
+        "age": 32,
+        "caps": 58,
+        "goals": 6,
+        "club": "Lille"
+      },
+      {
+        "name": "Adil Boulbina",
+        "position": "4FW",
+        "number": "20",
+        "age": 23,
+        "caps": 10,
+        "goals": 6,
+        "club": "Al-Duhail"
+      },
+      {
+        "name": "Ramy Bensebaini",
+        "position": "2DF",
+        "number": "21",
+        "age": 31,
+        "caps": 81,
+        "goals": 7,
+        "club": "Borussia Dortmund"
+      },
+      {
+        "name": "Ibrahim Maza",
+        "position": "3MF",
+        "number": "22",
+        "age": 21,
+        "caps": 15,
+        "goals": 2,
+        "club": "Bayer Leverkusen"
+      },
+      {
+        "name": "Luca Zidane",
+        "position": "1GK",
+        "number": "23",
+        "age": 28,
+        "caps": 6,
+        "goals": 0,
+        "club": "Granada"
+      },
+      {
+        "name": "Yacine Titraoui",
+        "position": "3MF",
+        "number": "24",
+        "age": 23,
+        "caps": 5,
+        "goals": 0,
+        "club": "Charleroi"
+      },
+      {
+        "name": "Farès Ghedjemis",
+        "position": "4FW",
+        "number": "25",
+        "age": 24,
+        "caps": 1,
+        "goals": 1,
+        "club": "Frosinone"
+      },
+      {
+        "name": "Samir Chergui",
+        "position": "2DF",
+        "number": "26",
+        "age": 27,
+        "caps": 4,
+        "goals": 0,
+        "club": "Paris FC"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "Australia": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Mathew Ryan",
+        "position": "1GK",
+        "number": "1",
+        "age": 34,
+        "caps": 104,
+        "goals": 0,
+        "club": "Levante"
+      },
+      {
+        "name": "Miloš Degenek",
+        "position": "2DF",
+        "number": "2",
+        "age": 32,
+        "caps": 56,
+        "goals": 1,
+        "club": "APOEL"
+      },
+      {
+        "name": "Alessandro Circati",
+        "position": "2DF",
+        "number": "3",
+        "age": 23,
+        "caps": 12,
+        "goals": 1,
+        "club": "Parma"
+      },
+      {
+        "name": "Jacob Italiano",
+        "position": "2DF",
+        "number": "4",
+        "age": 25,
+        "caps": 4,
+        "goals": 0,
+        "club": "GAK"
+      },
+      {
+        "name": "Jordan Bos",
+        "position": "2DF",
+        "number": "5",
+        "age": 24,
+        "caps": 26,
+        "goals": 4,
+        "club": "Feyenoord"
+      },
+      {
+        "name": "Jason Geria",
+        "position": "2DF",
+        "number": "6",
+        "age": 33,
+        "caps": 13,
+        "goals": 0,
+        "club": "Albirex Niigata"
+      },
+      {
+        "name": "Mathew Leckie",
+        "position": "4FW",
+        "number": "7",
+        "age": 35,
+        "caps": 79,
+        "goals": 14,
+        "club": "Melbourne City"
+      },
+      {
+        "name": "Connor Metcalfe",
+        "position": "3MF",
+        "number": "8",
+        "age": 27,
+        "caps": 35,
+        "goals": 1,
+        "club": "FC St. Pauli"
+      },
+      {
+        "name": "Mohamed Touré",
+        "position": "4FW",
+        "number": "9",
+        "age": 22,
+        "caps": 9,
+        "goals": 2,
+        "club": "Norwich City"
+      },
+      {
+        "name": "Ajdin Hrustic",
+        "position": "4FW",
+        "number": "10",
+        "age": 30,
+        "caps": 37,
+        "goals": 4,
+        "club": "Heracles Almelo"
+      },
+      {
+        "name": "Awer Mabil",
+        "position": "4FW",
+        "number": "11",
+        "age": 31,
+        "caps": 38,
+        "goals": 10,
+        "club": "Castellón"
+      },
+      {
+        "name": "Paul Izzo",
+        "position": "1GK",
+        "number": "12",
+        "age": 31,
+        "caps": 4,
+        "goals": 0,
+        "club": "Randers"
+      },
+      {
+        "name": "Aiden O'Neill",
+        "position": "3MF",
+        "number": "13",
+        "age": 28,
+        "caps": 30,
+        "goals": 0,
+        "club": "New York City FC"
+      },
+      {
+        "name": "Cammy Devlin",
+        "position": "3MF",
+        "number": "14",
+        "age": 28,
+        "caps": 4,
+        "goals": 0,
+        "club": "Heart of Midlothian"
+      },
+      {
+        "name": "Kai Trewin",
+        "position": "2DF",
+        "number": "15",
+        "age": 25,
+        "caps": 5,
+        "goals": 0,
+        "club": "New York City FC"
+      },
+      {
+        "name": "Aziz Behich",
+        "position": "2DF",
+        "number": "16",
+        "age": 36,
+        "caps": 83,
+        "goals": 3,
+        "club": "Melbourne City"
+      },
+      {
+        "name": "Nestory Irankunda",
+        "position": "4FW",
+        "number": "17",
+        "age": 20,
+        "caps": 14,
+        "goals": 5,
+        "club": "Watford"
+      },
+      {
+        "name": "Patrick Beach",
+        "position": "1GK",
+        "number": "18",
+        "age": 23,
+        "caps": 1,
+        "goals": 0,
+        "club": "Melbourne City"
+      },
+      {
+        "name": "Harry Souttar",
+        "position": "2DF",
+        "number": "19",
+        "age": 28,
+        "caps": 37,
+        "goals": 11,
+        "club": "Leicester City"
+      },
+      {
+        "name": "Cristian Volpato",
+        "position": "4FW",
+        "number": "20",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": "Sassuolo"
+      },
+      {
+        "name": "Cameron Burgess",
+        "position": "2DF",
+        "number": "21",
+        "age": 31,
+        "caps": 26,
+        "goals": 0,
+        "club": "Swansea City"
+      },
+      {
+        "name": "Jackson Irvine",
+        "position": "3MF",
+        "number": "22",
+        "age": 33,
+        "caps": 81,
+        "goals": 14,
+        "club": "FC St. Pauli"
+      },
+      {
+        "name": "Nishan Velupillay",
+        "position": "4FW",
+        "number": "23",
+        "age": 25,
+        "caps": 7,
+        "goals": 3,
+        "club": "Melbourne Victory"
+      },
+      {
+        "name": "Paul Okon-Engstler",
+        "position": "3MF",
+        "number": "24",
+        "age": 21,
+        "caps": 5,
+        "goals": 0,
+        "club": "Sydney FC"
+      },
+      {
+        "name": "Lucas Herrington",
+        "position": "2DF",
+        "number": "25",
+        "age": 19,
+        "caps": 3,
+        "goals": 0,
+        "club": "Colorado Rapids"
+      },
+      {
+        "name": "Tete Yengi",
+        "position": "4FW",
+        "number": "26",
+        "age": 26,
+        "caps": 0,
+        "goals": 0,
+        "club": "Machida Zelvia"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "Canada": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Dayne St. Clair",
+        "position": "1GK",
+        "number": "1",
+        "age": 29,
+        "caps": 20,
+        "goals": 0,
+        "club": "Inter Miami CF"
+      },
+      {
+        "name": "Alistair Johnston",
+        "position": "2DF",
+        "number": "2",
+        "age": 28,
+        "caps": 57,
+        "goals": 1,
+        "club": "Celtic"
+      },
+      {
+        "name": "Alfie Jones",
+        "position": "2DF",
+        "number": "3",
+        "age": 29,
+        "caps": 2,
+        "goals": 0,
+        "club": "Middlesbrough"
+      },
+      {
+        "name": "Luc de Fougerolles",
+        "position": "2DF",
+        "number": "4",
+        "age": 21,
+        "caps": 12,
+        "goals": 0,
+        "club": "Dender"
+      },
+      {
+        "name": "Joel Waterman",
+        "position": "2DF",
+        "number": "5",
+        "age": 30,
+        "caps": 17,
+        "goals": 0,
+        "club": "Chicago Fire FC"
+      },
+      {
+        "name": "Mathieu Choinière",
+        "position": "3MF",
+        "number": "6",
+        "age": 27,
+        "caps": 23,
+        "goals": 0,
+        "club": "Los Angeles FC"
+      },
+      {
+        "name": "Stephen Eustáquio",
+        "position": "3MF",
+        "number": "7",
+        "age": 30,
+        "caps": 55,
+        "goals": 4,
+        "club": "Los Angeles FC"
+      },
+      {
+        "name": "Ismaël Koné",
+        "position": "3MF",
+        "number": "8",
+        "age": 24,
+        "caps": 39,
+        "goals": 4,
+        "club": "Sassuolo"
+      },
+      {
+        "name": "Cyle Larin",
+        "position": "4FW",
+        "number": "9",
+        "age": 31,
+        "caps": 89,
+        "goals": 30,
+        "club": "Southampton"
+      },
+      {
+        "name": "Jonathan David",
+        "position": "4FW",
+        "number": "10",
+        "age": 26,
+        "caps": 76,
+        "goals": 39,
+        "club": "Juventus"
+      },
+      {
+        "name": "Liam Millar",
+        "position": "3MF",
+        "number": "11",
+        "age": 27,
+        "caps": 40,
+        "goals": 1,
+        "club": "Hull City"
+      },
+      {
+        "name": "Tani Oluwaseyi",
+        "position": "4FW",
+        "number": "12",
+        "age": 26,
+        "caps": 23,
+        "goals": 2,
+        "club": "Villarreal"
+      },
+      {
+        "name": "Derek Cornelius",
+        "position": "2DF",
+        "number": "13",
+        "age": 29,
+        "caps": 43,
+        "goals": 1,
+        "club": "Rangers"
+      },
+      {
+        "name": "Jacob Shaffelburg",
+        "position": "3MF",
+        "number": "14",
+        "age": 27,
+        "caps": 31,
+        "goals": 6,
+        "club": "Los Angeles FC"
+      },
+      {
+        "name": "Moïse Bombito",
+        "position": "2DF",
+        "number": "15",
+        "age": 26,
+        "caps": 20,
+        "goals": 0,
+        "club": "Nice"
+      },
+      {
+        "name": "Maxime Crépeau",
+        "position": "1GK",
+        "number": "16",
+        "age": 32,
+        "caps": 31,
+        "goals": 0,
+        "club": "Orlando City SC"
+      },
+      {
+        "name": "Tajon Buchanan",
+        "position": "4FW",
+        "number": "17",
+        "age": 27,
+        "caps": 59,
+        "goals": 8,
+        "club": "Villarreal"
+      },
+      {
+        "name": "Owen Goodman",
+        "position": "1GK",
+        "number": "18",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": "Barnsley"
+      },
+      {
+        "name": "Alphonso Davies",
+        "position": "2DF",
+        "number": "19",
+        "age": 26,
+        "caps": 58,
+        "goals": 15,
+        "club": "Bayern Munich"
+      },
+      {
+        "name": "Ali Ahmed",
+        "position": "4FW",
+        "number": "20",
+        "age": 26,
+        "caps": 24,
+        "goals": 1,
+        "club": "Norwich City"
+      },
+      {
+        "name": "Jonathan Osorio",
+        "position": "3MF",
+        "number": "21",
+        "age": 34,
+        "caps": 90,
+        "goals": 10,
+        "club": "Toronto FC"
+      },
+      {
+        "name": "Richie Laryea",
+        "position": "2DF",
+        "number": "22",
+        "age": 31,
+        "caps": 74,
+        "goals": 1,
+        "club": "Toronto FC"
+      },
+      {
+        "name": "Niko Sigur",
+        "position": "2DF",
+        "number": "23",
+        "age": 23,
+        "caps": 18,
+        "goals": 2,
+        "club": "Hajduk Split"
+      },
+      {
+        "name": "Promise David",
+        "position": "4FW",
+        "number": "24",
+        "age": 25,
+        "caps": 9,
+        "goals": 3,
+        "club": "Union Saint-Gilloise"
+      },
+      {
+        "name": "Nathan Saliba",
+        "position": "3MF",
+        "number": "25",
+        "age": 22,
+        "caps": 14,
+        "goals": 2,
+        "club": "Anderlecht"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "Ecuador": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Hernán Galíndez",
+        "position": "1GK",
+        "number": "1",
+        "age": 39,
+        "caps": 34,
+        "goals": 0,
+        "club": "Huracán"
+      },
+      {
+        "name": "Félix Torres",
+        "position": "2DF",
+        "number": "2",
+        "age": 29,
+        "caps": 48,
+        "goals": 5,
+        "club": "Internacional"
+      },
+      {
+        "name": "Piero Hincapié",
+        "position": "2DF",
+        "number": "3",
+        "age": 24,
+        "caps": 51,
+        "goals": 3,
+        "club": "Arsenal"
+      },
+      {
+        "name": "Joel Ordóñez",
+        "position": "2DF",
+        "number": "4",
+        "age": 22,
+        "caps": 16,
+        "goals": 0,
+        "club": "Club Brugge"
+      },
+      {
+        "name": "Jordy Alcívar",
+        "position": "3MF",
+        "number": "5",
+        "age": 27,
+        "caps": 10,
+        "goals": 1,
+        "club": "Independiente del Valle"
+      },
+      {
+        "name": "Willian Pacho",
+        "position": "2DF",
+        "number": "6",
+        "age": 25,
+        "caps": 34,
+        "goals": 2,
+        "club": "Paris Saint-Germain"
+      },
+      {
+        "name": "Pervis Estupiñán",
+        "position": "2DF",
+        "number": "7",
+        "age": 28,
+        "caps": 53,
+        "goals": 4,
+        "club": "Milan"
+      },
+      {
+        "name": "Anthony Valencia",
+        "position": "3MF",
+        "number": "8",
+        "age": 23,
+        "caps": 2,
+        "goals": 1,
+        "club": "Antwerp"
+      },
+      {
+        "name": "John Yeboah",
+        "position": "4FW",
+        "number": "9",
+        "age": 26,
+        "caps": 22,
+        "goals": 3,
+        "club": "Venezia"
+      },
+      {
+        "name": "Kendry Páez",
+        "position": "3MF",
+        "number": "10",
+        "age": 19,
+        "caps": 25,
+        "goals": 2,
+        "club": "River Plate"
+      },
+      {
+        "name": "Kevin Rodríguez",
+        "position": "4FW",
+        "number": "11",
+        "age": 26,
+        "caps": 31,
+        "goals": 2,
+        "club": "Union Saint-Gilloise"
+      },
+      {
+        "name": "Moisés Ramírez",
+        "position": "1GK",
+        "number": "12",
+        "age": 26,
+        "caps": 7,
+        "goals": 0,
+        "club": "Kifisia"
+      },
+      {
+        "name": "Enner Valencia",
+        "position": "4FW",
+        "number": "13",
+        "age": 37,
+        "caps": 105,
+        "goals": 49,
+        "club": "Pachuca"
+      },
+      {
+        "name": "Alan Minda",
+        "position": "3MF",
+        "number": "14",
+        "age": 23,
+        "caps": 19,
+        "goals": 2,
+        "club": "Atlético Mineiro"
+      },
+      {
+        "name": "Pedro Vite",
+        "position": "3MF",
+        "number": "15",
+        "age": 24,
+        "caps": 16,
+        "goals": 1,
+        "club": "UNAM"
+      },
+      {
+        "name": "Jordy Caicedo",
+        "position": "4FW",
+        "number": "16",
+        "age": 29,
+        "caps": 19,
+        "goals": 3,
+        "club": "Huracán"
+      },
+      {
+        "name": "Ángelo Preciado",
+        "position": "2DF",
+        "number": "17",
+        "age": 28,
+        "caps": 54,
+        "goals": 0,
+        "club": "Atlético Mineiro"
+      },
+      {
+        "name": "Denil Castillo",
+        "position": "3MF",
+        "number": "18",
+        "age": 22,
+        "caps": 5,
+        "goals": 0,
+        "club": "Midtjylland"
+      },
+      {
+        "name": "Gonzalo Plata",
+        "position": "4FW",
+        "number": "19",
+        "age": 26,
+        "caps": 49,
+        "goals": 8,
+        "club": "Flamengo"
+      },
+      {
+        "name": "Nilson Angulo",
+        "position": "4FW",
+        "number": "20",
+        "age": 23,
+        "caps": 13,
+        "goals": 1,
+        "club": "Sunderland"
+      },
+      {
+        "name": "Alan Franco",
+        "position": "3MF",
+        "number": "21",
+        "age": 28,
+        "caps": 57,
+        "goals": 1,
+        "club": "Atlético Mineiro"
+      },
+      {
+        "name": "Gonzalo Valle",
+        "position": "1GK",
+        "number": "22",
+        "age": 30,
+        "caps": 3,
+        "goals": 0,
+        "club": "LDU Quito"
+      },
+      {
+        "name": "Moisés Caicedo",
+        "position": "3MF",
+        "number": "23",
+        "age": 25,
+        "caps": 60,
+        "goals": 3,
+        "club": "Chelsea"
+      },
+      {
+        "name": "Jeremy Arévalo",
+        "position": "4FW",
+        "number": "24",
+        "age": 21,
+        "caps": 3,
+        "goals": 0,
+        "club": "VfB Stuttgart"
+      },
+      {
+        "name": "Jackson Porozo",
+        "position": "2DF",
+        "number": "25",
+        "age": 26,
+        "caps": 9,
+        "goals": 1,
+        "club": "Tijuana"
+      },
+      {
+        "name": "Yaimar Medina",
+        "position": "2DF",
+        "number": "26",
+        "age": 22,
+        "caps": 5,
+        "goals": 0,
+        "club": "Genk"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "Egypt": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Mohamed El Shenawy",
+        "position": "1GK",
+        "number": "1",
+        "age": 38,
+        "caps": 76,
+        "goals": 0,
+        "club": "Al Ahly"
+      },
+      {
+        "name": "Yasser Ibrahim",
+        "position": "2DF",
+        "number": "2",
+        "age": 33,
+        "caps": 16,
+        "goals": 1,
+        "club": "Al Ahly"
+      },
+      {
+        "name": "Mohamed Hany",
+        "position": "2DF",
+        "number": "3",
+        "age": 30,
+        "caps": 41,
+        "goals": 0,
+        "club": "Al Ahly"
+      },
+      {
+        "name": "Hossam Abdelmaguid",
+        "position": "2DF",
+        "number": "4",
+        "age": 25,
+        "caps": 13,
+        "goals": 0,
+        "club": "Zamalek"
+      },
+      {
+        "name": "Ramy Rabia",
+        "position": "2DF",
+        "number": "5",
+        "age": 33,
+        "caps": 44,
+        "goals": 5,
+        "club": "Al-Ain"
+      },
+      {
+        "name": "Mohamed Abdelmonem",
+        "position": "2DF",
+        "number": "6",
+        "age": 27,
+        "caps": 35,
+        "goals": 3,
+        "club": "Nice"
+      },
+      {
+        "name": "Trézéguet",
+        "position": "4FW",
+        "number": "7",
+        "age": 32,
+        "caps": 95,
+        "goals": 23,
+        "club": "Al Ahly"
+      },
+      {
+        "name": "Emam Ashour",
+        "position": "3MF",
+        "number": "8",
+        "age": 28,
+        "caps": 28,
+        "goals": 0,
+        "club": "Al Ahly"
+      },
+      {
+        "name": "Hamza Abdelkarim",
+        "position": "4FW",
+        "number": "9",
+        "age": 18,
+        "caps": 1,
+        "goals": 0,
+        "club": "Barcelona"
+      },
+      {
+        "name": "Mohamed Salah",
+        "position": "4FW",
+        "number": "10",
+        "age": 34,
+        "caps": 115,
+        "goals": 67,
+        "club": "Liverpool"
+      },
+      {
+        "name": "Mostafa Ziko",
+        "position": "3MF",
+        "number": "11",
+        "age": 29,
+        "caps": 1,
+        "goals": 1,
+        "club": "Pyramids"
+      },
+      {
+        "name": "Haissem Hassan",
+        "position": "4FW",
+        "number": "12",
+        "age": 24,
+        "caps": 3,
+        "goals": 0,
+        "club": "Oviedo"
+      },
+      {
+        "name": "Ahmed Fatouh",
+        "position": "2DF",
+        "number": "13",
+        "age": 28,
+        "caps": 38,
+        "goals": 1,
+        "club": "Zamalek"
+      },
+      {
+        "name": "Hamdy Fathy",
+        "position": "3MF",
+        "number": "14",
+        "age": 32,
+        "caps": 62,
+        "goals": 3,
+        "club": "Al-Wakrah"
+      },
+      {
+        "name": "Karim Hafez",
+        "position": "2DF",
+        "number": "15",
+        "age": 30,
+        "caps": 8,
+        "goals": 0,
+        "club": "Pyramids"
+      },
+      {
+        "name": "El Mahdy Soliman",
+        "position": "1GK",
+        "number": "16",
+        "age": 39,
+        "caps": 0,
+        "goals": 0,
+        "club": "Zamalek"
+      },
+      {
+        "name": "Mohanad Lasheen",
+        "position": "3MF",
+        "number": "17",
+        "age": 30,
+        "caps": 22,
+        "goals": 0,
+        "club": "Pyramids"
+      },
+      {
+        "name": "Nabil Emad",
+        "position": "3MF",
+        "number": "18",
+        "age": 30,
+        "caps": 12,
+        "goals": 0,
+        "club": "Al-Najma"
+      },
+      {
+        "name": "Marwan Attia",
+        "position": "3MF",
+        "number": "19",
+        "age": 28,
+        "caps": 33,
+        "goals": 1,
+        "club": "Al Ahly"
+      },
+      {
+        "name": "Ibrahim Adel",
+        "position": "4FW",
+        "number": "20",
+        "age": 25,
+        "caps": 23,
+        "goals": 3,
+        "club": "Nordsjælland"
+      },
+      {
+        "name": "Mahmoud Saber",
+        "position": "3MF",
+        "number": "21",
+        "age": 25,
+        "caps": 15,
+        "goals": 1,
+        "club": "ZED"
+      },
+      {
+        "name": "Omar Marmoush",
+        "position": "4FW",
+        "number": "22",
+        "age": 27,
+        "caps": 48,
+        "goals": 11,
+        "club": "Manchester City"
+      },
+      {
+        "name": "Mostafa Shobeir",
+        "position": "1GK",
+        "number": "23",
+        "age": 26,
+        "caps": 8,
+        "goals": 0,
+        "club": "Al Ahly"
+      },
+      {
+        "name": "Tarek Alaa",
+        "position": "2DF",
+        "number": "24",
+        "age": 24,
+        "caps": 2,
+        "goals": 0,
+        "club": "ZED"
+      },
+      {
+        "name": "Zizo",
+        "position": "4FW",
+        "number": "25",
+        "age": 30,
+        "caps": 62,
+        "goals": 5,
+        "club": "Al Ahly"
+      },
+      {
+        "name": "Mohamed Alaa",
+        "position": "1GK",
+        "number": "26",
+        "age": 27,
+        "caps": 0,
+        "goals": 0,
+        "club": "El Gouna"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "England": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Jordan Pickford",
+        "position": "1GK",
+        "number": "1",
+        "age": 32,
+        "caps": 82,
+        "goals": 0,
+        "club": "Everton"
+      },
+      {
+        "name": "Ezri Konsa",
+        "position": "2DF",
+        "number": "2",
+        "age": 29,
+        "caps": 18,
+        "goals": 1,
+        "club": "Aston Villa"
+      },
+      {
+        "name": "Nico O'Reilly",
+        "position": "2DF",
+        "number": "3",
+        "age": 21,
+        "caps": 3,
+        "goals": 0,
+        "club": "Manchester City"
+      },
+      {
+        "name": "Declan Rice",
+        "position": "3MF",
+        "number": "4",
+        "age": 27,
+        "caps": 72,
+        "goals": 6,
+        "club": "Arsenal"
+      },
+      {
+        "name": "John Stones",
+        "position": "2DF",
+        "number": "5",
+        "age": 32,
+        "caps": 87,
+        "goals": 3,
+        "club": "Manchester City"
+      },
+      {
+        "name": "Marc Guéhi",
+        "position": "2DF",
+        "number": "6",
+        "age": 26,
+        "caps": 27,
+        "goals": 1,
+        "club": "Manchester City"
+      },
+      {
+        "name": "Bukayo Saka",
+        "position": "4FW",
+        "number": "7",
+        "age": 25,
+        "caps": 48,
+        "goals": 14,
+        "club": "Arsenal"
+      },
+      {
+        "name": "Elliot Anderson",
+        "position": "3MF",
+        "number": "8",
+        "age": 24,
+        "caps": 7,
+        "goals": 0,
+        "club": "Nottingham Forest"
+      },
+      {
+        "name": "Harry Kane",
+        "position": "4FW",
+        "number": "9",
+        "age": 33,
+        "caps": 112,
+        "goals": 78,
+        "club": "Bayern Munich"
+      },
+      {
+        "name": "Jude Bellingham",
+        "position": "3MF",
+        "number": "10",
+        "age": 23,
+        "caps": 46,
+        "goals": 6,
+        "club": "Real Madrid"
+      },
+      {
+        "name": "Marcus Rashford",
+        "position": "4FW",
+        "number": "11",
+        "age": 29,
+        "caps": 70,
+        "goals": 18,
+        "club": "Barcelona"
+      },
+      {
+        "name": "Tino Livramento",
+        "position": "2DF",
+        "number": "12",
+        "age": 24,
+        "caps": 5,
+        "goals": 0,
+        "club": "Newcastle United"
+      },
+      {
+        "name": "Dean Henderson",
+        "position": "1GK",
+        "number": "13",
+        "age": 29,
+        "caps": 4,
+        "goals": 0,
+        "club": "Crystal Palace"
+      },
+      {
+        "name": "Jordan Henderson",
+        "position": "3MF",
+        "number": "14",
+        "age": 36,
+        "caps": 89,
+        "goals": 3,
+        "club": "Brentford"
+      },
+      {
+        "name": "Dan Burn",
+        "position": "2DF",
+        "number": "15",
+        "age": 34,
+        "caps": 6,
+        "goals": 0,
+        "club": "Newcastle United"
+      },
+      {
+        "name": "Kobbie Mainoo",
+        "position": "3MF",
+        "number": "16",
+        "age": 21,
+        "caps": 12,
+        "goals": 0,
+        "club": "Manchester United"
+      },
+      {
+        "name": "Morgan Rogers",
+        "position": "3MF",
+        "number": "17",
+        "age": 24,
+        "caps": 13,
+        "goals": 1,
+        "club": "Aston Villa"
+      },
+      {
+        "name": "Anthony Gordon",
+        "position": "4FW",
+        "number": "18",
+        "age": 25,
+        "caps": 17,
+        "goals": 2,
+        "club": "Newcastle United"
+      },
+      {
+        "name": "Ollie Watkins",
+        "position": "4FW",
+        "number": "19",
+        "age": 31,
+        "caps": 20,
+        "goals": 6,
+        "club": "Aston Villa"
+      },
+      {
+        "name": "Noni Madueke",
+        "position": "4FW",
+        "number": "20",
+        "age": 24,
+        "caps": 10,
+        "goals": 1,
+        "club": "Arsenal"
+      },
+      {
+        "name": "Eberechi Eze",
+        "position": "3MF",
+        "number": "21",
+        "age": 28,
+        "caps": 16,
+        "goals": 3,
+        "club": "Arsenal"
+      },
+      {
+        "name": "Ivan Toney",
+        "position": "4FW",
+        "number": "22",
+        "age": 30,
+        "caps": 7,
+        "goals": 1,
+        "club": "Al-Ahli"
+      },
+      {
+        "name": "James Trafford",
+        "position": "1GK",
+        "number": "23",
+        "age": 24,
+        "caps": 1,
+        "goals": 0,
+        "club": "Manchester City"
+      },
+      {
+        "name": "Reece James",
+        "position": "2DF",
+        "number": "24",
+        "age": 27,
+        "caps": 22,
+        "goals": 1,
+        "club": "Chelsea"
+      },
+      {
+        "name": "Djed Spence",
+        "position": "2DF",
+        "number": "25",
+        "age": 26,
+        "caps": 4,
+        "goals": 0,
+        "club": "Tottenham Hotspur"
+      },
+      {
+        "name": "Jarell Quansah",
+        "position": "2DF",
+        "number": "26",
+        "age": 23,
+        "caps": 1,
+        "goals": 0,
+        "club": "Bayer Leverkusen"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "Germany": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Manuel Neuer",
+        "position": "1GK",
+        "number": "1",
+        "age": 40,
+        "caps": 124,
+        "goals": 0,
+        "club": "Bayern Munich"
+      },
+      {
+        "name": "Antonio Rüdiger",
+        "position": "2DF",
+        "number": "2",
+        "age": 33,
+        "caps": 82,
+        "goals": 3,
+        "club": "Real Madrid"
+      },
+      {
+        "name": "Waldemar Anton",
+        "position": "2DF",
+        "number": "3",
+        "age": 30,
+        "caps": 12,
+        "goals": 0,
+        "club": "Borussia Dortmund"
+      },
+      {
+        "name": "Jonathan Tah",
+        "position": "2DF",
+        "number": "4",
+        "age": 30,
+        "caps": 46,
+        "goals": 1,
+        "club": "Bayern Munich"
+      },
+      {
+        "name": "Aleksandar Pavlović",
+        "position": "3MF",
+        "number": "5",
+        "age": 22,
+        "caps": 10,
+        "goals": 1,
+        "club": "Bayern Munich"
+      },
+      {
+        "name": "Joshua Kimmich",
+        "position": "2DF",
+        "number": "6",
+        "age": 31,
+        "caps": 109,
+        "goals": 10,
+        "club": "Bayern Munich"
+      },
+      {
+        "name": "Kai Havertz",
+        "position": "4FW",
+        "number": "7",
+        "age": 27,
+        "caps": 57,
+        "goals": 21,
+        "club": "Arsenal"
+      },
+      {
+        "name": "Leon Goretzka",
+        "position": "3MF",
+        "number": "8",
+        "age": 31,
+        "caps": 69,
+        "goals": 15,
+        "club": "Bayern Munich"
+      },
+      {
+        "name": "Jamie Leweling",
+        "position": "3MF",
+        "number": "9",
+        "age": 25,
+        "caps": 4,
+        "goals": 1,
+        "club": "VfB Stuttgart"
+      },
+      {
+        "name": "Jamal Musiala",
+        "position": "3MF",
+        "number": "10",
+        "age": 23,
+        "caps": 41,
+        "goals": 9,
+        "club": "Bayern Munich"
+      },
+      {
+        "name": "Nick Woltemade",
+        "position": "4FW",
+        "number": "11",
+        "age": 24,
+        "caps": 11,
+        "goals": 4,
+        "club": "Newcastle United"
+      },
+      {
+        "name": "Oliver Baumann",
+        "position": "1GK",
+        "number": "12",
+        "age": 36,
+        "caps": 12,
+        "goals": 0,
+        "club": "TSG Hoffenheim"
+      },
+      {
+        "name": "Pascal Groß",
+        "position": "3MF",
+        "number": "13",
+        "age": 35,
+        "caps": 18,
+        "goals": 1,
+        "club": "Brighton & Hove Albion"
+      },
+      {
+        "name": "Maximilian Beier",
+        "position": "4FW",
+        "number": "14",
+        "age": 24,
+        "caps": 8,
+        "goals": 0,
+        "club": "Borussia Dortmund"
+      },
+      {
+        "name": "Nico Schlotterbeck",
+        "position": "2DF",
+        "number": "15",
+        "age": 27,
+        "caps": 26,
+        "goals": 0,
+        "club": "Borussia Dortmund"
+      },
+      {
+        "name": "Angelo Stiller",
+        "position": "3MF",
+        "number": "16",
+        "age": 25,
+        "caps": 7,
+        "goals": 0,
+        "club": "VfB Stuttgart"
+      },
+      {
+        "name": "Florian Wirtz",
+        "position": "3MF",
+        "number": "17",
+        "age": 23,
+        "caps": 40,
+        "goals": 11,
+        "club": "Liverpool"
+      },
+      {
+        "name": "Nathaniel Brown",
+        "position": "2DF",
+        "number": "18",
+        "age": 23,
+        "caps": 4,
+        "goals": 0,
+        "club": "Eintracht Frankfurt"
+      },
+      {
+        "name": "Leroy Sané",
+        "position": "3MF",
+        "number": "19",
+        "age": 30,
+        "caps": 75,
+        "goals": 16,
+        "club": "Galatasaray"
+      },
+      {
+        "name": "Nadiem Amiri",
+        "position": "3MF",
+        "number": "20",
+        "age": 30,
+        "caps": 10,
+        "goals": 1,
+        "club": "Mainz 05"
+      },
+      {
+        "name": "Alexander Nübel",
+        "position": "1GK",
+        "number": "21",
+        "age": 30,
+        "caps": 3,
+        "goals": 0,
+        "club": "VfB Stuttgart"
+      },
+      {
+        "name": "David Raum",
+        "position": "2DF",
+        "number": "22",
+        "age": 28,
+        "caps": 36,
+        "goals": 1,
+        "club": "RB Leipzig"
+      },
+      {
+        "name": "Felix Nmecha",
+        "position": "3MF",
+        "number": "23",
+        "age": 26,
+        "caps": 7,
+        "goals": 1,
+        "club": "Borussia Dortmund"
+      },
+      {
+        "name": "Malick Thiaw",
+        "position": "2DF",
+        "number": "24",
+        "age": 25,
+        "caps": 5,
+        "goals": 0,
+        "club": "Newcastle United"
+      },
+      {
+        "name": "Lennart Karl",
+        "position": "3MF",
+        "number": "25",
+        "age": 18,
+        "caps": 3,
+        "goals": 0,
+        "club": "Bayern Munich"
+      },
+      {
+        "name": "Deniz Undav",
+        "position": "4FW",
+        "number": "26",
+        "age": 30,
+        "caps": 8,
+        "goals": 6,
+        "club": "VfB Stuttgart"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "Ghana": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Lawrence Ati-Zigi",
+        "position": "1GK",
+        "number": "1",
+        "age": 30,
+        "caps": 28,
+        "goals": 0,
+        "club": "St. Gallen"
+      },
+      {
+        "name": "Alidu Seidu",
+        "position": "2DF",
+        "number": "2",
+        "age": 26,
+        "caps": 23,
+        "goals": 1,
+        "club": "Rennes"
+      },
+      {
+        "name": "Caleb Yirenkyi",
+        "position": "3MF",
+        "number": "3",
+        "age": 20,
+        "caps": 10,
+        "goals": 0,
+        "club": "Nordsjælland"
+      },
+      {
+        "name": "Jonas Adjetey",
+        "position": "2DF",
+        "number": "4",
+        "age": 23,
+        "caps": 9,
+        "goals": 0,
+        "club": "VfL Wolfsburg"
+      },
+      {
+        "name": "Thomas Partey",
+        "position": "3MF",
+        "number": "5",
+        "age": 33,
+        "caps": 56,
+        "goals": 15,
+        "club": "Villarreal"
+      },
+      {
+        "name": "Abdul Mumin",
+        "position": "2DF",
+        "number": "6",
+        "age": 28,
+        "caps": 4,
+        "goals": 0,
+        "club": "Rayo Vallecano"
+      },
+      {
+        "name": "Abdul Fatawu",
+        "position": "4FW",
+        "number": "7",
+        "age": 22,
+        "caps": 27,
+        "goals": 3,
+        "club": "Leicester City"
+      },
+      {
+        "name": "Kwasi Sibo",
+        "position": "3MF",
+        "number": "8",
+        "age": 28,
+        "caps": 7,
+        "goals": 0,
+        "club": "Oviedo"
+      },
+      {
+        "name": "Jordan Ayew",
+        "position": "4FW",
+        "number": "9",
+        "age": 35,
+        "caps": 117,
+        "goals": 33,
+        "club": "Leicester City"
+      },
+      {
+        "name": "Brandon Thomas-Asante",
+        "position": "4FW",
+        "number": "10",
+        "age": 28,
+        "caps": 7,
+        "goals": 1,
+        "club": "Coventry City"
+      },
+      {
+        "name": "Antoine Semenyo",
+        "position": "3MF",
+        "number": "11",
+        "age": 26,
+        "caps": 34,
+        "goals": 3,
+        "club": "Manchester City"
+      },
+      {
+        "name": "Joseph Anang",
+        "position": "1GK",
+        "number": "12",
+        "age": 26,
+        "caps": 1,
+        "goals": 0,
+        "club": "St Patrick's Athletic"
+      },
+      {
+        "name": "Christopher Bonsu Baah",
+        "position": "4FW",
+        "number": "13",
+        "age": 22,
+        "caps": 8,
+        "goals": 0,
+        "club": "Al-Qadsiah"
+      },
+      {
+        "name": "Gideon Mensah",
+        "position": "2DF",
+        "number": "14",
+        "age": 28,
+        "caps": 39,
+        "goals": 0,
+        "club": "Auxerre"
+      },
+      {
+        "name": "Elisha Owusu",
+        "position": "3MF",
+        "number": "15",
+        "age": 29,
+        "caps": 19,
+        "goals": 0,
+        "club": "Auxerre"
+      },
+      {
+        "name": "Benjamin Asare",
+        "position": "1GK",
+        "number": "16",
+        "age": 34,
+        "caps": 10,
+        "goals": 0,
+        "club": "Hearts of Oak"
+      },
+      {
+        "name": "Abdul Rahman Baba",
+        "position": "2DF",
+        "number": "17",
+        "age": 32,
+        "caps": 52,
+        "goals": 1,
+        "club": "PAOK"
+      },
+      {
+        "name": "Jerome Opoku",
+        "position": "2DF",
+        "number": "18",
+        "age": 28,
+        "caps": 10,
+        "goals": 1,
+        "club": "İstanbul Başakşehir"
+      },
+      {
+        "name": "Iñaki Williams",
+        "position": "4FW",
+        "number": "19",
+        "age": 32,
+        "caps": 25,
+        "goals": 2,
+        "club": "Athletic Bilbao"
+      },
+      {
+        "name": "Augustine Boakye",
+        "position": "3MF",
+        "number": "20",
+        "age": 26,
+        "caps": 0,
+        "goals": 0,
+        "club": "Saint-Étienne"
+      },
+      {
+        "name": "Kojo Peprah Oppong",
+        "position": "2DF",
+        "number": "21",
+        "age": 22,
+        "caps": 4,
+        "goals": 0,
+        "club": "Nice"
+      },
+      {
+        "name": "Kamaldeen Sulemana",
+        "position": "4FW",
+        "number": "22",
+        "age": 24,
+        "caps": 27,
+        "goals": 1,
+        "club": "Atalanta"
+      },
+      {
+        "name": "Derrick Luckassen",
+        "position": "2DF",
+        "number": "23",
+        "age": 31,
+        "caps": 1,
+        "goals": 0,
+        "club": "Pafos"
+      },
+      {
+        "name": "Ernest Nuamah",
+        "position": "4FW",
+        "number": "24",
+        "age": 23,
+        "caps": 18,
+        "goals": 4,
+        "club": "Lyon"
+      },
+      {
+        "name": "Prince Kwabena Adu",
+        "position": "4FW",
+        "number": "25",
+        "age": 23,
+        "caps": 4,
+        "goals": 0,
+        "club": "Viktoria Plzeň"
+      },
+      {
+        "name": "Marvin Senaya",
+        "position": "2DF",
+        "number": "26",
+        "age": 25,
+        "caps": 1,
+        "goals": 0,
+        "club": "Auxerre"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "Morocco": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Yassine Bounou",
+        "position": "1GK",
+        "number": "1",
+        "age": 35,
+        "caps": 89,
+        "goals": 0,
+        "club": "Al-Hilal"
+      },
+      {
+        "name": "Achraf Hakimi",
+        "position": "2DF",
+        "number": "2",
+        "age": 28,
+        "caps": 95,
+        "goals": 11,
+        "club": "Paris Saint-Germain"
+      },
+      {
+        "name": "Noussair Mazraoui",
+        "position": "2DF",
+        "number": "3",
+        "age": 29,
+        "caps": 43,
+        "goals": 2,
+        "club": "Manchester United"
+      },
+      {
+        "name": "Sofyan Amrabat",
+        "position": "3MF",
+        "number": "4",
+        "age": 30,
+        "caps": 73,
+        "goals": 0,
+        "club": "Real Betis"
+      },
+      {
+        "name": "Nayef Aguerd",
+        "position": "2DF",
+        "number": "5",
+        "age": 30,
+        "caps": 64,
+        "goals": 2,
+        "club": "Marseille"
+      },
+      {
+        "name": "Ayyoub Bouaddi",
+        "position": "3MF",
+        "number": "6",
+        "age": 19,
+        "caps": 1,
+        "goals": 0,
+        "club": "Lille"
+      },
+      {
+        "name": "Chemsdine Talbi",
+        "position": "3MF",
+        "number": "7",
+        "age": 21,
+        "caps": 5,
+        "goals": 0,
+        "club": "Sunderland"
+      },
+      {
+        "name": "Azzedine Ounahi",
+        "position": "3MF",
+        "number": "8",
+        "age": 26,
+        "caps": 47,
+        "goals": 9,
+        "club": "Girona"
+      },
+      {
+        "name": "Soufiane Rahimi",
+        "position": "4FW",
+        "number": "9",
+        "age": 30,
+        "caps": 35,
+        "goals": 11,
+        "club": "Al-Ain"
+      },
+      {
+        "name": "Brahim Díaz",
+        "position": "4FW",
+        "number": "10",
+        "age": 27,
+        "caps": 24,
+        "goals": 13,
+        "club": "Real Madrid"
+      },
+      {
+        "name": "Ismael Saibari",
+        "position": "3MF",
+        "number": "11",
+        "age": 25,
+        "caps": 28,
+        "goals": 7,
+        "club": "PSV Eindhoven"
+      },
+      {
+        "name": "Munir Mohamedi",
+        "position": "1GK",
+        "number": "12",
+        "age": 37,
+        "caps": 51,
+        "goals": 0,
+        "club": "RS Berkane"
+      },
+      {
+        "name": "Zakaria El Ouahdi",
+        "position": "2DF",
+        "number": "13",
+        "age": 25,
+        "caps": 2,
+        "goals": 0,
+        "club": "Genk"
+      },
+      {
+        "name": "Issa Diop",
+        "position": "2DF",
+        "number": "14",
+        "age": 29,
+        "caps": 2,
+        "goals": 0,
+        "club": "Fulham"
+      },
+      {
+        "name": "Samir El Mourabet",
+        "position": "3MF",
+        "number": "15",
+        "age": 21,
+        "caps": 2,
+        "goals": 0,
+        "club": "Strasbourg"
+      },
+      {
+        "name": "Gessime Yassine",
+        "position": "3MF",
+        "number": "16",
+        "age": 21,
+        "caps": 3,
+        "goals": 0,
+        "club": "Strasbourg"
+      },
+      {
+        "name": "Abde Ezzalzouli",
+        "position": "4FW",
+        "number": "17",
+        "age": 25,
+        "caps": 35,
+        "goals": 2,
+        "club": "Real Betis"
+      },
+      {
+        "name": "Chadi Riad",
+        "position": "2DF",
+        "number": "18",
+        "age": 23,
+        "caps": 4,
+        "goals": 1,
+        "club": "Crystal Palace"
+      },
+      {
+        "name": "Youssef Belammari",
+        "position": "2DF",
+        "number": "19",
+        "age": 28,
+        "caps": 16,
+        "goals": 0,
+        "club": "Al Ahly"
+      },
+      {
+        "name": "Ayoub El Kaabi",
+        "position": "4FW",
+        "number": "20",
+        "age": 33,
+        "caps": 57,
+        "goals": 22,
+        "club": "Olympiacos"
+      },
+      {
+        "name": "Ayoube Amaimouni",
+        "position": "4FW",
+        "number": "21",
+        "age": 22,
+        "caps": 0,
+        "goals": 0,
+        "club": "Eintracht Frankfurt"
+      },
+      {
+        "name": "Ahmed Reda Tagnaouti",
+        "position": "1GK",
+        "number": "22",
+        "age": 30,
+        "caps": 3,
+        "goals": 0,
+        "club": "AS FAR"
+      },
+      {
+        "name": "Bilal El Khannouss",
+        "position": "3MF",
+        "number": "23",
+        "age": 22,
+        "caps": 35,
+        "goals": 3,
+        "club": "VfB Stuttgart"
+      },
+      {
+        "name": "Neil El Aynaoui",
+        "position": "3MF",
+        "number": "24",
+        "age": 25,
+        "caps": 15,
+        "goals": 2,
+        "club": "Roma"
+      },
+      {
+        "name": "Redouane Halhal",
+        "position": "2DF",
+        "number": "25",
+        "age": 23,
+        "caps": 1,
+        "goals": 0,
+        "club": "Mechelen"
+      },
+      {
+        "name": "Anass Salah-Eddine",
+        "position": "2DF",
+        "number": "26",
+        "age": 24,
+        "caps": 8,
+        "goals": 0,
+        "club": "PSV Eindhoven"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "Netherlands": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Bart Verbruggen",
+        "position": "1GK",
+        "number": "1",
+        "age": 24,
+        "caps": 27,
+        "goals": 0,
+        "club": "Brighton & Hove Albion"
+      },
+      {
+        "name": "Jurriën Timber",
+        "position": "2DF",
+        "number": "2",
+        "age": 25,
+        "caps": 23,
+        "goals": 0,
+        "club": "Arsenal"
+      },
+      {
+        "name": "Marten de Roon",
+        "position": "3MF",
+        "number": "3",
+        "age": 35,
+        "caps": 42,
+        "goals": 1,
+        "club": "Atalanta"
+      },
+      {
+        "name": "Virgil van Dijk",
+        "position": "2DF",
+        "number": "4",
+        "age": 35,
+        "caps": 90,
+        "goals": 12,
+        "club": "Liverpool"
+      },
+      {
+        "name": "Nathan Aké",
+        "position": "2DF",
+        "number": "5",
+        "age": 31,
+        "caps": 58,
+        "goals": 5,
+        "club": "Manchester City"
+      },
+      {
+        "name": "Jan Paul van Hecke",
+        "position": "2DF",
+        "number": "6",
+        "age": 26,
+        "caps": 10,
+        "goals": 0,
+        "club": "Brighton & Hove Albion"
+      },
+      {
+        "name": "Justin Kluivert",
+        "position": "3MF",
+        "number": "7",
+        "age": 27,
+        "caps": 11,
+        "goals": 0,
+        "club": "Bournemouth"
+      },
+      {
+        "name": "Ryan Gravenberch",
+        "position": "3MF",
+        "number": "8",
+        "age": 24,
+        "caps": 25,
+        "goals": 1,
+        "club": "Liverpool"
+      },
+      {
+        "name": "Wout Weghorst",
+        "position": "4FW",
+        "number": "9",
+        "age": 34,
+        "caps": 51,
+        "goals": 14,
+        "club": "Ajax"
+      },
+      {
+        "name": "Memphis Depay",
+        "position": "4FW",
+        "number": "10",
+        "age": 32,
+        "caps": 108,
+        "goals": 55,
+        "club": "Corinthians"
+      },
+      {
+        "name": "Cody Gakpo",
+        "position": "4FW",
+        "number": "11",
+        "age": 27,
+        "caps": 48,
+        "goals": 19,
+        "club": "Liverpool"
+      },
+      {
+        "name": "Mats Wieffer",
+        "position": "2DF",
+        "number": "12",
+        "age": 27,
+        "caps": 14,
+        "goals": 1,
+        "club": "Brighton & Hove Albion"
+      },
+      {
+        "name": "Robin Roefs",
+        "position": "1GK",
+        "number": "13",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": "Sunderland"
+      },
+      {
+        "name": "Tijjani Reijnders",
+        "position": "3MF",
+        "number": "14",
+        "age": 28,
+        "caps": 30,
+        "goals": 7,
+        "club": "Manchester City"
+      },
+      {
+        "name": "Micky van de Ven",
+        "position": "2DF",
+        "number": "15",
+        "age": 25,
+        "caps": 19,
+        "goals": 1,
+        "club": "Tottenham Hotspur"
+      },
+      {
+        "name": "Guus Til",
+        "position": "3MF",
+        "number": "16",
+        "age": 29,
+        "caps": 6,
+        "goals": 1,
+        "club": "PSV Eindhoven"
+      },
+      {
+        "name": "Noa Lang",
+        "position": "4FW",
+        "number": "17",
+        "age": 27,
+        "caps": 15,
+        "goals": 3,
+        "club": "Galatasaray"
+      },
+      {
+        "name": "Donyell Malen",
+        "position": "4FW",
+        "number": "18",
+        "age": 27,
+        "caps": 51,
+        "goals": 13,
+        "club": "Roma"
+      },
+      {
+        "name": "Brian Brobbey",
+        "position": "4FW",
+        "number": "19",
+        "age": 24,
+        "caps": 10,
+        "goals": 1,
+        "club": "Sunderland"
+      },
+      {
+        "name": "Teun Koopmeiners",
+        "position": "3MF",
+        "number": "20",
+        "age": 28,
+        "caps": 27,
+        "goals": 3,
+        "club": "Juventus"
+      },
+      {
+        "name": "Frenkie de Jong",
+        "position": "3MF",
+        "number": "21",
+        "age": 29,
+        "caps": 64,
+        "goals": 2,
+        "club": "Barcelona"
+      },
+      {
+        "name": "Denzel Dumfries",
+        "position": "2DF",
+        "number": "22",
+        "age": 30,
+        "caps": 71,
+        "goals": 11,
+        "club": "Inter Milan"
+      },
+      {
+        "name": "Mark Flekken",
+        "position": "1GK",
+        "number": "23",
+        "age": 33,
+        "caps": 11,
+        "goals": 0,
+        "club": "Bayer Leverkusen"
+      },
+      {
+        "name": "Crysencio Summerville",
+        "position": "4FW",
+        "number": "24",
+        "age": 25,
+        "caps": 0,
+        "goals": 0,
+        "club": "West Ham United"
+      },
+      {
+        "name": "Jorrel Hato",
+        "position": "2DF",
+        "number": "25",
+        "age": 20,
+        "caps": 7,
+        "goals": 0,
+        "club": "Chelsea"
+      },
+      {
+        "name": "Quinten Timber",
+        "position": "3MF",
+        "number": "26",
+        "age": 25,
+        "caps": 10,
+        "goals": 1,
+        "club": "Marseille"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "Panama": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Luis Mejía",
+        "position": "1GK",
+        "number": "1",
+        "age": 35,
+        "caps": 56,
+        "goals": 0,
+        "club": "Nacional"
+      },
+      {
+        "name": "César Blackman",
+        "position": "2DF",
+        "number": "2",
+        "age": 28,
+        "caps": 38,
+        "goals": 3,
+        "club": "Slovan Bratislava"
+      },
+      {
+        "name": "José Córdoba",
+        "position": "2DF",
+        "number": "3",
+        "age": 25,
+        "caps": 31,
+        "goals": 1,
+        "club": "Norwich City"
+      },
+      {
+        "name": "Fidel Escobar",
+        "position": "2DF",
+        "number": "4",
+        "age": 31,
+        "caps": 97,
+        "goals": 4,
+        "club": "Saprissa"
+      },
+      {
+        "name": "Edgardo Fariña",
+        "position": "2DF",
+        "number": "5",
+        "age": 25,
+        "caps": 16,
+        "goals": 0,
+        "club": "Pari Nizhny Novgorod"
+      },
+      {
+        "name": "Cristian Martínez",
+        "position": "3MF",
+        "number": "6",
+        "age": 29,
+        "caps": 64,
+        "goals": 2,
+        "club": "Ironi Kiryat Shmona"
+      },
+      {
+        "name": "José Luis Rodríguez",
+        "position": "3MF",
+        "number": "7",
+        "age": 28,
+        "caps": 68,
+        "goals": 8,
+        "club": "Juárez"
+      },
+      {
+        "name": "Adalberto Carrasquilla",
+        "position": "3MF",
+        "number": "8",
+        "age": 28,
+        "caps": 73,
+        "goals": 3,
+        "club": "UNAM"
+      },
+      {
+        "name": "Tomás Rodríguez",
+        "position": "4FW",
+        "number": "9",
+        "age": 27,
+        "caps": 12,
+        "goals": 3,
+        "club": "Saprissa"
+      },
+      {
+        "name": "Ismael Díaz",
+        "position": "3MF",
+        "number": "10",
+        "age": 29,
+        "caps": 55,
+        "goals": 17,
+        "club": "León"
+      },
+      {
+        "name": "Yoel Bárcenas",
+        "position": "3MF",
+        "number": "11",
+        "age": 33,
+        "caps": 102,
+        "goals": 10,
+        "club": "Mazatlán"
+      },
+      {
+        "name": "César Samudio",
+        "position": "1GK",
+        "number": "12",
+        "age": 32,
+        "caps": 4,
+        "goals": 0,
+        "club": "Marathón"
+      },
+      {
+        "name": "Jiovany Ramos",
+        "position": "2DF",
+        "number": "13",
+        "age": 29,
+        "caps": 21,
+        "goals": 1,
+        "club": "Puerto Cabello"
+      },
+      {
+        "name": "Carlos Harvey",
+        "position": "2DF",
+        "number": "14",
+        "age": 26,
+        "caps": 26,
+        "goals": 3,
+        "club": "Minnesota United FC"
+      },
+      {
+        "name": "Eric Davis",
+        "position": "2DF",
+        "number": "15",
+        "age": 35,
+        "caps": 105,
+        "goals": 9,
+        "club": "Plaza Amador"
+      },
+      {
+        "name": "Andrés Andrade",
+        "position": "2DF",
+        "number": "16",
+        "age": 28,
+        "caps": 48,
+        "goals": 1,
+        "club": "LASK"
+      },
+      {
+        "name": "José Fajardo",
+        "position": "4FW",
+        "number": "17",
+        "age": 33,
+        "caps": 66,
+        "goals": 17,
+        "club": "Universidad Católica"
+      },
+      {
+        "name": "Cecilio Waterman",
+        "position": "4FW",
+        "number": "18",
+        "age": 35,
+        "caps": 53,
+        "goals": 14,
+        "club": "Universidad de Concepción"
+      },
+      {
+        "name": "Alberto Quintero",
+        "position": "3MF",
+        "number": "19",
+        "age": 39,
+        "caps": 140,
+        "goals": 7,
+        "club": "Plaza Amador"
+      },
+      {
+        "name": "Aníbal Godoy",
+        "position": "3MF",
+        "number": "20",
+        "age": 36,
+        "caps": 159,
+        "goals": 4,
+        "club": "San Diego FC"
+      },
+      {
+        "name": "César Yanis",
+        "position": "3MF",
+        "number": "21",
+        "age": 30,
+        "caps": 55,
+        "goals": 5,
+        "club": "Cobresal"
+      },
+      {
+        "name": "Orlando Mosquera",
+        "position": "1GK",
+        "number": "22",
+        "age": 32,
+        "caps": 47,
+        "goals": 0,
+        "club": "Al-Fayha"
+      },
+      {
+        "name": "Michael Amir Murillo",
+        "position": "2DF",
+        "number": "23",
+        "age": 30,
+        "caps": 92,
+        "goals": 9,
+        "club": "Beşiktaş"
+      },
+      {
+        "name": "Azarias Londoño",
+        "position": "4FW",
+        "number": "24",
+        "age": 25,
+        "caps": 10,
+        "goals": 0,
+        "club": "Universidad Católica"
+      },
+      {
+        "name": "Roderick Miller",
+        "position": "2DF",
+        "number": "25",
+        "age": 34,
+        "caps": 49,
+        "goals": 2,
+        "club": "Turan Tovuz"
+      },
+      {
+        "name": "Jorge Gutiérrez",
+        "position": "2DF",
+        "number": "26",
+        "age": 28,
+        "caps": 17,
+        "goals": 0,
+        "club": "Deportivo La Guaira"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "Saudi Arabia": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Nawaf Al-Aqidi",
+        "position": "1GK",
+        "number": "1",
+        "age": 26,
+        "caps": 22,
+        "goals": 0,
+        "club": "Al-Nassr"
+      },
+      {
+        "name": "Ali Majrashi",
+        "position": "2DF",
+        "number": "2",
+        "age": 27,
+        "caps": 20,
+        "goals": 0,
+        "club": "Al-Ahli"
+      },
+      {
+        "name": "Ali Lajami",
+        "position": "2DF",
+        "number": "3",
+        "age": 30,
+        "caps": 20,
+        "goals": 1,
+        "club": "Al-Hilal"
+      },
+      {
+        "name": "Abdulelah Al-Amri",
+        "position": "2DF",
+        "number": "4",
+        "age": 29,
+        "caps": 41,
+        "goals": 1,
+        "club": "Al-Nassr"
+      },
+      {
+        "name": "Hassan Al-Tambakti",
+        "position": "2DF",
+        "number": "5",
+        "age": 27,
+        "caps": 51,
+        "goals": 0,
+        "club": "Al-Hilal"
+      },
+      {
+        "name": "Nasser Al-Dawsari",
+        "position": "3MF",
+        "number": "6",
+        "age": 28,
+        "caps": 42,
+        "goals": 0,
+        "club": "Al-Hilal"
+      },
+      {
+        "name": "Musab Al-Juwayr",
+        "position": "3MF",
+        "number": "7",
+        "age": 23,
+        "caps": 33,
+        "goals": 6,
+        "club": "Al-Qadsiah"
+      },
+      {
+        "name": "Ayman Yahya",
+        "position": "4FW",
+        "number": "8",
+        "age": 25,
+        "caps": 25,
+        "goals": 0,
+        "club": "Al-Nassr"
+      },
+      {
+        "name": "Firas Al-Buraikan",
+        "position": "4FW",
+        "number": "9",
+        "age": 26,
+        "caps": 69,
+        "goals": 15,
+        "club": "Al-Ahli"
+      },
+      {
+        "name": "Salem Al-Dawsari",
+        "position": "4FW",
+        "number": "10",
+        "age": 35,
+        "caps": 108,
+        "goals": 26,
+        "club": "Al-Hilal"
+      },
+      {
+        "name": "Saleh Al-Shehri",
+        "position": "4FW",
+        "number": "11",
+        "age": 33,
+        "caps": 55,
+        "goals": 18,
+        "club": "Al-Ittihad"
+      },
+      {
+        "name": "Saud Abdulhamid",
+        "position": "2DF",
+        "number": "12",
+        "age": 27,
+        "caps": 53,
+        "goals": 1,
+        "club": "Lens"
+      },
+      {
+        "name": "Nawaf Boushal",
+        "position": "2DF",
+        "number": "13",
+        "age": 27,
+        "caps": 24,
+        "goals": 0,
+        "club": "Al-Nassr"
+      },
+      {
+        "name": "Hassan Kadesh",
+        "position": "2DF",
+        "number": "14",
+        "age": 34,
+        "caps": 19,
+        "goals": 2,
+        "club": "Al-Ittihad"
+      },
+      {
+        "name": "Abdullah Al-Khaibari",
+        "position": "3MF",
+        "number": "15",
+        "age": 30,
+        "caps": 38,
+        "goals": 0,
+        "club": "Al-Nassr"
+      },
+      {
+        "name": "Ziyad Al-Johani",
+        "position": "3MF",
+        "number": "16",
+        "age": 25,
+        "caps": 11,
+        "goals": 0,
+        "club": "Al-Ahli"
+      },
+      {
+        "name": "Khalid Al-Ghannam",
+        "position": "4FW",
+        "number": "17",
+        "age": 26,
+        "caps": 5,
+        "goals": 0,
+        "club": "Al-Ettifaq"
+      },
+      {
+        "name": "Alaa Al-Hejji",
+        "position": "3MF",
+        "number": "18",
+        "age": 31,
+        "caps": 1,
+        "goals": 0,
+        "club": "Neom"
+      },
+      {
+        "name": "Abdullah Al-Hamdan",
+        "position": "4FW",
+        "number": "19",
+        "age": 27,
+        "caps": 48,
+        "goals": 11,
+        "club": "Al-Nassr"
+      },
+      {
+        "name": "Sultan Mandash",
+        "position": "4FW",
+        "number": "20",
+        "age": 32,
+        "caps": 5,
+        "goals": 1,
+        "club": "Al-Hilal"
+      },
+      {
+        "name": "Mohammed Al-Owais",
+        "position": "1GK",
+        "number": "21",
+        "age": 35,
+        "caps": 63,
+        "goals": 0,
+        "club": "Al-Ula"
+      },
+      {
+        "name": "Ahmed Al-Kassar",
+        "position": "1GK",
+        "number": "22",
+        "age": 35,
+        "caps": 8,
+        "goals": 0,
+        "club": "Al-Qadsiah"
+      },
+      {
+        "name": "Mohamed Kanno",
+        "position": "3MF",
+        "number": "23",
+        "age": 32,
+        "caps": 75,
+        "goals": 8,
+        "club": "Al-Hilal"
+      },
+      {
+        "name": "Moteb Al-Harbi",
+        "position": "2DF",
+        "number": "24",
+        "age": 26,
+        "caps": 11,
+        "goals": 0,
+        "club": "Al-Hilal"
+      },
+      {
+        "name": "Jehad Thakri",
+        "position": "2DF",
+        "number": "25",
+        "age": 25,
+        "caps": 6,
+        "goals": 0,
+        "club": "Al-Qadsiah"
+      },
+      {
+        "name": "Mohammed Abu Al-Shamat",
+        "position": "2DF",
+        "number": "26",
+        "age": 24,
+        "caps": 5,
+        "goals": 0,
+        "club": "Al-Qadsiah"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "Senegal": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Yehvann Diouf",
+        "position": "1GK",
+        "number": "1",
+        "age": 27,
+        "caps": 2,
+        "goals": 0,
+        "club": "Nice"
+      },
+      {
+        "name": "Mamadou Sarr",
+        "position": "2DF",
+        "number": "2",
+        "age": 21,
+        "caps": 7,
+        "goals": 0,
+        "club": "Chelsea"
+      },
+      {
+        "name": "Kalidou Koulibaly",
+        "position": "2DF",
+        "number": "3",
+        "age": 35,
+        "caps": 102,
+        "goals": 2,
+        "club": "Al-Hilal"
+      },
+      {
+        "name": "Abdoulaye Seck",
+        "position": "2DF",
+        "number": "4",
+        "age": 34,
+        "caps": 22,
+        "goals": 4,
+        "club": "Maccabi Haifa"
+      },
+      {
+        "name": "Idrissa Gueye",
+        "position": "3MF",
+        "number": "5",
+        "age": 37,
+        "caps": 130,
+        "goals": 7,
+        "club": "Everton"
+      },
+      {
+        "name": "Pathé Ciss",
+        "position": "3MF",
+        "number": "6",
+        "age": 32,
+        "caps": 29,
+        "goals": 0,
+        "club": "Rayo Vallecano"
+      },
+      {
+        "name": "Assane Diao",
+        "position": "4FW",
+        "number": "7",
+        "age": 21,
+        "caps": 5,
+        "goals": 0,
+        "club": "Como"
+      },
+      {
+        "name": "Lamine Camara",
+        "position": "3MF",
+        "number": "8",
+        "age": 22,
+        "caps": 32,
+        "goals": 7,
+        "club": "Monaco"
+      },
+      {
+        "name": "Bamba Dieng",
+        "position": "4FW",
+        "number": "9",
+        "age": 26,
+        "caps": 22,
+        "goals": 2,
+        "club": "Lorient"
+      },
+      {
+        "name": "Sadio Mané",
+        "position": "4FW",
+        "number": "10",
+        "age": 34,
+        "caps": 127,
+        "goals": 55,
+        "club": "Al-Nassr"
+      },
+      {
+        "name": "Nicolas Jackson",
+        "position": "4FW",
+        "number": "11",
+        "age": 25,
+        "caps": 32,
+        "goals": 8,
+        "club": "Bayern Munich"
+      },
+      {
+        "name": "Cherif Ndiaye",
+        "position": "4FW",
+        "number": "12",
+        "age": 30,
+        "caps": 18,
+        "goals": 4,
+        "club": "Samsunspor"
+      },
+      {
+        "name": "Iliman Ndiaye",
+        "position": "4FW",
+        "number": "13",
+        "age": 26,
+        "caps": 39,
+        "goals": 4,
+        "club": "Everton"
+      },
+      {
+        "name": "Ismail Jakobs",
+        "position": "2DF",
+        "number": "14",
+        "age": 27,
+        "caps": 29,
+        "goals": 0,
+        "club": "Galatasaray"
+      },
+      {
+        "name": "Krépin Diatta",
+        "position": "2DF",
+        "number": "15",
+        "age": 27,
+        "caps": 60,
+        "goals": 2,
+        "club": "Monaco"
+      },
+      {
+        "name": "Édouard Mendy",
+        "position": "1GK",
+        "number": "16",
+        "age": 34,
+        "caps": 56,
+        "goals": 0,
+        "club": "Al-Ahli"
+      },
+      {
+        "name": "Pape Matar Sarr",
+        "position": "3MF",
+        "number": "17",
+        "age": 24,
+        "caps": 39,
+        "goals": 4,
+        "club": "Tottenham Hotspur"
+      },
+      {
+        "name": "Ismaïla Sarr",
+        "position": "4FW",
+        "number": "18",
+        "age": 28,
+        "caps": 82,
+        "goals": 19,
+        "club": "Crystal Palace"
+      },
+      {
+        "name": "Moussa Niakhaté",
+        "position": "2DF",
+        "number": "19",
+        "age": 30,
+        "caps": 30,
+        "goals": 0,
+        "club": "Lyon"
+      },
+      {
+        "name": "Ibrahim Mbaye",
+        "position": "4FW",
+        "number": "20",
+        "age": 18,
+        "caps": 10,
+        "goals": 3,
+        "club": "Paris Saint-Germain"
+      },
+      {
+        "name": "Habib Diarra",
+        "position": "3MF",
+        "number": "21",
+        "age": 22,
+        "caps": 20,
+        "goals": 4,
+        "club": "Sunderland"
+      },
+      {
+        "name": "Bara Sapoko Ndiaye",
+        "position": "3MF",
+        "number": "22",
+        "age": 19,
+        "caps": 1,
+        "goals": 0,
+        "club": "Bayern Munich"
+      },
+      {
+        "name": "Mory Diaw",
+        "position": "1GK",
+        "number": "23",
+        "age": 33,
+        "caps": 5,
+        "goals": 0,
+        "club": "Le Havre"
+      },
+      {
+        "name": "Antoine Mendy",
+        "position": "2DF",
+        "number": "24",
+        "age": 22,
+        "caps": 6,
+        "goals": 0,
+        "club": "Nice"
+      },
+      {
+        "name": "El Hadji Malick Diouf",
+        "position": "2DF",
+        "number": "25",
+        "age": 22,
+        "caps": 19,
+        "goals": 1,
+        "club": "West Ham United"
+      },
+      {
+        "name": "Pape Gueye",
+        "position": "3MF",
+        "number": "26",
+        "age": 27,
+        "caps": 41,
+        "goals": 5,
+        "club": "Villarreal"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "Spain": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "David Raya",
+        "position": "1GK",
+        "number": "1",
+        "age": 31,
+        "caps": 12,
+        "goals": 0,
+        "club": "Arsenal"
+      },
+      {
+        "name": "Marc Pubill",
+        "position": "2DF",
+        "number": "2",
+        "age": 23,
+        "caps": 0,
+        "goals": 0,
+        "club": "Atlético Madrid"
+      },
+      {
+        "name": "Álex Grimaldo",
+        "position": "2DF",
+        "number": "3",
+        "age": 31,
+        "caps": 12,
+        "goals": 0,
+        "club": "Bayer Leverkusen"
+      },
+      {
+        "name": "Eric García",
+        "position": "2DF",
+        "number": "4",
+        "age": 25,
+        "caps": 19,
+        "goals": 0,
+        "club": "Barcelona"
+      },
+      {
+        "name": "Marcos Llorente",
+        "position": "2DF",
+        "number": "5",
+        "age": 31,
+        "caps": 23,
+        "goals": 0,
+        "club": "Atlético Madrid"
+      },
+      {
+        "name": "Mikel Merino",
+        "position": "3MF",
+        "number": "6",
+        "age": 30,
+        "caps": 41,
+        "goals": 10,
+        "club": "Arsenal"
+      },
+      {
+        "name": "Ferran Torres",
+        "position": "4FW",
+        "number": "7",
+        "age": 26,
+        "caps": 55,
+        "goals": 23,
+        "club": "Barcelona"
+      },
+      {
+        "name": "Fabián Ruiz",
+        "position": "3MF",
+        "number": "8",
+        "age": 30,
+        "caps": 41,
+        "goals": 6,
+        "club": "Paris Saint-Germain"
+      },
+      {
+        "name": "Gavi",
+        "position": "3MF",
+        "number": "9",
+        "age": 22,
+        "caps": 28,
+        "goals": 5,
+        "club": "Barcelona"
+      },
+      {
+        "name": "Dani Olmo",
+        "position": "4FW",
+        "number": "10",
+        "age": 28,
+        "caps": 48,
+        "goals": 12,
+        "club": "Barcelona"
+      },
+      {
+        "name": "Yéremy Pino",
+        "position": "4FW",
+        "number": "11",
+        "age": 24,
+        "caps": 21,
+        "goals": 4,
+        "club": "Crystal Palace"
+      },
+      {
+        "name": "Pedro Porro",
+        "position": "2DF",
+        "number": "12",
+        "age": 27,
+        "caps": 16,
+        "goals": 0,
+        "club": "Tottenham Hotspur"
+      },
+      {
+        "name": "Joan Garcia",
+        "position": "1GK",
+        "number": "13",
+        "age": 25,
+        "caps": 1,
+        "goals": 0,
+        "club": "Barcelona"
+      },
+      {
+        "name": "Aymeric Laporte",
+        "position": "2DF",
+        "number": "14",
+        "age": 32,
+        "caps": 44,
+        "goals": 2,
+        "club": "Athletic Bilbao"
+      },
+      {
+        "name": "Álex Baena",
+        "position": "3MF",
+        "number": "15",
+        "age": 25,
+        "caps": 15,
+        "goals": 2,
+        "club": "Atlético Madrid"
+      },
+      {
+        "name": "Rodri",
+        "position": "3MF",
+        "number": "16",
+        "age": 30,
+        "caps": 61,
+        "goals": 4,
+        "club": "Manchester City"
+      },
+      {
+        "name": "Nico Williams",
+        "position": "4FW",
+        "number": "17",
+        "age": 24,
+        "caps": 30,
+        "goals": 6,
+        "club": "Athletic Bilbao"
+      },
+      {
+        "name": "Martín Zubimendi",
+        "position": "3MF",
+        "number": "18",
+        "age": 27,
+        "caps": 25,
+        "goals": 3,
+        "club": "Arsenal"
+      },
+      {
+        "name": "Lamine Yamal",
+        "position": "4FW",
+        "number": "19",
+        "age": 19,
+        "caps": 25,
+        "goals": 6,
+        "club": "Barcelona"
+      },
+      {
+        "name": "Pedri",
+        "position": "3MF",
+        "number": "20",
+        "age": 24,
+        "caps": 40,
+        "goals": 5,
+        "club": "Barcelona"
+      },
+      {
+        "name": "Mikel Oyarzabal",
+        "position": "4FW",
+        "number": "21",
+        "age": 29,
+        "caps": 52,
+        "goals": 24,
+        "club": "Real Sociedad"
+      },
+      {
+        "name": "Pau Cubarsí",
+        "position": "2DF",
+        "number": "22",
+        "age": 19,
+        "caps": 11,
+        "goals": 0,
+        "club": "Barcelona"
+      },
+      {
+        "name": "Unai Simón",
+        "position": "1GK",
+        "number": "23",
+        "age": 29,
+        "caps": 57,
+        "goals": 0,
+        "club": "Athletic Bilbao"
+      },
+      {
+        "name": "Marc Cucurella",
+        "position": "2DF",
+        "number": "24",
+        "age": 28,
+        "caps": 23,
+        "goals": 1,
+        "club": "Chelsea"
+      },
+      {
+        "name": "Víctor Muñoz",
+        "position": "4FW",
+        "number": "25",
+        "age": 23,
+        "caps": 2,
+        "goals": 1,
+        "club": "Osasuna"
+      },
+      {
+        "name": "Borja Iglesias",
+        "position": "4FW",
+        "number": "26",
+        "age": 33,
+        "caps": 6,
+        "goals": 0,
+        "club": "Celta Vigo"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "Switzerland": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Gregor Kobel",
+        "position": "1GK",
+        "number": "1",
+        "age": 29,
+        "caps": 20,
+        "goals": 0,
+        "club": "Borussia Dortmund"
+      },
+      {
+        "name": "Miro Muheim",
+        "position": "2DF",
+        "number": "2",
+        "age": 28,
+        "caps": 9,
+        "goals": 0,
+        "club": "Hamburger SV"
+      },
+      {
+        "name": "Silvan Widmer",
+        "position": "2DF",
+        "number": "3",
+        "age": 33,
+        "caps": 59,
+        "goals": 5,
+        "club": "Mainz 05"
+      },
+      {
+        "name": "Nico Elvedi",
+        "position": "2DF",
+        "number": "4",
+        "age": 30,
+        "caps": 66,
+        "goals": 3,
+        "club": "Borussia Mönchengladbach"
+      },
+      {
+        "name": "Manuel Akanji",
+        "position": "2DF",
+        "number": "5",
+        "age": 31,
+        "caps": 80,
+        "goals": 4,
+        "club": "Inter Milan"
+      },
+      {
+        "name": "Denis Zakaria",
+        "position": "3MF",
+        "number": "6",
+        "age": 30,
+        "caps": 64,
+        "goals": 3,
+        "club": "Monaco"
+      },
+      {
+        "name": "Breel Embolo",
+        "position": "4FW",
+        "number": "7",
+        "age": 29,
+        "caps": 86,
+        "goals": 24,
+        "club": "Rennes"
+      },
+      {
+        "name": "Remo Freuler",
+        "position": "3MF",
+        "number": "8",
+        "age": 34,
+        "caps": 87,
+        "goals": 11,
+        "club": "Bologna"
+      },
+      {
+        "name": "Johan Manzambi",
+        "position": "3MF",
+        "number": "9",
+        "age": 21,
+        "caps": 11,
+        "goals": 3,
+        "club": "SC Freiburg"
+      },
+      {
+        "name": "Granit Xhaka",
+        "position": "3MF",
+        "number": "10",
+        "age": 34,
+        "caps": 145,
+        "goals": 17,
+        "club": "Sunderland"
+      },
+      {
+        "name": "Dan Ndoye",
+        "position": "4FW",
+        "number": "11",
+        "age": 26,
+        "caps": 30,
+        "goals": 7,
+        "club": "Nottingham Forest"
+      },
+      {
+        "name": "Yvon Mvogo",
+        "position": "1GK",
+        "number": "12",
+        "age": 32,
+        "caps": 13,
+        "goals": 0,
+        "club": "Lorient"
+      },
+      {
+        "name": "Ricardo Rodriguez",
+        "position": "2DF",
+        "number": "13",
+        "age": 34,
+        "caps": 137,
+        "goals": 9,
+        "club": "Real Betis"
+      },
+      {
+        "name": "Ardon Jashari",
+        "position": "3MF",
+        "number": "14",
+        "age": 24,
+        "caps": 7,
+        "goals": 0,
+        "club": "Milan"
+      },
+      {
+        "name": "Djibril Sow",
+        "position": "3MF",
+        "number": "15",
+        "age": 29,
+        "caps": 51,
+        "goals": 0,
+        "club": "Sevilla"
+      },
+      {
+        "name": "Christian Fassnacht",
+        "position": "4FW",
+        "number": "16",
+        "age": 33,
+        "caps": 22,
+        "goals": 5,
+        "club": "Young Boys"
+      },
+      {
+        "name": "Rubén Vargas",
+        "position": "4FW",
+        "number": "17",
+        "age": 28,
+        "caps": 61,
+        "goals": 11,
+        "club": "Sevilla"
+      },
+      {
+        "name": "Eray Cömert",
+        "position": "2DF",
+        "number": "18",
+        "age": 28,
+        "caps": 21,
+        "goals": 0,
+        "club": "Valencia"
+      },
+      {
+        "name": "Noah Okafor",
+        "position": "4FW",
+        "number": "19",
+        "age": 26,
+        "caps": 24,
+        "goals": 2,
+        "club": "Leeds United"
+      },
+      {
+        "name": "Michel Aebischer",
+        "position": "3MF",
+        "number": "20",
+        "age": 29,
+        "caps": 39,
+        "goals": 2,
+        "club": "Pisa"
+      },
+      {
+        "name": "Marvin Keller",
+        "position": "1GK",
+        "number": "21",
+        "age": 24,
+        "caps": 1,
+        "goals": 0,
+        "club": "Young Boys"
+      },
+      {
+        "name": "Fabian Rieder",
+        "position": "3MF",
+        "number": "22",
+        "age": 24,
+        "caps": 27,
+        "goals": 1,
+        "club": "FC Augsburg"
+      },
+      {
+        "name": "Zeki Amdouni",
+        "position": "4FW",
+        "number": "23",
+        "age": 26,
+        "caps": 28,
+        "goals": 11,
+        "club": "Burnley"
+      },
+      {
+        "name": "Aurèle Amenda",
+        "position": "2DF",
+        "number": "24",
+        "age": 23,
+        "caps": 6,
+        "goals": 0,
+        "club": "Eintracht Frankfurt"
+      },
+      {
+        "name": "Luca Jaquez",
+        "position": "2DF",
+        "number": "25",
+        "age": 23,
+        "caps": 3,
+        "goals": 0,
+        "club": "VfB Stuttgart"
+      },
+      {
+        "name": "Cedric Itten",
+        "position": "4FW",
+        "number": "26",
+        "age": 30,
+        "caps": 14,
+        "goals": 5,
+        "club": "Fortuna Düsseldorf"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "Uruguay": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Sergio Rochet",
+        "position": "1GK",
+        "number": "1",
+        "age": 33,
+        "caps": 35,
+        "goals": 0,
+        "club": "Internacional"
+      },
+      {
+        "name": "José María Giménez",
+        "position": "2DF",
+        "number": "2",
+        "age": 31,
+        "caps": 99,
+        "goals": 8,
+        "club": "Atlético Madrid"
+      },
+      {
+        "name": "Sebastián Cáceres",
+        "position": "2DF",
+        "number": "3",
+        "age": 27,
+        "caps": 24,
+        "goals": 0,
+        "club": "América"
+      },
+      {
+        "name": "Ronald Araújo",
+        "position": "2DF",
+        "number": "4",
+        "age": 27,
+        "caps": 27,
+        "goals": 1,
+        "club": "Barcelona"
+      },
+      {
+        "name": "Manuel Ugarte",
+        "position": "3MF",
+        "number": "5",
+        "age": 25,
+        "caps": 36,
+        "goals": 1,
+        "club": "Manchester United"
+      },
+      {
+        "name": "Rodrigo Bentancur",
+        "position": "3MF",
+        "number": "6",
+        "age": 29,
+        "caps": 74,
+        "goals": 3,
+        "club": "Tottenham Hotspur"
+      },
+      {
+        "name": "Nicolás de la Cruz",
+        "position": "3MF",
+        "number": "7",
+        "age": 29,
+        "caps": 34,
+        "goals": 5,
+        "club": "Flamengo"
+      },
+      {
+        "name": "Federico Valverde",
+        "position": "3MF",
+        "number": "8",
+        "age": 28,
+        "caps": 73,
+        "goals": 9,
+        "club": "Real Madrid"
+      },
+      {
+        "name": "Darwin Núñez",
+        "position": "4FW",
+        "number": "9",
+        "age": 27,
+        "caps": 38,
+        "goals": 13,
+        "club": "Al-Hilal"
+      },
+      {
+        "name": "Giorgian de Arrascaeta",
+        "position": "3MF",
+        "number": "10",
+        "age": 32,
+        "caps": 60,
+        "goals": 13,
+        "club": "Flamengo"
+      },
+      {
+        "name": "Facundo Pellistri",
+        "position": "4FW",
+        "number": "11",
+        "age": 25,
+        "caps": 39,
+        "goals": 2,
+        "club": "Panathinaikos"
+      },
+      {
+        "name": "Santiago Mele",
+        "position": "1GK",
+        "number": "12",
+        "age": 29,
+        "caps": 8,
+        "goals": 0,
+        "club": "Monterrey"
+      },
+      {
+        "name": "Guillermo Varela",
+        "position": "2DF",
+        "number": "13",
+        "age": 33,
+        "caps": 28,
+        "goals": 0,
+        "club": "Flamengo"
+      },
+      {
+        "name": "Agustín Canobbio",
+        "position": "3MF",
+        "number": "14",
+        "age": 28,
+        "caps": 15,
+        "goals": 1,
+        "club": "Fluminense"
+      },
+      {
+        "name": "Emiliano Martínez",
+        "position": "3MF",
+        "number": "15",
+        "age": 27,
+        "caps": 10,
+        "goals": 0,
+        "club": "Palmeiras"
+      },
+      {
+        "name": "Mathías Olivera",
+        "position": "2DF",
+        "number": "16",
+        "age": 29,
+        "caps": 35,
+        "goals": 2,
+        "club": "Napoli"
+      },
+      {
+        "name": "Matías Viña",
+        "position": "2DF",
+        "number": "17",
+        "age": 29,
+        "caps": 43,
+        "goals": 1,
+        "club": "River Plate"
+      },
+      {
+        "name": "Brian Rodríguez",
+        "position": "4FW",
+        "number": "18",
+        "age": 26,
+        "caps": 32,
+        "goals": 4,
+        "club": "América"
+      },
+      {
+        "name": "Rodrigo Aguirre",
+        "position": "4FW",
+        "number": "19",
+        "age": 32,
+        "caps": 10,
+        "goals": 3,
+        "club": "UANL"
+      },
+      {
+        "name": "Maximiliano Araújo",
+        "position": "3MF",
+        "number": "20",
+        "age": 26,
+        "caps": 28,
+        "goals": 3,
+        "club": "Sporting CP"
+      },
+      {
+        "name": "Federico Viñas",
+        "position": "4FW",
+        "number": "21",
+        "age": 28,
+        "caps": 11,
+        "goals": 2,
+        "club": "Oviedo"
+      },
+      {
+        "name": "Joaquín Piquerez",
+        "position": "3MF",
+        "number": "22",
+        "age": 28,
+        "caps": 19,
+        "goals": 0,
+        "club": "Palmeiras"
+      },
+      {
+        "name": "Fernando Muslera",
+        "position": "1GK",
+        "number": "23",
+        "age": 40,
+        "caps": 134,
+        "goals": 0,
+        "club": "Estudiantes"
+      },
+      {
+        "name": "Santiago Bueno",
+        "position": "2DF",
+        "number": "24",
+        "age": 28,
+        "caps": 8,
+        "goals": 0,
+        "club": "Wolverhampton Wanderers"
+      },
+      {
+        "name": "Juan Manuel Sanabria",
+        "position": "3MF",
+        "number": "25",
+        "age": 26,
+        "caps": 5,
+        "goals": 1,
+        "club": "Real Salt Lake"
+      },
+      {
+        "name": "Rodrigo Zalazar",
+        "position": "3MF",
+        "number": "26",
+        "age": 27,
+        "caps": 8,
+        "goals": 2,
+        "club": "Braga"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "USA": {
-    "note": "等待 Wikipedia 公布大名单",
-    "players": [],
-    "source": "pending",
-    "fetch_date": "pending"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Matt Turner",
+        "position": "1GK",
+        "number": "1",
+        "age": 32,
+        "caps": 54,
+        "goals": 0,
+        "club": "New England Revolution"
+      },
+      {
+        "name": "Sergiño Dest",
+        "position": "2DF",
+        "number": "2",
+        "age": 26,
+        "caps": 38,
+        "goals": 3,
+        "club": "PSV Eindhoven"
+      },
+      {
+        "name": "Chris Richards",
+        "position": "2DF",
+        "number": "3",
+        "age": 26,
+        "caps": 36,
+        "goals": 3,
+        "club": "Crystal Palace"
+      },
+      {
+        "name": "Tyler Adams",
+        "position": "3MF",
+        "number": "4",
+        "age": 27,
+        "caps": 53,
+        "goals": 2,
+        "club": "Bournemouth"
+      },
+      {
+        "name": "Antonee Robinson",
+        "position": "2DF",
+        "number": "5",
+        "age": 29,
+        "caps": 53,
+        "goals": 4,
+        "club": "Fulham"
+      },
+      {
+        "name": "Auston Trusty",
+        "position": "2DF",
+        "number": "6",
+        "age": 28,
+        "caps": 7,
+        "goals": 0,
+        "club": "Celtic"
+      },
+      {
+        "name": "Giovanni Reyna",
+        "position": "3MF",
+        "number": "7",
+        "age": 24,
+        "caps": 37,
+        "goals": 9,
+        "club": "Borussia Mönchengladbach"
+      },
+      {
+        "name": "Weston McKennie",
+        "position": "3MF",
+        "number": "8",
+        "age": 28,
+        "caps": 65,
+        "goals": 12,
+        "club": "Juventus"
+      },
+      {
+        "name": "Ricardo Pepi",
+        "position": "4FW",
+        "number": "9",
+        "age": 23,
+        "caps": 36,
+        "goals": 13,
+        "club": "PSV Eindhoven"
+      },
+      {
+        "name": "Christian Pulisic",
+        "position": "4FW",
+        "number": "10",
+        "age": 28,
+        "caps": 85,
+        "goals": 33,
+        "club": "Milan"
+      },
+      {
+        "name": "Brenden Aaronson",
+        "position": "4FW",
+        "number": "11",
+        "age": 26,
+        "caps": 57,
+        "goals": 9,
+        "club": "Leeds United"
+      },
+      {
+        "name": "Miles Robinson",
+        "position": "2DF",
+        "number": "12",
+        "age": 29,
+        "caps": 39,
+        "goals": 3,
+        "club": "FC Cincinnati"
+      },
+      {
+        "name": "Tim Ream",
+        "position": "2DF",
+        "number": "13",
+        "age": 39,
+        "caps": 81,
+        "goals": 1,
+        "club": "Charlotte FC"
+      },
+      {
+        "name": "Sebastian Berhalter",
+        "position": "3MF",
+        "number": "14",
+        "age": 25,
+        "caps": 12,
+        "goals": 1,
+        "club": "Vancouver Whitecaps FC"
+      },
+      {
+        "name": "Cristian Roldan",
+        "position": "3MF",
+        "number": "15",
+        "age": 31,
+        "caps": 46,
+        "goals": 0,
+        "club": "Seattle Sounders FC"
+      },
+      {
+        "name": "Alex Freeman",
+        "position": "2DF",
+        "number": "16",
+        "age": 22,
+        "caps": 16,
+        "goals": 2,
+        "club": "Villarreal"
+      },
+      {
+        "name": "Malik Tillman",
+        "position": "3MF",
+        "number": "17",
+        "age": 24,
+        "caps": 29,
+        "goals": 3,
+        "club": "Bayer Leverkusen"
+      },
+      {
+        "name": "Maximilian Arfsten",
+        "position": "2DF",
+        "number": "18",
+        "age": 25,
+        "caps": 19,
+        "goals": 1,
+        "club": "Columbus Crew"
+      },
+      {
+        "name": "Haji Wright",
+        "position": "4FW",
+        "number": "19",
+        "age": 28,
+        "caps": 20,
+        "goals": 7,
+        "club": "Coventry City"
+      },
+      {
+        "name": "Folarin Balogun",
+        "position": "4FW",
+        "number": "20",
+        "age": 25,
+        "caps": 26,
+        "goals": 9,
+        "club": "Monaco"
+      },
+      {
+        "name": "Timothy Weah",
+        "position": "4FW",
+        "number": "21",
+        "age": 26,
+        "caps": 50,
+        "goals": 7,
+        "club": "Marseille"
+      },
+      {
+        "name": "Mark McKenzie",
+        "position": "2DF",
+        "number": "22",
+        "age": 27,
+        "caps": 28,
+        "goals": 0,
+        "club": "Toulouse"
+      },
+      {
+        "name": "Joe Scally",
+        "position": "2DF",
+        "number": "23",
+        "age": 24,
+        "caps": 25,
+        "goals": 0,
+        "club": "Borussia Mönchengladbach"
+      },
+      {
+        "name": "Matt Freese",
+        "position": "1GK",
+        "number": "24",
+        "age": 28,
+        "caps": 14,
+        "goals": 0,
+        "club": "New York City FC"
+      },
+      {
+        "name": "Chris Brady",
+        "position": "1GK",
+        "number": "25",
+        "age": 22,
+        "caps": 1,
+        "goals": 0,
+        "club": "Chicago Fire FC"
+      },
+      {
+        "name": "Alejandro Zendejas",
+        "position": "4FW",
+        "number": "26",
+        "age": 28,
+        "caps": 14,
+        "goals": 2,
+        "club": "América"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "Norway": {
-    "players": [],
-    "count": 54,
-    "source": "Wikipedia:2026 FIFA World Cup squads",
-    "fetch_date": "2026-05-19",
-    "team_name": "Norway"
+    "note": "Wikipedia final squad (2026)",
+    "players": [
+      {
+        "name": "Ørjan Nyland",
+        "position": "1GK",
+        "number": "1",
+        "age": 36,
+        "caps": 70,
+        "goals": 0,
+        "club": "Sevilla"
+      },
+      {
+        "name": "Morten Thorsby",
+        "position": "3MF",
+        "number": "2",
+        "age": 30,
+        "caps": 31,
+        "goals": 0,
+        "club": "Cremonese"
+      },
+      {
+        "name": "Kristoffer Ajer",
+        "position": "2DF",
+        "number": "3",
+        "age": 28,
+        "caps": 51,
+        "goals": 2,
+        "club": "Brentford"
+      },
+      {
+        "name": "Leo Østigård",
+        "position": "2DF",
+        "number": "4",
+        "age": 27,
+        "caps": 37,
+        "goals": 1,
+        "club": "Genoa"
+      },
+      {
+        "name": "David Møller Wolfe",
+        "position": "2DF",
+        "number": "5",
+        "age": 24,
+        "caps": 21,
+        "goals": 1,
+        "club": "Wolverhampton Wanderers"
+      },
+      {
+        "name": "Patrick Berg",
+        "position": "3MF",
+        "number": "6",
+        "age": 29,
+        "caps": 42,
+        "goals": 0,
+        "club": "Bodø/Glimt"
+      },
+      {
+        "name": "Alexander Sørloth",
+        "position": "4FW",
+        "number": "7",
+        "age": 31,
+        "caps": 71,
+        "goals": 26,
+        "club": "Atlético Madrid"
+      },
+      {
+        "name": "Sander Berge",
+        "position": "3MF",
+        "number": "8",
+        "age": 28,
+        "caps": 65,
+        "goals": 1,
+        "club": "Fulham"
+      },
+      {
+        "name": "Erling Haaland",
+        "position": "4FW",
+        "number": "9",
+        "age": 26,
+        "caps": 49,
+        "goals": 55,
+        "club": "Manchester City"
+      },
+      {
+        "name": "Martin Ødegaard",
+        "position": "3MF",
+        "number": "10",
+        "age": 28,
+        "caps": 67,
+        "goals": 4,
+        "club": "Arsenal"
+      },
+      {
+        "name": "Jørgen Strand Larsen",
+        "position": "4FW",
+        "number": "11",
+        "age": 26,
+        "caps": 27,
+        "goals": 6,
+        "club": "Crystal Palace"
+      },
+      {
+        "name": "Sander Tangvik",
+        "position": "1GK",
+        "number": "12",
+        "age": 24,
+        "caps": 0,
+        "goals": 0,
+        "club": "Hamburger SV"
+      },
+      {
+        "name": "Egil Selvik",
+        "position": "1GK",
+        "number": "13",
+        "age": 29,
+        "caps": 6,
+        "goals": 0,
+        "club": "Watford"
+      },
+      {
+        "name": "Fredrik Aursnes",
+        "position": "3MF",
+        "number": "14",
+        "age": 31,
+        "caps": 21,
+        "goals": 1,
+        "club": "Benfica"
+      },
+      {
+        "name": "Fredrik André Bjørkan",
+        "position": "2DF",
+        "number": "15",
+        "age": 28,
+        "caps": 20,
+        "goals": 1,
+        "club": "Bodø/Glimt"
+      },
+      {
+        "name": "Marcus Holmgren Pedersen",
+        "position": "2DF",
+        "number": "16",
+        "age": 26,
+        "caps": 32,
+        "goals": 0,
+        "club": "Torino"
+      },
+      {
+        "name": "Torbjørn Heggem",
+        "position": "2DF",
+        "number": "17",
+        "age": 27,
+        "caps": 14,
+        "goals": 0,
+        "club": "Bologna"
+      },
+      {
+        "name": "Kristian Thorstvedt",
+        "position": "3MF",
+        "number": "18",
+        "age": 27,
+        "caps": 36,
+        "goals": 4,
+        "club": "Sassuolo"
+      },
+      {
+        "name": "Thelo Aasgaard",
+        "position": "3MF",
+        "number": "19",
+        "age": 24,
+        "caps": 7,
+        "goals": 5,
+        "club": "Rangers"
+      },
+      {
+        "name": "Antonio Nusa",
+        "position": "4FW",
+        "number": "20",
+        "age": 21,
+        "caps": 23,
+        "goals": 8,
+        "club": "RB Leipzig"
+      },
+      {
+        "name": "Andreas Schjelderup",
+        "position": "3MF",
+        "number": "21",
+        "age": 22,
+        "caps": 11,
+        "goals": 1,
+        "club": "Benfica"
+      },
+      {
+        "name": "Oscar Bobb",
+        "position": "3MF",
+        "number": "22",
+        "age": 23,
+        "caps": 19,
+        "goals": 2,
+        "club": "Fulham"
+      },
+      {
+        "name": "Jens Petter Hauge",
+        "position": "3MF",
+        "number": "23",
+        "age": 27,
+        "caps": 15,
+        "goals": 1,
+        "club": "Bodø/Glimt"
+      },
+      {
+        "name": "Sondre Langås",
+        "position": "2DF",
+        "number": "24",
+        "age": 25,
+        "caps": 3,
+        "goals": 0,
+        "club": "Derby County"
+      },
+      {
+        "name": "Henrik Falchener",
+        "position": "2DF",
+        "number": "25",
+        "age": 23,
+        "caps": 1,
+        "goals": 0,
+        "club": "Viking"
+      },
+      {
+        "name": "Julian Ryerson",
+        "position": "4FW",
+        "number": "26",
+        "age": 29,
+        "caps": 42,
+        "goals": 1,
+        "club": "Borussia Dortmund"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads",
+    "fetch_date": "2026-06-03"
   },
   "Curaçao": {
     "players": [
