@@ -2,7 +2,7 @@
   "metadata": {
     "source": "Wikipedia: 2026 FIFA World Cup squads",
     "total_teams": 48,
-    "total_players": 1446,
+    "total_players": 1432,
     "fetch_date": "2026-06-03",
     "note": "数据来自 Wikipedia，仅含已公布大名单的球队（28/48队）"
   },
@@ -8184,162 +8184,210 @@
         {
           "position": "GK",
           "name": "Ronwen Williams",
-          "age": 2015
-        },
-        {
-          "position": "GK",
-          "name": "Ricardo Goss",
-          "age": 2015
-        },
-        {
-          "position": "GK",
-          "name": "Sipho Chaine",
-          "age": 2015
-        },
-        {
-          "position": "GK",
-          "name": "Brandon Peterson (soccer)",
-          "age": 2015
-        },
-        {
-          "position": "DF",
-          "name": "Aubrey Modiba",
-          "age": 2015
-        },
-        {
-          "position": "DF",
-          "name": "Khuliso Mudau",
-          "age": 2015
-        },
-        {
-          "position": "DF",
-          "name": "Nkosinathi Sibisi",
-          "age": 2015
-        },
-        {
-          "position": "DF",
-          "name": "Mbekezeli Mbokazi",
-          "age": 2015
-        },
-        {
-          "position": "DF",
-          "name": "Ime Okon",
-          "age": 2015
-        },
-        {
-          "position": "DF",
-          "name": "Samukele Kabini",
-          "age": 2015
-        },
-        {
-          "position": "DF",
-          "name": "Khulumani Ndamane",
-          "age": 2015
+          "age": 34,
+          "caps": 62,
+          "goals": 0,
+          "club": "Mamelodi Sundowns"
         },
         {
           "position": "DF",
           "name": "Thabang Matuludi",
-          "age": 2015
+          "age": 27,
+          "caps": 2,
+          "goals": 0,
+          "club": "Polokwane City"
         },
         {
           "position": "DF",
-          "name": "Thabiso Monyane",
-          "age": 2015
-        },
-        {
-          "position": "DF",
-          "name": "Bradley Cross (soccer)",
-          "age": 2015
-        },
-        {
-          "position": "DF",
-          "name": "Olwethu Makhanya",
-          "age": 2015
+          "name": "Khulumani Ndamane",
+          "age": 22,
+          "caps": 5,
+          "goals": 0,
+          "club": "Mamelodi Sundowns"
         },
         {
           "position": "MF",
-          "name": "Teboho Mokoena (soccer, born 1997)",
-          "age": 2015
-        },
-        {
-          "position": "MF",
-          "name": "Sphephelo Sithole",
-          "age": 2015
-        },
-        {
-          "position": "MF",
-          "name": "Lebohang Maboe",
-          "age": 2015
+          "name": "Teboho Mokoena",
+          "age": 29,
+          "caps": 51,
+          "goals": 9,
+          "club": "Mamelodi Sundowns"
         },
         {
           "position": "MF",
           "name": "Thalente Mbatha",
-          "age": 2015
+          "age": 26,
+          "caps": 14,
+          "goals": 3,
+          "club": "Orlando Pirates"
         },
         {
-          "position": "MF",
-          "name": "Jayden Adams",
-          "age": 2015
-        },
-        {
-          "position": "MF",
-          "name": "Brooklyn Poggenpoel",
-          "age": 2015
-        },
-        {
-          "position": "FW",
-          "name": "Themba Zwane",
-          "age": 2015
-        },
-        {
-          "position": "FW",
-          "name": "Thapelo Morena",
-          "age": 2015
-        },
-        {
-          "position": "FW",
-          "name": "Lyle Foster",
-          "age": 2015
-        },
-        {
-          "position": "FW",
-          "name": "Evidence Makgopa",
-          "age": 2015
+          "position": "DF",
+          "name": "Aubrey Modiba",
+          "age": 30,
+          "caps": 44,
+          "goals": 3,
+          "club": "Mamelodi Sundowns"
         },
         {
           "position": "FW",
           "name": "Oswin Appollis",
-          "age": 2015
-        },
-        {
-          "position": "FW",
-          "name": "Iqraam Rayners",
-          "age": 2015
-        },
-        {
-          "position": "FW",
-          "name": "Relebohile Mofokeng",
-          "age": 2015
-        },
-        {
-          "position": "FW",
-          "name": "Thapelo Maseko",
-          "age": 2015
+          "age": 24,
+          "caps": 25,
+          "goals": 8,
+          "club": "Orlando Pirates"
         },
         {
           "position": "FW",
           "name": "Tshepang Moremi",
-          "age": 2015
+          "age": 25,
+          "caps": 9,
+          "goals": 1,
+          "club": "Orlando Pirates"
         },
         {
           "position": "FW",
-          "name": "Patrick Maswanganyi",
-          "age": 2015
+          "name": "Lyle Foster",
+          "age": 25,
+          "caps": 26,
+          "goals": 10,
+          "club": "Burnley"
+        },
+        {
+          "position": "FW",
+          "name": "Relebohile Mofokeng",
+          "age": 21,
+          "caps": 12,
+          "goals": 0,
+          "club": "Orlando Pirates"
+        },
+        {
+          "position": "MF",
+          "name": "Themba Zwane",
+          "age": 36,
+          "caps": 53,
+          "goals": 12,
+          "club": "Mamelodi Sundowns"
+        },
+        {
+          "position": "FW",
+          "name": "Thapelo Maseko",
+          "age": 22,
+          "caps": 9,
+          "goals": 1,
+          "club": "AEL Limassol"
+        },
+        {
+          "position": "MF",
+          "name": "Sphephelo Sithole",
+          "age": 27,
+          "caps": 27,
+          "goals": 1,
+          "club": "Tondela"
+        },
+        {
+          "position": "DF",
+          "name": "Mbekezeli Mbokazi",
+          "age": 20,
+          "caps": 10,
+          "goals": 1,
+          "club": "Chicago Fire FC"
+        },
+        {
+          "position": "FW",
+          "name": "Iqraam Rayners",
+          "age": 30,
+          "caps": 13,
+          "goals": 4,
+          "club": "Mamelodi Sundowns"
+        },
+        {
+          "position": "GK",
+          "name": "Sipho Chaine",
+          "age": 29,
+          "caps": 3,
+          "goals": 0,
+          "club": "Orlando Pirates"
+        },
+        {
+          "position": "FW",
+          "name": "Evidence Makgopa",
+          "age": 26,
+          "caps": 26,
+          "goals": 6,
+          "club": "Orlando Pirates"
+        },
+        {
+          "position": "DF",
+          "name": "Samukele Kabini",
+          "age": 22,
+          "caps": 5,
+          "goals": 0,
+          "club": "Molde"
+        },
+        {
+          "position": "DF",
+          "name": "Nkosinathi Sibisi",
+          "age": 30,
+          "caps": 19,
+          "goals": 0,
+          "club": "Orlando Pirates"
+        },
+        {
+          "position": "DF",
+          "name": "Khuliso Mudau",
+          "age": 31,
+          "caps": 32,
+          "goals": 1,
+          "club": "Mamelodi Sundowns"
+        },
+        {
+          "position": "DF",
+          "name": "Ime Okon",
+          "age": 22,
+          "caps": 7,
+          "goals": 1,
+          "club": "Hannover 96"
+        },
+        {
+          "position": "GK",
+          "name": "Ricardo Goss",
+          "age": 32,
+          "caps": 4,
+          "goals": 0,
+          "club": "Siwelele"
+        },
+        {
+          "position": "MF",
+          "name": "Jayden Adams",
+          "age": 25,
+          "caps": 4,
+          "goals": 0,
+          "club": "Mamelodi Sundowns"
+        },
+        {
+          "position": "DF",
+          "name": "Olwethu Makhanya",
+          "age": 22,
+          "caps": 0,
+          "goals": 0,
+          "club": "Philadelphia Union"
         },
         {
           "position": "FW",
           "name": "Kamogelo Sebelebele",
-          "age": 2015
+          "age": 23,
+          "caps": 2,
+          "goals": 0,
+          "club": "Orlando Pirates"
+        },
+        {
+          "position": "DF",
+          "name": "Bradley Cross",
+          "age": 25,
+          "caps": 0,
+          "goals": 0,
+          "club": "Kaizer Chiefs"
         }
       ]
     },
@@ -8347,173 +8395,211 @@
       "players": [
         {
           "position": "GK",
-          "name": "Jalal Hassan",
-          "age": 2015
-        },
-        {
-          "position": "GK",
           "name": "Fahad Talib",
-          "age": 2015
-        },
-        {
-          "position": "GK",
-          "name": "Ahmed Basil",
-          "age": 2015
-        },
-        {
-          "position": "GK",
-          "name": "Kumel Al-Rekabe",
-          "age": 2015
+          "age": 31,
+          "caps": 21,
+          "goals": 0,
+          "club": "Al-Talaba"
         },
         {
           "position": "DF",
           "name": "Rebin Sulaka",
-          "age": 2015
+          "age": 34,
+          "caps": 54,
+          "goals": 1,
+          "club": "Port"
         },
         {
           "position": "DF",
-          "name": "Manaf Younis",
-          "age": 2015
-        },
-        {
-          "position": "DF",
-          "name": "Merchas Doski",
-          "age": 2015
-        },
-        {
-          "position": "DF",
-          "name": "Hussein Ali (footballer, born 2002)",
-          "age": 2015
+          "name": "Hussein Ali",
+          "age": 24,
+          "caps": 25,
+          "goals": 1,
+          "club": "Pogons Szczecin"
         },
         {
           "position": "DF",
           "name": "Zaid Tahseen",
-          "age": 2015
-        },
-        {
-          "position": "DF",
-          "name": "Frans Putros",
-          "age": 2015
-        },
-        {
-          "position": "DF",
-          "name": "Maitham Jabbar",
-          "age": 2015
-        },
-        {
-          "position": "DF",
-          "name": "Ahmed Yahya",
-          "age": 2015
-        },
-        {
-          "position": "DF",
-          "name": "Mustafa Saadoon (footballer, born 2001)",
-          "age": 2015
+          "age": 25,
+          "caps": 26,
+          "goals": 1,
+          "club": "Pakhtakor"
         },
         {
           "position": "DF",
           "name": "Akam Hashim",
-          "age": 2015
+          "age": 27,
+          "caps": 12,
+          "goals": 1,
+          "club": "Al-Zawraa"
         },
         {
           "position": "DF",
-          "name": "Ahmed Maknzi",
-          "age": 2015
-        },
-        {
-          "position": "DF",
-          "name": "Dario Naamo",
-          "age": 2015
-        },
-        {
-          "position": "MF",
-          "name": "Ibrahim Bayesh",
-          "age": 2015
-        },
-        {
-          "position": "MF",
-          "name": "Amir Al-Ammari",
-          "age": 2015
-        },
-        {
-          "position": "MF",
-          "name": "Ali Jasim",
-          "age": 2015
+          "name": "Manaf Younis",
+          "age": 29,
+          "caps": 32,
+          "goals": 1,
+          "club": "Al-Shorta"
         },
         {
           "position": "MF",
           "name": "Youssef Amyn",
-          "age": 2015
+          "age": 22,
+          "caps": 25,
+          "goals": 2,
+          "club": "AEK Larnaca"
         },
         {
           "position": "MF",
-          "name": "Zidane Iqbal",
-          "age": 2015
-        },
-        {
-          "position": "MF",
-          "name": "Hasan Abdulkareem",
-          "age": 2015
-        },
-        {
-          "position": "MF",
-          "name": "Marko Farji",
-          "age": 2015
-        },
-        {
-          "position": "MF",
-          "name": "Karrar Nabeel",
-          "age": 2015
-        },
-        {
-          "position": "MF",
-          "name": "Kevin Yakob",
-          "age": 2015
-        },
-        {
-          "position": "MF",
-          "name": "Aimar Sher",
-          "age": 2015
-        },
-        {
-          "position": "MF",
-          "name": "Zaid Ismail",
-          "age": 2015
-        },
-        {
-          "position": "MF",
-          "name": "Peter Gwargis",
-          "age": 2015
-        },
-        {
-          "position": "MF",
-          "name": "Jussef Nasrawe",
-          "age": 2015
-        },
-        {
-          "position": "MF",
-          "name": "Ahmed Qasem",
-          "age": 2015
-        },
-        {
-          "position": "FW",
-          "name": "Aymen Hussein",
-          "age": 2015
-        },
-        {
-          "position": "FW",
-          "name": "Mohanad Ali",
-          "age": 2015
+          "name": "Ibrahim Bayesh",
+          "age": 26,
+          "caps": 74,
+          "goals": 8,
+          "club": "Al-Dhafra"
         },
         {
           "position": "FW",
           "name": "Ali Al-Hamadi",
-          "age": 2015
+          "age": 24,
+          "caps": 18,
+          "goals": 5,
+          "club": "Luton Town"
+        },
+        {
+          "position": "FW",
+          "name": "Mohanad Ali",
+          "age": 25,
+          "caps": 71,
+          "goals": 27,
+          "club": "Dibba"
+        },
+        {
+          "position": "FW",
+          "name": "Ahmed Qasem",
+          "age": 22,
+          "caps": 1,
+          "goals": 0,
+          "club": "Nashville SC"
+        },
+        {
+          "position": "GK",
+          "name": "Jalal Hassan",
+          "age": 35,
+          "caps": 100,
+          "goals": 0,
+          "club": "Al-Zawraa"
         },
         {
           "position": "FW",
           "name": "Ali Yousif",
-          "age": 2015
+          "age": 30,
+          "caps": 6,
+          "goals": 1,
+          "club": "Al-Talaba"
+        },
+        {
+          "position": "MF",
+          "name": "Zidane Iqbal",
+          "age": 23,
+          "caps": 23,
+          "goals": 2,
+          "club": "Utrecht"
+        },
+        {
+          "position": "DF",
+          "name": "Ahmed Yahya",
+          "age": 30,
+          "caps": 19,
+          "goals": 0,
+          "club": "Al-Shorta"
+        },
+        {
+          "position": "MF",
+          "name": "Amir Al-Ammari",
+          "age": 28,
+          "caps": 49,
+          "goals": 3,
+          "club": "Cracovia"
+        },
+        {
+          "position": "FW",
+          "name": "Ali Jasim",
+          "age": 22,
+          "caps": 35,
+          "goals": 2,
+          "club": "Al-Najma"
+        },
+        {
+          "position": "FW",
+          "name": "Aymen Hussein",
+          "age": 30,
+          "caps": 93,
+          "goals": 33,
+          "club": "Al-Karma"
+        },
+        {
+          "position": "MF",
+          "name": "Kevin Yakob",
+          "age": 25,
+          "caps": 7,
+          "goals": 0,
+          "club": "AGF"
+        },
+        {
+          "position": "MF",
+          "name": "Aimar Sher",
+          "age": 23,
+          "caps": 6,
+          "goals": 0,
+          "club": "Sarpsborg 08"
+        },
+        {
+          "position": "FW",
+          "name": "Marko Farji",
+          "age": 22,
+          "caps": 10,
+          "goals": 0,
+          "club": "Venezia"
+        },
+        {
+          "position": "GK",
+          "name": "Ahmed Basil",
+          "age": 29,
+          "caps": 14,
+          "goals": 0,
+          "club": "Al-Shorta"
+        },
+        {
+          "position": "DF",
+          "name": "Merchas Doski",
+          "age": 26,
+          "caps": 30,
+          "goals": 0,
+          "club": "Viktoria Plzen"
+        },
+        {
+          "position": "MF",
+          "name": "Zaid Ismail",
+          "age": 24,
+          "caps": 5,
+          "goals": 0,
+          "club": "Al-Talaba"
+        },
+        {
+          "position": "DF",
+          "name": "Mustafa Saadoon",
+          "age": 25,
+          "caps": 15,
+          "goals": 0,
+          "club": "Al-Shorta"
+        },
+        {
+          "position": "DF",
+          "name": "Frans Putros",
+          "age": 32,
+          "caps": 26,
+          "goals": 0,
+          "club": "Persib"
         }
       ]
     },
@@ -13468,31 +13554,31 @@
       "fetch_date": "2026-05-19"
     },
     "South Africa": {
-      "count": 32,
+      "count": 26,
       "positions": {
-        "GK": 4,
-        "DF": 11,
-        "MF": 6,
-        "FW": 11
+        "GK": 3,
+        "DF": 10,
+        "MF": 5,
+        "FW": 8
       },
-      "total_caps": 0,
-      "total_goals": 0,
-      "avg_age": 2015.0,
-      "peak_count": 0,
+      "total_caps": 464,
+      "total_goals": 61,
+      "avg_age": 26.3,
+      "peak_count": 4,
       "fetch_date": ""
     },
     "Iraq": {
-      "count": 34,
+      "count": 26,
       "positions": {
-        "GK": 4,
-        "DF": 12,
-        "MF": 14,
-        "FW": 4
+        "GK": 3,
+        "DF": 9,
+        "MF": 7,
+        "FW": 7
       },
-      "total_caps": 0,
-      "total_goals": 0,
-      "avg_age": 2015.0,
-      "peak_count": 0,
+      "total_caps": 797,
+      "total_goals": 88,
+      "avg_age": 26.7,
+      "peak_count": 4,
       "fetch_date": ""
     },
     "Algeria": {
@@ -25297,50 +25383,63 @@
     {
       "name": "Ronwen Williams",
       "position": "GK",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
+      "age": 34,
+      "birth_year": 1992,
+      "caps": 62,
       "goals": 0,
-      "club": "Unknown",
+      "club": "Mamelodi Sundowns",
       "team": "South Africa",
       "is_peak": false,
+      "is_youth": false,
+      "is_experienced": true
+    },
+    {
+      "name": "Thabang Matuludi",
+      "position": "DF",
+      "age": 27,
+      "birth_year": 1999,
+      "caps": 2,
+      "goals": 0,
+      "club": "Polokwane City",
+      "team": "South Africa",
+      "is_peak": true,
       "is_youth": false,
       "is_experienced": false
     },
     {
-      "name": "Ricardo Goss",
-      "position": "GK",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
+      "name": "Khulumani Ndamane",
+      "position": "DF",
+      "age": 22,
+      "birth_year": 2004,
+      "caps": 5,
       "goals": 0,
-      "club": "Unknown",
+      "club": "Mamelodi Sundowns",
       "team": "South Africa",
       "is_peak": false,
-      "is_youth": false,
+      "is_youth": true,
       "is_experienced": false
     },
     {
-      "name": "Sipho Chaine",
-      "position": "GK",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
+      "name": "Teboho Mokoena",
+      "position": "MF",
+      "age": 29,
+      "birth_year": 1997,
+      "caps": 51,
+      "goals": 9,
+      "club": "Mamelodi Sundowns",
       "team": "South Africa",
-      "is_peak": false,
+      "is_peak": true,
       "is_youth": false,
-      "is_experienced": false
+      "is_experienced": true
     },
     {
-      "name": "Brandon Peterson (soccer)",
-      "position": "GK",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
+      "name": "Thalente Mbatha",
+      "position": "MF",
+      "age": 26,
+      "birth_year": 2000,
+      "caps": 14,
+      "goals": 3,
+      "club": "Orlando Pirates",
       "team": "South Africa",
       "is_peak": false,
       "is_youth": false,
@@ -25349,323 +25448,24 @@
     {
       "name": "Aubrey Modiba",
       "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
+      "age": 30,
+      "birth_year": 1996,
+      "caps": 44,
+      "goals": 3,
+      "club": "Mamelodi Sundowns",
       "team": "South Africa",
       "is_peak": false,
       "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Khuliso Mudau",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Nkosinathi Sibisi",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Mbekezeli Mbokazi",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Ime Okon",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Samukele Kabini",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Khulumani Ndamane",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Thabang Matuludi",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Thabiso Monyane",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Bradley Cross (soccer)",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Olwethu Makhanya",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Teboho Mokoena (soccer, born 1997)",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Sphephelo Sithole",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Lebohang Maboe",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Thalente Mbatha",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Jayden Adams",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Brooklyn Poggenpoel",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Themba Zwane",
-      "position": "FW",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Thapelo Morena",
-      "position": "FW",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Lyle Foster",
-      "position": "FW",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Evidence Makgopa",
-      "position": "FW",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
+      "is_experienced": true
     },
     {
       "name": "Oswin Appollis",
       "position": "FW",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Iqraam Rayners",
-      "position": "FW",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Relebohile Mofokeng",
-      "position": "FW",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "South Africa",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Thapelo Maseko",
-      "position": "FW",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
+      "age": 24,
+      "birth_year": 2002,
+      "caps": 25,
+      "goals": 8,
+      "club": "Orlando Pirates",
       "team": "South Africa",
       "is_peak": false,
       "is_youth": false,
@@ -25674,51 +25474,246 @@
     {
       "name": "Tshepang Moremi",
       "position": "FW",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
+      "age": 25,
+      "birth_year": 2001,
+      "caps": 9,
+      "goals": 1,
+      "club": "Orlando Pirates",
       "team": "South Africa",
       "is_peak": false,
       "is_youth": false,
       "is_experienced": false
     },
     {
-      "name": "Patrick Maswanganyi",
+      "name": "Lyle Foster",
       "position": "FW",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
+      "age": 25,
+      "birth_year": 2001,
+      "caps": 26,
+      "goals": 10,
+      "club": "Burnley",
       "team": "South Africa",
       "is_peak": false,
       "is_youth": false,
+      "is_experienced": false
+    },
+    {
+      "name": "Relebohile Mofokeng",
+      "position": "FW",
+      "age": 21,
+      "birth_year": 2005,
+      "caps": 12,
+      "goals": 0,
+      "club": "Orlando Pirates",
+      "team": "South Africa",
+      "is_peak": false,
+      "is_youth": true,
+      "is_experienced": false
+    },
+    {
+      "name": "Themba Zwane",
+      "position": "MF",
+      "age": 36,
+      "birth_year": 1990,
+      "caps": 53,
+      "goals": 12,
+      "club": "Mamelodi Sundowns",
+      "team": "South Africa",
+      "is_peak": false,
+      "is_youth": false,
+      "is_experienced": true
+    },
+    {
+      "name": "Thapelo Maseko",
+      "position": "FW",
+      "age": 22,
+      "birth_year": 2004,
+      "caps": 9,
+      "goals": 1,
+      "club": "AEL Limassol",
+      "team": "South Africa",
+      "is_peak": false,
+      "is_youth": true,
+      "is_experienced": false
+    },
+    {
+      "name": "Sphephelo Sithole",
+      "position": "MF",
+      "age": 27,
+      "birth_year": 1999,
+      "caps": 27,
+      "goals": 1,
+      "club": "Tondela",
+      "team": "South Africa",
+      "is_peak": true,
+      "is_youth": false,
+      "is_experienced": false
+    },
+    {
+      "name": "Mbekezeli Mbokazi",
+      "position": "DF",
+      "age": 20,
+      "birth_year": 2006,
+      "caps": 10,
+      "goals": 1,
+      "club": "Chicago Fire FC",
+      "team": "South Africa",
+      "is_peak": false,
+      "is_youth": true,
+      "is_experienced": false
+    },
+    {
+      "name": "Iqraam Rayners",
+      "position": "FW",
+      "age": 30,
+      "birth_year": 1996,
+      "caps": 13,
+      "goals": 4,
+      "club": "Mamelodi Sundowns",
+      "team": "South Africa",
+      "is_peak": false,
+      "is_youth": false,
+      "is_experienced": false
+    },
+    {
+      "name": "Sipho Chaine",
+      "position": "GK",
+      "age": 29,
+      "birth_year": 1997,
+      "caps": 3,
+      "goals": 0,
+      "club": "Orlando Pirates",
+      "team": "South Africa",
+      "is_peak": true,
+      "is_youth": false,
+      "is_experienced": false
+    },
+    {
+      "name": "Evidence Makgopa",
+      "position": "FW",
+      "age": 26,
+      "birth_year": 2000,
+      "caps": 26,
+      "goals": 6,
+      "club": "Orlando Pirates",
+      "team": "South Africa",
+      "is_peak": false,
+      "is_youth": false,
+      "is_experienced": false
+    },
+    {
+      "name": "Samukele Kabini",
+      "position": "DF",
+      "age": 22,
+      "birth_year": 2004,
+      "caps": 5,
+      "goals": 0,
+      "club": "Molde",
+      "team": "South Africa",
+      "is_peak": false,
+      "is_youth": true,
+      "is_experienced": false
+    },
+    {
+      "name": "Nkosinathi Sibisi",
+      "position": "DF",
+      "age": 30,
+      "birth_year": 1996,
+      "caps": 19,
+      "goals": 0,
+      "club": "Orlando Pirates",
+      "team": "South Africa",
+      "is_peak": false,
+      "is_youth": false,
+      "is_experienced": false
+    },
+    {
+      "name": "Khuliso Mudau",
+      "position": "DF",
+      "age": 31,
+      "birth_year": 1995,
+      "caps": 32,
+      "goals": 1,
+      "club": "Mamelodi Sundowns",
+      "team": "South Africa",
+      "is_peak": false,
+      "is_youth": false,
+      "is_experienced": true
+    },
+    {
+      "name": "Ime Okon",
+      "position": "DF",
+      "age": 22,
+      "birth_year": 2004,
+      "caps": 7,
+      "goals": 1,
+      "club": "Hannover 96",
+      "team": "South Africa",
+      "is_peak": false,
+      "is_youth": true,
+      "is_experienced": false
+    },
+    {
+      "name": "Ricardo Goss",
+      "position": "GK",
+      "age": 32,
+      "birth_year": 1994,
+      "caps": 4,
+      "goals": 0,
+      "club": "Siwelele",
+      "team": "South Africa",
+      "is_peak": false,
+      "is_youth": false,
+      "is_experienced": false
+    },
+    {
+      "name": "Jayden Adams",
+      "position": "MF",
+      "age": 25,
+      "birth_year": 2001,
+      "caps": 4,
+      "goals": 0,
+      "club": "Mamelodi Sundowns",
+      "team": "South Africa",
+      "is_peak": false,
+      "is_youth": false,
+      "is_experienced": false
+    },
+    {
+      "name": "Olwethu Makhanya",
+      "position": "DF",
+      "age": 22,
+      "birth_year": 2004,
+      "caps": 0,
+      "goals": 0,
+      "club": "Philadelphia Union",
+      "team": "South Africa",
+      "is_peak": false,
+      "is_youth": true,
       "is_experienced": false
     },
     {
       "name": "Kamogelo Sebelebele",
       "position": "FW",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
+      "age": 23,
+      "birth_year": 2003,
+      "caps": 2,
       "goals": 0,
-      "club": "Unknown",
+      "club": "Orlando Pirates",
       "team": "South Africa",
       "is_peak": false,
       "is_youth": false,
       "is_experienced": false
     },
     {
-      "name": "Jalal Hassan",
-      "position": "GK",
-      "age": 2015,
-      "birth_year": 11,
+      "name": "Bradley Cross",
+      "position": "DF",
+      "age": 25,
+      "birth_year": 2001,
       "caps": 0,
       "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
+      "club": "Kaizer Chiefs",
+      "team": "South Africa",
       "is_peak": false,
       "is_youth": false,
       "is_experienced": false
@@ -25726,37 +25721,11 @@
     {
       "name": "Fahad Talib",
       "position": "GK",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
+      "age": 31,
+      "birth_year": 1995,
+      "caps": 21,
       "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Ahmed Basil",
-      "position": "GK",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Kumel Al-Rekabe",
-      "position": "GK",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
+      "club": "Al-Talaba",
       "team": "Iraq",
       "is_peak": false,
       "is_youth": false,
@@ -25765,50 +25734,24 @@
     {
       "name": "Rebin Sulaka",
       "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
+      "age": 34,
+      "birth_year": 1992,
+      "caps": 54,
+      "goals": 1,
+      "club": "Port",
       "team": "Iraq",
       "is_peak": false,
       "is_youth": false,
-      "is_experienced": false
+      "is_experienced": true
     },
     {
-      "name": "Manaf Younis",
+      "name": "Hussein Ali",
       "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Merchas Doski",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Hussein Ali (footballer, born 2002)",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
+      "age": 24,
+      "birth_year": 2002,
+      "caps": 25,
+      "goals": 1,
+      "club": "Pogons Szczecin",
       "team": "Iraq",
       "is_peak": false,
       "is_youth": false,
@@ -25817,63 +25760,11 @@
     {
       "name": "Zaid Tahseen",
       "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Frans Putros",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Maitham Jabbar",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Ahmed Yahya",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Mustafa Saadoon (footballer, born 2001)",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
+      "age": 25,
+      "birth_year": 2001,
+      "caps": 26,
+      "goals": 1,
+      "club": "Pakhtakor",
       "team": "Iraq",
       "is_peak": false,
       "is_youth": false,
@@ -25882,232 +25773,63 @@
     {
       "name": "Akam Hashim",
       "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
+      "age": 27,
+      "birth_year": 1999,
+      "caps": 12,
+      "goals": 1,
+      "club": "Al-Zawraa",
       "team": "Iraq",
-      "is_peak": false,
+      "is_peak": true,
       "is_youth": false,
       "is_experienced": false
     },
     {
-      "name": "Ahmed Maknzi",
+      "name": "Manaf Younis",
       "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
+      "age": 29,
+      "birth_year": 1997,
+      "caps": 32,
+      "goals": 1,
+      "club": "Al-Shorta",
       "team": "Iraq",
-      "is_peak": false,
+      "is_peak": true,
       "is_youth": false,
-      "is_experienced": false
+      "is_experienced": true
     },
     {
-      "name": "Dario Naamo",
-      "position": "DF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
+      "name": "Youssef Amyn",
+      "position": "MF",
+      "age": 22,
+      "birth_year": 2004,
+      "caps": 25,
+      "goals": 2,
+      "club": "AEK Larnaca",
       "team": "Iraq",
       "is_peak": false,
-      "is_youth": false,
+      "is_youth": true,
       "is_experienced": false
     },
     {
       "name": "Ibrahim Bayesh",
       "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
+      "age": 26,
+      "birth_year": 2000,
+      "caps": 74,
+      "goals": 8,
+      "club": "Al-Dhafra",
       "team": "Iraq",
       "is_peak": false,
       "is_youth": false,
-      "is_experienced": false
+      "is_experienced": true
     },
     {
-      "name": "Amir Al-Ammari",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Ali Jasim",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Youssef Amyn",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Zidane Iqbal",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Hasan Abdulkareem",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Marko Farji",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Karrar Nabeel",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Kevin Yakob",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Aimar Sher",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Zaid Ismail",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Peter Gwargis",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Jussef Nasrawe",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Ahmed Qasem",
-      "position": "MF",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
-      "team": "Iraq",
-      "is_peak": false,
-      "is_youth": false,
-      "is_experienced": false
-    },
-    {
-      "name": "Aymen Hussein",
+      "name": "Ali Al-Hamadi",
       "position": "FW",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
+      "age": 24,
+      "birth_year": 2002,
+      "caps": 18,
+      "goals": 5,
+      "club": "Luton Town",
       "team": "Iraq",
       "is_peak": false,
       "is_youth": false,
@@ -26116,37 +25838,219 @@
     {
       "name": "Mohanad Ali",
       "position": "FW",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
-      "goals": 0,
-      "club": "Unknown",
+      "age": 25,
+      "birth_year": 2001,
+      "caps": 71,
+      "goals": 27,
+      "club": "Dibba",
       "team": "Iraq",
       "is_peak": false,
       "is_youth": false,
+      "is_experienced": true
+    },
+    {
+      "name": "Ahmed Qasem",
+      "position": "FW",
+      "age": 22,
+      "birth_year": 2004,
+      "caps": 1,
+      "goals": 0,
+      "club": "Nashville SC",
+      "team": "Iraq",
+      "is_peak": false,
+      "is_youth": true,
       "is_experienced": false
     },
     {
-      "name": "Ali Al-Hamadi",
-      "position": "FW",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
+      "name": "Jalal Hassan",
+      "position": "GK",
+      "age": 35,
+      "birth_year": 1991,
+      "caps": 100,
       "goals": 0,
-      "club": "Unknown",
+      "club": "Al-Zawraa",
       "team": "Iraq",
       "is_peak": false,
       "is_youth": false,
-      "is_experienced": false
+      "is_experienced": true
     },
     {
       "name": "Ali Yousif",
       "position": "FW",
-      "age": 2015,
-      "birth_year": 11,
-      "caps": 0,
+      "age": 30,
+      "birth_year": 1996,
+      "caps": 6,
+      "goals": 1,
+      "club": "Al-Talaba",
+      "team": "Iraq",
+      "is_peak": false,
+      "is_youth": false,
+      "is_experienced": false
+    },
+    {
+      "name": "Zidane Iqbal",
+      "position": "MF",
+      "age": 23,
+      "birth_year": 2003,
+      "caps": 23,
+      "goals": 2,
+      "club": "Utrecht",
+      "team": "Iraq",
+      "is_peak": false,
+      "is_youth": false,
+      "is_experienced": false
+    },
+    {
+      "name": "Ahmed Yahya",
+      "position": "DF",
+      "age": 30,
+      "birth_year": 1996,
+      "caps": 19,
       "goals": 0,
-      "club": "Unknown",
+      "club": "Al-Shorta",
+      "team": "Iraq",
+      "is_peak": false,
+      "is_youth": false,
+      "is_experienced": false
+    },
+    {
+      "name": "Amir Al-Ammari",
+      "position": "MF",
+      "age": 28,
+      "birth_year": 1998,
+      "caps": 49,
+      "goals": 3,
+      "club": "Cracovia",
+      "team": "Iraq",
+      "is_peak": true,
+      "is_youth": false,
+      "is_experienced": true
+    },
+    {
+      "name": "Ali Jasim",
+      "position": "FW",
+      "age": 22,
+      "birth_year": 2004,
+      "caps": 35,
+      "goals": 2,
+      "club": "Al-Najma",
+      "team": "Iraq",
+      "is_peak": false,
+      "is_youth": true,
+      "is_experienced": true
+    },
+    {
+      "name": "Aymen Hussein",
+      "position": "FW",
+      "age": 30,
+      "birth_year": 1996,
+      "caps": 93,
+      "goals": 33,
+      "club": "Al-Karma",
+      "team": "Iraq",
+      "is_peak": false,
+      "is_youth": false,
+      "is_experienced": true
+    },
+    {
+      "name": "Kevin Yakob",
+      "position": "MF",
+      "age": 25,
+      "birth_year": 2001,
+      "caps": 7,
+      "goals": 0,
+      "club": "AGF",
+      "team": "Iraq",
+      "is_peak": false,
+      "is_youth": false,
+      "is_experienced": false
+    },
+    {
+      "name": "Aimar Sher",
+      "position": "MF",
+      "age": 23,
+      "birth_year": 2003,
+      "caps": 6,
+      "goals": 0,
+      "club": "Sarpsborg 08",
+      "team": "Iraq",
+      "is_peak": false,
+      "is_youth": false,
+      "is_experienced": false
+    },
+    {
+      "name": "Marko Farji",
+      "position": "FW",
+      "age": 22,
+      "birth_year": 2004,
+      "caps": 10,
+      "goals": 0,
+      "club": "Venezia",
+      "team": "Iraq",
+      "is_peak": false,
+      "is_youth": true,
+      "is_experienced": false
+    },
+    {
+      "name": "Ahmed Basil",
+      "position": "GK",
+      "age": 29,
+      "birth_year": 1997,
+      "caps": 14,
+      "goals": 0,
+      "club": "Al-Shorta",
+      "team": "Iraq",
+      "is_peak": true,
+      "is_youth": false,
+      "is_experienced": false
+    },
+    {
+      "name": "Merchas Doski",
+      "position": "DF",
+      "age": 26,
+      "birth_year": 2000,
+      "caps": 30,
+      "goals": 0,
+      "club": "Viktoria Plzen",
+      "team": "Iraq",
+      "is_peak": false,
+      "is_youth": false,
+      "is_experienced": true
+    },
+    {
+      "name": "Zaid Ismail",
+      "position": "MF",
+      "age": 24,
+      "birth_year": 2002,
+      "caps": 5,
+      "goals": 0,
+      "club": "Al-Talaba",
+      "team": "Iraq",
+      "is_peak": false,
+      "is_youth": false,
+      "is_experienced": false
+    },
+    {
+      "name": "Mustafa Saadoon",
+      "position": "DF",
+      "age": 25,
+      "birth_year": 2001,
+      "caps": 15,
+      "goals": 0,
+      "club": "Al-Shorta",
+      "team": "Iraq",
+      "is_peak": false,
+      "is_youth": false,
+      "is_experienced": false
+    },
+    {
+      "name": "Frans Putros",
+      "position": "DF",
+      "age": 32,
+      "birth_year": 1994,
+      "caps": 26,
+      "goals": 0,
+      "club": "Persib",
       "team": "Iraq",
       "is_peak": false,
       "is_youth": false,
