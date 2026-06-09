@@ -636,9 +636,9 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .h2h Team select{width:100%;background:var(--s2);color:var(--tx);border:0.5px solid var(--bd);border-radius:14px;padding:16px 18px;font-size:17px;font-weight:700;appearance:none;-webkit-appearance:none;cursor:pointer;line-height:1.4}
 .h2h-vs{font-size:24px;font-weight:900;color:var(--gd);text-align:center;padding:4px 0}
 .h2h-bar{display:flex;align-items:center;gap:0;border-radius:16px;overflow:hidden;height:52px;background:var(--s2);margin-bottom:14px}
-.h2h-bar-a{flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:0 12px;height:100%;font-size:14px;font-weight:800;color:var(--tx);background:var(--bl)}
-.h2h-bar-d{flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--s);padding:0 10px;height:100%;background:var(--gd)}
-.h2h-bar-b{flex:1;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--tx);padding:0 12px;background:var(--gd)}
+.h2h-bar-a{flex:1 1;display:flex;align-items:center;justify-content:center;padding:0 12px;height:100%;font-size:14px;font-weight:800;color:var(--tx);background:var(--bl);min-width:0;overflow:hidden}
+.h2h-bar-d{flex:1 1;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--s);padding:0 10px;height:100%;background:var(--gd);min-width:0;overflow:hidden}
+.h2h-bar-b{flex:1 1;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--tx);padding:0 12px;background:var(--gd);min-width:0;overflow:hidden}
 .h2h-3m{display:flex;gap:8px;margin-bottom:16px}
 .h2h-3m .h2h-3m-it{flex:1;background:var(--s2);border-radius:12px;padding:12px 0;text-align:center}
 .h2h-3m .h2h-3m-v{font-size:18px;font-weight:800;color:var(--tx)}
