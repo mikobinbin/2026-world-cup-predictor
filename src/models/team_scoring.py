@@ -3,7 +3,7 @@
 """
 
 from dataclasses import dataclass
-from typing import List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 import random
 
 import numpy as np
@@ -46,10 +46,14 @@ class TeamScorer:
         self.weights = weights
         self.mystic = mystic_config
 
-    def _calc_factor_modifier(self, squad: Squad) -> dict:
+    def _calc_factor_modifier(self, squad: Squad,
+                               match_results: Optional[List[Dict]] = None) -> dict:
         """
         计算各因子对 Elo 的百分比增幅（返回 dict，方便显示）。
         增幅范围：-8% 到 +12% 不等。
+
+        match_results: 该球队的近期真实比赛结果列表，来自 Flashscore。
+                      每条记录格式: {team_a, team_b, score_a, score_b}
         """
         maturity = squad.get_squad_maturity_index()
 
@@ -60,8 +64,27 @@ class TeamScorer:
         recent_t = squad.tournament_history[-1] if squad.tournament_history else None
         exp_bonus = self._calc_experience_score(squad, ExperienceConfig(), recent_t)
 
-        # 近期状态：胜率 0.3→0.8 对应 0%→+6%
-        form_bonus = (squad.recent_win_rate - 0.3) * 0.10
+        # 近期状态：优先使用真实比赛结果，否则用 squad 的默认值
+        if match_results:
+            # 从真实比赛计算胜率
+            wins = sum(
+                1 for m in match_results
+                if (m["team_a"] == squad.country and m.get("score_a", 0) > m.get("score_b", 0)) or
+                   (m["team_b"] == squad.country and m.get("score_b", 0) > m.get("score_a", 0))
+            )
+            draws = sum(
+                1 for m in match_results
+                if m.get("score_a") == m.get("score_b") and
+                   (m["team_a"] == squad.country or m["team_b"] == squad.country)
+            )
+            total = len(match_results)
+            actual_win_rate = (wins + draws * 0.5) / max(1, total)
+            actual_form_bonus = (actual_win_rate - 0.3) * 0.10
+            # 混合：70% 真实数据 + 30% 原有种子数据
+            squad_form_bonus = (squad.recent_win_rate - 0.3) * 0.10
+            form_bonus = 0.7 * actual_form_bonus + 0.3 * squad_form_bonus
+        else:
+            form_bonus = (squad.recent_win_rate - 0.3) * 0.10
 
         # 教练因素（已固定种子，不会再随机）
         coaching_bonus = (squad.coaching_factor - 0.5) * 0.10
@@ -75,16 +98,19 @@ class TeamScorer:
 
     def score_team(self, squad: Squad, is_host: bool = False,
                    is_defending_champ: bool = False,
-                   recent_tournament: Optional[str] = None) -> TeamResult:
+                   recent_tournament: Optional[str] = None,
+                   match_results: Optional[List[Dict]] = None) -> TeamResult:
         """
         计算球队综合评分。
         策略：各因子修正 Elo → modified_elo → Monte Carlo 算真实概率。
+
+        match_results: 该球队的近期真实比赛结果（用于 form_score 计算）。
         """
         # 1. 基础概率（Elo锚定）
         elo_prob = self._elo_to_prob(squad.elo)
 
         # 2. 因子增幅（对Elo的%修正）
-        mods = self._calc_factor_modifier(squad)
+        mods = self._calc_factor_modifier(squad, match_results=match_results)
 
         # 3. 汇总为 Elo 增幅
         total_mod = (
@@ -383,13 +409,16 @@ def score_all_teams(teams: List[Squad],
     for team in teams:
         is_host = team.country == host_team
         is_def = team.country == defending_champ
+        # 该球队的近期真实比赛结果
+        team_match_results = (recent_results or {}).get(team.country)
         mod_elo = _compute_modified_elo(team, weights, mystic_config,
                                          is_host, is_def,
                                          experience_config=exp_config)
         modified_elos[team.country] = mod_elo
 
         result = scorer.score_team(team, is_host=is_host,
-                                  is_defending_champ=is_def)
+                                  is_defending_champ=is_def,
+                                  match_results=team_match_results)
         result.mod_elo = mod_elo  # 供 H2H 计算用
         results.append(result)
 

@@ -30,6 +30,7 @@ from src.models.ucl_final_mentality import (
 )
 from src.models.conformal import ConformalPredictor
 from src.models.feature_attribution import attribute_all_teams
+from src.models.match_data import load_match_data, FlashscoreParser
 from scripts.elo_scraper import load_elo_cache
 from scripts.ingest_wikipedia_squads import normalize_position
 
@@ -326,6 +327,20 @@ def _load_analysis():
             tournament_history=sq.get("tournament_history", ["2022"] if sq["country"] == DEFENDING_CHAMPION else []),
         ))
 
+    # 4b. Load match data (Flashscore — WC results, WC fixtures, friendlies)
+    # Build recent_results dict: { country -> [match_dict, ...] }
+    # Each match_dict has: team_a, team_b, score_a, score_b (or None for fixtures)
+    all_match_data = load_match_data()  # returns (fixtures, results, friendly_results)
+    match_fixtures, match_results, friendly_results = all_match_data
+
+    # Build per-team match lists for form_score calculation
+    recent_results: Dict[str, List[Dict]] = {}
+    for m in match_results + friendly_results:
+        for team in [m["team_a"], m["team_b"]]:
+            if team not in recent_results:
+                recent_results[team] = []
+            recent_results[team].append(m)
+
     # 5. Score
     weights = ModelWeights()
     scored = score_all_teams(
@@ -333,6 +348,7 @@ def _load_analysis():
         weights=weights,
         host_team=HOST_COUNTRY,
         defending_champ=DEFENDING_CHAMPION,
+        recent_results=recent_results,
     )
 
     # 6. UCL 心态 override 精确调参
@@ -467,8 +483,9 @@ def _load_analysis():
     # 8. UCL
     ucl_data = _load_ucl_data()
 
-    _cached_results = (results, ucl_data, h2h_conformal_map)
-    return results, ucl_data, h2h_conformal_map
+    _cached_results = (results, ucl_data, h2h_conformal_map,
+                       match_fixtures, match_results, friendly_results)
+    return results, ucl_data, h2h_conformal_map, match_fixtures, match_results, friendly_results
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -513,6 +530,21 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .lb-pct{font-size:17px;font-weight:800;font-variant-numeric:tabular-nums}
 .lb-pct.vh{color:var(--bl)}
 .lb-sh{font-size:11px;font-weight:600;margin-top:2px}
+/* Dynamic match sections */
+.dyn-sect{padding:0}
+.dyn-list{display:flex;flex-direction:column}
+.dyn-row{display:flex;flex-direction:column;padding:10px 0;border-bottom:0.5px solid var(--bd);gap:5px}
+.dyn-row:last-child{border-bottom:none}
+.dyn-teams{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;flex-wrap:wrap}
+.dyn-team{color:var(--tx1)}
+.dyn-team.dyn-win{color:var(--gr);font-weight:800}
+.dyn-vs{color:var(--tx2);font-size:12px;font-weight:400}
+.dyn-score{font-size:16px;font-weight:800;color:var(--gd);white-space:nowrap}
+.dyn-meta{display:flex;gap:8px;font-size:11px;color:var(--tx2)}
+.dyn-date{font-weight:600}
+.dyn-time{opacity:0.7}
+.dyn-rnd{opacity:0.7}
+.dyn-empty{color:var(--tx2);font-size:13px;text-align:center;padding:16px 0}
 /* Factor breakdown */
 .fb-r{display:flex;flex-direction:column;padding:12px 0;border-bottom:0.5px solid var(--bd);cursor:pointer}
 .fb-r:last-child{border-bottom:none}
@@ -813,9 +845,25 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 
 <!-- TAB: Champion -->
 <div class="pg on" id="pg-home">
+  <!-- Section 1: Top 6 Champion Leaderboard -->
   <div class="card">
-    <div class="card-title">冠军概率 / Champion Prob</div>
+    <div class="card-title">冠军概率 TOP 6 / Champion Prob</div>
     <div class="lb" id="lb"></div>
+  </div>
+  <!-- Section 2: WC Fixtures (within 7 days) -->
+  <div class="card">
+    <div class="card-title">⚔️ 赛程 / Upcoming Fixtures</div>
+    <div class="dyn-sect" id="sec-fix"></div>
+  </div>
+  <!-- Section 3: WC Results (completed) -->
+  <div class="card">
+    <div class="card-title">📊 赛果 / Match Results</div>
+    <div class="dyn-sect" id="sec-wcr"></div>
+  </div>
+  <!-- Section 4: Friendly Results -->
+  <div class="card">
+    <div class="card-title">🤝 热身赛 / Friendly Results</div>
+    <div class="dyn-sect" id="sec-frn"></div>
   </div>
 </div>
 
@@ -990,6 +1038,9 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 var D=__DATA__;
 var U=__UCL__;
 var HC=__H2H_CONF__;
+var FIX=__FIXTURES__;
+var WCR=__WC_RESULTS__;
+var FRN=__FRIENDLIES__;
 var FL={"Argentina":"AR","Brazil":"BR","France":"FR","Germany":"DE","Spain":"ES","England":"EN","Portugal":"PT","Netherlands":"NL","Belgium":"BE","Croatia":"HR","Switzerland":"CH","Austria":"AT","Czech Republic":"CZ","Turkey":"TR","Sweden":"SE","Morocco":"MA","Senegal":"SN","Egypt":"EG","Algeria":"DZ","Ghana":"GH","Ivory Coast":"CI","Tunisia":"TN","DR Congo":"CD","Cape Verde":"CV","Japan":"JP","South Korea":"KR","Iran":"IR","Iraq":"IQ","Qatar":"QA","Saudi Arabia":"SA","Australia":"AU","Uzbekistan":"UZ","Jordan":"JO","USA":"US","Mexico":"MX","Canada":"CA","Panama":"PA","Curaçao":"CW","Haiti":"HT","New Zealand":"NZ","Ecuador":"EC","Paraguay":"PY","Colombia":"CO","Uruguay":"UY","Norway":"NO","South Africa":"ZA","Bosnia and Herzegovina":"BA","Scotland":"XS"};
 function fl(c){return FL[c]||"--";}
 function pc(p){return p>15?"var(--bl)":p>5?"var(--gr)":"var(--tx2)";}
@@ -998,7 +1049,78 @@ function sc(s){return s>0?"var(--gr)":s<0?"var(--rd)":"var(--tx2)";}
 function showTab(n){document.querySelectorAll(".pg").forEach(function(p){p.classList.remove("on");});document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("on");});document.getElementById("pg-"+n).classList.add("on");document.getElementById("tb-"+n).classList.add("on");}
 
 /* ── Leaderboard ── */
-function buildLB(){var s=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});var h="";for(var i=0;i<s.length;i++){var t=s[i],r=i+1,rc=r<=3?"t"+r:"";var pct=(t.final_prob*100).toFixed(2),pctCls=t.final_prob>0.15?" vh":"";var sh=t.shift||0;h+='<div class="lb-r"><div class="lb-rk '+rc+'">'+r+'</div><div class="lb-fl">'+fl(t.country)+'</div><div class="lb-inf"><div class="lb-nm">'+t.country+'</div><div class="lb-el">Elo '+(t.elo||0).toFixed(0)+'</div><div class="pb"><div class="pb-fi" style="width:'+pct+'%;background:'+pc(t.final_prob*100)+'"></div></div></div><div class="lb-pr"><div class="lb-pct'+pctCls+'">'+pct+'%</div><div class="lb-sh" style="color:'+sc(sh)+'">'+st(sh)+'</div></div></div>';}document.getElementById("lb").innerHTML=h;}
+function buildLB(){
+  var s = D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});
+  // Top 6 only
+  var h = "";
+  for(var i=0; i<Math.min(6, s.length); i++){
+    var t=s[i], r=i+1, rc=r<=3?"t"+r:"";
+    var pct=(t.final_prob*100).toFixed(2), pctCls=t.final_prob>0.15?" vh":"";
+    var sh=t.shift||0;
+    h+='<div class="lb-r"><div class="lb-rk '+rc+'">'+r+'</div><div class="lb-fl">'+fl(t.country)+'</div><div class="lb-inf"><div class="lb-nm">'+t.country+'</div><div class="lb-el">Elo '+(t.elo||0).toFixed(0)+'</div><div class="pb"><div class="pb-fi" style="width:'+pct+'%;background:'+pc(t.final_prob*100)+'"></div></div></div><div class="lb-pr"><div class="lb-pct'+pctCls+'">'+pct+'%</div><div class="lb-sh" style="color:'+sc(sh)+'">'+st(sh)+'</div></div></div>';
+  }
+  document.getElementById("lb").innerHTML=h;
+  // Render dynamic sections
+  buildFixtures();
+  buildWCResults();
+  buildFriendlies();
+}
+
+/* ── Dynamic Match Sections ── */
+function buildFixtures(){
+  // Show all upcoming WC fixtures (score_a/score_b are null for fixtures)
+  var matches = (FIX||[]).filter(function(m){ return m.score_a===null && m.score_b===null; });
+  if(!matches.length){ document.getElementById("sec-fix").innerHTML='<div class="dyn-empty">暂无赛程数据</div>'; return; }
+  var h = '<div class="dyn-list">';
+  matches.slice(0,20).forEach(function(m){
+    h+='<div class="dyn-row">\
+      <div class="dyn-teams"><span class="dyn-team">'+fl(m.team_a)+' '+m.team_a+'</span>\
+      <span class="dyn-vs">vs</span>\
+      <span class="dyn-team">'+m.team_b+' '+fl(m.team_b)+'</span></div>\
+      <div class="dyn-meta"><span class="dyn-date">'+m.date+'</span><span class="dyn-time">'+m.time+'</span><span class="dyn-rnd">'+m.round+'</span></div>\
+    </div>';
+  });
+  h+='</div>';
+  document.getElementById("sec-fix").innerHTML=h;
+}
+
+function buildWCResults(){
+  // Show completed WC match results
+  var matches = (WCR||[]).filter(function(m){ return m.score_a!==null || m.score_b!==null; });
+  if(!matches.length){ document.getElementById("sec-wcr").innerHTML='<div class="dyn-empty">暂无赛果数据</div>'; return; }
+  var h = '<div class="dyn-list">';
+  matches.slice(0,20).forEach(function(m){
+    var sa=m.score_a!=null?m.score_a:'-', sb=m.score_b!=null?m.score_b:'-';
+    var winCls=function(t){ return m.score_a!=null&&m.score_b!=null&&(sa>sb&&t===m.team_a||sb>sa&&t===m.team_b)?' dyn-win':''; };
+    h+='<div class="dyn-row dyn-result">\
+      <div class="dyn-teams"><span class="dyn-team'+winCls(m.team_a)+'">'+fl(m.team_a)+' '+m.team_a+'</span>\
+      <span class="dyn-score">'+sa+' - '+sb+'</span>\
+      <span class="dyn-team'+winCls(m.team_b)+'">'+m.team_b+' '+fl(m.team_b)+'</span></div>\
+      <div class="dyn-meta"><span class="dyn-date">'+m.date+'</span><span class="dyn-rnd">'+m.round+'</span></div>\
+    </div>';
+  });
+  h+='</div>';
+  document.getElementById("sec-wcr").innerHTML=h;
+}
+
+function buildFriendlies(){
+  // Show friendly match results
+  var matches = (FRN||[]).filter(function(m){ return m.score_a!==null || m.score_b!==null; });
+  if(!matches.length){ document.getElementById("sec-frn").innerHTML='<div class="dyn-empty">暂无热身赛数据</div>'; return; }
+  var h = '<div class="dyn-list">';
+  matches.slice(0,20).forEach(function(m){
+    var sa=m.score_a!=null?m.score_a:'-', sb=m.score_b!=null?m.score_b:'-';
+    var winCls=function(t){ return m.score_a!=null&&m.score_b!=null&&(sa>sb&&t===m.team_a||sb>sa&&t===m.team_b)?' dyn-win':''; };
+    h+='<div class="dyn-row dyn-result">\
+      <div class="dyn-teams"><span class="dyn-team'+winCls(m.team_a)+'">'+fl(m.team_a)+' '+m.team_a+'</span>\
+      <span class="dyn-score">'+sa+' - '+sb+'</span>\
+      <span class="dyn-team'+winCls(m.team_b)+'">'+m.team_b+' '+fl(m.team_b)+'</span></div>\
+      <div class="dyn-meta"><span class="dyn-date">'+m.date+'</span><span class="dyn-rnd">热身赛</span></div>\
+    </div>';
+  });
+  h+='</div>';
+  document.getElementById("sec-frn").innerHTML=h;
+}
 
 /* ── Factor Breakdown ── */
 function toggleFB(el){var d=el.querySelector(".fb-expanded");if(d)d.classList.toggle("on");}
@@ -1452,17 +1574,23 @@ if(teams.length>0){sel.value=teams[0].country;sqChange();}
 
 def run_server(port=7862):
     """启动 HTTP 服务器 — 纯 HTML/CSS/JS，无 Gradio 依赖"""
-    results, ucl_data, h2h_conformal_map = _load_analysis()
+    results, ucl_data, h2h_conformal_map, match_fixtures, match_results, friendly_results = _load_analysis()
     update_time = datetime.now().strftime("%Y-%m-%d %H:%M")
 
     data_json = json.dumps(results, ensure_ascii=False)
     ucl_json = json.dumps(ucl_data, ensure_ascii=False)
     h2h_conf_json = json.dumps(h2h_conformal_map, ensure_ascii=False)
+    fixtures_json = json.dumps(match_fixtures, ensure_ascii=False)
+    wc_results_json = json.dumps(match_results, ensure_ascii=False)
+    friendlies_json = json.dumps(friendly_results, ensure_ascii=False)
 
     html = HTML_BODY
     html = html.replace("__DATA__", data_json)
     html = html.replace("__UCL__", ucl_json)
     html = html.replace("__H2H_CONF__", h2h_conf_json)
+    html = html.replace("__FIXTURES__", fixtures_json)
+    html = html.replace("__WC_RESULTS__", wc_results_json)
+    html = html.replace("__FRIENDLIES__", friendlies_json)
     html = html.replace("__UPDATE_TIME__", update_time)
 
     class Handler(http.server.BaseHTTPRequestHandler):
