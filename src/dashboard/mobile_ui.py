@@ -28,6 +28,8 @@ from src.models.ucl_final_mentality import (
     compute_country_ucl_mentality_bonus,
     compute_final_mentality_signal,
 )
+from src.models.conformal import ConformalPredictor
+from src.models.feature_attribution import attribute_all_teams
 from scripts.elo_scraper import load_elo_cache
 from scripts.ingest_wikipedia_squads import normalize_position
 
@@ -423,11 +425,50 @@ def _load_analysis():
 
     results.sort(key=lambda x: x["final_prob"], reverse=True)
 
+    # 9. Conformal Prediction — 冠军概率置信区间
+    conformal = ConformalPredictor()
+    cal_info = conformal.calibrate()
+    champion_intervals = conformal.predict_champion_intervals(results)
+    interval_map = {c.country: c for c in champion_intervals}
+    for r in results:
+        ci = interval_map.get(r["country"])
+        if ci:
+            r["conformal_ci_low"] = ci.conformal_interval[0]
+            r["conformal_ci_high"] = ci.conformal_interval[1]
+            r["conformal_uncertainty"] = ci.uncertainty_level
+        else:
+            r["conformal_ci_low"] = r["ci_low"]
+            r["conformal_ci_high"] = r["ci_high"]
+            r["conformal_uncertainty"] = "medium"
+
+    # 10. Feature Attribution — 因子绝对贡献归因
+    attributions = attribute_all_teams(results)
+    attr_map = {a["country"]: a for a in attributions}
+    for r in results:
+        r["attribution"] = attr_map.get(r["country"])
+
+    # 11. H2H Conformal Prediction — 所有球队两两 H2H 的预测集
+    # 为每个 team 预计算其对所有其他队的 H2H conformal 结果
+    # 格式: { teamA: { teamB: { prediction_set, set_size, confidence, explanation } } }
+    h2h_conformal_map: Dict = {}
+    elo_dict_h2h = {r["country"]: r.get("mod_elo", r.get("elo", 1700)) for r in results}
+    for r in results:
+        country_a = r["country"]
+        elo_a = r.get("mod_elo", r.get("elo", 1700))
+        h2h_conformal_map[country_a] = {}
+        for r2 in results:
+            if r2["country"] == country_a:
+                continue
+            country_b = r2["country"]
+            elo_b = r2.get("mod_elo", r2.get("elo", 1700))
+            cp = conformal.predict_h2h(country_a, country_b, elo_a, elo_b)
+            h2h_conformal_map[country_a][country_b] = cp.to_dict()
+
     # 8. UCL
     ucl_data = _load_ucl_data()
 
-    _cached_results = (results, ucl_data)
-    return results, ucl_data
+    _cached_results = (results, ucl_data, h2h_conformal_map)
+    return results, ucl_data, h2h_conformal_map
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -562,6 +603,27 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .h2h-mu-s{font-size:12px;font-weight:700;color:var(--gd);width:28px;text-align:center}
 .h2h-mu-r{text-align:right;flex:1}
 .h2h-mu-r .h2h-wl{margin-right:6px}
+/* Conformal Prediction */
+.cp-set-box{margin-top:4px}
+.cp-set-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.cp-set-lbl{font-size:10px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:0.8px}
+.cp-set-badge{font-size:11px;font-weight:800;padding:3px 8px;border-radius:6px;letter-spacing:0.3px}
+.cp-set-exp{font-size:12px;color:var(--tx2);margin-bottom:4px}
+.cp-set-conf{font-size:11px;color:var(--tx3)}
+/* Factor Attribution */
+.attr-sect{margin-bottom:14px}
+.attr-row{display:flex;align-items:center;gap:8px;font-size:12px;margin-bottom:5px}
+.attr-lbl{flex:0 0 80px;font-weight:700;color:var(--tx2)}
+.attr-bar{flex:1;height:18px;background:var(--s2);border-radius:4px;overflow:hidden;display:flex}
+.attr-seg{height:100%;transition:width 0.3s}
+.attr-seg-a{background:var(--bl)}
+.attr-seg-d{background:var(--rd)}
+.attr-seg-val{flex:0 0 48px;font-size:11px;font-weight:700;text-align:right;justify-content:flex-end;display:flex;gap:2px}
+.attr-delta-p{font-size:11px;color:var(--gr)}
+.attr-delta-n{font-size:11px;color:var(--rd)}
+.attr-meta{font-size:10px;color:var(--tx3);margin-top:6px;padding-top:6px;border-top:0.5px solid var(--bd)}
+.attr-meta span{margin-right:12px}
+.attr-note{font-size:11px;color:var(--tx3);font-style:italic;margin-top:4px}
 /* Squad */
 .sel{width:100%;background:var(--s2);color:var(--tx);border:0.5px solid var(--bd);border-radius:12px;padding:12px 16px;font-size:15px;font-weight:600;margin-bottom:12px;appearance:none;-webkit-appearance:none}
 .sel-wrap{position:relative}
@@ -658,6 +720,27 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .h2h-mu-s{font-size:12px;font-weight:700;color:var(--gd);width:28px;text-align:center}
 .h2h-mu-r{text-align:right;flex:1}
 .h2h-mu-r .h2h-wl{margin-right:6px}
+/* Conformal Prediction */
+.cp-set-box{margin-top:4px}
+.cp-set-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.cp-set-lbl{font-size:10px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:0.8px}
+.cp-set-badge{font-size:11px;font-weight:800;padding:3px 8px;border-radius:6px;letter-spacing:0.3px}
+.cp-set-exp{font-size:12px;color:var(--tx2);margin-bottom:4px}
+.cp-set-conf{font-size:11px;color:var(--tx3)}
+/* Factor Attribution */
+.attr-sect{margin-bottom:14px}
+.attr-row{display:flex;align-items:center;gap:8px;font-size:12px;margin-bottom:5px}
+.attr-lbl{flex:0 0 80px;font-weight:700;color:var(--tx2)}
+.attr-bar{flex:1;height:18px;background:var(--s2);border-radius:4px;overflow:hidden;display:flex}
+.attr-seg{height:100%;transition:width 0.3s}
+.attr-seg-a{background:var(--bl)}
+.attr-seg-d{background:var(--rd)}
+.attr-seg-val{flex:0 0 48px;font-size:11px;font-weight:700;text-align:right;justify-content:flex-end;display:flex;gap:2px}
+.attr-delta-p{font-size:11px;color:var(--gr)}
+.attr-delta-n{font-size:11px;color:var(--rd)}
+.attr-meta{font-size:10px;color:var(--tx3);margin-top:6px;padding-top:6px;border-top:0.5px solid var(--bd)}
+.attr-meta span{margin-right:12px}
+.attr-note{font-size:11px;color:var(--tx3);font-style:italic;margin-top:4px}
 /* Squad */
 .sel{width:100%;background:var(--s2);color:var(--tx);border:0.5px solid var(--bd);border-radius:12px;padding:12px 16px;font-size:15px;font-weight:600;margin-bottom:12px;appearance:none;-webkit-appearance:none}
 .sel-wrap{position:relative}
@@ -906,6 +989,7 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 <script>
 var D=__DATA__;
 var U=__UCL__;
+var HC=__H2H_CONF__;
 var FL={"Argentina":"AR","Brazil":"BR","France":"FR","Germany":"DE","Spain":"ES","England":"EN","Portugal":"PT","Netherlands":"NL","Belgium":"BE","Croatia":"HR","Switzerland":"CH","Austria":"AT","Czech Republic":"CZ","Turkey":"TR","Sweden":"SE","Morocco":"MA","Senegal":"SN","Egypt":"EG","Algeria":"DZ","Ghana":"GH","Ivory Coast":"CI","Tunisia":"TN","DR Congo":"CD","Cape Verde":"CV","Japan":"JP","South Korea":"KR","Iran":"IR","Iraq":"IQ","Qatar":"QA","Saudi Arabia":"SA","Australia":"AU","Uzbekistan":"UZ","Jordan":"JO","USA":"US","Mexico":"MX","Canada":"CA","Panama":"PA","Curaçao":"CW","Haiti":"HT","New Zealand":"NZ","Ecuador":"EC","Paraguay":"PY","Colombia":"CO","Uruguay":"UY","Norway":"NO","South Africa":"ZA","Bosnia and Herzegovina":"BA","Scotland":"XS"};
 function fl(c){return FL[c]||"--";}
 function pc(p){return p>15?"var(--bl)":p>5?"var(--gr)":"var(--tx2)";}
@@ -918,7 +1002,7 @@ function buildLB(){var s=D.slice().sort(function(a,b){return b.final_prob-a.fina
 
 /* ── Factor Breakdown ── */
 function toggleFB(el){var d=el.querySelector(".fb-expanded");if(d)d.classList.toggle("on");}
-function buildFB(){var s=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});var factors=[{k:"elo_score",l:"Elo锚点"},{k:"age_score",l:"年龄结构"},{k:"exp_score",l:"大赛经验"},{k:"form_score",l:"近期状态"},{k:"coach_score",l:"教练因素"},{k:"mystic_score",l:"玄学因子"}];var fc=["var(--bl)","var(--gr)","var(--gd)","var(--sl)","var(--br)","var(--rd)"];var h="";for(var i=0;i<Math.min(s.length,25);i++){var t=s[i];h+='<div class="fb-r" onclick="toggleFB(this)"><div class="fb-hd"><span class="fb-fl">'+fl(t.country)+'</span><span class="fb-nm">'+t.country+'</span><span class="fb-pct">'+(t.final_prob*100).toFixed(1)+'%</span></div><div class="fb-bars">';for(var j=0;j<factors.length;j++){var f=factors[j];var v=Math.max(0,t[f.k]||0);var max_v=0.15;var w=Math.min(100,(v/max_v*100)).toFixed(1);var val_str=(v>=0?"+":"")+(v*100).toFixed(1)+"%";h+='<div class="fb-bar"><span class="fb-lbl">'+f.l+'</span><div class="fb-track"><div class="fb-fill" style="width:'+w+'%;background:'+fc[j]+'"></div></div><span class="fb-val" style="color:'+fc[j]+'">'+val_str+'</span></div>';}h+='</div><div class="fb-expanded"><div class="fb-narrative">'+(t.narrative||"")+'</div></div></div>';}document.getElementById("fb").innerHTML=h;}
+function buildFB(){var s=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});var factors=[{k:"elo_score",l:"Elo锚点"},{k:"age_score",l:"年龄结构"},{k:"exp_score",l:"大赛经验"},{k:"form_score",l:"近期状态"},{k:"coach_score",l:"教练因素"},{k:"mystic_score",l:"玄学因子"}];var fc=["var(--bl)","var(--gr)","var(--gd)","var(--sl)","var(--br)","var(--rd)"];var uncBadge=function(lvl){var m={low:'<span class="unc-badge unc-low">低不确定</span>',medium:'<span class="unc-badge unc-med">中不确定</span>',high:'<span class="unc-badge unc-high">高不确定</span>'};return m[lvl]||m.medium;};var h="";for(var i=0;i<Math.min(s.length,25);i++){var t=s[i];var uncLvl=t.conformal_uncertainty||"medium";var ciLo=(t.conformal_ci_low||0)*100,ciHi=(t.conformal_ci_high||0)*100;h+='<div class="fb-r" onclick="toggleFB(this)"><div class="fb-hd"><span class="fb-fl">'+fl(t.country)+'</span><span class="fb-nm">'+t.country+'</span><div class="fb-pct-wrap"><span class="fb-pct">'+(t.final_prob*100).toFixed(1)+'%</span>'+uncBadge(uncLvl)+'</div></div><div class="fb-bars">';for(var j=0;j<factors.length;j++){var f=factors[j];var v=Math.max(0,t[f.k]||0);var max_v=0.15;var w=Math.min(100,(v/max_v*100)).toFixed(1);var val_str=(v>=0?"+":"")+(v*100).toFixed(1)+"%";h+='<div class="fb-bar"><span class="fb-lbl">'+f.l+'</span><div class="fb-track"><div class="fb-fill" style="width:'+w+'%;background:'+fc[j]+'"></div></div><span class="fb-val" style="color:'+fc[j]+'">'+val_str+'</span></div>';}h+='</div><div class="fb-expanded"><div class="fb-unc-range">置信区间 '+(ciLo).toFixed(2)+'% ~ '+(ciHi).toFixed(2)+'% &nbsp;|&nbsp; <span class="unc-text-'+uncLvl+'">'+(uncLvl==="low"?"模型高度确定":uncLvl==="medium"?"有一定不确定性":"不确定性较高")+'</span></div>';var attr=t.attribution;if(attr&&attr.attributions){h+='<div class="fb-attr"><div class="fb-attr-hd">📊 概率归因</div><div class="fb-elo-base">Elo基准概率: '+(attr.elo_baseline*100).toFixed(2)+'% &rarr; 最终概率: '+(attr.final_probability*100).toFixed(2)+'%</div>';for(var k=0;k<attr.attributions.length;k++){var a=attr.attributions[k];if(Math.abs(a.contribution)<0.0001)continue;var isPos=a.contribution>0;var cls=isPos?"attr-pos":"attr-neg";var sign=isPos?"+":"";var pct=a.contribution_pct.toFixed(1);h+='<div class="fb-attr-row"><span class="fb-attr-lbl">'+a.factor_label+'</span><div class="fb-attr-bar-wrap"><div class="fb-attr-bar" style="width:'+Math.min(100,Math.abs(a.contribution)*2000).toFixed(1)+'%;background:'+(isPos?"var(--gr)":"var(--rd)")+'"></div></div><span class="'+cls+'">'+sign+(a.contribution*100).toFixed(3)+'% ('+pct+'%)</span></div>';}h+='</div>';}h+='<div class="fb-narrative">'+(t.narrative||"")+'</div></div></div>';}document.getElementById("fb").innerHTML=h;}
 
 /* ── Mystic ── */
 function toggleMC(el){var d=el.nextElementSibling;if(d.classList.contains("on")){d.classList.remove("on");}else{d.classList.add("on");}}
@@ -1153,7 +1237,20 @@ function h2hChange(){
   document.getElementById("h2h-pd").textContent=barD+"%";
   // factor diff
   var h='<div class="h2h-fc">'+getFactorDiff(ta,tb)+'</div>';
-  
+
+  // Conformal Prediction Set
+  var cpData=(HC&&HC[ta.country]&&HC[ta.country][tb.country])?HC[ta.country][tb.country]:null;
+  if(cpData){
+    var setLbl=cpData.prediction_set.join("/");
+    var setColor=cpData.set_size===1?"var(--gr)":cpData.set_size===2?"var(--gd)":"var(--rd)";
+    var setBg=cpData.set_size===1?"rgba(48,209,88,0.12)":cpData.set_size===2?"rgba(255,214,10,0.10)":"rgba(255,69,58,0.10)";
+    h+='<div class="cp-set-box" style="background:'+setBg+';border:1px solid '+setColor+';border-radius:12px;padding:12px 14px;margin-bottom:14px">';
+    h+='<div class="cp-set-hd"><span class="cp-set-lbl">Conformal 预测集</span><span class="cp-set-badge" style="background:'+setColor+';color:var(--bg)">'+setLbl+'</span></div>';
+    h+='<div class="cp-set-exp">'+cpData.explanation+'</div>';
+    h+='<div class="cp-set-conf">置信度: '+(cpData.confidence*100).toFixed(0)+'%</div>';
+    h+='</div>';
+  }
+
   h += buildScorePred(ta, tb, r);
   // historical record
   var recKey=ta.country+"|"+tb.country,recKeyRev=tb.country+"|"+ta.country;
@@ -1355,15 +1452,17 @@ if(teams.length>0){sel.value=teams[0].country;sqChange();}
 
 def run_server(port=7862):
     """启动 HTTP 服务器 — 纯 HTML/CSS/JS，无 Gradio 依赖"""
-    results, ucl_data = _load_analysis()
+    results, ucl_data, h2h_conformal_map = _load_analysis()
     update_time = datetime.now().strftime("%Y-%m-%d %H:%M")
 
     data_json = json.dumps(results, ensure_ascii=False)
     ucl_json = json.dumps(ucl_data, ensure_ascii=False)
+    h2h_conf_json = json.dumps(h2h_conformal_map, ensure_ascii=False)
 
     html = HTML_BODY
     html = html.replace("__DATA__", data_json)
     html = html.replace("__UCL__", ucl_json)
+    html = html.replace("__H2H_CONF__", h2h_conf_json)
     html = html.replace("__UPDATE_TIME__", update_time)
 
     class Handler(http.server.BaseHTTPRequestHandler):
