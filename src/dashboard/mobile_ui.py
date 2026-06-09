@@ -1071,7 +1071,19 @@ var HC=__H2H_CONF__;
 var FIX=__FIXTURES__;
 var WCR=__WC_RESULTS__;
 var FRN=__FRIENDLIES__;
-var FL={"Argentina":"AR","Brazil":"BR","France":"FR","Germany":"DE","Spain":"ES","England":"EN","Portugal":"PT","Netherlands":"NL","Belgium":"BE","Croatia":"HR","Switzerland":"CH","Austria":"AT","Czech Republic":"CZ","Turkey":"TR","Sweden":"SE","Morocco":"MA","Senegal":"SN","Egypt":"EG","Algeria":"DZ","Ghana":"GH","Ivory Coast":"CI","Tunisia":"TN","DR Congo":"CD","Cape Verde":"CV","Japan":"JP","South Korea":"KR","Iran":"IR","Iraq":"IQ","Qatar":"QA","Saudi Arabia":"SA","Australia":"AU","Uzbekistan":"UZ","Jordan":"JO","USA":"US","Mexico":"MX","Canada":"CA","Panama":"PA","Curaçao":"CW","Haiti":"HT","New Zealand":"NZ","Ecuador":"EC","Paraguay":"PY","Colombia":"CO","Uruguay":"UY","Norway":"NO","South Africa":"ZA","Bosnia and Herzegovina":"BA","Scotland":"XS"};
+var FL={
+  "Argentina":"🇦🇷","Brazil":"🇧🇷","France":"🇫🇷","Germany":"🇩🇪","Spain":"🇪🇸",
+  "England":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Portugal":"🇵🇹","Netherlands":"🇳🇱","Belgium":"🇧🇪",
+  "Croatia":"🇭🇷","Switzerland":"🇨🇭","Austria":"🇦🇹","Czech Republic":"🇨🇿","Turkey":"🇹🇷",
+  "Sweden":"🇸🇪","Morocco":"🇲🇦","Senegal":"🇸🇳","Egypt":"🇪🇬","Algeria":"🇩🇿",
+  "Ghana":"🇬🇭","Ivory Coast":"🇨🇮","Tunisia":"🇹🇳","DR Congo":"🇨🇩","Cape Verde":"🇨🇻",
+  "Japan":"🇯🇵","South Korea":"🇰🇷","Iran":"🇮🇷","Iraq":"🇮🇶","Qatar":"🇶🇦",
+  "Saudi Arabia":"🇸🇦","Australia":"🇦🇺","Uzbekistan":"🇺🇿","Jordan":"🇯🇴",
+  "USA":"🇺🇸","Mexico":"🇲🇽","Canada":"🇨🇦","Panama":"🇵🇦","Curaçao":"🇨🇼",
+  "Haiti":"🇭🇹","New Zealand":"🇳🇿","Ecuador":"🇪🇨","Paraguay":"🇵🇾","Colombia":"🇨🇴",
+  "Uruguay":"🇺🇾","Norway":"🇳🇴","South Africa":"🇿🇦","Bosnia and Herzegovina":"🇧🇦",
+  "Scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿"
+};
 function fl(c){return FL[c]||"--";}
 function pc(p){return p>15?"var(--bl)":p>5?"var(--gr)":"var(--tx2)";}
 function st(s){return s>0?"+"+s.toFixed(2)+"%":s<0?s.toFixed(2)+"%":"--";}
