@@ -531,11 +531,42 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .lb-pct.vh{color:var(--bl)}
 .lb-sh{font-size:11px;font-weight:600;margin-top:2px}
 /* Dynamic match sections */
+/* ── SofaScore-inspired Match Cards ── */
+.dyn-list{display:flex;flex-direction:column;gap:2px}
+.dyn-date-hd{font-size:11px;font-weight:800;color:var(--tx2);padding:10px 0 4px 0;text-transform:uppercase;letter-spacing:.8px;border-bottom:.5px solid var(--bd);margin-bottom:4px}
+.dyn-mo{color:var(--tx2);font-weight:400}
+
+/* Match Card Row */
+.mc-row{display:grid;grid-template-columns:60px 1fr auto 1fr;align-items:center;gap:6px;padding:10px 0;border-bottom:.5px solid var(--bd)}
+.mc-row:last-child{border-bottom:none}
+.mc-row.mc-frn{opacity:.9}
+
+/* Round Badge */
+.mc-rd{flex-shrink:0}
+.mc-badge{display:inline-block;font-size:9px;font-weight:800;padding:3px 6px;border-radius:4px;color:#fff;white-space:nowrap;text-transform:uppercase;letter-spacing:.4px}
+
+/* Team */
+.mc-team{display:flex;align-items:center;gap:5px;min-width:0}
+.mc-team.mc-tl{justify-content:flex-start}
+.mc-team.mc-tr{justify-content:flex-end}
+.mc-fl{font-size:18px;line-height:1;flex-shrink:0}
+.mc-nm{font-size:13px;font-weight:700;color:var(--tx1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:90px}
+.mc-nm b{font-weight:800}
+.mc-winner .mc-nm{color:var(--gr)}
+
+/* Center: VS / Time / Score */
+.mc-ct{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-width:52px}
+.mc-vs{font-size:10px;font-weight:800;color:var(--tx2);letter-spacing:.5px}
+.mc-kick{font-size:12px;font-weight:700;color:var(--tx1)}
+.mc-score-ct{flex-direction:row;gap:4px}
+.mc-scr{font-size:16px;font-weight:800;color:var(--tx1);min-width:16px;text-align:center}
+.mc-scr-sep{font-size:14px;font-weight:700;color:var(--tx2)}
+.mc-scr.mc-sc-awin,.mc-scr.mc-sc-bwin{color:var(--gd)}
+.mc-ft{font-size:9px;font-weight:800;color:var(--tx2);margin-top:1px}
+
+/* Old dyn-* styles (keep for fallback) */
 .dyn-sect{padding:0}
-.dyn-list{display:flex;flex-direction:column}
-.dyn-row{display:flex;flex-direction:column;padding:10px 0;border-bottom:0.5px solid var(--bd);gap:5px}
-.dyn-row:last-child{border-bottom:none}
-.dyn-teams{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;flex-wrap:wrap}
+.dyn-empty{color:var(--tx2);font-size:13px;text-align:center;padding:16px 0}
 .dyn-team{color:var(--tx1)}
 .dyn-team.dyn-win{color:var(--gr);font-weight:800}
 .dyn-vs{color:var(--tx2);font-size:12px;font-weight:400}
@@ -544,7 +575,6 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .dyn-date{font-weight:600}
 .dyn-time{opacity:0.7}
 .dyn-rnd{opacity:0.7}
-.dyn-empty{color:var(--tx2);font-size:13px;text-align:center;padding:16px 0}
 /* Factor breakdown */
 .fb-r{display:flex;flex-direction:column;padding:12px 0;border-bottom:0.5px solid var(--bd);cursor:pointer}
 .fb-r:last-child{border-bottom:none}
@@ -1066,18 +1096,59 @@ function buildLB(){
   buildFriendlies();
 }
 
-/* ── Dynamic Match Sections ── */
+/* ── Dynamic Match Sections (SofaScore-inspired cards) ── */
+var GRP_COLORS={
+  "Group A":"#E63946","Group B":"#457B9D","Group C":"#2A9D8F","Group D":"#E9C46A",
+  "Group E":"#F4A261","Group F":"#E76F51","Group G":"#6A4C93","Group H":"#1982C4",
+  "Group I":"#8AC926","Group J":"#FF595E","Group K":"#FF924C","Group L":"#00B4D8",
+  "Round of 16":"#FF6B35","Quarter-final":"#FF9F1C","Semi-final":"#E71D36",
+  "Third place":"#FF9900","Final":"#FFD700",
+  "Group stage":"#E63946","Knockout":"#FF6B35","Play-off":"#9B59B6",
+  "Qualification":"#3498DB","Friendlies":"#95A5A6"
+};
+
+function grpColor(r){
+  if(!r)return"var(--tx2)";
+  for(var k in GRP_COLORS)if(r.indexOf(k)>-1)return GRP_COLORS[k];
+  return"var(--tx2)";
+}
+
+function grpBadge(r){
+  var c=grpColor(r);
+  return'<span class="mc-badge" style="background:'+c+'">'+r+'</span>';
+}
+
+function fmtDate(d){
+  if(!d)return"";
+  var parts=d.split(".");
+  if(parts.length===2)return parts[0]+"<span class='dyn-mo'>月</span>"+parts[1]+"<span class='dyn-mo'>日</span>";
+  return d;
+}
+
 function buildFixtures(){
-  // Show all upcoming WC fixtures (score_a/score_b are null for fixtures)
-  var matches = (FIX||[]).filter(function(m){ return m.score_a===null && m.score_b===null; });
-  if(!matches.length){ document.getElementById("sec-fix").innerHTML='<div class="dyn-empty">暂无赛程数据</div>'; return; }
-  var h = '<div class="dyn-list">';
+  var matches=(FIX||[]).filter(function(m){return m.score_a===null&&m.score_b===null;});
+  if(!matches.length){document.getElementById("sec-fix").innerHTML='<div class="dyn-empty">暂无赛程数据</div>';return;}
+  var h='<div class="dyn-list">';
+  var lastDate="";
   matches.slice(0,20).forEach(function(m){
-    h+='<div class="dyn-row">\
-      <div class="dyn-teams"><span class="dyn-team">'+fl(m.team_a)+' '+m.team_a+'</span>\
-      <span class="dyn-vs">vs</span>\
-      <span class="dyn-team">'+m.team_b+' '+fl(m.team_b)+'</span></div>\
-      <div class="dyn-meta"><span class="dyn-date">'+m.date+'</span><span class="dyn-time">'+m.time+'</span><span class="dyn-rnd">'+m.round+'</span></div>\
+    if(m.date!==lastDate){
+      h+='<div class="dyn-date-hd">'+fmtDate(m.date)+'</div>';
+      lastDate=m.date;
+    }
+    h+='<div class="mc-row">\
+      <div class="mc-rd">'+grpBadge(m.round)+'</div>\
+      <div class="mc-team mc-tl">\
+        <span class="mc-fl">'+fl(m.team_a)+'</span>\
+        <span class="mc-nm">'+m.team_a+'</span>\
+      </div>\
+      <div class="mc-ct">\
+        <span class="mc-vs">VS</span>\
+        <span class="mc-kick">'+m.time+'</span>\
+      </div>\
+      <div class="mc-team mc-tr">\
+        <span class="mc-nm">'+m.team_b+'</span>\
+        <span class="mc-fl">'+fl(m.team_b)+'</span>\
+      </div>\
     </div>';
   });
   h+='</div>';
@@ -1085,18 +1156,34 @@ function buildFixtures(){
 }
 
 function buildWCResults(){
-  // Show completed WC match results
-  var matches = (WCR||[]).filter(function(m){ return m.score_a!==null || m.score_b!==null; });
-  if(!matches.length){ document.getElementById("sec-wcr").innerHTML='<div class="dyn-empty">暂无赛果数据</div>'; return; }
-  var h = '<div class="dyn-list">';
+  var matches=(WCR||[]).filter(function(m){return m.score_a!==null||m.score_b!==null;});
+  if(!matches.length){document.getElementById("sec-wcr").innerHTML='<div class="dyn-empty">暂无赛果数据</div>';return;}
+  var h='<div class="dyn-list">';
+  var lastDate="";
   matches.slice(0,20).forEach(function(m){
-    var sa=m.score_a!=null?m.score_a:'-', sb=m.score_b!=null?m.score_b:'-';
-    var winCls=function(t){ return m.score_a!=null&&m.score_b!=null&&(sa>sb&&t===m.team_a||sb>sa&&t===m.team_b)?' dyn-win':''; };
-    h+='<div class="dyn-row dyn-result">\
-      <div class="dyn-teams"><span class="dyn-team'+winCls(m.team_a)+'">'+fl(m.team_a)+' '+m.team_a+'</span>\
-      <span class="dyn-score">'+sa+' - '+sb+'</span>\
-      <span class="dyn-team'+winCls(m.team_b)+'">'+m.team_b+' '+fl(m.team_b)+'</span></div>\
-      <div class="dyn-meta"><span class="dyn-date">'+m.date+'</span><span class="dyn-rnd">'+m.round+'</span></div>\
+    if(m.date!==lastDate){
+      h+='<div class="dyn-date-hd">'+fmtDate(m.date)+'</div>';
+      lastDate=m.date;
+    }
+    var sa=m.score_a!=null?m.score_a:"-",sb=m.score_b!=null?m.score_b:"-";
+    var winA=m.score_a!=null&&m.score_b!=null&&m.score_a>m.score_b;
+    var winB=m.score_a!=null&&m.score_b!=null&&m.score_b>m.score_a;
+    h+='<div class="mc-row">\
+      <div class="mc-rd">'+grpBadge(m.round)+'</div>\
+      <div class="mc-team mc-tl'+(winA?' mc-winner':'')+'">\
+        <span class="mc-fl">'+fl(m.team_a)+'</span>\
+        <span class="mc-nm">'+(winA?'<b>':'<b>')+m.team_a+'</b></span>\
+      </div>\
+      <div class="mc-ct mc-score-ct">\
+        <span class="mc-scr '+(winA?'mc-sc-awin':winB?'mc-sc-bwin':'')+'">'+sa+'</span>\
+        <span class="mc-scr-sep">-</span>\
+        <span class="mc-scr '+(winB?'mc-sc-bwin':winA?'mc-sc-awin':'')+'">'+sb+'</span>\
+        <span class="mc-ft">FT</span>\
+      </div>\
+      <div class="mc-team mc-tr'+(winB?' mc-winner':'')+'">\
+        <span class="mc-nm"><b>'+m.team_b+'</b></span>\
+        <span class="mc-fl">'+fl(m.team_b)+'</span>\
+      </div>\
     </div>';
   });
   h+='</div>';
@@ -1104,18 +1191,33 @@ function buildWCResults(){
 }
 
 function buildFriendlies(){
-  // Show friendly match results
-  var matches = (FRN||[]).filter(function(m){ return m.score_a!==null || m.score_b!==null; });
-  if(!matches.length){ document.getElementById("sec-frn").innerHTML='<div class="dyn-empty">暂无热身赛数据</div>'; return; }
-  var h = '<div class="dyn-list">';
+  var matches=(FRN||[]).filter(function(m){return m.score_a!==null||m.score_b!==null;});
+  if(!matches.length){document.getElementById("sec-frn").innerHTML='<div class="dyn-empty">暂无热身赛数据</div>';return;}
+  var h='<div class="dyn-list">';
+  var lastDate="";
   matches.slice(0,20).forEach(function(m){
-    var sa=m.score_a!=null?m.score_a:'-', sb=m.score_b!=null?m.score_b:'-';
-    var winCls=function(t){ return m.score_a!=null&&m.score_b!=null&&(sa>sb&&t===m.team_a||sb>sa&&t===m.team_b)?' dyn-win':''; };
-    h+='<div class="dyn-row dyn-result">\
-      <div class="dyn-teams"><span class="dyn-team'+winCls(m.team_a)+'">'+fl(m.team_a)+' '+m.team_a+'</span>\
-      <span class="dyn-score">'+sa+' - '+sb+'</span>\
-      <span class="dyn-team'+winCls(m.team_b)+'">'+m.team_b+' '+fl(m.team_b)+'</span></div>\
-      <div class="dyn-meta"><span class="dyn-date">'+m.date+'</span><span class="dyn-rnd">热身赛</span></div>\
+    if(m.date!==lastDate){
+      h+='<div class="dyn-date-hd">'+fmtDate(m.date)+'</div>';
+      lastDate=m.date;
+    }
+    var sa=m.score_a!=null?m.score_a:"-",sb=m.score_b!=null?m.score_b:"-";
+    var winA=m.score_a!=null&&m.score_b!=null&&m.score_a>m.score_b;
+    var winB=m.score_a!=null&&m.score_b!=null&&m.score_b>m.score_a;
+    h+='<div class="mc-row mc-frn">\
+      <div class="mc-rd">'+grpBadge("热身赛")+'</div>\
+      <div class="mc-team mc-tl'+(winA?' mc-winner':'')+'">\
+        <span class="mc-fl">'+fl(m.team_a)+'</span>\
+        <span class="mc-nm"><b>'+m.team_a+'</b></span>\
+      </div>\
+      <div class="mc-ct mc-score-ct">\
+        <span class="mc-scr '+(winA?'mc-sc-awin':winB?'mc-sc-bwin':'')+'">'+sa+'</span>\
+        <span class="mc-scr-sep">-</span>\
+        <span class="mc-scr '+(winB?'mc-sc-bwin':winA?'mc-sc-awin':'')+'">'+sb+'</span>\
+      </div>\
+      <div class="mc-team mc-tr'+(winB?' mc-winner':'')+'">\
+        <span class="mc-nm"><b>'+m.team_b+'</b></span>\
+        <span class="mc-fl">'+fl(m.team_b)+'</span>\
+      </div>\
     </div>';
   });
   h+='</div>';
