@@ -1077,12 +1077,15 @@ var FL={
   "Croatia":"🇭🇷","Switzerland":"🇨🇭","Austria":"🇦🇹","Czech Republic":"🇨🇿","Turkey":"🇹🇷",
   "Sweden":"🇸🇪","Morocco":"🇲🇦","Senegal":"🇸🇳","Egypt":"🇪🇬","Algeria":"🇩🇿",
   "Ghana":"🇬🇭","Ivory Coast":"🇨🇮","Tunisia":"🇹🇳","DR Congo":"🇨🇩","Cape Verde":"🇨🇻",
-  "Japan":"🇯🇵","South Korea":"🇰🇷","Iran":"🇮🇷","Iraq":"🇮🇶","Qatar":"🇶🇦",
-  "Saudi Arabia":"🇸🇦","Australia":"🇦🇺","Uzbekistan":"🇺🇿","Jordan":"🇯🇴",
-  "USA":"🇺🇸","Mexico":"🇲🇽","Canada":"🇨🇦","Panama":"🇵🇦","Curaçao":"🇨🇼",
-  "Haiti":"🇭🇹","New Zealand":"🇳🇿","Ecuador":"🇪🇨","Paraguay":"🇵🇾","Colombia":"🇨🇴",
-  "Uruguay":"🇺🇾","Norway":"🇳🇴","South Africa":"🇿🇦","Bosnia and Herzegovina":"🇧🇦",
-  "Scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿"
+  "Japan":"🇯🇵","South Korea":"🇰🇷","Korea Republic":"🇰🇷","Iran":"🇮🇷","Iraq":"🇮🇶",
+  "Qatar":"🇶🇦","Saudi Arabia":"🇸🇦","Australia":"🇦🇺","Uzbekistan":"🇺🇿","Jordan":"🇯🇴",
+  "USA":"🇺🇸","United States":"🇺🇸","Mexico":"🇲🇽","Canada":"🇨🇦","Panama":"🇵🇦",
+  "Curaçao":"🇨🇼","Haiti":"🇭🇹","New Zealand":"🇳🇿","Ecuador":"🇪🇨","Paraguay":"🇵🇾",
+  "Colombia":"🇨🇴","Uruguay":"🇺🇾","Norway":"🇳🇴","South Africa":"🇿🇦",
+  "Bosnia and Herzegovina":"🇧🇦","Scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+  "Bolivia":"🇧🇴","Denmark":"🇩🇰","Gambia":"🇬🇲","Hungary":"🇭🇺","Israel":"🇮🇱",
+  "Italy":"🇮🇹","Jamaica":"🇯🇲","Kosovo":"🇽🇰","Mali":"🇲🇱","Nigeria":"🇳🇬",
+  "Peru":"🇵🇪","Poland":"🇵🇱","Romania":"🇷🇴","Ukraine":"🇺🇦","Venezuela":"🇻🇪"
 };
 function fl(c){return FL[c]||"--";}
 function pc(p){return p>15?"var(--bl)":p>5?"var(--gr)":"var(--tx2)";}
