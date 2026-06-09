@@ -1468,7 +1468,9 @@ function h2hChange(){
   var r=h2hCalc(ta,tb);
   var barA=(r.winA*100).toFixed(1),barB=(r.winB*100).toFixed(1),barD=(r.draw*100).toFixed(1);
   document.getElementById("h2h-bar-a").style.width=barA+"%";
+  document.getElementById("h2h-bar-a").textContent=barA+"%";
   document.getElementById("h2h-bar-b").style.width=barB+"%";
+  document.getElementById("h2h-bar-b").textContent=barB+"%";
   document.getElementById("h2h-bar-d").style.width=barD+"%";
   document.getElementById("h2h-bar-d").textContent=barD+"%";
   document.getElementById("h2h-pa").textContent=barA+"%";
