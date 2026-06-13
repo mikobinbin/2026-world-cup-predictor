@@ -275,7 +275,7 @@ def attribute_all_teams(team_results: List[Dict]) -> List[Dict]:
         form_score = t.get("form_score", 0)
         coaching_score = t.get("coaching_score", 0)
         mystic_score = t.get("mystic_score", 0)
-        final_prob = t.get("final_probability", 0.03)
+        final_prob = t.get("final_prob", t.get("final_probability", 0.03))
         country = t.get("country", "Unknown")
 
         attr = attributor.attribute_team(

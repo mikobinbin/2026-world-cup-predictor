@@ -439,6 +439,12 @@ def _load_analysis():
             "players": sq_dict.get("players", [])[:15],
         })
 
+    # Normalize logical_prob so it sums to 1.0
+    total_logical = sum(r["logical_prob"] for r in results)
+    if total_logical > 0:
+        for r in results:
+            r["logical_prob"] = r["logical_prob"] / total_logical
+
     results.sort(key=lambda x: x["final_prob"], reverse=True)
 
     # 9. Conformal Prediction — 冠军概率置信区间

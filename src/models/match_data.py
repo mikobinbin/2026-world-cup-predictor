@@ -77,8 +77,12 @@ def _parse_initial_feeds(raw: str) -> List[Dict[str, str]]:
 def _team_normalize(name: str) -> str:
     """把 Flashscore 队名映射为模型标准队名"""
     MAP = {
-        "USA": "United States",
-        "South Korea": "Korea Republic",
+        # Canonical model names (elo_cache / players data): map TO model standard
+        "United States": "USA",
+        "Korea Republic": "South Korea",
+        # Flashscore aliases (incoming scrape data): map to model standard
+        "USA": "USA",
+        "South Korea": "South Korea",
         "DR Congo": "DR Congo",
         "D.R. Congo": "DR Congo",
         "China": "China PR",
@@ -90,7 +94,6 @@ def _team_normalize(name: str) -> str:
         "Trinidad & Tobago": "Trinidad and Tobago",
         "Stoke City": "Stoke City",  # 俱乐部名，跳过
         "Northern Ireland": "Northern Ireland",
-        "Korea Republic": "Korea Republic",
         "Korea DPR": "Korea DPR",
         "Brunei": "Brunei",
         "Chinese Taipei": "Chinese Taipei",
