@@ -119,9 +119,10 @@ class FlashscoreParser:
         "intercontinental", "baraj", "relegation", " группы", "группа",
     ]
 
-    def __init__(self, fixtures_raw: str = "", results_raw: str = ""):
+    def __init__(self, fixtures_raw: str = "", results_raw: str = "", friendly_raw: str = ""):
         self.fixtures_raw = fixtures_raw
         self.results_raw = results_raw
+        self.friendly_raw = friendly_raw
 
     def parse_fixtures(self) -> List[Dict[str, Any]]:
         """解析赛程数据"""
@@ -141,12 +142,22 @@ class FlashscoreParser:
             # 过滤掉非世界杯正赛的记录
             league = r.get("ZA", "")
             if any(bad in league.lower() for bad in self.NON_WC_LEAGUES):
-                # 仍然是 intercontinental playoff（最终资格赛），包含在世界杯内
-                if "qualification" in league.lower() or "promotion" in league.lower():
+                # intercontinental playoff（最终资格赛）和 promotion 包含在世界杯内
+                if "qualification" in league.lower() or "promotion" in league.lower() or "intercontinental" in league.lower():
                     match = self._parse_match_record(r, is_result=True)
                     if match:
                         matches.append(match)
                 continue
+            match = self._parse_match_record(r, is_result=True)
+            if match:
+                matches.append(match)
+        return matches
+
+    def parse_friendlies(self) -> List[Dict[str, Any]]:
+        """解析热身赛数据"""
+        records = _parse_initial_feeds(self.friendly_raw)
+        matches = []
+        for r in records:
             match = self._parse_match_record(r, is_result=True)
             if match:
                 matches.append(match)
@@ -260,11 +271,12 @@ class MatchDataFetcher:
 
     # ── 数据解析 ─────────────────────────────────────────────────────────────
 
-    def parse_feeds(self, fixtures_raw: str, results_raw: str) -> None:
+    def parse_feeds(self, fixtures_raw: str, results_raw: str, friendly_raw: str = "") -> None:
         """解析 Flashscore 原始数据"""
-        parser = FlashscoreParser(fixtures_raw, results_raw)
+        parser = FlashscoreParser(fixtures_raw, results_raw, friendly_raw)
         self.fixtures = parser.parse_fixtures()
         self.results = parser.parse_results()
+        self.friendly_results = parser.parse_friendlies()
         self.updated_at = datetime.now().strftime("%Y-%m-%d %H:%M")
         self.save_cache()
 
