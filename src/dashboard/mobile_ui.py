@@ -615,11 +615,11 @@ def _load_analysis():
         # 取前3高概率比分作为预测集
         top3_scores = sorted_scores[:3]
         top3_set = [f"{s['ga']}-{s['gb']}" for s in top3_scores]
-        # 净胜球≥5命中判断（不用猜对比分，只要预测到大比分方向即可）
+        # 净胜球≥3命中判断（不用猜对比分，只要预测到大比分方向即可）
         actual_diff = abs(score_a - score_b)
         top_diff = abs(top_score['ga'] - top_score['gb'])
-        goal_diff_hit = actual_diff >= 5 and top_diff >= 5
-        goal_diff_top3_hit = actual_diff >= 5 and any(abs(s['ga'] - s['gb']) >= 5 for s in top3_scores)
+        goal_diff_hit = actual_diff >= 3 and top_diff >= 3
+        goal_diff_top3_hit = actual_diff >= 3 and any(abs(s['ga'] - s['gb']) >= 3 for s in top3_scores)
 
         h2h_validation.append({
             "team_a": team_a,
@@ -653,8 +653,8 @@ def _load_analysis():
     score_top3_hits = sum(1 for v in h2h_validation if v["score_top3_hit"])
     goal_diff_hits = sum(1 for v in h2h_validation if v["goal_diff_hit"])
     goal_diff_top3_hits = sum(1 for v in h2h_validation if v["goal_diff_top3_hit"])
-    # 统计大比分场次（实际净胜球≥5的场次）
-    big_win_matches = sum(1 for v in h2h_validation if v["actual_diff"] >= 5)
+    # 统计大比分场次（实际净胜球≥3的场次）
+    big_win_matches = sum(1 for v in h2h_validation if v["actual_diff"] >= 3)
     val_summary = {
         "total": total,
         "outcome_acc": f"{round(outcome_hits/total*100, 1) if total else 0}%",
@@ -1459,19 +1459,19 @@ function buildH2HValidation(){
     document.getElementById('h2h-val-list').innerHTML = '';
     return;
   }
-  // 4个指标：胜负平 | 比分精确 | Top3比分 | 净胜球≥5
+  // 4个指标：胜负平 | 比分精确 | Top3比分 | 净胜球≥3
   var gw = vv.goal_diff_hits || 0;
   var gwTotal = vv.big_win_matches || 0;
   document.getElementById('h2h-val-summary').innerHTML =
     '<div class="val-metric"><div class="val-num">' + vv.outcome_hits + '/' + vv.total + '</div><div class="val-label">胜负平</div></div>' +
     '<div class="val-metric"><div class="val-num">' + (vv.score_hits || 0) + '/' + vv.total + '</div><div class="val-label">比分命中</div></div>' +
-    '<div class="val-metric"><div class="val-num">' + (vv.goal_diff_hits || 0) + '/' + gwTotal + '</div><div class="val-label">净胜球≥5</div></div>';
+    '<div class="val-metric"><div class="val-num">' + (vv.goal_diff_hits || 0) + '/' + gwTotal + '</div><div class="val-label">净胜球≥3</div></div>';
   var vlist = '';
   var vals = H2HV || [];
   for(var i = 0; i < vals.length; i++){
     var v = vals[i];
     // 优先级：比分中 > Top3中 > 大比分命中 > 胜负中 > 未中
-    var isBigWin = (v.actual_diff || 0) >= 5;
+    var isBigWin = (v.actual_diff || 0) >= 3;
     var badge;
     if(v.score_hit){
       badge = '<span class="val-badge hit">✓ 比分中</span>';
