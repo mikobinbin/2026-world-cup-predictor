@@ -587,13 +587,19 @@ def _load_analysis():
         lambda_a = max(0.3, min(4.0, lambda_a))
         lambda_b = max(0.3, min(4.0, lambda_b))
 
-        # 生成 0-5 × 0-5 所有比分概率
+        # 生成 0-8 × 0-8 所有比分概率（扩展网格以支持大比分预测）
         raw = []
-        for ga in range(6):
-            for gb in range(6):
+        for ga in range(9):
+            for gb in range(9):
                 p = poisson_pmf(ga, lambda_a) * poisson_pmf(gb, lambda_b)
                 total = ga + gb
-                boosted = p * 3.0 if total >= 5 else p
+                # 分段 boost：total>=7 更罕见，用 5.0；total>=5 用 3.0
+                if total >= 7:
+                    boosted = p * 5.0
+                elif total >= 5:
+                    boosted = p * 3.0
+                else:
+                    boosted = p
                 raw.append({"ga": ga, "gb": gb, "prob": boosted})
 
         total_prob = sum(x["prob"] for x in raw)
@@ -609,6 +615,12 @@ def _load_analysis():
         # 取前3高概率比分作为预测集
         top3_scores = sorted_scores[:3]
         top3_set = [f"{s['ga']}-{s['gb']}" for s in top3_scores]
+        # 净胜球≥5命中判断（不用猜对比分，只要预测到大比分方向即可）
+        actual_diff = abs(score_a - score_b)
+        top_diff = abs(top_score['ga'] - top_score['gb'])
+        goal_diff_hit = actual_diff >= 5 and top_diff >= 5
+        goal_diff_top3_hit = actual_diff >= 5 and any(abs(s['ga'] - s['gb']) >= 5 for s in top3_scores)
+
         h2h_validation.append({
             "team_a": team_a,
             "team_b": team_b,
@@ -626,6 +638,9 @@ def _load_analysis():
             "top3_set": top3_set,
             "score_hit": actual == top_score_str,
             "score_top3_hit": actual in top3_set,
+            "actual_diff": actual_diff,
+            "goal_diff_hit": goal_diff_hit,
+            "goal_diff_top3_hit": goal_diff_top3_hit,
             "stage": match.get("stage", ""),
         })
     # 汇总统计
@@ -636,6 +651,10 @@ def _load_analysis():
     high_conf_total = sum(1 for v in h2h_validation if v["set_size"] == 1)
     score_hits = sum(1 for v in h2h_validation if v["score_hit"])
     score_top3_hits = sum(1 for v in h2h_validation if v["score_top3_hit"])
+    goal_diff_hits = sum(1 for v in h2h_validation if v["goal_diff_hit"])
+    goal_diff_top3_hits = sum(1 for v in h2h_validation if v["goal_diff_top3_hit"])
+    # 统计大比分场次（实际净胜球≥5的场次）
+    big_win_matches = sum(1 for v in h2h_validation if v["actual_diff"] >= 5)
     val_summary = {
         "total": total,
         "outcome_acc": f"{round(outcome_hits/total*100, 1) if total else 0}%",
@@ -647,6 +666,9 @@ def _load_analysis():
         "score_top3_hits": score_top3_hits,
         "score_acc": f"{round(score_hits/total*100, 1) if total else 0}%",
         "score_top3_acc": f"{round(score_top3_hits/total*100, 1) if total else 0}%",
+        "goal_diff_hits": goal_diff_hits,
+        "goal_diff_top3_hits": goal_diff_top3_hits,
+        "big_win_matches": big_win_matches,
     }
 
     _cached_results = (results, ucl_data, h2h_conformal_map,
@@ -1437,22 +1459,38 @@ function buildH2HValidation(){
     document.getElementById('h2h-val-list').innerHTML = '';
     return;
   }
+  // 4个指标：胜负平 | 比分精确 | Top3比分 | 净胜球≥5
+  var gw = vv.goal_diff_hits || 0;
+  var gwTotal = vv.big_win_matches || 0;
   document.getElementById('h2h-val-summary').innerHTML =
     '<div class="val-metric"><div class="val-num">' + vv.outcome_hits + '/' + vv.total + '</div><div class="val-label">胜负平</div></div>' +
     '<div class="val-metric"><div class="val-num">' + (vv.score_hits || 0) + '/' + vv.total + '</div><div class="val-label">比分命中</div></div>' +
-    '<div class="val-metric"><div class="val-num">' + (vv.score_top3_hits || 0) + '/' + vv.total + '</div><div class="val-label">Top3比分</div></div>';
+    '<div class="val-metric"><div class="val-num">' + (vv.goal_diff_hits || 0) + '/' + gwTotal + '</div><div class="val-label">净胜球≥5</div></div>';
   var vlist = '';
   var vals = H2HV || [];
   for(var i = 0; i < vals.length; i++){
     var v = vals[i];
-    // pred_set 包含 ["胜","平","负"] 标签
-    var badge = v.score_hit ? '<span class="val-badge hit">✓ 比分中</span>' : (v.score_top3_hit ? '<span class="val-badge partial">✓ Top3中</span>' : (v.outcome_hit ? '<span class="val-badge partial">✓ 胜负中</span>' : '<span class="val-badge miss">✗ 未中</span>'));
+    // 优先级：比分中 > Top3中 > 大比分命中 > 胜负中 > 未中
+    var isBigWin = (v.actual_diff || 0) >= 5;
+    var badge;
+    if(v.score_hit){
+      badge = '<span class="val-badge hit">✓ 比分中</span>';
+    } else if(v.score_top3_hit){
+      badge = '<span class="val-badge partial">✓ Top3中</span>';
+    } else if(v.goal_diff_hit){
+      badge = '<span class="val-badge partial">✓ 大比分</span>';
+    } else if(v.outcome_hit){
+      badge = '<span class="val-badge partial">✓ 胜负中</span>';
+    } else {
+      badge = '<span class="val-badge miss">✗ 未中</span>';
+    }
     var flagA = fl(v.team_a) || '⚑';
     var flagB = fl(v.team_b) || '⚑';
-    var predLbl = v.top_score + ' (' + ((v.top_prob || 0) * 100).toFixed(0) + '%)';
+    var diffTag = isBigWin ? ' <span style="color:var(--gd)">⚡' + v.actual_diff + '球</span>' : '';
+    var predLbl = (v.top_score || '?') + ' (' + ((v.top_prob || 0) * 100).toFixed(0) + '%)';
     vlist += '<div class="val-row">' +
       '<div class="val-flag">' + flagA + '</div>' +
-      '<div class="val-teams">' + v.team_a + ' vs ' + v.team_b + '<div class="val-detail">预测: ' + predLbl + ' · Top3: ' + (v.top3_set || []).join(', ') + '</div></div>' +
+      '<div class="val-teams">' + v.team_a + ' vs ' + v.team_b + '<div class="val-detail">预测: ' + predLbl + diffTag + '</div></div>' +
       '<div class="val-score">' + v.score_a + '-' + v.score_b + '</div>' +
       badge +
       '</div>';
