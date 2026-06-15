@@ -562,6 +562,53 @@ def _load_analysis():
         # 比分命中率：conformal set 是胜负平，不是比分，所以用泊松预测最高概率比分来比较
         # 只验证胜负平
         outcome_hit = pred_outcome == actual_outcome if pred_outcome else False
+        # ── 泊松比分预测（移植自 JS buildScorePred） ──
+        import math
+        def poisson_pmf(k, lam):
+            if lam <= 0:
+                return 1.0 if k == 0 else 0.0
+            return math.exp(-lam) * (lam ** k) / math.factorial(k)
+
+        elo_a_val = elo_dict_h2h.get(team_a, 1700)
+        elo_b_val = elo_dict_h2h.get(team_b, 1700)
+        # 从 results 列表中找到 team_a 的 shift
+        shift_a = 0
+        shift_b = 0
+        for r in results:
+            if r["country"] == team_a:
+                shift_a = r.get("shift", 0) or 0
+            if r["country"] == team_b:
+                shift_b = r.get("shift", 0) or 0
+
+        lambda_a = 1.3 + (elo_a_val - 1700) / 500.0 * 1.0
+        lambda_b = 1.3 + (elo_b_val - 1700) / 500.0 * 1.0
+        lambda_a = lambda_a * (1 + shift_a * 3.0)
+        lambda_b = lambda_b * (1 + shift_b * 3.0)
+        lambda_a = max(0.3, min(4.0, lambda_a))
+        lambda_b = max(0.3, min(4.0, lambda_b))
+
+        # 生成 0-5 × 0-5 所有比分概率
+        raw = []
+        for ga in range(6):
+            for gb in range(6):
+                p = poisson_pmf(ga, lambda_a) * poisson_pmf(gb, lambda_b)
+                total = ga + gb
+                boosted = p * 3.0 if total >= 5 else p
+                raw.append({"ga": ga, "gb": gb, "prob": boosted})
+
+        total_prob = sum(x["prob"] for x in raw)
+        for x in raw:
+            x["prob"] = x["prob"] / total_prob if total_prob > 0 else 0
+
+        # 排序，取概率最高的比分
+        sorted_scores = sorted(raw, key=lambda x: x["prob"], reverse=True)
+        top_score = sorted_scores[0]
+        top_score_str = f"{top_score['ga']}-{top_score['gb']}"
+        top_prob = top_score['prob']
+
+        # 取前3高概率比分作为预测集
+        top3_scores = sorted_scores[:3]
+        top3_set = [f"{s['ga']}-{s['gb']}" for s in top3_scores]
         h2h_validation.append({
             "team_a": team_a,
             "team_b": team_b,
@@ -574,6 +621,11 @@ def _load_analysis():
             "actual_outcome": actual_outcome,
             "pred_outcome": pred_outcome,
             "outcome_hit": outcome_hit,
+            "top_score": top_score_str,
+            "top_prob": round(top_prob, 3),
+            "top3_set": top3_set,
+            "score_hit": actual == top_score_str,
+            "score_top3_hit": actual in top3_set,
             "stage": match.get("stage", ""),
         })
     # 汇总统计
@@ -582,6 +634,8 @@ def _load_analysis():
     avg_set_size = round(sum(v["set_size"] for v in h2h_validation) / total, 1) if total else 0
     high_conf_hits = sum(1 for v in h2h_validation if v["set_size"] == 1 and v["outcome_hit"])
     high_conf_total = sum(1 for v in h2h_validation if v["set_size"] == 1)
+    score_hits = sum(1 for v in h2h_validation if v["score_hit"])
+    score_top3_hits = sum(1 for v in h2h_validation if v["score_top3_hit"])
     val_summary = {
         "total": total,
         "outcome_acc": f"{round(outcome_hits/total*100, 1) if total else 0}%",
@@ -589,6 +643,10 @@ def _load_analysis():
         "avg_set_size": avg_set_size,
         "high_conf_hits": high_conf_hits,
         "high_conf_total": high_conf_total,
+        "score_hits": score_hits,
+        "score_top3_hits": score_top3_hits,
+        "score_acc": f"{round(score_hits/total*100, 1) if total else 0}%",
+        "score_top3_acc": f"{round(score_top3_hits/total*100, 1) if total else 0}%",
     }
 
     _cached_results = (results, ucl_data, h2h_conformal_map,
@@ -1380,21 +1438,21 @@ function buildH2HValidation(){
     return;
   }
   document.getElementById('h2h-val-summary').innerHTML =
-    '<div class="val-metric"><div class="val-num">' + vv.outcome_hits + '/' + vv.total + '</div><div class="val-label">胜负平准确</div></div>' +
-    '<div class="val-metric"><div class="val-num">' + (vv.high_conf_total ? vv.high_conf_hits + '/' + vv.high_conf_total : '-') + '</div><div class="val-label">高确信命中</div></div>' +
-    '<div class="val-metric"><div class="val-num">' + vv.avg_set_size + '</div><div class="val-label">预测集均值</div></div>';
+    '<div class="val-metric"><div class="val-num">' + vv.outcome_hits + '/' + vv.total + '</div><div class="val-label">胜负平</div></div>' +
+    '<div class="val-metric"><div class="val-num">' + (vv.score_hits || 0) + '/' + vv.total + '</div><div class="val-label">比分命中</div></div>' +
+    '<div class="val-metric"><div class="val-num">' + (vv.score_top3_hits || 0) + '/' + vv.total + '</div><div class="val-label">Top3比分</div></div>';
   var vlist = '';
   var vals = H2HV || [];
   for(var i = 0; i < vals.length; i++){
     var v = vals[i];
     // pred_set 包含 ["胜","平","负"] 标签
-    var predLbl = v.pred_set && v.pred_set.length > 0 ? v.pred_set.join('/') : 'N/A';
-    var badge = v.outcome_hit ? '<span class="val-badge hit">✓ 胜负中</span>' : '<span class="val-badge miss">✗ 未中</span>';
+    var badge = v.score_hit ? '<span class="val-badge hit">✓ 比分中</span>' : (v.score_top3_hit ? '<span class="val-badge partial">✓ Top3中</span>' : (v.outcome_hit ? '<span class="val-badge partial">✓ 胜负中</span>' : '<span class="val-badge miss">✗ 未中</span>'));
     var flagA = fl(v.team_a) || '⚑';
     var flagB = fl(v.team_b) || '⚑';
+    var predLbl = v.top_score + ' (' + ((v.top_prob || 0) * 100).toFixed(0) + '%)';
     vlist += '<div class="val-row">' +
       '<div class="val-flag">' + flagA + '</div>' +
-      '<div class="val-teams">' + v.team_a + ' vs ' + v.team_b + '<div class="val-detail">预测: ' + predLbl + '</div></div>' +
+      '<div class="val-teams">' + v.team_a + ' vs ' + v.team_b + '<div class="val-detail">预测: ' + predLbl + ' · Top3: ' + (v.top3_set || []).join(', ') + '</div></div>' +
       '<div class="val-score">' + v.score_a + '-' + v.score_b + '</div>' +
       badge +
       '</div>';
