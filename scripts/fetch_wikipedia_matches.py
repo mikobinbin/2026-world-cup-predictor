@@ -46,27 +46,26 @@ QUALIFIED_2026_WC_TEAMS = {
 }
 
 # Team name normalization mapping
+# Maps various aliases to the MODEL STANDARD names (used in elo_cache and players data)
+# Model standard: 'South Korea', 'USA', 'Iran', 'United Arab Emirates', 'Cape Verde Islands', 'Curaçao'
 TEAM_NAME_NORMALIZATION = {
-    'USA': 'United States',
+    # Wikipedia/Flashscore aliases → model standard
     'United States': 'USA',
+    'Korea Republic': 'South Korea',
     'IR Iran': 'Iran',
     'Iran': 'Iran',
-    'South Korea': 'Korea Republic',
-    'Korea Republic': 'South Korea',
-    'Ivory Coast': 'Cote d\'Ivoire',
-    'Cote d\'Ivoire': 'Ivory Coast',
-    'Bosnia & Herzegovina': 'Bosnia-Herzegovina',
-    'Bosnia-Herzegovina': 'Bosnia & Herzegovina',
-    'Bosnia': 'Bosnia & Herzegovina',
-    'Czech Republic': 'Czech Republic',
-    'Cape Verde Islands': 'Cape Verde',
-    'Cape Verde': 'Cape Verde Islands',
-    'DR Congo': 'DR Congo',
-    'Democratic Republic of the Congo': 'DR Congo',
-    'UAE': 'United Arab Emirates',
     'United Arab Emirates': 'UAE',
-    'Scotland': 'Scotland',  # Not WC qualified but appears in data
-    'Haiti': 'Haiti',  # Not WC qualified but appears in data
+    'UAE': 'UAE',
+    'Cape Verde Islands': 'Cape Verde Islands',
+    'Cape Verde': 'Cape Verde Islands',
+    'Cote d\'Ivoire': 'Ivory Coast',
+    'Ivory Coast': 'Ivory Coast',
+    'Bosnia & Herzegovina': 'Bosnia and Herzegovina',
+    'Bosnia-Herzegovina': 'Bosnia and Herzegovina',
+    'Democratic Republic of the Congo': 'DR Congo',
+    'Czechia': 'Czech Republic',
+    'Curacao': 'Curaçao',
+    'Democratic Republic of Congo': 'DR Congo',
 }
 
 # Map country names to timezone offsets (hours)

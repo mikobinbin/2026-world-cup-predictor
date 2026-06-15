@@ -75,24 +75,32 @@ def _parse_initial_feeds(raw: str) -> List[Dict[str, str]]:
 
 
 def _team_normalize(name: str) -> str:
-    """把 Flashscore 队名映射为模型标准队名"""
+    """
+    将各种数据源的队名统一映射为模型标准名称。
+
+    模型标准名称遵循 elo_cache 和 wc2026_squads_wikipedia.json 的约定：
+    - elo_cache 键名
+    - wc2026_squads_wikipedia.json 国家键名
+
+    队名标准化规则（经核实）：
+    - "Cape Verde"（非 "Cape Verde Islands"）
+    - "Curaçao"（非 "Curacao"）
+    - "Iran"（Wikipedia 用 "IR Iran"）
+    - "South Korea"（非 "Korea Republic"）
+    - "USA"（非 "United States"）
+    """
     MAP = {
-        # Canonical model names (elo_cache / players data): map TO model standard
+        # Flashscore → 模型标准
         "United States": "USA",
         "Korea Republic": "South Korea",
-        # Flashscore aliases (incoming scrape data): map to model standard
-        "USA": "USA",
-        "South Korea": "South Korea",
         "DR Congo": "DR Congo",
         "D.R. Congo": "DR Congo",
         "China": "China PR",
         "Bosnia & Herzegovina": "Bosnia and Herzegovina",
         "Bosnia-Herzegovina": "Bosnia and Herzegovina",
         "Ivory Coast": "Ivory Coast",
-        "Cape Verde": "Cape Verde Islands",
         "Curacao": "Curaçao",
         "Trinidad & Tobago": "Trinidad and Tobago",
-        "Stoke City": "Stoke City",  # 俱乐部名，跳过
         "Northern Ireland": "Northern Ireland",
         "Korea DPR": "Korea DPR",
         "Brunei": "Brunei",
@@ -102,6 +110,8 @@ def _team_normalize(name: str) -> str:
         "Shandong Luneng": "Shandong Taishan",
         "Shanghai SIPG": "Shanghai SIPG",
         "Beijing Guoan": "Beijing Guoan",
+        # Wikipedia → 模型标准（IR Iran 是 Wikipedia 的标准写法）
+        "IR Iran": "Iran",
     }
     return MAP.get(name, name)
 

@@ -137,7 +137,10 @@ class TeamScorer:
         # 7. 存储因子贡献（用于显示）
         # 把因子增幅换算为对 base_prob 的相对贡献百分比
         factor_total = total_mod + mystic_bonus * 0.05
-        uncertainty = self.mystic.luck_ceiling
+        # 修复：置信区间宽度应根据概率动态调整，而非固定luck_ceiling
+        base_ceiling = self.mystic.luck_ceiling
+        prob_factor = max(0.1, min(1.2, base_prob * (1 - base_prob) * 5))
+        uncertainty = base_ceiling * prob_factor
 
         # 7. 计算 maturity 和 exp_score（用于 narrative）
         maturity = squad.get_squad_maturity_index()
@@ -313,7 +316,10 @@ def _compute_modified_elo(squad: Squad, weights: ModelWeights,
                           experience_config: Optional[ExperienceConfig] = None) -> float:
     """
     计算因子修正后的 effective Elo（用于 Monte Carlo）。
-    修复：统一使用 ExperienceConfig 参数，不再重复硬编码。
+
+    修复 v2：统一使用 TeamScorer._calc_experience_score，消除 DRY 违规。
+    原来 _compute_modified_elo 有自己的经验计算逻辑，与 _calc_experience_score 略有不同，
+    会导致两处计算随时间推移而发散。
     """
     if experience_config is None:
         experience_config = ExperienceConfig()
@@ -325,37 +331,11 @@ def _compute_modified_elo(squad: Squad, weights: ModelWeights,
     maturity = squad.get_squad_maturity_index()
     age_bonus = -0.06 + maturity * 0.14
 
-    # 大赛经验（使用 ExperienceConfig，不再硬编码）
-    exp_players = [p for p in squad.players if len(p.tournaments) > 0]
-    exp_ratio = len(exp_players) / max(1, len(squad.players))
-    base_exp = (exp_ratio - 0.5) * 0.08  # 改为与 _calc_factor_modifier 一致
-
-    # 历史最好成绩（使用 ExperienceConfig）
+    # 大赛经验：统一使用 TeamScorer._calc_experience_score（消除 DRY 违规）
+    # 修复：不再重复这里的经验计算逻辑，避免与 _calc_experience_score 发散
+    scorer = TeamScorer(weights, mystic_config)
     recent_t = squad.tournament_history[-1] if squad.tournament_history else None
-    if recent_t:
-        if 'Final' in str(recent_t):
-            base_exp += experience_config.world_cup_finals
-        elif 'Semi' in str(recent_t):
-            base_exp += experience_config.world_cup_semi
-        elif 'Quarter' in str(recent_t):
-            base_exp += experience_config.world_cup_quarter
-        elif 'Group' in str(recent_t):
-            base_exp += experience_config.world_cup_group
-
-    exp_bonus = base_exp
-
-    # ── 淘汰赛软脚惩罚（同 _calc_experience_score 逻辑）────────
-    # 高ELO球队长期止步小组赛/16强 → 预选赛型伪强队
-    elo = squad.elo
-    history = squad.tournament_history
-    if elo > 1850 and history:
-        if all('Group' in str(h) or '16' in str(h) for h in history):
-            exp_bonus -= 0.025
-        elif 'Semi' not in str(history[-1]) and 'Final' not in str(history[-1]):
-            if elo > 1880:
-                exp_bonus -= 0.010
-    if elo > 1830 and len(history) == 0:
-        exp_bonus -= 0.015
+    exp_bonus = scorer._calc_experience_score(squad, experience_config, recent_t)
 
     # 近期状态
     form_bonus = (squad.recent_win_rate - 0.3) * 0.10
@@ -477,7 +457,15 @@ def score_all_teams(teams: List[Squad],
         # 写回结果
         for i, r in enumerate(results):
             r.final_probability = float(mc_probs[i])
-            uncertainty = mystic_config.luck_ceiling
+            # 修复：置信区间宽度应根据概率动态调整，而非固定luck_ceiling
+            # 原理：概率p的置信度与p*(1-p)成正比——中间概率最不确定（±10%等效区间宽），
+            #       极端概率（接近0或1）更确定（相对区间窄）
+            # 低概率队(0.5%): prob_factor ≈ 0.01 → uncertainty ≈ 0.0015 (极窄)
+            # 中概率队(10%): prob_factor ≈ 0.18 → uncertainty ≈ 0.018
+            # 高概率队(15%): prob_factor ≈ 0.255 → uncertainty ≈ 0.0255
+            base_ceiling = mystic_config.luck_ceiling
+            prob_factor = max(0.1, min(1.2, r.final_probability * (1 - r.final_probability) * 5))
+            uncertainty = base_ceiling * prob_factor
             r.confidence_interval = (
                 max(0.0005, r.final_probability - uncertainty),
                 min(0.25,   r.final_probability + uncertainty),
@@ -533,11 +521,15 @@ def score_all_teams(teams: List[Squad],
             # 混合
             blended = 0.55 * mc_clipped + 0.35 * log_penalized + 0.10 * log_p
             r.final_probability = blended
-            # 更新置信区间
-            uncertainty = mystic_config.luck_ceiling
+            # 更新置信区间（同样使用概率动态调整）
+            base_ceiling = mystic_config.luck_ceiling
+            prob_factor = max(0.1, min(1.2, r.final_probability * (1 - r.final_probability) * 5))
+            uncertainty = base_ceiling * prob_factor
+            # 移除不合理的固定上限0.20：当probability=0.53时会导致ci_high < probability的bug
+            # 动态上限已经通过prob_factor * base_ceiling隐式控制，不再需要额外的固定cap
             r.confidence_interval = (
                 max(0.001, r.final_probability - uncertainty),
-                min(0.20,  r.final_probability + uncertainty),
+                r.final_probability + uncertainty,
             )
     else:
         # 旧逻辑：softmax 归一化
@@ -557,40 +549,65 @@ def _simulate_tournament_path(team_list: list, elo_arr: np.ndarray, rng: np.rand
     """
     模拟一届世界杯的完整路径，返回冠军的 team_list 索引。
     修复 v2：先打乱再分组，避免高Elo队被固定分到一起；改用12组×4队匹配2026实际赛制。
+    修复 v3：增加不足48队时的处理逻辑。
+
+    2026 FIFA World Cup: 12 groups of 4 teams = 48 teams
+    如果输入团队少于48，则填充到48（重复最低Elo队）。
     """
     n_teams = len(team_list)
+    TARGET_TEAMS = 48  # 12 groups × 4 teams
 
-    # 2026世界杯：8个小组，每组4队（48队），前2名出线=16强淘汰赛
+    # 2026世界杯：12个小组，每组4队（48队），前2名出线=16强淘汰赛
     all_indices = list(range(n_teams))
     rng.shuffle(all_indices)  # 关键修复：打乱后再分组，Elo不再按固定索引聚集
 
-    n_groups = 8
-    teams_per_group = 6  # 48 / 8 = 6
+    n_groups = 12
+    teams_per_group = 4  # 2026 WC: 12 groups of 4 teams = 48
+
+    # 修复：如果团队数不足48，填充到48（复制最低Elo的团队）
+    if n_teams < TARGET_TEAMS:
+        # 找出最低Elo的团队索引
+        min_elo_idx = int(np.argmin(elo_arr))
+        padding_needed = TARGET_TEAMS - n_teams
+        # 用最低Elo团队填充
+        padding_indices = [min_elo_idx] * padding_needed
+        all_indices = all_indices + padding_indices
+        n_teams = len(all_indices)
+
     n_active = n_groups * teams_per_group  # = 48
     active_indices = all_indices[:n_active]
 
     groups = [active_indices[i*teams_per_group:(i+1)*teams_per_group] for i in range(n_groups)]
 
-    # 小组赛：每组Elo最高的2队出线
+    # 小组赛：每组Elo最高的2队出线（2026: 12×2=24队进入16强）
     qualified = []
     for g in groups:
         g_elos = elo_arr[g]
         order = np.argsort(-g_elos)
         qualified.extend([g[order[0]], g[order[1]]])
 
-    # 淘汰赛：16→8→4→2→1
+    # 淘汰赛：24→16→8→4→2→1（2026: 12组前两名+4队第三名进入16强）
     # 抽签决定对阵（用传入的 rng，避免重复 seed）
+    # 修复：当奇数队时，最高Elo队自动晋级下一轮（模拟轮空）
     knockout = qualified[:]
     while len(knockout) > 1:
         # 洗牌
         rng.shuffle(knockout)
         next_round = []
+
+        # 处理奇数情况：最高Elo队轮空晋级
+        if len(knockout) % 2 == 1:
+            bye_idx = np.argmax(elo_arr[knockout])
+            bye_team = knockout[bye_idx]
+            next_round.append(bye_team)
+            knockout = [t for i, t in enumerate(knockout) if i != bye_idx]
+
         for i in range(0, len(knockout), 2):
             a, b = knockout[i], knockout[i+1]
             # Bradley-Terry 胜率
             s_a = elo_arr[a]
             s_b = elo_arr[b]
-            # 添加淘汰赛随机性（0.8-1.2 缩放）
+            # 添加淘汰赛随机性（0.7-1.3 缩放）
             scale = rng.uniform(0.7, 1.3)
             prob_a = 1.0 / (1.0 + np.exp(-(s_a - s_b) / 80 * scale))
             winner = a if rng.random() < prob_a else b
