@@ -580,27 +580,38 @@ def _load_analysis():
             if r["country"] == team_b:
                 shift_b = r.get("shift", 0) or 0
 
-        lambda_a = 1.3 + (elo_a_val - 1700) / 500.0 * 1.0
-        lambda_b = 1.3 + (elo_b_val - 1700) / 500.0 * 1.0
+        # λ 公式：base 1.8（原来1.3），slope /280（原来/500）
+        lambda_a = 1.8 + (elo_a_val - 1700) / 280.0
+        lambda_b = 1.8 + (elo_b_val - 1700) / 280.0
         lambda_a = lambda_a * (1 + shift_a * 3.0)
         lambda_b = lambda_b * (1 + shift_b * 3.0)
-        lambda_a = max(0.3, min(4.0, lambda_a))
-        lambda_b = max(0.3, min(4.0, lambda_b))
+        lambda_a = max(0.5, min(5.0, lambda_a))
+        lambda_b = max(0.5, min(5.0, lambda_b))
 
-        # 生成 0-8 × 0-8 所有比分概率（扩展网格以支持大比分预测）
+        # ELO差距决定 boost 强度：差距越大，高比分 boost 越强
+        # gap < 150: 纯Poisson不过度boost，保持正常比分预测
+        # gap > 150: 每超1点+0.01强度，gap=350时约2.0倍
+        gap = abs(elo_a_val - elo_b_val)
+        boost_strength = max(0.0, (gap - 150) / 100.0)  # 0 if close, grows with mismatch
+
+        def get_boost(total, strength):
+            if total >= 8:
+                return 1 + strength * 50.0  # max 51x at gap=350
+            elif total >= 7:
+                return 1 + strength * 15.0
+            elif total >= 6:
+                return 1 + strength * 5.0
+            elif total >= 5:
+                return 1 + strength * 2.5
+            return 1.0
+
         raw = []
         for ga in range(9):
             for gb in range(9):
                 p = poisson_pmf(ga, lambda_a) * poisson_pmf(gb, lambda_b)
                 total = ga + gb
-                # 分段 boost：total>=7 更罕见，用 5.0；total>=5 用 3.0
-                if total >= 7:
-                    boosted = p * 5.0
-                elif total >= 5:
-                    boosted = p * 3.0
-                else:
-                    boosted = p
-                raw.append({"ga": ga, "gb": gb, "prob": boosted})
+                boost = get_boost(total, boost_strength)
+                raw.append({"ga": ga, "gb": gb, "prob": p * boost})
 
         total_prob = sum(x["prob"] for x in raw)
         for x in raw:
