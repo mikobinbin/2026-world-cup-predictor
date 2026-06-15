@@ -31,7 +31,7 @@ from src.models.ucl_final_mentality import (
 )
 from src.models.conformal import ConformalPredictor
 from src.models.feature_attribution import attribute_all_teams
-from src.models.match_data import load_match_data, FlashscoreParser
+from src.models.match_data import load_match_data, FlashscoreParser, _team_normalize
 from scripts.elo_scraper import load_elo_cache
 from scripts.ingest_wikipedia_squads import normalize_position
 
@@ -518,9 +518,83 @@ def _load_analysis():
     # 8. UCL
     ucl_data = _load_ucl_data()
 
+    # 12. H2H Validation — 对已完赛的比赛计算预测命中率
+    h2h_validation: List[Dict] = []
+    for match in match_results:
+        team_a = match.get("team_a", "")
+        team_b = match.get("team_b", "")
+        score_a = match.get("score_a")
+        score_b = match.get("score_b")
+        if score_a is None or score_b is None:
+            continue
+        # 从h2h_conformal_map获取预测集（使用 _team_normalize 标准化队名）
+        def get_h2h(a, b):
+            # 标准化队名以匹配h2h_conformal_map
+            a_norm = _team_normalize(a)
+            b_norm = _team_normalize(b)
+            if a_norm in h2h_conformal_map and b_norm in h2h_conformal_map[a_norm]:
+                cp = h2h_conformal_map[a_norm][b_norm]
+                return cp.get("prediction_set", []), cp.get("set_size", 0), cp.get("confidence", 0)
+            return [], 0, 0
+        pred_set, set_size, conf = get_h2h(team_a, team_b)
+        actual = f"{score_a}-{score_b}"
+        # 胜负平判断
+        if score_a > score_b:
+            actual_outcome = "W"
+        elif score_a < score_b:
+            actual_outcome = "L"
+        else:
+            actual_outcome = "D"
+        # 预测胜负平（基于pred_set）
+        # pred_set 包含 ["胜","平","负"] — 胜负平标签，非比分
+        # "胜" = team_a 赢(W), "平" = 平局(D), "负" = team_a 输(L)
+        pred_outcome = None
+        if pred_set:
+            if "胜" in pred_set and "负" not in pred_set:
+                pred_outcome = "W"
+            elif "负" in pred_set and "胜" not in pred_set:
+                pred_outcome = "L"
+            elif "平" in pred_set and len(pred_set) == 1:
+                pred_outcome = "D"
+            else:
+                # set_size=3 或混乱情况，看 set 里哪个元素多
+                pred_outcome = None
+        # 比分命中率：conformal set 是胜负平，不是比分，所以用泊松预测最高概率比分来比较
+        # 只验证胜负平
+        outcome_hit = pred_outcome == actual_outcome if pred_outcome else False
+        h2h_validation.append({
+            "team_a": team_a,
+            "team_b": team_b,
+            "score_a": score_a,
+            "score_b": score_b,
+            "pred_set": pred_set,
+            "set_size": set_size,
+            "confidence": conf,
+            "actual": actual,
+            "actual_outcome": actual_outcome,
+            "pred_outcome": pred_outcome,
+            "outcome_hit": outcome_hit,
+            "stage": match.get("stage", ""),
+        })
+    # 汇总统计
+    total = len(h2h_validation)
+    outcome_hits = sum(1 for v in h2h_validation if v["outcome_hit"])
+    avg_set_size = round(sum(v["set_size"] for v in h2h_validation) / total, 1) if total else 0
+    high_conf_hits = sum(1 for v in h2h_validation if v["set_size"] == 1 and v["outcome_hit"])
+    high_conf_total = sum(1 for v in h2h_validation if v["set_size"] == 1)
+    val_summary = {
+        "total": total,
+        "outcome_acc": f"{round(outcome_hits/total*100, 1) if total else 0}%",
+        "outcome_hits": outcome_hits,
+        "avg_set_size": avg_set_size,
+        "high_conf_hits": high_conf_hits,
+        "high_conf_total": high_conf_total,
+    }
+
     _cached_results = (results, ucl_data, h2h_conformal_map,
-                       match_fixtures, match_results, friendly_results)
-    return results, ucl_data, h2h_conformal_map, match_fixtures, match_results, friendly_results
+                       match_fixtures, match_results, friendly_results,
+                       h2h_validation, val_summary)
+    return results, ucl_data, h2h_conformal_map, match_fixtures, match_results, friendly_results, h2h_validation, val_summary
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -565,6 +639,20 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .lb-pct{font-size:17px;font-weight:800;font-variant-numeric:tabular-nums}
 .lb-pct.vh{color:var(--bl)}
 .lb-sh{font-size:11px;font-weight:600;margin-top:2px}
+/* H2H Validation Module */
+.val-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.val-metric{background:var(--s2);border-radius:10px;padding:10px 6px;text-align:center}
+.val-metric .val-num{font-size:20px;font-weight:700;color:var(--bl);line-height:1.2}
+.val-metric .val-label{font-size:10px;color:var(--tx2);margin-top:2px}
+.val-row{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;margin-bottom:4px;background:var(--s2)}
+.val-row .val-flag{font-size:16px;min-width:24px;text-align:center}
+.val-row .val-teams{flex:1;font-size:13px;color:var(--tx1)}
+.val-row .val-score{font-size:14px;font-weight:700;color:var(--tx1)}
+.val-row .val-detail{font-size:11px;color:var(--tx2);margin-top:2px}
+.val-row .val-badge{padding:2px 7px;border-radius:12px;font-size:10px;font-weight:600}
+.val-badge.hit{background:#1a4d2e;color:#4ade80}
+.val-badge.miss{background:#4d1a1a;color:#f87171}
+.val-badge.partial{background:#3d2e1a;color:#fbbf24}
 /* Dynamic match sections */
 /* ── SofaScore-inspired Match Cards ── */
 .dyn-list{display:flex;flex-direction:column;gap:2px}
@@ -915,6 +1003,12 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
     <div class="card-title">冠军概率 TOP 6 / Champion Prob</div>
     <div class="lb" id="lb"></div>
   </div>
+  <!-- Section: H2H Validation (Model Validation) -->
+  <div class="card">
+    <div class="card-title">📊 H2H预测验证 / Model Validation</div>
+    <div class="val-summary" id="h2h-val-summary"></div>
+    <div class="val-list" id="h2h-val-list"></div>
+  </div>
   <!-- Section 2: WC Fixtures (within 7 days) -->
   <div class="card">
     <div class="card-title">⚔️ 赛程 / Upcoming Fixtures</div>
@@ -1106,6 +1200,8 @@ var HC=__H2H_CONF__;
 var FIX=__FIXTURES__;
 var WCR=__WC_RESULTS__;
 var FRN=__FRIENDLIES__;
+var H2HV=__H2H_VAL__;
+var VS=__VAL_SUMMARY__;
 var FL={
   "Argentina":"🇦🇷","Brazil":"🇧🇷","France":"🇫🇷","Germany":"🇩🇪","Spain":"🇪🇸",
   "England":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Portugal":"🇵🇹","Netherlands":"🇳🇱","Belgium":"🇧🇪",
@@ -1144,6 +1240,7 @@ function buildLB(){
   buildFixtures();
   buildWCResults();
   buildFriendlies();
+  buildH2HValidation();
 }
 
 /* ── Dynamic Match Sections (SofaScore-inspired cards) ── */
@@ -1272,6 +1369,37 @@ function buildFriendlies(){
   });
   h+='</div>';
   document.getElementById("sec-frn").innerHTML=h;
+}
+
+/* ── H2H Validation ── */
+function buildH2HValidation(){
+  var vv = VS || {};
+  if(!vv.total){
+    document.getElementById('h2h-val-summary').innerHTML = '<div class="val-metric"><div class="val-num">N/A</div><div class="val-label">暂无验证数据</div></div>';
+    document.getElementById('h2h-val-list').innerHTML = '';
+    return;
+  }
+  document.getElementById('h2h-val-summary').innerHTML =
+    '<div class="val-metric"><div class="val-num">' + vv.outcome_hits + '/' + vv.total + '</div><div class="val-label">胜负平准确</div></div>' +
+    '<div class="val-metric"><div class="val-num">' + (vv.high_conf_total ? vv.high_conf_hits + '/' + vv.high_conf_total : '-') + '</div><div class="val-label">高确信命中</div></div>' +
+    '<div class="val-metric"><div class="val-num">' + vv.avg_set_size + '</div><div class="val-label">预测集均值</div></div>';
+  var vlist = '';
+  var vals = H2HV || [];
+  for(var i = 0; i < vals.length; i++){
+    var v = vals[i];
+    // pred_set 包含 ["胜","平","负"] 标签
+    var predLbl = v.pred_set && v.pred_set.length > 0 ? v.pred_set.join('/') : 'N/A';
+    var badge = v.outcome_hit ? '<span class="val-badge hit">✓ 胜负中</span>' : '<span class="val-badge miss">✗ 未中</span>';
+    var flagA = fl(v.team_a) || '⚑';
+    var flagB = fl(v.team_b) || '⚑';
+    vlist += '<div class="val-row">' +
+      '<div class="val-flag">' + flagA + '</div>' +
+      '<div class="val-teams">' + v.team_a + ' vs ' + v.team_b + '<div class="val-detail">预测: ' + predLbl + '</div></div>' +
+      '<div class="val-score">' + v.score_a + '-' + v.score_b + '</div>' +
+      badge +
+      '</div>';
+  }
+  document.getElementById('h2h-val-list').innerHTML = vlist;
 }
 
 /* ── Factor Breakdown ── */
@@ -1746,7 +1874,7 @@ def run_server(port=7862):
         global _cached_results
         # Bust analysis cache to force reload of fresh data
         _cached_results = None
-        results, ucl_data, h2h_conformal_map, match_fixtures, match_results, friendly_results = _load_analysis()
+        results, ucl_data, h2h_conformal_map, match_fixtures, match_results, friendly_results, h2h_validation, val_summary = _load_analysis()
 
         # Use actual data file mtime for update time
         match_mtime = _get_file_mtime(MATCH_CACHE)
@@ -1763,6 +1891,8 @@ def run_server(port=7862):
         fixtures_json = json.dumps(match_fixtures, ensure_ascii=False)
         wc_results_json = json.dumps(match_results, ensure_ascii=False)
         friendlies_json = json.dumps(friendly_results, ensure_ascii=False)
+        h2h_val_json = json.dumps(h2h_validation, ensure_ascii=False)
+        val_sum_json = json.dumps(val_summary, ensure_ascii=False)
 
         html = HTML_BODY
         html = html.replace("__DATA__", data_json)
@@ -1771,6 +1901,8 @@ def run_server(port=7862):
         html = html.replace("__FIXTURES__", fixtures_json)
         html = html.replace("__WC_RESULTS__", wc_results_json)
         html = html.replace("__FRIENDLIES__", friendlies_json)
+        html = html.replace("__H2H_VAL__", h2h_val_json)
+        html = html.replace("__VAL_SUMMARY__", val_sum_json)
         html = html.replace("__UPDATE_TIME__", update_time)
         return html, match_mtime, elo_mtime
 
