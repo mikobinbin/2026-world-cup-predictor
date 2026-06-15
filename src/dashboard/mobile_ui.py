@@ -16,6 +16,7 @@ import sys
 import json
 import random
 from datetime import datetime
+from typing import Dict, List
 
 # ── 项目路径 ───────────────────────────────────────────────────────────
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -332,6 +333,34 @@ def _load_analysis():
     # Each match_dict has: team_a, team_b, score_a, score_b (or None for fixtures)
     all_match_data = load_match_data()  # returns (fixtures, results, friendly_results)
     match_fixtures, match_results, friendly_results = all_match_data
+
+    def _normalize_match(m: Dict) -> Dict:
+        """Normalize match dict fields: home/away → team_a/team_b, datetime → date/time, stage → round."""
+        result = dict(m)
+        # Map home/away to team_a/team_b
+        if "home" in result and "team_a" not in result:
+            result["team_a"] = result.pop("home")
+        if "away" in result and "team_b" not in result:
+            result["team_b"] = result.pop("away")
+        # Split datetime into date and time if present
+        if "datetime" in result and "date" not in result:
+            dt = result.pop("datetime")
+            if "T" in dt:
+                date_part, time_part = dt.split("T", 1)
+                result["date"] = date_part[5:] if len(date_part) == 10 else date_part  # MM.DD format
+                result["time"] = time_part[:5]  # HH:MM
+            else:
+                result["date"] = dt
+                result["time"] = ""
+        # Map stage to round
+        if "stage" in result and "round" not in result:
+            result["round"] = result.pop("stage")
+        return result
+
+    # Normalize all match lists (JSON has home/away, JS expects team_a/team_b)
+    match_fixtures = [_normalize_match(m) for m in match_fixtures]
+    match_results = [_normalize_match(m) for m in match_results]
+    friendly_results = [_normalize_match(m) for m in friendly_results]
 
     # Build per-team match lists for form_score calculation
     recent_results: Dict[str, List[Dict]] = {}
@@ -1699,31 +1728,67 @@ if(teams.length>0){sel.value=teams[0].country;sqChange();}
 
 def run_server(port=7862):
     """启动 HTTP 服务器 — 纯 HTML/CSS/JS，无 Gradio 依赖"""
-    results, ucl_data, h2h_conformal_map, match_fixtures, match_results, friendly_results = _load_analysis()
-    update_time = datetime.now().strftime("%Y-%m-%d %H:%M")
+    # File paths for cache invalidation
+    MATCH_CACHE = os.path.join(ROOT, "data", "match_cache.json")
+    ELO_CACHE_PATH = os.path.join(ROOT, "data", "elo_cache_2026.json")
 
-    data_json = json.dumps(results, ensure_ascii=False)
-    ucl_json = json.dumps(ucl_data, ensure_ascii=False)
-    h2h_conf_json = json.dumps(h2h_conformal_map, ensure_ascii=False)
-    fixtures_json = json.dumps(match_fixtures, ensure_ascii=False)
-    wc_results_json = json.dumps(match_results, ensure_ascii=False)
-    friendlies_json = json.dumps(friendly_results, ensure_ascii=False)
+    # Mutable container for cached state (avoids global keyword issues)
+    cache_state = {"html": "", "match_mtime": 0, "elo_mtime": 0}
 
-    html = HTML_BODY
-    html = html.replace("__DATA__", data_json)
-    html = html.replace("__UCL__", ucl_json)
-    html = html.replace("__H2H_CONF__", h2h_conf_json)
-    html = html.replace("__FIXTURES__", fixtures_json)
-    html = html.replace("__WC_RESULTS__", wc_results_json)
-    html = html.replace("__FRIENDLIES__", friendlies_json)
-    html = html.replace("__UPDATE_TIME__", update_time)
+    def _get_file_mtime(path: str) -> float:
+        try:
+            return os.path.getmtime(path)
+        except OSError:
+            return 0
+
+    def _build_html() -> tuple:
+        """Load data and build full HTML. Returns (html, match_mtime, elo_mtime)."""
+        global _cached_results
+        # Bust analysis cache to force reload of fresh data
+        _cached_results = None
+        results, ucl_data, h2h_conformal_map, match_fixtures, match_results, friendly_results = _load_analysis()
+
+        # Use actual data file mtime for update time
+        match_mtime = _get_file_mtime(MATCH_CACHE)
+        elo_mtime = _get_file_mtime(ELO_CACHE_PATH)
+        latest_mtime = max(match_mtime, elo_mtime)
+        if latest_mtime > 0:
+            update_time = datetime.fromtimestamp(latest_mtime).strftime("%Y-%m-%d %H:%M:%S")
+        else:
+            update_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        data_json = json.dumps(results, ensure_ascii=False)
+        ucl_json = json.dumps(ucl_data, ensure_ascii=False)
+        h2h_conf_json = json.dumps(h2h_conformal_map, ensure_ascii=False)
+        fixtures_json = json.dumps(match_fixtures, ensure_ascii=False)
+        wc_results_json = json.dumps(match_results, ensure_ascii=False)
+        friendlies_json = json.dumps(friendly_results, ensure_ascii=False)
+
+        html = HTML_BODY
+        html = html.replace("__DATA__", data_json)
+        html = html.replace("__UCL__", ucl_json)
+        html = html.replace("__H2H_CONF__", h2h_conf_json)
+        html = html.replace("__FIXTURES__", fixtures_json)
+        html = html.replace("__WC_RESULTS__", wc_results_json)
+        html = html.replace("__FRIENDLIES__", friendlies_json)
+        html = html.replace("__UPDATE_TIME__", update_time)
+        return html, match_mtime, elo_mtime
+
+    # Initial build
+    cache_state["html"], cache_state["match_mtime"], cache_state["elo_mtime"] = _build_html()
 
     class Handler(http.server.BaseHTTPRequestHandler):
         def do_GET(self):
+            # Check if cache files changed — rebuild if so
+            current_match_mtime = _get_file_mtime(MATCH_CACHE)
+            current_elo_mtime = _get_file_mtime(ELO_CACHE_PATH)
+            if current_match_mtime != cache_state["match_mtime"] or current_elo_mtime != cache_state["elo_mtime"]:
+                # Files changed — rebuild HTML
+                cache_state["html"], cache_state["match_mtime"], cache_state["elo_mtime"] = _build_html()
             self.send_response(200)
             self.send_header("Content-type", "text/html; charset=utf-8")
             self.end_headers()
-            self.wfile.write(html.encode("utf-8"))
+            self.wfile.write(cache_state["html"].encode("utf-8"))
 
         def log_message(self, fmt, *args):
             pass
