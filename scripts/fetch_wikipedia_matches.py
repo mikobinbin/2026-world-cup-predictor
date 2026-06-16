@@ -7,6 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import re
+import os
 from datetime import datetime, timezone, timedelta
 from zoneinfo import ZoneInfo
 
@@ -190,6 +191,13 @@ def parse_wikipedia_datetime(date_str, time_str, tz_offset_str):
         else:
             hour, minute = 12, 0
         
+        # Parse date — normalize Wikipedia API date formats:
+        # "June11,2026" → "June 11,2026" → "June 11, 2026"
+        # "June 11,2026" → "June 11, 2026"
+        date_str = date_str.strip()
+        date_str = re.sub(r'([A-Za-z]+)(\d{1,2},)', r'\1 \2', date_str)  # "June11" → "June 11"
+        date_str = re.sub(r'(\d+,)', r'\1 ', date_str)  # "June 11,2026" → "June 11, 2026"
+        
         # Parse date
         dt = datetime.strptime(date_str, '%B %d, %Y')
         dt = dt.replace(hour=hour, minute=minute, second=0, microsecond=0)
@@ -260,22 +268,38 @@ def extract_stage_from_url(score_url):
         return 'Unknown'
 
 
-def fetch_wikipedia_matches(max_retries=3, retry_delay=10):
-    """Fetch match data from Wikipedia with retry on rate limiting."""
-    url = 'https://en.wikipedia.org/wiki/2026_FIFA_World_Cup'
+def fetch_wikipedia_matches(max_retries=4, retry_delay=30):
+    """Fetch match data from Wikipedia REST API with retry on rate limiting.
+    
+    Uses the rendered HTML API endpoint which has more generous rate limits
+    for automated clients.
+    """
+    import time
+    # Use the REST API rendered HTML endpoint (more bot-friendly)
+    url = 'https://en.wikipedia.org/api/rest_v1/page/html/2026_FIFA_World_Cup'
+    
+    api_headers = {
+        'User-Agent': 'Mozilla/5.0 (compatible; WorldCupPredictorBot/1.0; +https://github.com/mikobinbin/2026-world-cup-predictor)',
+        'Accept': 'text/html',
+    }
     
     for attempt in range(max_retries):
         try:
-            print(f"Fetching Wikipedia page (attempt {attempt+1}/{max_retries})...")
-            r = requests.get(url, headers=HEADERS, timeout=30)
+            print(f"Fetching Wikipedia API (attempt {attempt+1}/{max_retries})...")
+            r = requests.get(url, headers=api_headers, timeout=30)
+            if r.status_code == 429 or (r.status_code == 403 and 'rate' in r.text.lower()):
+                if attempt < max_retries - 1:
+                    wait = retry_delay * (attempt + 1)
+                    print(f"Rate limited ({r.status_code}), waiting {wait}s before retry...")
+                    time.sleep(wait)
+                    continue
             r.raise_for_status()
             break
         except requests.exceptions.HTTPError as e:
-            if r.status_code == 429 or '403' in str(e):
+            if r.status_code == 429 or r.status_code == 403:
                 if attempt < max_retries - 1:
                     wait = retry_delay * (attempt + 1)
-                    print(f"Rate limited (403/429), waiting {wait}s before retry...")
-                    import time
+                    print(f"Rate limited ({r.status_code}), waiting {wait}s before retry...")
                     time.sleep(wait)
                     continue
             raise
@@ -371,7 +395,7 @@ def fetch_wikipedia_matches(max_retries=3, retry_delay=10):
     fixtures.sort(key=lambda x: x.get('datetime', ''))
     
     return {
-        'updated_at': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S'),
+        'updated_at': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S'),
         'results': results,
         'fixtures': fixtures,
         'friendly_results': friendly_results,
@@ -387,6 +411,7 @@ def main():
     
     # Save to data/match_cache.json
     output_path = 'data/match_cache.json'
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, 'w') as f:
         json.dump(cache, f, indent=2, ensure_ascii=False)
     
