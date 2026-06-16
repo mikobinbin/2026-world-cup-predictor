@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-15T12:16:43",
+  "updated_at": "2026-06-16T05:03:23",
   "results": [
     {
       "id": "match_001",
@@ -108,16 +108,14 @@
       "score_a": 5,
       "score_b": 1,
       "stage": "Group F"
-    }
-  ],
-  "fixtures": [
+    },
     {
       "id": "match_043",
       "datetime": "2026-06-15T16:00:00",
       "team_a": "Spain",
       "team_b": "Cape Verde",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 0,
+      "score_b": 0,
       "stage": "Group H"
     },
     {
@@ -125,8 +123,8 @@
       "datetime": "2026-06-15T19:00:00",
       "team_a": "Belgium",
       "team_b": "Egypt",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 1,
+      "score_b": 1,
       "stage": "Group G"
     },
     {
@@ -134,8 +132,8 @@
       "datetime": "2026-06-15T22:00:00",
       "team_a": "Saudi Arabia",
       "team_b": "Uruguay",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 1,
+      "score_b": 1,
       "stage": "Group H"
     },
     {
@@ -143,10 +141,12 @@
       "datetime": "2026-06-16T01:00:00",
       "team_a": "Iran",
       "team_b": "New Zealand",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 2,
+      "score_b": 2,
       "stage": "Group G"
-    },
+    }
+  ],
+  "fixtures": [
     {
       "id": "match_049",
       "datetime": "2026-06-16T19:00:00",
