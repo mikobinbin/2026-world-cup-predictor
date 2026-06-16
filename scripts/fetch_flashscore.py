@@ -6,7 +6,7 @@ Fetches HTML, extracts cjs.initialFeeds data, parses and saves.
 import urllib.request
 import re
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -150,10 +150,15 @@ def parse_feed_block(data_str):
             try:
                 dt = datetime.utcfromtimestamp(int(ad))
                 m['datetime'] = dt.strftime('%Y-%m-%dT%H:%M:%S')
+                # Add Beijing Time (UTC+8)
+                dt_cst = dt + timedelta(hours=8)
+                m['datetime_cst'] = dt_cst.strftime('%Y-%m-%dT%H:%M:%S')
             except:
                 m['datetime'] = ad
+                m['datetime_cst'] = ad
         else:
             m['datetime'] = ''
+            m['datetime_cst'] = ''
         
         # Team names - normalize to ensure consistent matching
         # Use CX (canonical name) if available, else AE/AF

@@ -359,10 +359,21 @@ def fetch_wikipedia_matches(max_retries=4, retry_delay=30):
             # Parse datetime to UTC
             utc_datetime = parse_wikipedia_datetime(date_str, time_str, tz_text)
             
+            # Add Beijing Time (CST = UTC+8)
+            datetime_cst = ''
+            if utc_datetime:
+                try:
+                    dt_utc = datetime.strptime(utc_datetime, '%Y-%m-%dT%H:%M:%S').replace(tzinfo=timezone.utc)
+                    dt_cst = dt_utc + timedelta(hours=8)
+                    datetime_cst = dt_cst.strftime('%Y-%m-%dT%H:%M:%S')
+                except Exception:
+                    pass
+
             # Create match dict
             match = {
                 'id': f'match_{i+1:03d}',
                 'datetime': utc_datetime or '',
+                'datetime_cst': datetime_cst,
                 'team_a': home,
                 'team_b': away,
                 'score_a': score_a,

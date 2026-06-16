@@ -352,6 +352,14 @@ def _load_analysis():
             else:
                 result["date"] = dt
                 result["time"] = ""
+        # Split datetime_cst (Beijing Time UTC+8) into time_cst if present
+        if "datetime_cst" in result and "time_cst" not in result:
+            dt_cst = result.get("datetime_cst", "")
+            if dt_cst and "T" in dt_cst:
+                _, time_part_cst = dt_cst.split("T", 1)
+                result["time_cst"] = time_part_cst[:5]  # HH:MM CST
+            else:
+                result["time_cst"] = ""
         # Map stage to round
         if "stage" in result and "round" not in result:
             result["round"] = result.pop("stage")
@@ -772,6 +780,7 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .mc-ct{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-width:52px}
 .mc-vs{font-size:10px;font-weight:800;color:var(--tx2);letter-spacing:.5px}
 .mc-kick{font-size:12px;font-weight:700;color:var(--tx1)}
+.mc-kick-cst{font-size:10px;font-weight:600;color:var(--tx2);opacity:0.8}
 .mc-score-ct{flex-direction:row;gap:4px}
 .mc-scr{font-size:16px;font-weight:800;color:var(--tx1);min-width:16px;text-align:center}
 .mc-scr-sep{font-size:14px;font-weight:700;color:var(--tx2)}
@@ -1381,7 +1390,7 @@ function buildFixtures(){
       </div>\
       <div class="mc-ct">\
         <span class="mc-vs">VS</span>\
-        <span class="mc-kick">'+m.time+'</span>\
+        <span class="mc-kick">'+m.time+' <span class="mc-kick-cst">('+m.time_cst+')</span></span>\
       </div>\
       <div class="mc-team mc-tr">\
         <span class="mc-nm">'+m.team_b+'</span>\
