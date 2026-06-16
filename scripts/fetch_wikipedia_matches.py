@@ -260,13 +260,25 @@ def extract_stage_from_url(score_url):
         return 'Unknown'
 
 
-def fetch_wikipedia_matches():
-    """Fetch match data from Wikipedia."""
+def fetch_wikipedia_matches(max_retries=3, retry_delay=10):
+    """Fetch match data from Wikipedia with retry on rate limiting."""
     url = 'https://en.wikipedia.org/wiki/2026_FIFA_World_Cup'
     
-    print("Fetching Wikipedia page...")
-    r = requests.get(url, headers=HEADERS, timeout=30)
-    r.raise_for_status()
+    for attempt in range(max_retries):
+        try:
+            print(f"Fetching Wikipedia page (attempt {attempt+1}/{max_retries})...")
+            r = requests.get(url, headers=HEADERS, timeout=30)
+            r.raise_for_status()
+            break
+        except requests.exceptions.HTTPError as e:
+            if r.status_code == 429 or '403' in str(e):
+                if attempt < max_retries - 1:
+                    wait = retry_delay * (attempt + 1)
+                    print(f"Rate limited (403/429), waiting {wait}s before retry...")
+                    import time
+                    time.sleep(wait)
+                    continue
+            raise
     
     print(f"Page content length: {len(r.text)} chars")
     
