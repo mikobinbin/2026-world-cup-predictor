@@ -33,7 +33,7 @@ import math
 
 # 欧冠决赛心态信号模块
 try:
-    from models.ucl_final_mentality import (
+    from .ucl_final_mentality import (
         compute_country_ucl_mentality_bonus,
         compute_final_mentality_signal,
         MBAPPE_REAL_MADRID_2025,
@@ -42,9 +42,8 @@ try:
     )
     UCL_INTEGRATION_AVAILABLE = True
 except ImportError:
-    # 尝试相对导入（直接运行本模块时）
     try:
-        from ucl_final_mentality import (
+        from models.ucl_final_mentality import (
             compute_country_ucl_mentality_bonus,
             compute_final_mentality_signal,
             MBAPPE_REAL_MADRID_2025,
