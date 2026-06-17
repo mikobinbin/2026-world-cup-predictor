@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-16T05:53:32",
+  "updated_at": "2026-06-17T10:00:05",
   "results": [
     {
       "id": "match_001",
@@ -35,7 +35,7 @@
       "id": "match_019",
       "datetime": "2026-06-13T01:00:00",
       "datetime_cst": "2026-06-13T09:00:00",
-      "team_a": "United States",
+      "team_a": "USA",
       "team_b": "Paraguay",
       "score_a": 4,
       "score_b": 1,
@@ -160,17 +160,15 @@
       "score_a": 2,
       "score_b": 2,
       "stage": "Group G"
-    }
-  ],
-  "fixtures": [
+    },
     {
       "id": "match_049",
       "datetime": "2026-06-16T19:00:00",
       "datetime_cst": "2026-06-17T03:00:00",
       "team_a": "France",
       "team_b": "Senegal",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 3,
+      "score_b": 1,
       "stage": "Group I"
     },
     {
@@ -179,8 +177,8 @@
       "datetime_cst": "2026-06-17T06:00:00",
       "team_a": "Iraq",
       "team_b": "Norway",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 1,
+      "score_b": 4,
       "stage": "Group I"
     },
     {
@@ -189,8 +187,8 @@
       "datetime_cst": "2026-06-17T09:00:00",
       "team_a": "Argentina",
       "team_b": "Algeria",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 3,
+      "score_b": 0,
       "stage": "Group J"
     },
     {
@@ -199,10 +197,12 @@
       "datetime_cst": "2026-06-17T12:00:00",
       "team_a": "Austria",
       "team_b": "Jordan",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 3,
+      "score_b": 1,
       "stage": "Group J"
-    },
+    }
+  ],
+  "fixtures": [
     {
       "id": "match_061",
       "datetime": "2026-06-17T17:00:00",
