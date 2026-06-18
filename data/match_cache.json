@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-17T10:00:05",
+  "updated_at": "2026-06-18T04:18:50",
   "results": [
     {
       "id": "match_001",
@@ -35,7 +35,7 @@
       "id": "match_019",
       "datetime": "2026-06-13T01:00:00",
       "datetime_cst": "2026-06-13T09:00:00",
-      "team_a": "USA",
+      "team_a": "United States",
       "team_b": "Paraguay",
       "score_a": 4,
       "score_b": 1,
@@ -200,17 +200,15 @@
       "score_a": 3,
       "score_b": 1,
       "stage": "Group J"
-    }
-  ],
-  "fixtures": [
+    },
     {
       "id": "match_061",
       "datetime": "2026-06-17T17:00:00",
       "datetime_cst": "2026-06-18T01:00:00",
       "team_a": "Portugal",
       "team_b": "DR Congo",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 1,
+      "score_b": 1,
       "stage": "Group K"
     },
     {
@@ -219,8 +217,8 @@
       "datetime_cst": "2026-06-18T04:00:00",
       "team_a": "England",
       "team_b": "Croatia",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 4,
+      "score_b": 2,
       "stage": "Group L"
     },
     {
@@ -229,8 +227,8 @@
       "datetime_cst": "2026-06-18T07:00:00",
       "team_a": "Ghana",
       "team_b": "Panama",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 1,
+      "score_b": 0,
       "stage": "Group L"
     },
     {
@@ -239,10 +237,12 @@
       "datetime_cst": "2026-06-18T10:00:00",
       "team_a": "Uzbekistan",
       "team_b": "Colombia",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 1,
+      "score_b": 3,
       "stage": "Group K"
-    },
+    }
+  ],
+  "fixtures": [
     {
       "id": "match_003",
       "datetime": "2026-06-18T16:00:00",
