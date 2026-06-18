@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-18T04:18:50",
+  "updated_at": "2026-06-18T10:26:38",
   "results": [
     {
       "id": "match_001",
@@ -35,7 +35,7 @@
       "id": "match_019",
       "datetime": "2026-06-13T01:00:00",
       "datetime_cst": "2026-06-13T09:00:00",
-      "team_a": "United States",
+      "team_a": "USA",
       "team_b": "Paraguay",
       "score_a": 4,
       "score_b": 1,
@@ -287,7 +287,7 @@
       "id": "match_021",
       "datetime": "2026-06-19T19:00:00",
       "datetime_cst": "2026-06-20T03:00:00",
-      "team_a": "United States",
+      "team_a": "USA",
       "team_b": "Australia",
       "score_a": null,
       "score_b": null,
@@ -588,7 +588,7 @@
       "datetime": "2026-06-26T02:00:00",
       "datetime_cst": "2026-06-26T10:00:00",
       "team_a": "Turkey",
-      "team_b": "United States",
+      "team_b": "USA",
       "score_a": null,
       "score_b": null,
       "stage": "Group D"
