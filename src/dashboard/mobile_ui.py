@@ -603,14 +603,18 @@ def _load_analysis():
         boost_strength = max(0.0, (gap - 150) / 100.0)  # 0 if close, grows with mismatch
 
         def get_boost(total, strength):
+            # 修复: 降低 boost 倍率，防止 5-3/3-5 等极端比分被过度 boost
+            # 原问题: gap=259时 total>=8 获得 55.5x boost，导致 5-3 成为 #1 预测
+            # 新公式: 使用更温和但仍有效果的倍率，最大 boost 约 7x (total>=8 at large gap)
+            # 注意: boost 仅在 ELO 差距大时显著，用于平衡纯 Poisson 对极端比分预测不足的问题
             if total >= 8:
-                return 1 + strength * 50.0  # max 51x at gap=350
+                return 1 + strength * 3.0  # max ~7x at gap=350 (was 50.0)
             elif total >= 7:
-                return 1 + strength * 15.0
+                return 1 + strength * 2.0  # max ~5x at gap=350 (was 15.0)
             elif total >= 6:
-                return 1 + strength * 5.0
+                return 1 + strength * 1.5  # max ~3.5x at gap=350 (was 5.0)
             elif total >= 5:
-                return 1 + strength * 2.5
+                return 1 + strength * 1.2  # max ~2.4x at gap=350 (was 2.5)
             return 1.0
 
         raw = []
