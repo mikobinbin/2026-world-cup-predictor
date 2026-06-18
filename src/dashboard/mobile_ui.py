@@ -711,24 +711,40 @@ def _load_analysis():
         gap = abs(elo_a_val - elo_b_val)
         boost_strength = max(0.0, (gap - 150) / 100.0)  # 0 if close, grows with mismatch
 
+        # ── 主主场优势调整 ────────────────────────────────────────────────
+        def _get_home_advantage(country: str) -> float:
+            """北美主办国+CONCACAF球队的主场优势"""
+            TOP_HOSTS = {'USA', 'Canada', 'Mexico'}
+            CONCACAF_OTHER = {'Panama', 'Costa Rica', 'Jamaica', 'Honduras'}
+            if country in TOP_HOSTS:
+                return 0.3
+            elif country in CONCACAF_OTHER:
+                return 0.15
+            return 0.0
+
+        home_a = _get_home_advantage(team_a)
+        home_b = _get_home_advantage(team_b)
+        lambda_a = lambda_a + home_a
+        lambda_b = lambda_b + home_b
+        lambda_a = max(0.5, min(5.5, lambda_a))  # 扩展上限以容纳主场加成
+        lambda_b = max(0.5, min(5.5, lambda_b))
+        # ─────────────────────────────────────────────────────────────────
+
         def get_boost(total, strength):
-            # 修复: 降低 boost 倍率，防止 5-3/3-5 等极端比分被过度 boost
-            # 原问题: gap=259时 total>=8 获得 55.5x boost，导致 5-3 成为 #1 预测
-            # 新公式: 使用更温和但仍有效果的倍率，最大 boost 约 7x (total>=8 at large gap)
-            # 注意: boost 仅在 ELO 差距大时显著，用于平衡纯 Poisson 对极端比分预测不足的问题
-            if total >= 8:
-                return 1 + strength * 3.0  # max ~7x at gap=350 (was 50.0)
-            elif total >= 7:
-                return 1 + strength * 2.0  # max ~5x at gap=350 (was 15.0)
+            """极端比分 boost — ELO差距越大，高比分概率越高"""
+            if total >= 10:
+                return 1 + strength * 5.0  # 极大比分（10+总进球）
+            elif total >= 8:
+                return 1 + strength * 4.0  # 大比分（8-9总进球）
             elif total >= 6:
-                return 1 + strength * 1.5  # max ~3.5x at gap=350 (was 5.0)
+                return 1 + strength * 2.5  # 中高比分（6-7总进球）
             elif total >= 5:
-                return 1 + strength * 1.2  # max ~2.4x at gap=350 (was 2.5)
+                return 1 + strength * 1.2
             return 1.0
 
         raw = []
-        for ga in range(9):
-            for gb in range(9):
+        for ga in range(11):
+            for gb in range(11):
                 p = poisson_pmf(ga, lambda_a) * poisson_pmf(gb, lambda_b)
                 total = ga + gb
                 boost = get_boost(total, boost_strength)
@@ -1731,14 +1747,29 @@ function getPlayerMatchups(ta,tb){
 function buildScorePred(ta, tb, r) {
     var eloA = ta.mod_elo || ta.elo || 1700;
     var eloB = tb.mod_elo || tb.elo || 1700;
-    var lambdaA = 1.3 + (eloA - 1700) / 500 * 1.0;
-    var lambdaB = 1.3 + (eloB - 1700) / 500 * 1.0;
+    // Lambda formula: base 1.8 (align with Python backend), slope /280
+    var lambdaA = 1.8 + (eloA - 1700) / 280.0;
+    var lambdaB = 1.8 + (eloB - 1700) / 280.0;
     var shiftA = ta.shift || 0;
     var shiftB = tb.shift || 0;
     lambdaA = lambdaA * (1 + shiftA * 3.0);
     lambdaB = lambdaB * (1 + shiftB * 3.0);
-    lambdaA = Math.max(0.3, Math.min(4.0, lambdaA));
-    lambdaB = Math.max(0.3, Math.min(4.0, lambdaB));
+    lambdaA = Math.max(0.5, Math.min(5.0, lambdaA));
+    lambdaB = Math.max(0.5, Math.min(5.0, lambdaB));
+
+    // ── Home advantage (North America 2026) ─────────────────────────────
+    var HOME_TEAMS_NA = ['USA','Canada','Mexico','Panama','Costa Rica','Jamaica','Honduras'];
+    function getHomeAdv(country) {
+        if (!country) return 0;
+        if (['USA','Canada','Mexico'].indexOf(country) >= 0) return 0.3;
+        if (HOME_TEAMS_NA.indexOf(country) >= 0) return 0.15;
+        return 0;
+    }
+    lambdaA += getHomeAdv(ta.country);
+    lambdaB += getHomeAdv(tb.country);
+    lambdaA = Math.max(0.5, Math.min(5.5, lambdaA));
+    lambdaB = Math.max(0.5, Math.min(5.5, lambdaB));
+    // ─────────────────────────────────────────────────────────────────
 
     function pois(k, lam) {
         if (lam <= 0) return k === 0 ? 1 : 0;
@@ -1747,19 +1778,28 @@ function buildScorePred(ta, tb, r) {
         return p;
     }
 
-    var EXTREME_THRESH = 5;
-    var BOOST_FACTOR = 3.0;
+    // ELO gap → boost strength
+    var gap = Math.abs(eloA - eloB);
+    var boostStrength = Math.max(0, (gap - 150) / 100.0);
+
+    function getBoost(total, strength) {
+        if (total >= 10) return 1 + strength * 5.0;
+        if (total >= 8)  return 1 + strength * 4.0;
+        if (total >= 6)  return 1 + strength * 2.5;
+        if (total >= 5)  return 1 + strength * 1.2;
+        return 1.0;
+    }
 
     var raw = [];
-    for (var ga = 0; ga <= 5; ga++) {
-        for (var gb = 0; gb <= 5; gb++) {
+    for (var ga = 0; ga <= 10; ga++) {
+        for (var gb = 0; gb <= 10; gb++) {
             raw.push({ga: ga, gb: gb, pois: pois(ga, lambdaA) * pois(gb, lambdaB), total: ga + gb});
         }
     }
 
     var sumBoosted = 0;
     for (var i = 0; i < raw.length; i++) {
-        raw[i].boosted = raw[i].total >= EXTREME_THRESH ? raw[i].pois * BOOST_FACTOR : raw[i].pois;
+        raw[i].boosted = raw[i].pois * getBoost(raw[i].total, boostStrength);
         sumBoosted += raw[i].boosted;
     }
     for (var i = 0; i < raw.length; i++) raw[i].prob = raw[i].boosted / sumBoosted;
