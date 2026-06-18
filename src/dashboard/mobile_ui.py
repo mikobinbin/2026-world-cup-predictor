@@ -32,7 +32,7 @@ from src.models.ucl_final_mentality import (
 from src.models.conformal import ConformalPredictor
 from src.models.feature_attribution import attribute_all_teams
 from src.models.match_data import load_match_data, FlashscoreParser, _team_normalize
-from scripts.elo_scraper import load_elo_cache
+from scripts.elo_scraper import load_elo_cache, save_elo_cache
 from scripts.ingest_wikipedia_squads import normalize_position
 
 RANDOM_SEED = 42
@@ -205,6 +205,112 @@ def _load_ucl_data():
             }
     return result
 
+
+# ── ELO Auto-Update ─────────────────────────────────────────────────────
+K_FACTOR = 32
+MAX_ELO_CHANGE = 50.0
+DEFAULT_ELO = 1650.0
+
+
+def _calculate_expected_elo(elo_a: float, elo_b: float) -> float:
+    """计算team_a的期望得分（基于ELO公式）"""
+    return 1.0 / (1.0 + 10.0 ** ((elo_b - elo_a) / 400.0))
+
+
+def _get_actual_score(score_a: int, score_b: int) -> tuple:
+    """根据比分返回actual得分: 1=win, 0.5=draw, 0=loss"""
+    if score_a > score_b:
+        return 1.0, 0.0
+    elif score_a < score_b:
+        return 0.0, 1.0
+    return 0.5, 0.5
+
+
+def _clamp_elo_change(delta: float) -> float:
+    """限制ELO单次变化量，防止极端波动"""
+    return max(-MAX_ELO_CHANGE, min(MAX_ELO_CHANGE, delta))
+
+
+def _update_elo_for_match(
+    elo_a: float,
+    elo_b: float,
+    score_a: int,
+    score_b: int
+) -> tuple:
+    """根据比赛结果更新两队ELO评分"""
+    expected_a = _calculate_expected_elo(elo_a, elo_b)
+    expected_b = 1.0 - expected_a
+    actual_a, actual_b = _get_actual_score(score_a, score_b)
+    delta_a = _clamp_elo_change(K_FACTOR * (actual_a - expected_a))
+    delta_b = _clamp_elo_change(K_FACTOR * (actual_b - expected_b))
+    return elo_a + delta_a, elo_b + delta_b
+
+
+PROCESSED_MATCHES_FILE = os.path.join(ROOT, "data", "elo_updates_processed.json")
+
+
+def _load_processed_match_ids() -> set:
+    """加载已处理的比赛ID集合"""
+    if os.path.exists(PROCESSED_MATCHES_FILE):
+        try:
+            with open(PROCESSED_MATCHES_FILE, encoding="utf-8") as f:
+                data = json.load(f)
+                return set(data.get("processed_match_ids", []))
+        except (json.JSONDecodeError, IOError):
+            pass
+    return set()
+
+
+def _save_processed_match_ids(match_ids: set) -> None:
+    """保存已处理的比赛ID集合"""
+    with open(PROCESSED_MATCHES_FILE, "w", encoding="utf-8") as f:
+        json.dump({
+            "processed_match_ids": list(match_ids),
+            "updated_at": datetime.now().isoformat(),
+        }, f, indent=2)
+
+
+def _auto_update_elo_from_results(match_results: List[Dict]) -> None:
+    """
+    根据已完成比赛自动更新ELO缓存
+    此函数是幂等的 — 同一比赛不会被处理两次
+    """
+    if not match_results:
+        return
+
+    processed_ids = _load_processed_match_ids()
+    new_processed_ids = set(processed_ids)
+
+    elo_cache = load_elo_cache(ELO_CACHE) or {}
+    updated = False
+
+    for match in match_results:
+        match_id = match.get("id", "")
+        if not match_id or match_id in processed_ids:
+            continue
+
+        team_a = match.get("team_a")
+        team_b = match.get("team_b")
+        score_a = match.get("score_a")
+        score_b = match.get("score_b")
+
+        if not all([team_a, team_b, isinstance(score_a, int), isinstance(score_b, int)]):
+            continue
+
+        elo_a = elo_cache.get(team_a, DEFAULT_ELO)
+        elo_b = elo_cache.get(team_b, DEFAULT_ELO)
+        new_elo_a, new_elo_b = _update_elo_for_match(elo_a, elo_b, score_a, score_b)
+
+        elo_cache[team_a] = new_elo_a
+        elo_cache[team_b] = new_elo_b
+        new_processed_ids.add(match_id)
+        updated = True
+
+    if updated:
+        save_elo_cache(elo_cache, ELO_CACHE)
+        _save_processed_match_ids(new_processed_ids)
+
+
 # ── 主数据加载 ──────────────────────────────────────────────────────────
 _cached_results = None
 
@@ -333,6 +439,9 @@ def _load_analysis():
     # Each match_dict has: team_a, team_b, score_a, score_b (or None for fixtures)
     all_match_data = load_match_data()  # returns (fixtures, results, friendly_results)
     match_fixtures, match_results, friendly_results = all_match_data
+
+    # Auto-update ELO cache from completed matches (idempotent)
+    _auto_update_elo_from_results(match_results)
 
     def _normalize_match(m: Dict) -> Dict:
         """Normalize match dict fields: home/away → team_a/team_b, datetime → date/time, stage → round."""
