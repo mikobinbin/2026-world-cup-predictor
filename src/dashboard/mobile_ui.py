@@ -1879,7 +1879,7 @@ function buildScorePred(ta, tb, r) {
         for (var j = 0; j < topHi.length; j++) {
             var s3 = topHi[j];
             var pct2 = (s3.prob * 100).toFixed(1);
-            var isExtreme = s3.total >= EXTREME_THRESH;
+            var isExtreme = s3.total >= 5;
             h += '<div class="sc-cell sc-cell-hi' + (isExtreme ? '" style="border-color:var(--gd)"' : '') + '">';
             h += '<div class="sc-s">' + s3.ga + ' - ' + s3.gb + (isExtreme ? ' &#10023;' : '') + '</div>';
             h += '<div class="sc-p">' + pct2 + '%</div></div>';
