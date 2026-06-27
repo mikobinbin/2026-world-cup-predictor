@@ -72,6 +72,7 @@ FLAG = {
     "Uzbekistan": "🇺🇿", "Jordan": "🇯🇴", "Panama": "🇵🇦",
     "Costa Rica": "🇨🇷", "Honduras": "🇭🇳", "Jamaica": "🇯🇲", "Haiti": "🇭🇹",
     "Canada": "🇨🇦", "New Zealand": "🇳🇿",
+    "Norway": "🇳🇴", "South Africa": "🇿🇦", "Iraq": "🇮🇶",
 }
 
 # ── 辅助函数 ───────────────────────────────────────────────────────────
@@ -89,6 +90,14 @@ def _estimate_mv(pos: str, caps: int, age: int) -> float:
     caps_factor = min(2.0, caps / 30 + 0.5)
     age_factor = 1.5 if 27 <= age <= 29 else (1.2 if 24 <= age <= 26 else (0.8 if age > 31 else 0.9))
     return round(base * caps_factor * age_factor, 1)
+
+def _has_bad_age(players_raw):
+    """Check if any player has corrupted age data (>100 or <10)."""
+    for p in players_raw:
+        age = p.get("age", 0)
+        if age > 100 or age < 10:
+            return True
+    return False
 
 def _build_sample(country: str, elo: float):
     """
@@ -234,10 +243,14 @@ def _load_analysis():
         elo = elo_dict.get(country, 1650.0)
         if country in teams_data:
             players_raw = teams_data[country].get("players", [])
+            # Skip teams with corrupted age data (Wikipedia parse errors)
+            if _has_bad_age(players_raw):
+                squad_dicts[country] = _build_sample(country, elo)
+                continue
             players = []
             for p in players_raw:
                 age = p.get("age")
-                if not age:
+                if not age or age > 100 or age < 10:
                     continue
                 caps = p.get("caps", 0)
                 pos = normalize_position(p.get("position", "MF"))
@@ -977,8 +990,8 @@ function getFactorDiff(ta,tb){
     var f=fs[i],va=ta[f.k]||0,vb=tb[f.k]||0;
     var maxV=Math.max(va,vb,0.01);
     var pctA=(va/maxV*100).toFixed(0),pctB=(vb/maxV*100).toFixed(0);
-    var wcls=va>vb?"var(--gr)":vb>va?"var(--rd)":"var(--tx2)";
-    h+='<div class="h2h-fr"><span class="h2h-fr-lbl">'+f.l+'</span><div class="h2h-fr-bar"><div class="h2h-fr-a" style="width:'+pctA+'%;background:var(--bl)"></div><div class="h2h-fr-b" style="width:'+pctB+'%;background:var(--gd)"></div></div><span class="h2h-fr-val" style="color:'+wcls+'">'+(va>vb?"A":vb>va?"B":"=")+'</span></div>';
+    var wcls=va>vb?"var(--gr)":va<vb?"var(--rd)":"var(--tx2)";
+    h+='<div class="h2h-fr"><span class="h2h-fr-lbl">'+f.l+'</span><div class="h2h-fr-bar"><div class="h2h-fr-a" style="width:'+pctA+'%;background:var(--bl)"></div><div class="h2h-fr-b" style="width:'+pctB+'%;background:var(--gd)"></div></div><span class="h2h-fr-val" style="color:'+wcls+'">'+(va>vb?"A":va<vb?"B":"=")+'</span></div>';
   }
   return h;
 }
