@@ -16,6 +16,7 @@ import sys
 import json
 import random
 from datetime import datetime
+from typing import Dict, List
 
 # ── 项目路径 ───────────────────────────────────────────────────────────
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -28,7 +29,10 @@ from src.models.ucl_final_mentality import (
     compute_country_ucl_mentality_bonus,
     compute_final_mentality_signal,
 )
-from scripts.elo_scraper import load_elo_cache
+from src.models.conformal import ConformalPredictor
+from src.models.feature_attribution import attribute_all_teams
+from src.models.match_data import load_match_data, FlashscoreParser, _team_normalize
+from scripts.elo_scraper import load_elo_cache, save_elo_cache
 from scripts.ingest_wikipedia_squads import normalize_position
 
 RANDOM_SEED = 42
@@ -41,17 +45,16 @@ ELO_CACHE = os.path.join(ROOT, "data", "elo_cache_2026.json")
 QUALIFIED_TEAMS = [
     "Argentina", "Brazil", "Uruguay", "Colombia", "Ecuador", "Paraguay",
     "France", "Germany", "Spain", "England", "Portugal", "Netherlands",
-    "Italy", "Belgium", "Croatia", "Switzerland", "Austria", "Poland",
-    "Ukraine", "Romania", "Czech Republic", "Turkey", "Serbia", "Sweden",
-    "Morocco", "Senegal", "Algeria", "Nigeria", "Egypt", "Cameroon",
-    "Ghana", "Ivory Coast", "Tunisia", "DR Congo", "Cape Verde",
-    "Japan", "South Korea", "Iran", "Qatar", "Saudi Arabia", "Australia",
-    "Uzbekistan", "Jordan",
-    "USA", "Mexico", "Canada", "Panama", "Costa Rica", "Honduras", "Jamaica", "Haiti",
-    "New Zealand",
-    # 2026-05 补充漏掉的已晋级队
-    "Norway",
+    "Belgium", "Croatia", "Switzerland", "Austria", "Czech Republic", "Turkey",
+    "Sweden", "Morocco", "Senegal", "Algeria", "Egypt", "Ghana",
+    "Ivory Coast", "Tunisia", "DR Congo", "Cape Verde", "Japan", "South Korea",
+    "Iran", "Iraq", "Qatar", "Saudi Arabia", "Australia", "Uzbekistan", "Jordan",
+    "USA", "Mexico", "Canada", "Panama", "Curaçao", "Haiti",
+    "New Zealand", "Norway", "South Africa", "Bosnia and Herzegovina", "Scotland",
 ]
+
+
+
 
 HOST_COUNTRY = "USA"
 DEFENDING_CHAMPION = "Argentina"
@@ -59,20 +62,22 @@ DEFENDING_CHAMPION = "Argentina"
 FLAG = {
     "Brazil": "🇧🇷", "Argentina": "🇦🇷", "France": "🇫🇷",
     "England": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Germany": "🇩🇪", "Spain": "🇪🇸",
-    "Portugal": "🇵🇹", "Netherlands": "🇳🇱", "Italy": "🇮🇹",
+    "Portugal": "🇵🇹", "Netherlands": "🇳🇱",
     "Belgium": "🇧🇪", "Croatia": "🇭🇷", "Switzerland": "🇨🇭",
     "Uruguay": "🇺🇾", "Colombia": "🇨🇴", "Mexico": "🇲🇽", "USA": "🇺🇸",
     "Japan": "🇯🇵", "South Korea": "🇰🇷", "Australia": "🇦🇺", "Iran": "🇮🇷",
-    "Morocco": "🇲🇦", "Senegal": "🇸🇳", "Nigeria": "🇳🇬", "Egypt": "🇪🇬",
-    "Poland": "🇵🇱", "Austria": "🇦🇹", "Ukraine": "🇺🇦", "Romania": "🇷🇴",
-    "Czech Republic": "🇨🇿", "Turkey": "🇹🇷", "Serbia": "🇷🇸", "Sweden": "🇸🇪",
+    "Morocco": "🇲🇦", "Senegal": "🇸🇳", "Egypt": "🇪🇬",
+    "Austria": "🇦🇹",
+    "Czech Republic": "🇨🇿", "Turkey": "🇹🇷", "Sweden": "🇸🇪",
     "Ecuador": "🇪🇨", "Paraguay": "🇵🇾", "Saudi Arabia": "🇸🇦", "Qatar": "🇶🇦",
-    "Ivory Coast": "🇨🇮", "Ghana": "🇬🇭", "Cameroon": "🇨🇲", "Tunisia": "🇹🇳",
+    "Ivory Coast": "🇨🇮", "Ghana": "🇬🇭", "Tunisia": "🇹🇳",
     "Algeria": "🇩🇿", "DR Congo": "🇨🇩", "Cape Verde": "🇨🇻",
     "Uzbekistan": "🇺🇿", "Jordan": "🇯🇴", "Panama": "🇵🇦",
     "Costa Rica": "🇨🇷", "Honduras": "🇭🇳", "Jamaica": "🇯🇲", "Haiti": "🇭🇹",
     "Canada": "🇨🇦", "New Zealand": "🇳🇿",
     "Norway": "🇳🇴", "South Africa": "🇿🇦", "Iraq": "🇮🇶",
+    "Curaçao": "🇨🇼",
+    "Bosnia and Herzegovina": "🇧🇦", "Scotland": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
 }
 
 # ── 辅助函数 ───────────────────────────────────────────────────────────
@@ -209,6 +214,112 @@ def _load_ucl_data():
             }
     return result
 
+
+# ── ELO Auto-Update ─────────────────────────────────────────────────────
+K_FACTOR = 32
+MAX_ELO_CHANGE = 50.0
+DEFAULT_ELO = 1650.0
+
+
+def _calculate_expected_elo(elo_a: float, elo_b: float) -> float:
+    """计算team_a的期望得分（基于ELO公式）"""
+    return 1.0 / (1.0 + 10.0 ** ((elo_b - elo_a) / 400.0))
+
+
+def _get_actual_score(score_a: int, score_b: int) -> tuple:
+    """根据比分返回actual得分: 1=win, 0.5=draw, 0=loss"""
+    if score_a > score_b:
+        return 1.0, 0.0
+    elif score_a < score_b:
+        return 0.0, 1.0
+    return 0.5, 0.5
+
+
+def _clamp_elo_change(delta: float) -> float:
+    """限制ELO单次变化量，防止极端波动"""
+    return max(-MAX_ELO_CHANGE, min(MAX_ELO_CHANGE, delta))
+
+
+def _update_elo_for_match(
+    elo_a: float,
+    elo_b: float,
+    score_a: int,
+    score_b: int
+) -> tuple:
+    """根据比赛结果更新两队ELO评分"""
+    expected_a = _calculate_expected_elo(elo_a, elo_b)
+    expected_b = 1.0 - expected_a
+    actual_a, actual_b = _get_actual_score(score_a, score_b)
+    delta_a = _clamp_elo_change(K_FACTOR * (actual_a - expected_a))
+    delta_b = _clamp_elo_change(K_FACTOR * (actual_b - expected_b))
+    return elo_a + delta_a, elo_b + delta_b
+
+
+PROCESSED_MATCHES_FILE = os.path.join(ROOT, "data", "elo_updates_processed.json")
+
+
+def _load_processed_match_ids() -> set:
+    """加载已处理的比赛ID集合"""
+    if os.path.exists(PROCESSED_MATCHES_FILE):
+        try:
+            with open(PROCESSED_MATCHES_FILE, encoding="utf-8") as f:
+                data = json.load(f)
+                return set(data.get("processed_match_ids", []))
+        except (json.JSONDecodeError, IOError):
+            pass
+    return set()
+
+
+def _save_processed_match_ids(match_ids: set) -> None:
+    """保存已处理的比赛ID集合"""
+    with open(PROCESSED_MATCHES_FILE, "w", encoding="utf-8") as f:
+        json.dump({
+            "processed_match_ids": list(match_ids),
+            "updated_at": datetime.now().isoformat(),
+        }, f, indent=2)
+
+
+def _auto_update_elo_from_results(match_results: List[Dict]) -> None:
+    """
+    根据已完成比赛自动更新ELO缓存
+    此函数是幂等的 — 同一比赛不会被处理两次
+    """
+    if not match_results:
+        return
+
+    processed_ids = _load_processed_match_ids()
+    new_processed_ids = set(processed_ids)
+
+    elo_cache = load_elo_cache(ELO_CACHE) or {}
+    updated = False
+
+    for match in match_results:
+        match_id = match.get("id", "")
+        if not match_id or match_id in processed_ids:
+            continue
+
+        team_a = match.get("team_a")
+        team_b = match.get("team_b")
+        score_a = match.get("score_a")
+        score_b = match.get("score_b")
+
+        if not all([team_a, team_b, isinstance(score_a, int), isinstance(score_b, int)]):
+            continue
+
+        elo_a = elo_cache.get(team_a, DEFAULT_ELO)
+        elo_b = elo_cache.get(team_b, DEFAULT_ELO)
+        new_elo_a, new_elo_b = _update_elo_for_match(elo_a, elo_b, score_a, score_b)
+
+        elo_cache[team_a] = new_elo_a
+        elo_cache[team_b] = new_elo_b
+        new_processed_ids.add(match_id)
+        updated = True
+
+    if updated:
+        save_elo_cache(elo_cache, ELO_CACHE)
+        _save_processed_match_ids(new_processed_ids)
+
+
 # ── 主数据加载 ──────────────────────────────────────────────────────────
 _cached_results = None
 
@@ -336,6 +447,59 @@ def _load_analysis():
             tournament_history=sq.get("tournament_history", ["2022"] if sq["country"] == DEFENDING_CHAMPION else []),
         ))
 
+    # 4b. Load match data (Flashscore — WC results, WC fixtures, friendlies)
+    # Build recent_results dict: { country -> [match_dict, ...] }
+    # Each match_dict has: team_a, team_b, score_a, score_b (or None for fixtures)
+    all_match_data = load_match_data()  # returns (fixtures, results, friendly_results)
+    match_fixtures, match_results, friendly_results = all_match_data
+
+    # Auto-update ELO cache from completed matches (idempotent)
+    _auto_update_elo_from_results(match_results)
+
+    def _normalize_match(m: Dict) -> Dict:
+        """Normalize match dict fields: home/away → team_a/team_b, datetime → date/time, stage → round."""
+        result = dict(m)
+        # Map home/away to team_a/team_b
+        if "home" in result and "team_a" not in result:
+            result["team_a"] = result.pop("home")
+        if "away" in result and "team_b" not in result:
+            result["team_b"] = result.pop("away")
+        # Split datetime into date and time if present
+        if "datetime" in result and "date" not in result:
+            dt = result.pop("datetime")
+            if "T" in dt:
+                date_part, time_part = dt.split("T", 1)
+                result["date"] = date_part[5:] if len(date_part) == 10 else date_part  # MM.DD format
+                result["time"] = time_part[:5]  # HH:MM
+            else:
+                result["date"] = dt
+                result["time"] = ""
+        # Split datetime_cst (Beijing Time UTC+8) into time_cst if present
+        if "datetime_cst" in result and "time_cst" not in result:
+            dt_cst = result.get("datetime_cst", "")
+            if dt_cst and "T" in dt_cst:
+                _, time_part_cst = dt_cst.split("T", 1)
+                result["time_cst"] = time_part_cst[:5]  # HH:MM CST
+            else:
+                result["time_cst"] = ""
+        # Map stage to round
+        if "stage" in result and "round" not in result:
+            result["round"] = result.pop("stage")
+        return result
+
+    # Normalize all match lists (JSON has home/away, JS expects team_a/team_b)
+    match_fixtures = [_normalize_match(m) for m in match_fixtures]
+    match_results = [_normalize_match(m) for m in match_results]
+    friendly_results = [_normalize_match(m) for m in friendly_results]
+
+    # Build per-team match lists for form_score calculation
+    recent_results: Dict[str, List[Dict]] = {}
+    for m in match_results + friendly_results:
+        for team in [m["team_a"], m["team_b"]]:
+            if team not in recent_results:
+                recent_results[team] = []
+            recent_results[team].append(m)
+
     # 5. Score
     weights = ModelWeights()
     scored = score_all_teams(
@@ -343,6 +507,7 @@ def _load_analysis():
         weights=weights,
         host_team=HOST_COUNTRY,
         defending_champ=DEFENDING_CHAMPION,
+        recent_results=recent_results,
     )
 
     # 6. UCL 心态 override 精确调参
@@ -433,13 +598,244 @@ def _load_analysis():
             "players": sq_dict.get("players", [])[:15],
         })
 
+    # Normalize logical_prob so it sums to 1.0
+    total_logical = sum(r["logical_prob"] for r in results)
+    if total_logical > 0:
+        for r in results:
+            r["logical_prob"] = r["logical_prob"] / total_logical
+
     results.sort(key=lambda x: x["final_prob"], reverse=True)
+
+    # 9. Conformal Prediction — 冠军概率置信区间
+    conformal = ConformalPredictor()
+    cal_info = conformal.calibrate()
+    champion_intervals = conformal.predict_champion_intervals(results)
+    interval_map = {c.country: c for c in champion_intervals}
+    for r in results:
+        ci = interval_map.get(r["country"])
+        if ci:
+            r["conformal_ci_low"] = ci.conformal_interval[0]
+            r["conformal_ci_high"] = ci.conformal_interval[1]
+            r["conformal_uncertainty"] = ci.uncertainty_level
+        else:
+            r["conformal_ci_low"] = r["ci_low"]
+            r["conformal_ci_high"] = r["ci_high"]
+            r["conformal_uncertainty"] = "medium"
+
+    # 10. Feature Attribution — 因子绝对贡献归因
+    attributions = attribute_all_teams(results)
+    attr_map = {a["country"]: a for a in attributions}
+    for r in results:
+        r["attribution"] = attr_map.get(r["country"])
+
+    # 11. H2H Conformal Prediction — 所有球队两两 H2H 的预测集
+    # 为每个 team 预计算其对所有其他队的 H2H conformal 结果
+    # 格式: { teamA: { teamB: { prediction_set, set_size, confidence, explanation } } }
+    h2h_conformal_map: Dict = {}
+    elo_dict_h2h = {r["country"]: r.get("mod_elo", r.get("elo", 1700)) for r in results}
+    for r in results:
+        country_a = r["country"]
+        elo_a = r.get("mod_elo", r.get("elo", 1700))
+        h2h_conformal_map[country_a] = {}
+        for r2 in results:
+            if r2["country"] == country_a:
+                continue
+            country_b = r2["country"]
+            elo_b = r2.get("mod_elo", r2.get("elo", 1700))
+            cp = conformal.predict_h2h(country_a, country_b, elo_a, elo_b)
+            h2h_conformal_map[country_a][country_b] = cp.to_dict()
 
     # 8. UCL
     ucl_data = _load_ucl_data()
 
-    _cached_results = (results, ucl_data)
-    return results, ucl_data
+    # 12. H2H Validation — 对已完赛的比赛计算预测命中率
+    h2h_validation: List[Dict] = []
+    for match in match_results:
+        team_a = match.get("team_a", "")
+        team_b = match.get("team_b", "")
+        score_a = match.get("score_a")
+        score_b = match.get("score_b")
+        if score_a is None or score_b is None:
+            continue
+        # 从h2h_conformal_map获取预测集（使用 _team_normalize 标准化队名）
+        def get_h2h(a, b):
+            # 标准化队名以匹配h2h_conformal_map
+            a_norm = _team_normalize(a)
+            b_norm = _team_normalize(b)
+            if a_norm in h2h_conformal_map and b_norm in h2h_conformal_map[a_norm]:
+                cp = h2h_conformal_map[a_norm][b_norm]
+                return cp.get("prediction_set", []), cp.get("set_size", 0), cp.get("confidence", 0)
+            return [], 0, 0
+        pred_set, set_size, conf = get_h2h(team_a, team_b)
+        actual = f"{score_a}-{score_b}"
+        # 胜负平判断
+        if score_a > score_b:
+            actual_outcome = "W"
+        elif score_a < score_b:
+            actual_outcome = "L"
+        else:
+            actual_outcome = "D"
+        # 预测胜负平（基于pred_set）
+        # pred_set 包含 ["胜","平","负"] — 胜负平标签，非比分
+        # "胜" = team_a 赢(W), "平" = 平局(D), "负" = team_a 输(L)
+        pred_outcome = None
+        if pred_set:
+            if "胜" in pred_set and "负" not in pred_set:
+                pred_outcome = "W"
+            elif "负" in pred_set and "胜" not in pred_set:
+                pred_outcome = "L"
+            elif "平" in pred_set and len(pred_set) == 1:
+                pred_outcome = "D"
+            else:
+                # set_size=3 或混乱情况，看 set 里哪个元素多
+                pred_outcome = None
+        # 比分命中率：conformal set 是胜负平，不是比分，所以用泊松预测最高概率比分来比较
+        # 只验证胜负平
+        outcome_hit = pred_outcome == actual_outcome if pred_outcome else False
+        # ── 泊松比分预测（移植自 JS buildScorePred） ──
+        import math
+        def poisson_pmf(k, lam):
+            if lam <= 0:
+                return 1.0 if k == 0 else 0.0
+            return math.exp(-lam) * (lam ** k) / math.factorial(k)
+
+        elo_a_val = elo_dict_h2h.get(team_a, 1700)
+        elo_b_val = elo_dict_h2h.get(team_b, 1700)
+        # 从 results 列表中找到 team_a 的 shift
+        shift_a = 0
+        shift_b = 0
+        for r in results:
+            if r["country"] == team_a:
+                shift_a = r.get("shift", 0) or 0
+            if r["country"] == team_b:
+                shift_b = r.get("shift", 0) or 0
+
+        # λ 公式：base 1.8（原来1.3），slope /280（原来/500）
+        lambda_a = 1.8 + (elo_a_val - 1700) / 280.0
+        lambda_b = 1.8 + (elo_b_val - 1700) / 280.0
+        lambda_a = lambda_a * (1 + shift_a * 3.0)
+        lambda_b = lambda_b * (1 + shift_b * 3.0)
+        lambda_a = max(0.5, min(5.0, lambda_a))
+        lambda_b = max(0.5, min(5.0, lambda_b))
+
+        # ELO差距决定 boost 强度：差距越大，高比分 boost 越强
+        # gap < 150: 纯Poisson不过度boost，保持正常比分预测
+        # gap > 150: 每超1点+0.01强度，gap=350时约2.0倍
+        gap = abs(elo_a_val - elo_b_val)
+        boost_strength = max(0.0, (gap - 150) / 100.0)  # 0 if close, grows with mismatch
+
+        # ── 主主场优势调整 ────────────────────────────────────────────────
+        def _get_home_advantage(country: str) -> float:
+            """北美主办国+CONCACAF球队的主场优势"""
+            TOP_HOSTS = {'USA', 'Canada', 'Mexico'}
+            CONCACAF_OTHER = {'Panama', 'Costa Rica', 'Jamaica', 'Honduras'}
+            if country in TOP_HOSTS:
+                return 0.3
+            elif country in CONCACAF_OTHER:
+                return 0.15
+            return 0.0
+
+        home_a = _get_home_advantage(team_a)
+        home_b = _get_home_advantage(team_b)
+        lambda_a = lambda_a + home_a
+        lambda_b = lambda_b + home_b
+        lambda_a = max(0.5, min(5.5, lambda_a))  # 扩展上限以容纳主场加成
+        lambda_b = max(0.5, min(5.5, lambda_b))
+        # ─────────────────────────────────────────────────────────────────
+
+        def get_boost(total, strength):
+            """极端比分 boost — ELO差距越大，高比分概率越高"""
+            if total >= 10:
+                return 1 + strength * 5.0  # 极大比分（10+总进球）
+            elif total >= 8:
+                return 1 + strength * 4.0  # 大比分（8-9总进球）
+            elif total >= 6:
+                return 1 + strength * 2.5  # 中高比分（6-7总进球）
+            elif total >= 5:
+                return 1 + strength * 1.2
+            return 1.0
+
+        raw = []
+        for ga in range(11):
+            for gb in range(11):
+                p = poisson_pmf(ga, lambda_a) * poisson_pmf(gb, lambda_b)
+                total = ga + gb
+                boost = get_boost(total, boost_strength)
+                raw.append({"ga": ga, "gb": gb, "prob": p * boost})
+
+        total_prob = sum(x["prob"] for x in raw)
+        for x in raw:
+            x["prob"] = x["prob"] / total_prob if total_prob > 0 else 0
+
+        # 排序，取概率最高的比分
+        sorted_scores = sorted(raw, key=lambda x: x["prob"], reverse=True)
+        top_score = sorted_scores[0]
+        top_score_str = f"{top_score['ga']}-{top_score['gb']}"
+        top_prob = top_score['prob']
+
+        # 取前3高概率比分作为预测集
+        top3_scores = sorted_scores[:3]
+        top3_set = [f"{s['ga']}-{s['gb']}" for s in top3_scores]
+        # 净胜球≥3命中判断（不用猜对比分，只要预测到大比分方向即可）
+        actual_diff = abs(score_a - score_b)
+        top_diff = abs(top_score['ga'] - top_score['gb'])
+        goal_diff_hit = actual_diff >= 3 and top_diff >= 3
+        goal_diff_top3_hit = actual_diff >= 3 and any(abs(s['ga'] - s['gb']) >= 3 for s in top3_scores)
+
+        h2h_validation.append({
+            "team_a": team_a,
+            "team_b": team_b,
+            "score_a": score_a,
+            "score_b": score_b,
+            "pred_set": pred_set,
+            "set_size": set_size,
+            "confidence": conf,
+            "actual": actual,
+            "actual_outcome": actual_outcome,
+            "pred_outcome": pred_outcome,
+            "outcome_hit": outcome_hit,
+            "top_score": top_score_str,
+            "top_prob": round(top_prob, 3),
+            "top3_set": top3_set,
+            "score_hit": actual == top_score_str,
+            "score_top3_hit": actual in top3_set,
+            "actual_diff": actual_diff,
+            "goal_diff_hit": goal_diff_hit,
+            "goal_diff_top3_hit": goal_diff_top3_hit,
+            "stage": match.get("stage", ""),
+        })
+    # 汇总统计
+    total = len(h2h_validation)
+    outcome_hits = sum(1 for v in h2h_validation if v["outcome_hit"])
+    avg_set_size = round(sum(v["set_size"] for v in h2h_validation) / total, 1) if total else 0
+    high_conf_hits = sum(1 for v in h2h_validation if v["set_size"] == 1 and v["outcome_hit"])
+    high_conf_total = sum(1 for v in h2h_validation if v["set_size"] == 1)
+    score_hits = sum(1 for v in h2h_validation if v["score_hit"])
+    score_top3_hits = sum(1 for v in h2h_validation if v["score_top3_hit"])
+    goal_diff_hits = sum(1 for v in h2h_validation if v["goal_diff_hit"])
+    goal_diff_top3_hits = sum(1 for v in h2h_validation if v["goal_diff_top3_hit"])
+    # 统计大比分场次（实际净胜球≥3的场次）
+    big_win_matches = sum(1 for v in h2h_validation if v["actual_diff"] >= 3)
+    val_summary = {
+        "total": total,
+        "outcome_acc": f"{round(outcome_hits/total*100, 1) if total else 0}%",
+        "outcome_hits": outcome_hits,
+        "avg_set_size": avg_set_size,
+        "high_conf_hits": high_conf_hits,
+        "high_conf_total": high_conf_total,
+        "score_hits": score_hits,
+        "score_top3_hits": score_top3_hits,
+        "score_acc": f"{round(score_hits/total*100, 1) if total else 0}%",
+        "score_top3_acc": f"{round(score_top3_hits/total*100, 1) if total else 0}%",
+        "goal_diff_hits": goal_diff_hits,
+        "goal_diff_top3_hits": goal_diff_top3_hits,
+        "big_win_matches": big_win_matches,
+    }
+
+    _cached_results = (results, ucl_data, h2h_conformal_map,
+                       match_fixtures, match_results, friendly_results,
+                       h2h_validation, val_summary)
+    return results, ucl_data, h2h_conformal_map, match_fixtures, match_results, friendly_results, h2h_validation, val_summary
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -484,6 +880,66 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .lb-pct{font-size:17px;font-weight:800;font-variant-numeric:tabular-nums}
 .lb-pct.vh{color:var(--bl)}
 .lb-sh{font-size:11px;font-weight:600;margin-top:2px}
+/* H2H Validation Module */
+.val-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.val-metric{background:var(--s2);border-radius:10px;padding:10px 6px;text-align:center}
+.val-metric .val-num{font-size:20px;font-weight:700;color:var(--bl);line-height:1.2}
+.val-metric .val-label{font-size:10px;color:var(--tx2);margin-top:2px}
+.val-row{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;margin-bottom:4px;background:var(--s2)}
+.val-row .val-flag{font-size:16px;min-width:24px;text-align:center}
+.val-row .val-teams{flex:1;font-size:13px;color:var(--tx1)}
+.val-row .val-score{font-size:14px;font-weight:700;color:var(--tx1)}
+.val-row .val-detail{font-size:11px;color:var(--tx2);margin-top:2px}
+.val-row .val-badge{padding:2px 7px;border-radius:12px;font-size:10px;font-weight:600}
+.val-badge.hit{background:#1a4d2e;color:#4ade80}
+.val-badge.miss{background:#4d1a1a;color:#f87171}
+.val-badge.partial{background:#3d2e1a;color:#fbbf24}
+/* Dynamic match sections */
+/* ── SofaScore-inspired Match Cards ── */
+.dyn-list{display:flex;flex-direction:column;gap:2px}
+.dyn-date-hd{font-size:11px;font-weight:800;color:var(--tx2);padding:10px 0 4px 0;text-transform:uppercase;letter-spacing:.8px;border-bottom:.5px solid var(--bd);margin-bottom:4px}
+.dyn-mo{color:var(--tx2);font-weight:400}
+
+/* Match Card Row */
+.mc-row{display:grid;grid-template-columns:60px 1fr auto 1fr;align-items:center;gap:6px;padding:10px 0;border-bottom:.5px solid var(--bd)}
+.mc-row:last-child{border-bottom:none}
+.mc-row.mc-frn{opacity:.9}
+
+/* Round Badge */
+.mc-rd{flex-shrink:0}
+.mc-badge{display:inline-block;font-size:9px;font-weight:800;padding:3px 6px;border-radius:4px;color:#fff;white-space:nowrap;text-transform:uppercase;letter-spacing:.4px}
+
+/* Team */
+.mc-team{display:flex;align-items:center;gap:5px;min-width:0}
+.mc-team.mc-tl{justify-content:flex-start}
+.mc-team.mc-tr{justify-content:flex-end}
+.mc-fl{font-size:18px;line-height:1;flex-shrink:0}
+.mc-nm{font-size:13px;font-weight:700;color:var(--tx1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:90px}
+.mc-nm b{font-weight:800}
+.mc-winner .mc-nm{color:var(--gr)}
+
+/* Center: VS / Time / Score */
+.mc-ct{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-width:52px}
+.mc-vs{font-size:10px;font-weight:800;color:var(--tx2);letter-spacing:.5px}
+.mc-kick{font-size:12px;font-weight:700;color:var(--tx1)}
+.mc-kick-cst{font-size:10px;font-weight:600;color:var(--tx2);opacity:0.8}
+.mc-score-ct{flex-direction:row;gap:4px}
+.mc-scr{font-size:16px;font-weight:800;color:var(--tx1);min-width:16px;text-align:center}
+.mc-scr-sep{font-size:14px;font-weight:700;color:var(--tx2)}
+.mc-scr.mc-sc-awin,.mc-scr.mc-sc-bwin{color:var(--gd)}
+.mc-ft{font-size:9px;font-weight:800;color:var(--tx2);margin-top:1px}
+
+/* Old dyn-* styles (keep for fallback) */
+.dyn-sect{padding:0}
+.dyn-empty{color:var(--tx2);font-size:13px;text-align:center;padding:16px 0}
+.dyn-team{color:var(--tx1)}
+.dyn-team.dyn-win{color:var(--gr);font-weight:800}
+.dyn-vs{color:var(--tx2);font-size:12px;font-weight:400}
+.dyn-score{font-size:16px;font-weight:800;color:var(--gd);white-space:nowrap}
+.dyn-meta{display:flex;gap:8px;font-size:11px;color:var(--tx2)}
+.dyn-date{font-weight:600}
+.dyn-time{opacity:0.7}
+.dyn-rnd{opacity:0.7}
 /* Factor breakdown */
 .fb-r{display:flex;flex-direction:column;padding:12px 0;border-bottom:0.5px solid var(--bd);cursor:pointer}
 .fb-r:last-child{border-bottom:none}
@@ -545,9 +1001,9 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .h2h Team select{width:100%;background:var(--s2);color:var(--tx);border:0.5px solid var(--bd);border-radius:14px;padding:16px 18px;font-size:17px;font-weight:700;appearance:none;-webkit-appearance:none;cursor:pointer;line-height:1.4}
 .h2h-vs{font-size:24px;font-weight:900;color:var(--gd);text-align:center;padding:4px 0}
 .h2h-bar{display:flex;align-items:center;gap:0;border-radius:16px;overflow:hidden;height:52px;background:var(--s2);margin-bottom:14px}
-.h2h-bar-a{flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:0 12px;height:100%;font-size:14px;font-weight:800;color:var(--tx);background:var(--bl)}
-.h2h-bar-d{flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--s);padding:0 10px;height:100%;background:var(--gd)}
-.h2h-bar-b{flex:1;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--tx);padding:0 12px;background:var(--gd)}
+.h2h-bar-a{flex:1 1;display:flex;align-items:center;justify-content:center;padding:0 12px;height:100%;font-size:14px;font-weight:800;color:var(--tx);background:var(--bl);min-width:0;overflow:hidden}
+.h2h-bar-d{flex:1 1;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--s);padding:0 10px;height:100%;background:var(--gd);min-width:0;overflow:hidden}
+.h2h-bar-b{flex:1 1;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--tx);padding:0 12px;background:var(--s2);min-width:0;overflow:hidden}
 .h2h-3m{display:flex;gap:8px;margin-bottom:16px}
 .h2h-3m .h2h-3m-it{flex:1;background:var(--s2);border-radius:12px;padding:12px 0;text-align:center}
 .h2h-3m .h2h-3m-v{font-size:18px;font-weight:800;color:var(--tx)}
@@ -574,6 +1030,27 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .h2h-mu-s{font-size:12px;font-weight:700;color:var(--gd);width:28px;text-align:center}
 .h2h-mu-r{text-align:right;flex:1}
 .h2h-mu-r .h2h-wl{margin-right:6px}
+/* Conformal Prediction */
+.cp-set-box{margin-top:4px}
+.cp-set-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.cp-set-lbl{font-size:10px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:0.8px}
+.cp-set-badge{font-size:11px;font-weight:800;padding:3px 8px;border-radius:6px;letter-spacing:0.3px}
+.cp-set-exp{font-size:12px;color:var(--tx2);margin-bottom:4px}
+.cp-set-conf{font-size:11px;color:var(--tx3)}
+/* Factor Attribution */
+.attr-sect{margin-bottom:14px}
+.attr-row{display:flex;align-items:center;gap:8px;font-size:12px;margin-bottom:5px}
+.attr-lbl{flex:0 0 80px;font-weight:700;color:var(--tx2)}
+.attr-bar{flex:1;height:18px;background:var(--s2);border-radius:4px;overflow:hidden;display:flex}
+.attr-seg{height:100%;transition:width 0.3s}
+.attr-seg-a{background:var(--bl)}
+.attr-seg-d{background:var(--rd)}
+.attr-seg-val{flex:0 0 48px;font-size:11px;font-weight:700;text-align:right;justify-content:flex-end;display:flex;gap:2px}
+.attr-delta-p{font-size:11px;color:var(--gr)}
+.attr-delta-n{font-size:11px;color:var(--rd)}
+.attr-meta{font-size:10px;color:var(--tx3);margin-top:6px;padding-top:6px;border-top:0.5px solid var(--bd)}
+.attr-meta span{margin-right:12px}
+.attr-note{font-size:11px;color:var(--tx3);font-style:italic;margin-top:4px}
 /* Squad */
 .sel{width:100%;background:var(--s2);color:var(--tx);border:0.5px solid var(--bd);border-radius:12px;padding:12px 16px;font-size:15px;font-weight:600;margin-bottom:12px;appearance:none;-webkit-appearance:none}
 .sel-wrap{position:relative}
@@ -670,6 +1147,27 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 .h2h-mu-s{font-size:12px;font-weight:700;color:var(--gd);width:28px;text-align:center}
 .h2h-mu-r{text-align:right;flex:1}
 .h2h-mu-r .h2h-wl{margin-right:6px}
+/* Conformal Prediction */
+.cp-set-box{margin-top:4px}
+.cp-set-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.cp-set-lbl{font-size:10px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:0.8px}
+.cp-set-badge{font-size:11px;font-weight:800;padding:3px 8px;border-radius:6px;letter-spacing:0.3px}
+.cp-set-exp{font-size:12px;color:var(--tx2);margin-bottom:4px}
+.cp-set-conf{font-size:11px;color:var(--tx3)}
+/* Factor Attribution */
+.attr-sect{margin-bottom:14px}
+.attr-row{display:flex;align-items:center;gap:8px;font-size:12px;margin-bottom:5px}
+.attr-lbl{flex:0 0 80px;font-weight:700;color:var(--tx2)}
+.attr-bar{flex:1;height:18px;background:var(--s2);border-radius:4px;overflow:hidden;display:flex}
+.attr-seg{height:100%;transition:width 0.3s}
+.attr-seg-a{background:var(--bl)}
+.attr-seg-d{background:var(--rd)}
+.attr-seg-val{flex:0 0 48px;font-size:11px;font-weight:700;text-align:right;justify-content:flex-end;display:flex;gap:2px}
+.attr-delta-p{font-size:11px;color:var(--gr)}
+.attr-delta-n{font-size:11px;color:var(--rd)}
+.attr-meta{font-size:10px;color:var(--tx3);margin-top:6px;padding-top:6px;border-top:0.5px solid var(--bd)}
+.attr-meta span{margin-right:12px}
+.attr-note{font-size:11px;color:var(--tx3);font-style:italic;margin-top:4px}
 /* Squad */
 .sel{width:100%;background:var(--s2);color:var(--tx);border:0.5px solid var(--bd);border-radius:12px;padding:12px 16px;font-size:15px;font-weight:600;margin-bottom:12px;appearance:none;-webkit-appearance:none}
 .sel-wrap{position:relative}
@@ -742,9 +1240,31 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 
 <!-- TAB: Champion -->
 <div class="pg on" id="pg-home">
+  <!-- Section 1: Top 6 Champion Leaderboard -->
   <div class="card">
-    <div class="card-title">冠军概率 / Champion Prob</div>
+    <div class="card-title">冠军概率 TOP 6 / Champion Prob</div>
     <div class="lb" id="lb"></div>
+  </div>
+  <!-- Section: H2H Validation (Model Validation) -->
+  <div class="card">
+    <div class="card-title">📊 H2H预测验证 / Model Validation</div>
+    <div class="val-summary" id="h2h-val-summary"></div>
+    <div class="val-list" id="h2h-val-list"></div>
+  </div>
+  <!-- Section 2: WC Fixtures (within 7 days) -->
+  <div class="card">
+    <div class="card-title">⚔️ 赛程 / Upcoming Fixtures</div>
+    <div class="dyn-sect" id="sec-fix"></div>
+  </div>
+  <!-- Section 3: WC Results (completed) -->
+  <div class="card">
+    <div class="card-title">📊 赛果 / Match Results</div>
+    <div class="dyn-sect" id="sec-wcr"></div>
+  </div>
+  <!-- Section 4: Friendly Results -->
+  <div class="card">
+    <div class="card-title">🤝 热身赛 / Friendly Results</div>
+    <div class="dyn-sect" id="sec-frn"></div>
   </div>
 </div>
 
@@ -918,7 +1438,28 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:"Inter",-
 <script>
 var D=__DATA__;
 var U=__UCL__;
-var FL={"Argentina":"AR","Brazil":"BR","France":"FR","Germany":"DE","Spain":"ES","England":"EN","Portugal":"PT","Netherlands":"NL","Italy":"IT","Belgium":"BE","Croatia":"HR","Switzerland":"CH","Austria":"AT","Poland":"PL","Ukraine":"UA","Romania":"RO","Czech Republic":"CZ","Turkey":"TR","Serbia":"RS","Sweden":"SE","Morocco":"MA","Senegal":"SN","Egypt":"EG","Cameroon":"CM","Nigeria":"NG","Algeria":"DZ","Ghana":"GH","Ivory Coast":"CI","Tunisia":"TN","Japan":"JP","South Korea":"KR","Iran":"IR","Qatar":"QA","Saudi Arabia":"SA","Australia":"AU","USA":"US","Mexico":"MX","Canada":"CA","Panama":"PA","Costa Rica":"CR","Honduras":"HN","Jamaica":"JM","Haiti":"HT","New Zealand":"NZ","Ecuador":"EC","Paraguay":"PY","Colombia":"CO","Uruguay":"UY","Uzbekistan":"UZ","Jordan":"JO","Cape Verde":"CV","DR Congo":"CD"};
+var HC=__H2H_CONF__;
+var FIX=__FIXTURES__;
+var WCR=__WC_RESULTS__;
+var FRN=__FRIENDLIES__;
+var H2HV=__H2H_VAL__;
+var VS=__VAL_SUMMARY__;
+var FL={
+  "Argentina":"🇦🇷","Brazil":"🇧🇷","France":"🇫🇷","Germany":"🇩🇪","Spain":"🇪🇸",
+  "England":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Portugal":"🇵🇹","Netherlands":"🇳🇱","Belgium":"🇧🇪",
+  "Croatia":"🇭🇷","Switzerland":"🇨🇭","Austria":"🇦🇹","Czech Republic":"🇨🇿","Turkey":"🇹🇷",
+  "Sweden":"🇸🇪","Morocco":"🇲🇦","Senegal":"🇸🇳","Egypt":"🇪🇬","Algeria":"🇩🇿",
+  "Ghana":"🇬🇭","Ivory Coast":"🇨🇮","Tunisia":"🇹🇳","DR Congo":"🇨🇩","Cape Verde":"🇨🇻",
+  "Japan":"🇯🇵","South Korea":"🇰🇷","Korea Republic":"🇰🇷","Iran":"🇮🇷","Iraq":"🇮🇶",
+  "Qatar":"🇶🇦","Saudi Arabia":"🇸🇦","Australia":"🇦🇺","Uzbekistan":"🇺🇿","Jordan":"🇯🇴",
+  "USA":"🇺🇸","United States":"🇺🇸","Mexico":"🇲🇽","Canada":"🇨🇦","Panama":"🇵🇦",
+  "Curaçao":"🇨🇼","Haiti":"🇭🇹","New Zealand":"🇳🇿","Ecuador":"🇪🇨","Paraguay":"🇵🇾",
+  "Colombia":"🇨🇴","Uruguay":"🇺🇾","Norway":"🇳🇴","South Africa":"🇿🇦",
+  "Bosnia and Herzegovina":"🇧🇦","Scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+  "Bolivia":"🇧🇴","Denmark":"🇩🇰","Gambia":"🇬🇲","Hungary":"🇭🇺","Israel":"🇮🇱",
+  "Italy":"🇮🇹","Jamaica":"🇯🇲","Kosovo":"🇽🇰","Mali":"🇲🇱","Nigeria":"🇳🇬",
+  "Peru":"🇵🇪","Poland":"🇵🇱","Romania":"🇷🇴","Ukraine":"🇺🇦","Venezuela":"🇻🇪"
+};
 function fl(c){return FL[c]||"--";}
 function pc(p){return p>15?"var(--bl)":p>5?"var(--gr)":"var(--tx2)";}
 function st(s){return s>0?"+"+s.toFixed(2)+"%":s<0?s.toFixed(2)+"%":"--";}
@@ -926,11 +1467,202 @@ function sc(s){return s>0?"var(--gr)":s<0?"var(--rd)":"var(--tx2)";}
 function showTab(n){document.querySelectorAll(".pg").forEach(function(p){p.classList.remove("on");});document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("on");});document.getElementById("pg-"+n).classList.add("on");document.getElementById("tb-"+n).classList.add("on");}
 
 /* ── Leaderboard ── */
-function buildLB(){var s=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});var h="";for(var i=0;i<s.length;i++){var t=s[i],r=i+1,rc=r<=3?"t"+r:"";var pct=(t.final_prob*100).toFixed(2),pctCls=t.final_prob>0.15?" vh":"";var sh=t.shift||0;h+='<div class="lb-r"><div class="lb-rk '+rc+'">'+r+'</div><div class="lb-fl">'+fl(t.country)+'</div><div class="lb-inf"><div class="lb-nm">'+t.country+'</div><div class="lb-el">Elo '+(t.elo||0).toFixed(0)+'</div><div class="pb"><div class="pb-fi" style="width:'+pct+'%;background:'+pc(t.final_prob*100)+'"></div></div></div><div class="lb-pr"><div class="lb-pct'+pctCls+'">'+pct+'%</div><div class="lb-sh" style="color:'+sc(sh)+'">'+st(sh)+'</div></div></div>';}document.getElementById("lb").innerHTML=h;}
+function buildLB(){
+  var s = D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});
+  // Top 6 only
+  var h = "";
+  for(var i=0; i<Math.min(6, s.length); i++){
+    var t=s[i], r=i+1, rc=r<=3?"t"+r:"";
+    var pct=(t.final_prob*100).toFixed(2), pctCls=t.final_prob>0.15?" vh":"";
+    var sh=t.shift||0;
+    h+='<div class="lb-r"><div class="lb-rk '+rc+'">'+r+'</div><div class="lb-fl">'+fl(t.country)+'</div><div class="lb-inf"><div class="lb-nm">'+t.country+'</div><div class="lb-el">Elo '+(t.elo||0).toFixed(0)+'</div><div class="pb"><div class="pb-fi" style="width:'+pct+'%;background:'+pc(t.final_prob*100)+'"></div></div></div><div class="lb-pr"><div class="lb-pct'+pctCls+'">'+pct+'%</div><div class="lb-sh" style="color:'+sc(sh)+'">'+st(sh)+'</div></div></div>';
+  }
+  document.getElementById("lb").innerHTML=h;
+  // Render dynamic sections
+  buildFixtures();
+  buildWCResults();
+  buildFriendlies();
+  buildH2HValidation();
+}
+
+/* ── Dynamic Match Sections (SofaScore-inspired cards) ── */
+var GRP_COLORS={
+  "Group A":"#E63946","Group B":"#457B9D","Group C":"#2A9D8F","Group D":"#E9C46A",
+  "Group E":"#F4A261","Group F":"#E76F51","Group G":"#6A4C93","Group H":"#1982C4",
+  "Group I":"#8AC926","Group J":"#FF595E","Group K":"#FF924C","Group L":"#00B4D8",
+  "Round of 16":"#FF6B35","Quarter-final":"#FF9F1C","Semi-final":"#E71D36",
+  "Third place":"#FF9900","Final":"#FFD700",
+  "Group stage":"#E63946","Knockout":"#FF6B35","Play-off":"#9B59B6",
+  "Qualification":"#3498DB","Friendlies":"#95A5A6"
+};
+
+function grpColor(r){
+  if(!r)return"var(--tx2)";
+  for(var k in GRP_COLORS)if(r.indexOf(k)>-1)return GRP_COLORS[k];
+  return"var(--tx2)";
+}
+
+function grpBadge(r){
+  var c=grpColor(r);
+  return'<span class="mc-badge" style="background:'+c+'">'+r+'</span>';
+}
+
+function fmtDate(d){
+  if(!d)return"";
+  var parts=d.split(".");
+  if(parts.length===2)return parts[0]+"<span class='dyn-mo'>月</span>"+parts[1]+"<span class='dyn-mo'>日</span>";
+  return d;
+}
+
+function buildFixtures(){
+  var matches=(FIX||[]).filter(function(m){return m.score_a===null&&m.score_b===null;});
+  if(!matches.length){document.getElementById("sec-fix").innerHTML='<div class="dyn-empty">暂无赛程数据</div>';return;}
+  var h='<div class="dyn-list">';
+  var lastDate="";
+  matches.slice(0,20).forEach(function(m){
+    if(m.date!==lastDate){
+      h+='<div class="dyn-date-hd">'+fmtDate(m.date)+'</div>';
+      lastDate=m.date;
+    }
+    h+='<div class="mc-row">\
+      <div class="mc-rd">'+grpBadge(m.round)+'</div>\
+      <div class="mc-team mc-tl">\
+        <span class="mc-fl">'+fl(m.team_a)+'</span>\
+        <span class="mc-nm">'+m.team_a+'</span>\
+      </div>\
+      <div class="mc-ct">\
+        <span class="mc-vs">VS</span>\
+        <span class="mc-kick">'+m.time+' <span class="mc-kick-cst">('+m.time_cst+')</span></span>\
+      </div>\
+      <div class="mc-team mc-tr">\
+        <span class="mc-nm">'+m.team_b+'</span>\
+        <span class="mc-fl">'+fl(m.team_b)+'</span>\
+      </div>\
+    </div>';
+  });
+  h+='</div>';
+  document.getElementById("sec-fix").innerHTML=h;
+}
+
+function buildWCResults(){
+  var matches=(WCR||[]).filter(function(m){return m.score_a!==null||m.score_b!==null;});
+  if(!matches.length){document.getElementById("sec-wcr").innerHTML='<div class="dyn-empty">暂无赛果数据</div>';return;}
+  var h='<div class="dyn-list">';
+  var lastDate="";
+  matches.slice(0,20).forEach(function(m){
+    if(m.date!==lastDate){
+      h+='<div class="dyn-date-hd">'+fmtDate(m.date)+'</div>';
+      lastDate=m.date;
+    }
+    var sa=m.score_a!=null?m.score_a:"-",sb=m.score_b!=null?m.score_b:"-";
+    var winA=m.score_a!=null&&m.score_b!=null&&m.score_a>m.score_b;
+    var winB=m.score_a!=null&&m.score_b!=null&&m.score_b>m.score_a;
+    h+='<div class="mc-row">\
+      <div class="mc-rd">'+grpBadge(m.round)+'</div>\
+      <div class="mc-team mc-tl'+(winA?' mc-winner':'')+'">\
+        <span class="mc-fl">'+fl(m.team_a)+'</span>\
+        <span class="mc-nm">'+(winA?'<b>':'<b>')+m.team_a+'</b></span>\
+      </div>\
+      <div class="mc-ct mc-score-ct">\
+        <span class="mc-scr '+(winA?'mc-sc-awin':winB?'mc-sc-bwin':'')+'">'+sa+'</span>\
+        <span class="mc-scr-sep">-</span>\
+        <span class="mc-scr '+(winB?'mc-sc-bwin':winA?'mc-sc-awin':'')+'">'+sb+'</span>\
+        <span class="mc-ft">FT</span>\
+      </div>\
+      <div class="mc-team mc-tr'+(winB?' mc-winner':'')+'">\
+        <span class="mc-nm"><b>'+m.team_b+'</b></span>\
+        <span class="mc-fl">'+fl(m.team_b)+'</span>\
+      </div>\
+    </div>';
+  });
+  h+='</div>';
+  document.getElementById("sec-wcr").innerHTML=h;
+}
+
+function buildFriendlies(){
+  var matches=(FRN||[]).filter(function(m){return m.score_a!==null||m.score_b!==null;});
+  if(!matches.length){document.getElementById("sec-frn").innerHTML='<div class="dyn-empty">暂无热身赛数据</div>';return;}
+  var h='<div class="dyn-list">';
+  var lastDate="";
+  matches.slice(0,20).forEach(function(m){
+    if(m.date!==lastDate){
+      h+='<div class="dyn-date-hd">'+fmtDate(m.date)+'</div>';
+      lastDate=m.date;
+    }
+    var sa=m.score_a!=null?m.score_a:"-",sb=m.score_b!=null?m.score_b:"-";
+    var winA=m.score_a!=null&&m.score_b!=null&&m.score_a>m.score_b;
+    var winB=m.score_a!=null&&m.score_b!=null&&m.score_b>m.score_a;
+    h+='<div class="mc-row mc-frn">\
+      <div class="mc-rd">'+grpBadge("热身赛")+'</div>\
+      <div class="mc-team mc-tl'+(winA?' mc-winner':'')+'">\
+        <span class="mc-fl">'+fl(m.team_a)+'</span>\
+        <span class="mc-nm"><b>'+m.team_a+'</b></span>\
+      </div>\
+      <div class="mc-ct mc-score-ct">\
+        <span class="mc-scr '+(winA?'mc-sc-awin':winB?'mc-sc-bwin':'')+'">'+sa+'</span>\
+        <span class="mc-scr-sep">-</span>\
+        <span class="mc-scr '+(winB?'mc-sc-bwin':winA?'mc-sc-awin':'')+'">'+sb+'</span>\
+      </div>\
+      <div class="mc-team mc-tr'+(winB?' mc-winner':'')+'">\
+        <span class="mc-nm"><b>'+m.team_b+'</b></span>\
+        <span class="mc-fl">'+fl(m.team_b)+'</span>\
+      </div>\
+    </div>';
+  });
+  h+='</div>';
+  document.getElementById("sec-frn").innerHTML=h;
+}
+
+/* ── H2H Validation ── */
+function buildH2HValidation(){
+  var vv = VS || {};
+  if(!vv.total){
+    document.getElementById('h2h-val-summary').innerHTML = '<div class="val-metric"><div class="val-num">N/A</div><div class="val-label">暂无验证数据</div></div>';
+    document.getElementById('h2h-val-list').innerHTML = '';
+    return;
+  }
+  // 4个指标：胜负平 | 比分精确 | Top3比分 | 净胜球≥3
+  var gw = vv.goal_diff_hits || 0;
+  var gwTotal = vv.big_win_matches || 0;
+  document.getElementById('h2h-val-summary').innerHTML =
+    '<div class="val-metric"><div class="val-num">' + vv.outcome_hits + '/' + vv.total + '</div><div class="val-label">胜负平</div></div>' +
+    '<div class="val-metric"><div class="val-num">' + (vv.score_hits || 0) + '/' + vv.total + '</div><div class="val-label">比分命中</div></div>' +
+    '<div class="val-metric"><div class="val-num">' + (vv.goal_diff_hits || 0) + '/' + gwTotal + '</div><div class="val-label">净胜球≥3</div></div>';
+  var vlist = '';
+  var vals = H2HV || [];
+  for(var i = 0; i < vals.length; i++){
+    var v = vals[i];
+    // 优先级：比分中 > Top3中 > 大比分命中 > 胜负中 > 未中
+    var isBigWin = (v.actual_diff || 0) >= 3;
+    var badge;
+    if(v.score_hit){
+      badge = '<span class="val-badge hit">✓ 比分中</span>';
+    } else if(v.score_top3_hit){
+      badge = '<span class="val-badge partial">✓ Top3中</span>';
+    } else if(v.goal_diff_hit){
+      badge = '<span class="val-badge partial">✓ 大比分</span>';
+    } else if(v.outcome_hit){
+      badge = '<span class="val-badge partial">✓ 胜负中</span>';
+    } else {
+      badge = '<span class="val-badge miss">✗ 未中</span>';
+    }
+    var flagA = fl(v.team_a) || '⚑';
+    var flagB = fl(v.team_b) || '⚑';
+    var diffTag = isBigWin ? ' <span style="color:var(--gd)">⚡' + v.actual_diff + '球</span>' : '';
+    var predLbl = (v.top_score || '?') + ' (' + ((v.top_prob || 0) * 100).toFixed(0) + '%)';
+    vlist += '<div class="val-row">' +
+      '<div class="val-flag">' + flagA + '</div>' +
+      '<div class="val-teams">' + v.team_a + ' vs ' + v.team_b + '<div class="val-detail">预测: ' + predLbl + diffTag + '</div></div>' +
+      '<div class="val-score">' + v.score_a + '-' + v.score_b + '</div>' +
+      badge +
+      '</div>';
+  }
+  document.getElementById('h2h-val-list').innerHTML = vlist;
+}
 
 /* ── Factor Breakdown ── */
 function toggleFB(el){var d=el.querySelector(".fb-expanded");if(d)d.classList.toggle("on");}
-function buildFB(){var s=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});var factors=[{k:"elo_score",l:"Elo锚点"},{k:"age_score",l:"年龄结构"},{k:"exp_score",l:"大赛经验"},{k:"form_score",l:"近期状态"},{k:"coach_score",l:"教练因素"},{k:"mystic_score",l:"玄学因子"}];var fc=["var(--bl)","var(--gr)","var(--gd)","var(--sl)","var(--br)","var(--rd)"];var h="";for(var i=0;i<Math.min(s.length,25);i++){var t=s[i];h+='<div class="fb-r" onclick="toggleFB(this)"><div class="fb-hd"><span class="fb-fl">'+fl(t.country)+'</span><span class="fb-nm">'+t.country+'</span><span class="fb-pct">'+(t.final_prob*100).toFixed(1)+'%</span></div><div class="fb-bars">';for(var j=0;j<factors.length;j++){var f=factors[j];var v=Math.max(0,t[f.k]||0);var max_v=0.15;var w=Math.min(100,(v/max_v*100)).toFixed(1);var val_str=(v>=0?"+":"")+(v*100).toFixed(1)+"%";h+='<div class="fb-bar"><span class="fb-lbl">'+f.l+'</span><div class="fb-track"><div class="fb-fill" style="width:'+w+'%;background:'+fc[j]+'"></div></div><span class="fb-val" style="color:'+fc[j]+'">'+val_str+'</span></div>';}h+='</div><div class="fb-expanded"><div class="fb-narrative">'+(t.narrative||"")+'</div></div></div>';}document.getElementById("fb").innerHTML=h;}
+function buildFB(){var s=D.slice().sort(function(a,b){return b.final_prob-a.final_prob;});var factors=[{k:"elo_score",l:"Elo锚点"},{k:"age_score",l:"年龄结构"},{k:"exp_score",l:"大赛经验"},{k:"form_score",l:"近期状态"},{k:"coach_score",l:"教练因素"},{k:"mystic_score",l:"玄学因子"}];var fc=["var(--bl)","var(--gr)","var(--gd)","var(--sl)","var(--br)","var(--rd)"];var uncBadge=function(lvl){var m={low:'<span class="unc-badge unc-low">低不确定</span>',medium:'<span class="unc-badge unc-med">中不确定</span>',high:'<span class="unc-badge unc-high">高不确定</span>'};return m[lvl]||m.medium;};var h="";for(var i=0;i<Math.min(s.length,25);i++){var t=s[i];var uncLvl=t.conformal_uncertainty||"medium";var ciLo=(t.conformal_ci_low||0)*100,ciHi=(t.conformal_ci_high||0)*100;h+='<div class="fb-r" onclick="toggleFB(this)"><div class="fb-hd"><span class="fb-fl">'+fl(t.country)+'</span><span class="fb-nm">'+t.country+'</span><div class="fb-pct-wrap"><span class="fb-pct">'+(t.final_prob*100).toFixed(1)+'%</span>'+uncBadge(uncLvl)+'</div></div><div class="fb-bars">';for(var j=0;j<factors.length;j++){var f=factors[j];var v=Math.max(0,t[f.k]||0);var max_v=0.15;var w=Math.min(100,(v/max_v*100)).toFixed(1);var val_str=(v>=0?"+":"")+(v*100).toFixed(1)+"%";h+='<div class="fb-bar"><span class="fb-lbl">'+f.l+'</span><div class="fb-track"><div class="fb-fill" style="width:'+w+'%;background:'+fc[j]+'"></div></div><span class="fb-val" style="color:'+fc[j]+'">'+val_str+'</span></div>';}h+='</div><div class="fb-expanded"><div class="fb-unc-range">置信区间 '+(ciLo).toFixed(2)+'% ~ '+(ciHi).toFixed(2)+'% &nbsp;|&nbsp; <span class="unc-text-'+uncLvl+'">'+(uncLvl==="low"?"模型高度确定":uncLvl==="medium"?"有一定不确定性":"不确定性较高")+'</span></div>';var attr=t.attribution;if(attr&&attr.attributions){h+='<div class="fb-attr"><div class="fb-attr-hd">📊 概率归因</div><div class="fb-elo-base">Elo基准概率: '+(attr.elo_baseline*100).toFixed(2)+'% &rarr; 最终概率: '+(attr.final_probability*100).toFixed(2)+'%</div>';for(var k=0;k<attr.attributions.length;k++){var a=attr.attributions[k];if(Math.abs(a.contribution)<0.0001)continue;var isPos=a.contribution>0;var cls=isPos?"attr-pos":"attr-neg";var sign=isPos?"+":"";var pct=a.contribution_pct.toFixed(1);h+='<div class="fb-attr-row"><span class="fb-attr-lbl">'+a.factor_label+'</span><div class="fb-attr-bar-wrap"><div class="fb-attr-bar" style="width:'+Math.min(100,Math.abs(a.contribution)*2000).toFixed(1)+'%;background:'+(isPos?"var(--gr)":"var(--rd)")+'"></div></div><span class="'+cls+'">'+sign+(a.contribution*100).toFixed(3)+'% ('+pct+'%)</span></div>';}h+='</div>';}h+='<div class="fb-narrative">'+(t.narrative||"")+'</div></div></div>';}document.getElementById("fb").innerHTML=h;}
 
 /* ── Mystic ── */
 function toggleMC(el){var d=el.nextElementSibling;if(d.classList.contains("on")){d.classList.remove("on");}else{d.classList.add("on");}}
@@ -1028,14 +1760,29 @@ function getPlayerMatchups(ta,tb){
 function buildScorePred(ta, tb, r) {
     var eloA = ta.mod_elo || ta.elo || 1700;
     var eloB = tb.mod_elo || tb.elo || 1700;
-    var lambdaA = 1.3 + (eloA - 1700) / 500 * 1.0;
-    var lambdaB = 1.3 + (eloB - 1700) / 500 * 1.0;
+    // Lambda formula: base 1.8 (align with Python backend), slope /280
+    var lambdaA = 1.8 + (eloA - 1700) / 280.0;
+    var lambdaB = 1.8 + (eloB - 1700) / 280.0;
     var shiftA = ta.shift || 0;
     var shiftB = tb.shift || 0;
     lambdaA = lambdaA * (1 + shiftA * 3.0);
     lambdaB = lambdaB * (1 + shiftB * 3.0);
-    lambdaA = Math.max(0.3, Math.min(4.0, lambdaA));
-    lambdaB = Math.max(0.3, Math.min(4.0, lambdaB));
+    lambdaA = Math.max(0.5, Math.min(5.0, lambdaA));
+    lambdaB = Math.max(0.5, Math.min(5.0, lambdaB));
+
+    // ── Home advantage (North America 2026) ─────────────────────────────
+    var HOME_TEAMS_NA = ['USA','Canada','Mexico','Panama','Costa Rica','Jamaica','Honduras'];
+    function getHomeAdv(country) {
+        if (!country) return 0;
+        if (['USA','Canada','Mexico'].indexOf(country) >= 0) return 0.3;
+        if (HOME_TEAMS_NA.indexOf(country) >= 0) return 0.15;
+        return 0;
+    }
+    lambdaA += getHomeAdv(ta.country);
+    lambdaB += getHomeAdv(tb.country);
+    lambdaA = Math.max(0.5, Math.min(5.5, lambdaA));
+    lambdaB = Math.max(0.5, Math.min(5.5, lambdaB));
+    // ─────────────────────────────────────────────────────────────────
 
     function pois(k, lam) {
         if (lam <= 0) return k === 0 ? 1 : 0;
@@ -1044,19 +1791,28 @@ function buildScorePred(ta, tb, r) {
         return p;
     }
 
-    var EXTREME_THRESH = 5;
-    var BOOST_FACTOR = 3.0;
+    // ELO gap → boost strength
+    var gap = Math.abs(eloA - eloB);
+    var boostStrength = Math.max(0, (gap - 150) / 100.0);
+
+    function getBoost(total, strength) {
+        if (total >= 10) return 1 + strength * 5.0;
+        if (total >= 8)  return 1 + strength * 4.0;
+        if (total >= 6)  return 1 + strength * 2.5;
+        if (total >= 5)  return 1 + strength * 1.2;
+        return 1.0;
+    }
 
     var raw = [];
-    for (var ga = 0; ga <= 5; ga++) {
-        for (var gb = 0; gb <= 5; gb++) {
+    for (var ga = 0; ga <= 10; ga++) {
+        for (var gb = 0; gb <= 10; gb++) {
             raw.push({ga: ga, gb: gb, pois: pois(ga, lambdaA) * pois(gb, lambdaB), total: ga + gb});
         }
     }
 
     var sumBoosted = 0;
     for (var i = 0; i < raw.length; i++) {
-        raw[i].boosted = raw[i].total >= EXTREME_THRESH ? raw[i].pois * BOOST_FACTOR : raw[i].pois;
+        raw[i].boosted = raw[i].pois * getBoost(raw[i].total, boostStrength);
         sumBoosted += raw[i].boosted;
     }
     for (var i = 0; i < raw.length; i++) raw[i].prob = raw[i].boosted / sumBoosted;
@@ -1157,7 +1913,9 @@ function h2hChange(){
   var r=h2hCalc(ta,tb);
   var barA=(r.winA*100).toFixed(1),barB=(r.winB*100).toFixed(1),barD=(r.draw*100).toFixed(1);
   document.getElementById("h2h-bar-a").style.width=barA+"%";
+  document.getElementById("h2h-bar-a").textContent=barA+"%";
   document.getElementById("h2h-bar-b").style.width=barB+"%";
+  document.getElementById("h2h-bar-b").textContent=barB+"%";
   document.getElementById("h2h-bar-d").style.width=barD+"%";
   document.getElementById("h2h-bar-d").textContent=barD+"%";
   document.getElementById("h2h-pa").textContent=barA+"%";
@@ -1165,7 +1923,20 @@ function h2hChange(){
   document.getElementById("h2h-pd").textContent=barD+"%";
   // factor diff
   var h='<div class="h2h-fc">'+getFactorDiff(ta,tb)+'</div>';
-  
+
+  // Conformal Prediction Set
+  var cpData=(HC&&HC[ta.country]&&HC[ta.country][tb.country])?HC[ta.country][tb.country]:null;
+  if(cpData){
+    var setLbl=cpData.prediction_set.join("/");
+    var setColor=cpData.set_size===1?"var(--gr)":cpData.set_size===2?"var(--gd)":"var(--rd)";
+    var setBg=cpData.set_size===1?"rgba(48,209,88,0.12)":cpData.set_size===2?"rgba(255,214,10,0.10)":"rgba(255,69,58,0.10)";
+    h+='<div class="cp-set-box" style="background:'+setBg+';border:1px solid '+setColor+';border-radius:12px;padding:12px 14px;margin-bottom:14px">';
+    h+='<div class="cp-set-hd"><span class="cp-set-lbl">Conformal 预测集</span><span class="cp-set-badge" style="background:'+setColor+';color:var(--bg)">'+setLbl+'</span></div>';
+    h+='<div class="cp-set-exp">'+cpData.explanation+'</div>';
+    h+='<div class="cp-set-conf">置信度: '+(cpData.confidence*100).toFixed(0)+'%</div>';
+    h+='</div>';
+  }
+
   h += buildScorePred(ta, tb, r);
   // historical record
   var recKey=ta.country+"|"+tb.country,recKeyRev=tb.country+"|"+ta.country;
@@ -1367,23 +2138,71 @@ if(teams.length>0){sel.value=teams[0].country;sqChange();}
 
 def run_server(port=7862):
     """启动 HTTP 服务器 — 纯 HTML/CSS/JS，无 Gradio 依赖"""
-    results, ucl_data = _load_analysis()
-    update_time = datetime.now().strftime("%Y-%m-%d %H:%M")
+    # File paths for cache invalidation
+    MATCH_CACHE = os.path.join(ROOT, "data", "match_cache.json")
+    ELO_CACHE_PATH = os.path.join(ROOT, "data", "elo_cache_2026.json")
 
-    data_json = json.dumps(results, ensure_ascii=False)
-    ucl_json = json.dumps(ucl_data, ensure_ascii=False)
+    # Mutable container for cached state (avoids global keyword issues)
+    cache_state = {"html": "", "match_mtime": 0, "elo_mtime": 0}
 
-    html = HTML_BODY
-    html = html.replace("__DATA__", data_json)
-    html = html.replace("__UCL__", ucl_json)
-    html = html.replace("__UPDATE_TIME__", update_time)
+    def _get_file_mtime(path: str) -> float:
+        try:
+            return os.path.getmtime(path)
+        except OSError:
+            return 0
+
+    def _build_html() -> tuple:
+        """Load data and build full HTML. Returns (html, match_mtime, elo_mtime)."""
+        global _cached_results
+        # Bust analysis cache to force reload of fresh data
+        _cached_results = None
+        results, ucl_data, h2h_conformal_map, match_fixtures, match_results, friendly_results, h2h_validation, val_summary = _load_analysis()
+
+        # Use actual data file mtime for update time
+        match_mtime = _get_file_mtime(MATCH_CACHE)
+        elo_mtime = _get_file_mtime(ELO_CACHE_PATH)
+        latest_mtime = max(match_mtime, elo_mtime)
+        if latest_mtime > 0:
+            update_time = datetime.fromtimestamp(latest_mtime).strftime("%Y-%m-%d %H:%M:%S")
+        else:
+            update_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        data_json = json.dumps(results, ensure_ascii=False)
+        ucl_json = json.dumps(ucl_data, ensure_ascii=False)
+        h2h_conf_json = json.dumps(h2h_conformal_map, ensure_ascii=False)
+        fixtures_json = json.dumps(match_fixtures, ensure_ascii=False)
+        wc_results_json = json.dumps(match_results, ensure_ascii=False)
+        friendlies_json = json.dumps(friendly_results, ensure_ascii=False)
+        h2h_val_json = json.dumps(h2h_validation, ensure_ascii=False)
+        val_sum_json = json.dumps(val_summary, ensure_ascii=False)
+
+        html = HTML_BODY
+        html = html.replace("__DATA__", data_json)
+        html = html.replace("__UCL__", ucl_json)
+        html = html.replace("__H2H_CONF__", h2h_conf_json)
+        html = html.replace("__FIXTURES__", fixtures_json)
+        html = html.replace("__WC_RESULTS__", wc_results_json)
+        html = html.replace("__FRIENDLIES__", friendlies_json)
+        html = html.replace("__H2H_VAL__", h2h_val_json)
+        html = html.replace("__VAL_SUMMARY__", val_sum_json)
+        html = html.replace("__UPDATE_TIME__", update_time)
+        return html, match_mtime, elo_mtime
+
+    # Initial build
+    cache_state["html"], cache_state["match_mtime"], cache_state["elo_mtime"] = _build_html()
 
     class Handler(http.server.BaseHTTPRequestHandler):
         def do_GET(self):
+            # Check if cache files changed — rebuild if so
+            current_match_mtime = _get_file_mtime(MATCH_CACHE)
+            current_elo_mtime = _get_file_mtime(ELO_CACHE_PATH)
+            if current_match_mtime != cache_state["match_mtime"] or current_elo_mtime != cache_state["elo_mtime"]:
+                # Files changed — rebuild HTML
+                cache_state["html"], cache_state["match_mtime"], cache_state["elo_mtime"] = _build_html()
             self.send_response(200)
             self.send_header("Content-type", "text/html; charset=utf-8")
             self.end_headers()
-            self.wfile.write(html.encode("utf-8"))
+            self.wfile.write(cache_state["html"].encode("utf-8"))
 
         def log_message(self, fmt, *args):
             pass

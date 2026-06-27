@@ -110,7 +110,7 @@ POSITION_WEIGHTS = PositionWeights()
 @dataclass
 class ExperienceConfig:
     """大赛经验系数（缩小量级，防止因子膨胀Elo）
-
+    
     2026-05-30 校准：加大决赛/四强档差距，使有淘汰赛历史成就的球队
     （西班牙、葡萄牙）能压过预选赛型高ELO球队（瑞士、哥伦比亚）。
     """

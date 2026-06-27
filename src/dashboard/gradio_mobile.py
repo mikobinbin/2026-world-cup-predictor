@@ -60,14 +60,12 @@ ELO_CACHE = os.path.join(ROOT, "data", "elo_cache_2026.json")
 QUALIFIED_TEAMS = [
     "Argentina", "Brazil", "Uruguay", "Colombia", "Ecuador", "Paraguay",
     "France", "Germany", "Spain", "England", "Portugal", "Netherlands",
-    "Italy", "Belgium", "Croatia", "Switzerland", "Austria", "Poland",
-    "Ukraine", "Romania", "Czech Republic", "Turkey", "Serbia", "Sweden",
-    "Morocco", "Senegal", "Algeria", "Nigeria", "Egypt", "Cameroon",
-    "Ghana", "Ivory Coast", "Tunisia", "DR Congo", "Cape Verde",
-    "Japan", "South Korea", "Iran", "Qatar", "Saudi Arabia", "Australia",
+    "Belgium", "Croatia", "Switzerland", "Austria", "Czech Republic", "Turkey", "Sweden",
+    "Morocco", "Senegal", "Algeria", "Egypt", "Ghana", "Ivory Coast", "Tunisia", "DR Congo", "Cape Verde",
+    "Japan", "South Korea", "Iran", "Iraq", "Qatar", "Saudi Arabia", "Australia",
     "Uzbekistan", "Jordan",
-    "USA", "Mexico", "Canada", "Panama", "Costa Rica", "Honduras", "Jamaica", "Haiti",
-    "New Zealand",
+    "USA", "Mexico", "Canada", "Panama", "Curaçao", "Haiti", "New Zealand",
+    "Norway", "South Africa", "Bosnia and Herzegovina", "Scotland",
 ]
 
 HOST_COUNTRY = "USA"
