@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-30T05:37:15",
+  "updated_at": "2026-06-30T23:43:06",
   "results": [
     {
       "id": "match_001",
@@ -740,6 +740,26 @@
       "score_a": 2,
       "score_b": 1,
       "stage": "Unknown"
+    },
+    {
+      "id": "match_077",
+      "datetime": "2026-06-30T17:00:00",
+      "datetime_cst": "2026-07-01T01:00:00",
+      "team_a": "Ivory Coast",
+      "team_b": "Norway",
+      "score_a": 1,
+      "score_b": 2,
+      "stage": "Unknown"
+    },
+    {
+      "id": "match_078",
+      "datetime": "2026-06-30T21:00:00",
+      "datetime_cst": "2026-07-01T05:00:00",
+      "team_a": "France",
+      "team_b": "Sweden",
+      "score_a": 3,
+      "score_b": 0,
+      "stage": "Unknown"
     }
   ],
   "fixtures": [
@@ -760,26 +780,6 @@
       "team_a": "Netherlands",
       "team_b": "Morocco",
       "score_a": 1,
-      "score_b": null,
-      "stage": "Unknown"
-    },
-    {
-      "id": "match_077",
-      "datetime": "2026-06-30T17:00:00",
-      "datetime_cst": "2026-07-01T01:00:00",
-      "team_a": "Ivory Coast",
-      "team_b": "Norway",
-      "score_a": null,
-      "score_b": null,
-      "stage": "Unknown"
-    },
-    {
-      "id": "match_078",
-      "datetime": "2026-06-30T21:00:00",
-      "datetime_cst": "2026-07-01T05:00:00",
-      "team_a": "France",
-      "team_b": "Sweden",
-      "score_a": null,
       "score_b": null,
       "stage": "Unknown"
     },
@@ -898,7 +898,7 @@
       "datetime": "2026-07-04T21:00:00",
       "datetime_cst": "2026-07-05T05:00:00",
       "team_a": "Paraguay",
-      "team_b": "Winner Match 77",
+      "team_b": "France",
       "score_a": null,
       "score_b": null,
       "stage": "Unknown"
@@ -908,7 +908,7 @@
       "datetime": "2026-07-05T20:00:00",
       "datetime_cst": "2026-07-06T04:00:00",
       "team_a": "Brazil",
-      "team_b": "Winner Match 78",
+      "team_b": "Norway",
       "score_a": null,
       "score_b": null,
       "stage": "Unknown"
